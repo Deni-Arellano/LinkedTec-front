@@ -1,41 +1,32 @@
-import React, { useState } from 'react';
-import TestButton from '../componentes/TestButton'; // o .js si usas esa extensión
+import React from "react";
+import Button from "../componetes/Button";
+import CajaDeTexto from "../componetes/Caja-de-texto";
+import Etiquetas from "../componetes/Etiquetas";
+import '../hojas-de-estilo/Login.css';
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = (event) => {
-    event.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
-  };
-
+function Login() {
   return (
-    <div>
-      <h1>Página de Login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <input
-            type="text"
-            placeholder="Usuario"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+    <div className="login-container">
+      <button className="linketec-btn">LinkeTec</button>
+      <a href="#registro" className="registro-btn">Registro</a>
+      <form className="login-form-container">
+        <div className="campo-container">
+          <Etiquetas text="Usuario" />
+          <CajaDeTexto placeholder="Usuario" />
         </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <div className="campo-container">
+          <Etiquetas text="Contraseña" />
+          <CajaDeTexto placeholder="Contraseña" />
         </div>
-        {/* Aquí estamos usando el botón de prueba */}
-        <TestButton />
+        <div className="boton-container">
+          <Button texto="Entrar" />
+        </div>
+        <div className="extra-options">
+          <a href="#recuperar">Recuperar contraseña</a>
+        </div>
       </form>
     </div>
   );
-};
+}
 
 export default Login;

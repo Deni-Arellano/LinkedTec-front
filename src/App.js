@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import Login from './paginas/Login';  // Asegúrate de que la ruta sea correcta
+import './hojas-de-estilo/App.css';
+import Login from './paginas/Login';
+
 
 function App() {
   return (
