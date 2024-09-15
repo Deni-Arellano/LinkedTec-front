@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CajaDeTexto from '../componentes/Caja-de-texto.jsx';  // Verifica el nombre exacto
-import Button from '../componentes/Button';  // Importa el botón
-import Etiquetas from '../componentes/Etiquetas.jsx';  // Verifica el nombre exacto
+import CajaDeTexto from '../componentes/Caja-de-texto';  // Sin .jsx para evitar problemas
+import Button from '../componentes/Button';  // Sin .js, ya que React puede manejarlo automáticamente
+import Etiquetas from '../componentes/Etiquetas';  // Sin .jsx para evitar problemas
 import '../hojas-de-estilo/Login.css';  // Ruta para el archivo CSS
 
 const Login = () => {
