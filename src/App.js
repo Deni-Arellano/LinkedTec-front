@@ -1,5 +1,6 @@
 import React from 'react';
-import Login from './paginas/Login';
+import './App.css';
+import Login from './paginas/Login';  // Asegúrate de que la ruta sea correcta
 
 function App() {
   return (

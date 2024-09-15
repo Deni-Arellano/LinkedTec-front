@@ -1,42 +1,38 @@
 import React, { useState } from 'react';
-import CajaDeTexto from '../componentes/Caja-de-texto.js';  // Incluye la extensión .js
-import Button from '../componentes/Button.js';  // Incluye la extensión .js
-import Etiquetas from '../componentes/Etiquetas.js';  // Incluye la extensión .js
+import TestButton from '../componentes/TestButton'; // o .js si usas esa extensión
 
-import '../hojas-de-estilo/Login.css';
 const Login = () => {
-  const [username] = useState('');  // Removido setUsername ya que no se usa
-  const [password] = useState('');  // Removido setPassword ya que no se usa
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (username === '' || password === '') {
-      setError('Por favor, completa todos los campos.');
-    } else {
-      setError('');
-      console.log('Usuario:', username);
-      console.log('Contraseña:', password);
-      // Aquí puedes poner la lógica de autenticación
-    }
+  const handleLogin = (event) => {
+    event.preventDefault();
+    console.log("Username:", username);
+    console.log("Password:", password);
   };
 
   return (
-    <div className="login-container">
-      <h2>Iniciar Sesión</h2>
+    <div>
+      <h1>Página de Login</h1>
       <form onSubmit={handleLogin}>
-        <Etiquetas text="Usuario o Correo Electrónico" />
-        <CajaDeTexto />
-        <Etiquetas text="Contraseña" />
-        <CajaDeTexto />
-
-        {error && <p className="error">{error}</p>}
-
-        <Button texto="Iniciar Sesión" />
-
-        <p className="recuperar-contraseña">
-          <a href="/recuperar-contraseña">¿Olvidaste tu contraseña?</a>
-        </p>
+        <div>
+          <input
+            type="text"
+            placeholder="Usuario"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {/* Aquí estamos usando el botón de prueba */}
+        <TestButton />
       </form>
     </div>
   );
