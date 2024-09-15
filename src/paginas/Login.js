@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import CajaDeTexto from '../componentes/Caja-de-texto';
-import Button from '../componentes/Button';
-import './Login.css';
+import CajaDeTexto from '../componentes/CajaDeTexto.jsx';  // Ajustado a .jsx
+import Button from '../componentes/Button.js';  // Ajustado a .js
+import Etiquetas from '../componentes/Etiquetas.jsx';  // Ajustado a Etiquetas.jsx
+import './Login.css';  // Asegúrate de que Login.css esté en la ruta correcta
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -24,18 +25,10 @@ const Login = () => {
     <div className="login-container">
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleLogin}>
-        <CajaDeTexto
-          tipo="text"
-          valor={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Ingresa tu usuario"
-        />
-        <CajaDeTexto
-          tipo="password"
-          valor={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Ingresa tu contraseña"
-        />
+        <Etiquetas text="Usuario o Correo Electrónico" />
+        <CajaDeTexto />
+        <Etiquetas text="Contraseña" />
+        <CajaDeTexto />
 
         {error && <p className="error">{error}</p>}
 
