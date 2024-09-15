@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import CajaDeTexto from '../componentes/CajaDeTexto.jsx';  // Ajustado a .jsx
-import Button from '../componentes/Button.js';  // Ajustado a .js
-import Etiquetas from '../componentes/Etiquetas.jsx';  // Ajustado a Etiquetas.jsx
-import './Login.css';  // Asegúrate de que Login.css esté en la ruta correcta
+import CajaDeTexto from '../componentes/Caja-de-texto.jsx';  // Verifica el nombre exacto
+import Button from '../componentes/Button';  // Importa el botón
+import Etiquetas from '../componentes/Etiquetas.jsx';  // Verifica el nombre exacto
+import '../hojas-de-estilo/Login.css';  // Ruta para el archivo CSS
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ const Login = () => {
       setError('');
       console.log('Usuario:', username);
       console.log('Contraseña:', password);
-      // Aquí pondrías la lógica para iniciar sesión
+      // Aquí puedes poner la lógica de autenticación
     }
   };
 

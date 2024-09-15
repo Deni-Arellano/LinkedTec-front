@@ -4,7 +4,7 @@ import '../hojas-de-estilo/Cajadetexto.css';  // Asegúrate de que la ruta del C
 function CajaDeTexto() {
     return (
         <form className="cajadetexto-form">
-            <input id="contenidostyle" type="text" placeholder="Ingresar texto..." />
+            <input id="contenidostyle" type="text" placeholder="Ingresa tu texto..." />
         </form>
     );
 }

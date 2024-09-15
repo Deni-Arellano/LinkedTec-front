@@ -10,3 +10,8 @@
     outline: none;
     margin-top: 10px;
 }
+
+.cajadetexto-form {
+    display: flex;
+    flex-direction: column;
+}
