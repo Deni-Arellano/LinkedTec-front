@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import CajaDeTexto from '../componentes/Caja-de-texto';
-import Button from '../componentes/Button';
-import Etiquetas from '../componentes/Etiquetas';
+import CajaDeTexto from '../componentes/Caja-de-texto.jsx';  // Especifica la extensión explícitamente si React no encuentra el archivo
+import Button from '../componentes/Button.js';  // Especifica la extensión .js
+import Etiquetas from '../componentes/Etiquetas.jsx';  // Especifica la extensión .jsx
 import '../hojas-de-estilo/Login.css';
-
 const Login = () => {
   const [username] = useState('');  // Removido setUsername ya que no se usa
   const [password] = useState('');  // Removido setPassword ya que no se usa
