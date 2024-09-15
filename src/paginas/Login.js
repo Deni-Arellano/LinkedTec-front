@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import CajaDeTexto from '../componentes/Caja-de-texto';  // Sin .jsx para evitar problemas
-import Button from '../componentes/Button';  // Sin .js, ya que React puede manejarlo automáticamente
-import Etiquetas from '../componentes/Etiquetas';  // Sin .jsx para evitar problemas
-import '../hojas-de-estilo/Login.css';  // Ruta para el archivo CSS
+import CajaDeTexto from '../componentes/Caja-de-texto';
+import Button from '../componentes/Button';
+import Etiquetas from '../componentes/Etiquetas';
+import '../hojas-de-estilo/Login.css';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username] = useState('');  // Removido setUsername ya que no se usa
+  const [password] = useState('');  // Removido setPassword ya que no se usa
   const [error, setError] = useState('');
 
   const handleLogin = (e) => {
