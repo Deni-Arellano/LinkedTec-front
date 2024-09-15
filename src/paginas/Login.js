@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import CajaDeTexto from '../componentes/Caja-de-texto.js';
-import Button from '../componentes/Button.js';  // Especifica la extensión .js
-import Etiquetas from '../componentes/Etiquetas.js';
+import CajaDeTexto from '../componentes/Caja-de-texto.js';  // Incluye la extensión .js
+import Button from '../componentes/Button.js';  // Incluye la extensión .js
+import Etiquetas from '../componentes/Etiquetas.js';  // Incluye la extensión .js
+
 import '../hojas-de-estilo/Login.css';
 const Login = () => {
   const [username] = useState('');  // Removido setUsername ya que no se usa
