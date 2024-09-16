@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../hojas-de-estilo/Menu-navegacion.css';
-import Button from './Button'; // Importa el componente de botón
-import Searchbar from './Searchbar'; // Importa el componente Searchbar
+import Button from './Button'; 
+import Searchbar from './Searchbar'; 
 import { VscAccount } from "react-icons/vsc"; 
 import { AiFillAlert } from "react-icons/ai"; 
 import { BiChat } from "react-icons/bi"; 

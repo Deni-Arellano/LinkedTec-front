@@ -1,10 +1,10 @@
 import './App.css';
-import BarraSuperior from './componetes/BarraSuperior.js';
+import PaginaEmpleo from './paginas/PaginaEmpleo';
 
 function App() {
   return (
     <div className="App">
-      <BarraSuperior/>
+      <PaginaEmpleo/>
     </div>
   );
 }
