@@ -8,12 +8,10 @@ import Logo from '../imagenes/Logo24.png';
 
 const RegistroDocentes = () => {
   const handleBack = () => {
-    // Acción para el botón 'Atrás'
     alert('Ir atrás');
   };
 
   const handleNext = () => {
-    // Acción para el botón 'Siguiente'
     alert('Ir a la siguiente página');
   };
 
