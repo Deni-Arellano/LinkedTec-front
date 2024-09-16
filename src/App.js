@@ -1,10 +1,10 @@
 import './App.css';
-import MenuNavegacion from './componetes/Menu-navegacion.js';
+import BarraSuperior from './componetes/BarraSuperior.js';
 
 function App() {
   return (
     <div className="App">
-      <MenuNavegacion/>
+      <BarraSuperior/>
     </div>
   );
 }
