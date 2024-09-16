@@ -1,33 +1,119 @@
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e9ecef; 
+  font-family: 'Arial', sans-serif;
+}
+
 .contenedor-pagina {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: sans-serif;
-    background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.header {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+  background-color: white;
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;
+  max-width: 500px; 
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+  .contenedor-pagina {
+      padding: 10px;
   }
-  
-  .header {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-  
+
   .logo {
-    width: 100px;
-    height: auto;
+      width: 80px;
   }
-  
+
   .main-content {
-    text-align: center;
-    margin-top: 50px;
+      padding: 30px 15px;
+      margin-top: 30px;
   }
-  
+
   h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #333;
+      font-size: 1.8rem;
   }
-  
+}
+
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .contenedor-pagina {
+      padding: 15px;
+  }
+
+  .logo {
+      width: 100px;
+  }
+
+  .main-content {
+      padding: 35px 20px;
+  }
+
+  h1 {
+      font-size: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .contenedor-pagina {
+      padding: 40px;
+  }
+
+  .logo {
+      width: 150px;
+  }
+
+  .main-content {
+      padding: 50px 30px;
+  }
+
+  h1 {
+      font-size: 2.5rem;
+  }
+}
