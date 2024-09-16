@@ -1,33 +1,34 @@
 .registro-exitoso-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #f0f4f8;
 }
 
-.registro-exitoso-container h1 {
-  font-size: 32px;
-  color: #4CAF50;
-}
-
-.registro-exitoso-container p {
-  font-size: 18px;
+h2 {
+  font-size: 36px;
+  color: #333;
   margin-bottom: 20px;
 }
 
-.registro-exitoso-container .btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
 }
 
-.registro-exitoso-container .btn:hover {
-  background-color: #45a049;
+.boton-exito {
+  padding: 10px 20px;
+  background-color: #798eb2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.boton-exito:hover {
+  background-color: #677a9f;
 }

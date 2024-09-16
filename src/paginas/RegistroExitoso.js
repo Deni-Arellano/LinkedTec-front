@@ -1,13 +1,12 @@
 import React from 'react';
-import Button from '../componetes/Button';  // Ruta ajustada
-import '../hojas-de-estilo/RegistroExitoso.css';
+import '../hojas-de-estilo/RegistroExitoso.css';  // Asegúrate de que el archivo de estilos esté en la ruta correcta
 
-function RegistroExitoso() {
+const RegistroExitoso = () => {
   return (
     <div className="registro-exitoso-container">
-      <h1>Registro Exitoso</h1>
-      <p>Tu cuenta ha sido creada con éxito.</p>
-      <Button texto="Ir al Inicio" />
+      <h2>¡Registro Exitoso!</h2>
+      <p>Gracias por registrarte. Ahora puedes acceder a todas las funcionalidades de LinkedTec.</p>
+      <button className="boton-exito" onClick={() => window.location.href = "/login"}>Ir al Login</button>
     </div>
   );
 }
