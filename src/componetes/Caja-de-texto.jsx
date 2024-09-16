@@ -1,5 +1,5 @@
 import React from "react";
-import '../hojas-de-estilo/Cajadetexto.css';
+import '../hojas-de-estilo/Caja-de-texto.css';
 
 function textbox () {
     return (

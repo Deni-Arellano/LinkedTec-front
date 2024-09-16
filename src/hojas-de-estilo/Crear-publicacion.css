@@ -1,0 +1,25 @@
+.caja-publicacion {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.estilo-caja-publicacion {
+    border-radius: 8px;
+    background-color: #f6faff;
+    width: 200%;
+    height: 25vh;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.boton-contenedor {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.boton1 {
+    width: 100px;
+}
