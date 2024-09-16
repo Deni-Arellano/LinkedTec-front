@@ -17,7 +17,7 @@ const Registro = () => {
   return (
     <div className="registro-contenedor">
       <img src={Logo} alt="Logo" className="logo" /> 
-      <h1>Registro de Usuario</h1>
+      <h1>Registro de Estudiantes</h1>
 
       <div className="campo">
         <label htmlFor="nombre">Nombre(s):</label>
@@ -54,10 +54,6 @@ const Registro = () => {
         <Textbox id="noControl" placeholder="Número de control" />
       </div>
 
-      <div className="campo">
-        <label htmlFor="biografia">Biografía:</label>
-        <Textbox id="biografia" placeholder="Biografía" />
-      </div>
 
       <div className="campo">
         <label htmlFor="telefono">Teléfono:</label>

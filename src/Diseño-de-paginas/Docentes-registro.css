@@ -1,185 +1,187 @@
 body {
-    font-family: 'Sans-serif', Arial, sans-serif;
-    background-color: #e9ecef;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .registro-contenedor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: white;
-    max-width: 650px;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    position: relative; 
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #7991b2;
-  }
-  
-  .campo {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px; 
-  }
-  
-  label {
-    font-size: 1rem;
-    color: #7991b2;
-    margin-right: 20px;
-    white-space: nowrap; 
-    width: 200px;
-    text-align: right; 
-  }
-  
-  input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"] {
-    flex: 1; 
-    min-width: 250px; 
-    padding: 12px;
-    font-size: 16px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-  }
-  
-  .radio-buttons-label {
-    font-size: 1rem;
-    color: #7991b2;
-    margin-bottom: 10px;
-  }
-  
-  .radio-personalizado {
-    position: relative;
-    padding-left: 30px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #7991b2;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    text-align: left;
-  }
-  
-  .radio-personalizado input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  .boton {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 15px;
-    width: 15px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    border: 1px solid black;
-  }
-  
-  .radio-personalizado input:checked ~ .boton {
-    background-color: #7991b2;
-  }
-  
-  .boton:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  .radio-personalizado input:checked ~ .boton:after {
-    display: block;
-  }
-  
-  .radio-personalizado .boton:after {
-    top: 5px;
-    left: 5px;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: white;
-  }
-  
-  .logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 150px; 
-    height: auto;
-  }
-  
-  .fecha-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .fecha-label {
-    margin-bottom: 5px;
-    font-size: 1rem;
-    color: #7991b2;
-  }
-  
-  .fecha-input {
-    width: 100%;
-    max-width: 250px;
-    padding: 12px;
-    font-size: 16px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .fecha-input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-  }
-  
-  .botones {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-  }
-  
-  .campo-carrera, .campo-rh, .campo-radio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
-  }
-  
-  .campo-carrera label, .campo-rh label, .campo-radio label {
-    font-size: 1rem;
-    color: #7991b2;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .campo-rh, .campo-carrera {
-    margin-top: 20px; 
-  }
-  
-  .campo-rh input[type="text"] {
-    max-width: 150px;
-  }
-  
+  font-family: 'Sans-serif', Arial, sans-serif;
+  background-color: #e9ecef;
+  margin: 0;
+  padding: 0;
+}
+
+.registro-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+  max-width: 650px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #7991b2;
+}
+
+.campo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 1rem;
+  color: #7991b2;
+  margin-right: 20px;
+  white-space: nowrap;
+  width: 200px;
+  text-align: right;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"] {
+  flex: 1;
+  min-width: 250px;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.radio-buttons-label {
+  font-size: 1rem;
+  color: #7991b2;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.radio-grupo {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start; 
+  gap: 10px; 
+  width: 100%;
+  margin-left: 50px; 
+}
+
+.radio-personalizado {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  cursor: pointer;
+  color: #7991b2;
+}
+
+.radio-personalizado input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.boton {
+  height: 15px;
+  width: 15px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 1px solid black;
+  position: relative;
+}
+
+.radio-personalizado input:checked ~ .boton {
+  background-color: #7991b2;
+}
+
+.boton:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio-personalizado input:checked ~ .boton:after {
+  display: block;
+}
+
+.radio-personalizado .boton:after {
+  top: 5px;
+  left: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 150px;
+  height: auto;
+}
+
+.fecha-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.fecha-label {
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #7991b2;
+}
+
+.fecha-input {
+  width: 100%;
+  max-width: 250px;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.fecha-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.botones {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.campo-carrera, .campo-rh, .campo-radio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.campo-carrera label, .campo-rh label, .campo-radio label {
+  font-size: 1rem;
+  color: #7991b2;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.campo-rh, .campo-carrera {
+  margin-top: 20px;
+}
+
+.campo-rh input[type="text"] {
+  max-width: 150px;
+}
