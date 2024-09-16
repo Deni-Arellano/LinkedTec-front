@@ -1,0 +1,157 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+}
+
+.app {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #798eb2;
+    padding: 10px;
+    width: 100%;
+}
+
+.logo {
+    height: 40px;
+}
+
+.search {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon {
+    height: 30px;
+    cursor: pointer;
+}
+
+.sidebar {
+    background-color: white;
+    padding: 20px;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    border-right: 1px solid #ccc;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+}
+
+.sidebar.visible {
+    transform: translateX(0);
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.profile-name {
+    font-size: 18px;
+    margin: 0;
+    color: black;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-button {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background-color: #f0f0f0;
+}
+
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    flex-grow: 1;
+    background-color: white;
+    color: black;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 100;
+    }
+
+    .sidebar.visible {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .search-input {
+        width: auto;
+    }
+
+    .mobile-menu-button {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 480px) {
+    .icons img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .menu-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
