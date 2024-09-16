@@ -1,4 +1,4 @@
-/* Estilos para el contenedor general */
+/* Estilos generales del contenedor de login */
 .login-container {
   display: flex;
   flex-direction: column;
@@ -10,66 +10,55 @@
 
 /* Estilo para el contenedor del formulario */
 .login-form-container {
-  width: 30%;
+  width: 35%; /* Aumentamos un poco el ancho del formulario */
   background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px; /* Aumentamos el padding para más espacio */
+  border-radius: 10px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más grande */
   text-align: center;
 }
 
-/* Estilo para LinkeTec como botón y alineación hacia la izquierda */
-.linketec-btn {
-  font-size: 24px;
+/* Estilo para LinkedTec como título */
+h1 {
+  font-size: 36px; /* Aumentamos el tamaño del título */
   font-weight: bold;
   color: #012a6f;
-  border: none;
-  background: none;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  left: 40px;
+  margin-bottom: 30px; /* Aumentamos el espacio debajo del título */
 }
 
-/* Estilo para el botón de registro y alineación hacia la derecha */
-.registro-btn {
-  position: absolute;
-  top: 50px;
-  right: 50px;
-  font-size: 18px; /* Aumentar tamaño de la fuente */
-  font-weight: bold; /* Añadir negritas */
-  color: #012a6f;
-  text-decoration: none;
-}
-
-
-/* Estilo para los inputs */
-input {
-  padding: 12px 20px;
-  margin: 10px 0;
-  font-size: 16px;
+/* Estilo para los campos */
+.campo-container {
+  margin-bottom: 20px; /* Espacio más grande entre los campos */
   width: 100%;
-  border-radius: 8px;
+}
+
+/* Estilo para los inputs más pequeños */
+input {
+  padding: 15px 20px; /* Reducimos un poco el padding */
+  font-size: 18px; /* Letra más grande */
+  width: 95%; /* Reducimos el ancho para que sea un poco más pequeño */
+  border-radius: 10px;
   border: 1px solid #ccc;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
   outline: none;
+  transition: box-shadow 0.3s ease;
 }
 
 input:focus {
   border-color: #007BFF;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
 }
 
-/* Estilo para el botón de "Entrar" */
+/* Estilo para el botón de "Entrar" más grande */
 .btn {
   background-color: #798eb2;
   border: none;
   color: white;
-  padding: 12px 20px;
-  font-size: 16px;
-  margin: 4px 2px;
+  padding: 15px 25px; /* Botón más grande */
+  font-size: 18px; /* Letra más grande */
+  margin: 10px 0;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 10px;
   width: 100%;
   transition: background-color 0.3s ease;
 }
@@ -83,13 +72,25 @@ input:focus {
 }
 
 /* Estilo para los enlaces de Recuperar contraseña y Registro */
-.login-form-container a {
-  font-size: 14px;
-  color: #012a6f;
-  text-decoration: none;
-  margin-right: 10px;
+.extra-options {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Añadimos espacio entre los enlaces */
+  margin-top: 10px; /* Espacio entre los enlaces y el botón */
 }
 
-.login-form-container a:hover {
+.extra-options a {
+  font-size: 16px; /* Letra más grande para los enlaces */
+  color: #012a6f;
+  text-decoration: none;
+}
+
+.extra-options a:hover {
   text-decoration: underline;
+}
+
+.registro-link {
+  font-weight: bold;
+  font-size: 18px; /* Letra más grande y negritas */
+  color: #012a6f;
 }
