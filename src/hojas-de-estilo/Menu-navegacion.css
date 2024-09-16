@@ -1,157 +1,93 @@
-/* Estilos generales */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-    color: black;
-}
-
-.app {
-    display: flex;
-    flex-direction: row;
-}
-
+/* Barra superior */
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #798eb2;
-    padding: 10px;
-    width: 100%;
+    justify-content: center; /* Centra los elementos dentro de la barra superior */
+    padding: 5px; /* Reduce el padding */
+    background-color: white;
+    border-bottom: 2px solid #012a6f;
+    height: 48px; /* Ajusta la altura para ser aproximadamente 1 cm */
+    width: 100%; /* Asegura que la barra superior ocupe todo el ancho de la pantalla */
 }
 
+/* Logo */
 .logo {
-    height: 40px;
+    width: auto;
+    height: 58px; /* Ajusta el tamaño del logo para que encaje bien en la barra */
 }
 
+/* Barra de búsqueda */
 .search {
-    flex-grow: 1;
-    margin-left: 20px;
+    width: 1000px; /* Aumenta el ancho de la barra de búsqueda */
+    margin: 0 auto; /* Centra la barra de búsqueda */
 }
 
-.search-input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-}
 
+/* Iconos en la barra superior */
 .icons {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 12px; /* Espaciado menor entre los iconos */
 }
 
 .icon {
-    height: 30px;
-    cursor: pointer;
+    font-size: 24px;
+    color: #012a6f;
 }
 
+/* Menú lateral */
 .sidebar {
-    background-color: white;
-    padding: 20px;
-    height: 100vh;
-    width: 250px;
     position: fixed;
-    border-right: 1px solid #ccc;
-    transition: transform 0.3s ease;
-    transform: translateX(0);
+    top: 60px;
+    left: 0;
+    height: calc(100% - 60px);
+    width: 220px;
+    background-color: #f0f0f0;
+    border-right: 2px solid #012a6f;
+    padding: 20px;
 }
 
 .sidebar.visible {
     transform: translateX(0);
 }
 
-.sidebar.hidden {
-    transform: translateX(-100%);
-}
-
+/* Imagen de perfil */
 .profile {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
 
 .profile-pic {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+    object-fit: cover;
+    border: 2px solid #012a6f;
 }
 
-.profile-name {
-    font-size: 18px;
-    margin: 0;
-    color: black;
-}
-
-.menu {
-    margin-top: 20px;
-}
-
+/* Botones del menú lateral */
 .menu-button {
-    width: 100%;
-    padding: 15px;
+    display: block;
+    width: 100%; /* Los botones ocupan todo el ancho del menú lateral */
+    padding: 10px;
     margin-bottom: 10px;
     background-color: white;
-    border: 1px solid #ccc;
-    color: black;
-    text-align: left;
-    font-size: 16px;
+    border: 2px solid #012a6f;
+    color: #012a6f;
     cursor: pointer;
+    text-align: center;
+    font-size: 16px;
 }
 
 .menu-button:hover {
-    background-color: #f0f0f0;
+    background-color: #012a6f;
+    color: white;
 }
 
+/* Contenido principal */
 .content {
-    margin-left: 270px;
+    margin-left: 270px; /* Ajusta el margen izquierdo para que no se superponga con el menú lateral */
     padding: 20px;
-    flex-grow: 1;
-    background-color: white;
-    color: black;
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(-100%);
-        position: fixed;
-        z-index: 100;
-    }
-
-    .sidebar.visible {
-        transform: translateX(0);
-    }
-
-    .content {
-        margin-left: 0;
-        padding: 10px;
-    }
-
-    .search-input {
-        width: auto;
-    }
-
-    .mobile-menu-button {
-        display: block;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
-}
-
-@media (max-width: 480px) {
-    .icons img {
-        width: 24px;
-        height: 24px;
-    }
-
-    .menu-button {
-        padding: 10px;
-        font-size: 14px;
-    }
 }
