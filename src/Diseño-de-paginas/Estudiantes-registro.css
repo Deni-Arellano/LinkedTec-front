@@ -48,7 +48,17 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
   box-sizing: border-box;
   border-radius: 5px;
   border: 1px solid #ccc;
+
 }
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 150px;
+  height: auto;
+}
+
 
 input:focus {
   outline: none;
@@ -113,14 +123,6 @@ input:focus {
   height: 5px;
   border-radius: 50%;
   background: white;
-}
-
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 150px;
-  height: auto;
 }
 
 
