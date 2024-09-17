@@ -7,17 +7,20 @@
 .estilo-caja-publicacion {
     border-radius: 8px;
     background-color: #f6faff;
-    width: 200%;
+    width: 150%;
     height: 25vh;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .boton-contenedor {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: auto;
+    
 }
 
 .boton1 {
