@@ -1,0 +1,39 @@
+/* PaginaEmpleo.css */
+.publicacion-container {
+    padding: 20px;
+}
+
+.publicacion {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.foto-perfil {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+}
+
+.nombre-usuario {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.titulo-publicacion {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.detalle {
+    margin-top: 10px;
+}
