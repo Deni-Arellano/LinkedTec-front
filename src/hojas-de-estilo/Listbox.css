@@ -1,0 +1,25 @@
+.listbox-contenedor {
+    margin: 20px;
+  }
+  
+  .listbox {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #000000; 
+    border-radius: 5px;
+    background-color: white;  
+    color: #7991b2;  
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+  .listbox option {
+    background-color: white;  
+    color: #7991b2;  
+  }
+  
+  .listbox:focus {
+    border-color: #7991b2;  
+    outline: none; 
+  }
+  

@@ -1,12 +1,15 @@
-import React from "react";
-import '../hojas-de-estilo/Etiquetas.css';  // Asegúrate de que el CSS esté correctamente importado
+import React from 'react';
+import '../hojas-de-estilo/Etiquetas.css';
 
-function Label({ htmlFor, text }) {
+const Etiquetas = ({ tamano, texto }) => {
     return (
-        <label htmlFor={htmlFor} className="etiquetastyle">
-            {text}
+        <label
+            className="etiqueta"
+            style={{ fontSize: `${tamano}px` }}
+        >
+            {texto}
         </label>
     );
-}
+};
 
-export default Label;
+export default Etiquetas;

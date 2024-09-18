@@ -1,16 +1,26 @@
 import React from 'react';
 import '../hojas-de-estilo/Searchbar.css';
-import Button from './Button';
+import { HiOutlineSearch } from "react-icons/hi";
 
 function SearchBar() {
     const handleSearch = () => {
-        console.log('Aqui es la logica de buscar');
+        console.log('Aquí es la lógica de buscar');
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleSearch();
+        }
     };
 
     return (
         <form className="searchbar-form">
-            <input id='busquedastyle' type="text" placeholder="Buscar..." />
-            <Button onClick={handleSearch} label="Buscar"/>
+            <div className="searchbar-container">
+                <input id='busquedastyle' type="text" placeholder="Buscar..." onKeyDown={handleKeyDown}
+                />
+                <HiOutlineSearch className="search-icon" />
+            </div>
         </form>
     );
 }

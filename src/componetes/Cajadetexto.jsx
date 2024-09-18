@@ -1,17 +1,12 @@
 import React from "react";
-import '../hojas-de-estilo/Caja-de-texto.css'; // Asegúrate de que la ruta sea correcta
+import '../hojas-de-estilo/Cajadetexto.css';
 
-function Textbox({ id, placeholder, type = "text" }) {
+function textbox () {
     return (
-        <div className="cajadetexto-form">
-            <input
-                id={id}
-                type={type}
-                placeholder={placeholder}
-                className="contenidostyle"
-            />
-        </div>
+        <form className="cajadetexto-form">
+            <input id="contenidostyle" type="text" placeholder="Ingresar texto..."/>
+        </form>
     );
 }
 
-export default Textbox;
+export default textbox;

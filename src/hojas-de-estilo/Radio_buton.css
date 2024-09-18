@@ -1,8 +1,6 @@
 .grupo-radio {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px; 
-  width: 100%; 
 }
 
 .radio-personalizado {
@@ -11,8 +9,6 @@
   margin-bottom: 10px;
   cursor: pointer;
   font-size: 18px;
-  display: flex;
-  align-items: center; 
 }
 
 .radio-personalizado input {
@@ -53,8 +49,4 @@
   height: 5px;
   border-radius: 50%;
   background: white;
-}
-
-.radio-personalizado .etiqueta {
-  margin-left: 10px; 
 }

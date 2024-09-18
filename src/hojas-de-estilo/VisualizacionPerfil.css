@@ -1,0 +1,116 @@
+.perfil-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f4f8;
+}
+
+.barra-lateral {
+    width: 250px;
+    background-color: #798eb2;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.barra-lateral h2 {
+    margin-bottom: 20px;
+}
+
+.barra-lateral ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.barra-lateral li {
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.barra-lateral li:hover {
+    text-decoration: underline;
+}
+
+.perfil-contenido {
+    flex-grow: 1;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.nombre-usuario {
+    display: flex;
+    align-items: center; /* Alineamos verticalmente al centro */
+    margin-bottom: 30px;
+    margin-left: 300px;   /* Mueve el nombre de usuario más a la derecha */
+}
+
+.foto-perfil {
+    width: 150px;  /* Tamaño de la imagen de perfil */
+    height: 150px;
+    border-radius: 80%;
+    margin-right: 30px;
+}
+
+.nombre-usuario h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.carrera {
+    font-size: 18px;
+    color: #555;
+}
+
+.biografia {
+    margin-top: 40px;
+    margin-left: 0px;
+    text-align: center;
+}
+
+.biografia p {
+    margin-top: 10px;
+}
+
+.biografia strong {
+    font-size: 18px;
+}
+
+.perfil-info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contacto {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    padding: 0 80px;
+    margin-top: 20px;
+}
+
+.correo {
+    font-size: 16px;
+    color: #333;
+    margin-right: 50px;
+}
+
+.telefono {
+    font-size: 16px;
+    color: #333;
+    margin-left: 50px;
+}
+
+.fecha-nacimiento {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}

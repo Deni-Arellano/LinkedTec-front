@@ -1,12 +1,12 @@
 import React from 'react';
-import '../hojas-de-estilo/Button.css'; 
+import '../hojas-de-estilo/Button.css';  
 
-const Button = ({ onClick, label }) => {
-    return (
-        <button className="custom-button" onClick={onClick}>
-            {label}
-        </button>
-    );
+const Button = ({ texto }) => {
+  return (
+    <button type="submit" className="btn">
+      {texto}
+    </button>
+  );
 };
 
 export default Button;
