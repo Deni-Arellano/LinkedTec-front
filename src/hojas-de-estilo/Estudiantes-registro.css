@@ -4,7 +4,13 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 150px;
+  height: auto;
+}
 .registro-contenedor {
   display: flex;
   flex-direction: column;
@@ -18,94 +24,93 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  color: #7991b2;
+#Describir {
+  min-width: 300px; 
+  height: 100px;
+}
+#Biografia {
+  width: 100%; 
+  min-width: 500px; 
+  height: 100px;
 }
 
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 20px; 
+  color: #093e61;  
+}
 .campo {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 20px; 
 }
-
 label {
-  font-size: 1rem;
-  color: #7991b2;
-  margin-right: 20px;
-  white-space: nowrap; 
-  width: 200px;
-  text-align: right; 
+  font-size: 16px;
+  color: #093e61;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: left;
 }
-
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
-  flex: 1; 
-  min-width: 250px; 
+  width: 100%; 
+  min-width: 250px;
   padding: 12px;
   font-size: 16px;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid #ccc;
-}
-
-input:focus {
   outline: none;
+}
+input:focus {
   border-color: #007bff;
   box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
-
 .grupo-radio {
   display: flex;
   flex-direction: column;
+  align-items: center; 
   margin-bottom: 20px; 
   width: 100%; 
-  align-items: center; 
 }
-
 .radio-personalizado {
   position: relative;
   padding-left: 30px;
   margin-bottom: 10px;
   cursor: pointer;
-  font-size: 1rem;
-  color: #7991b2;
+  font-size: 16px;
+  color: #093e61;
   display: flex;
-  align-items: center; 
+  align-items: center;
+  justify-content: center;
 }
-
 .radio-personalizado input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
-
 .boton {
   position: absolute;
   top: 0;
   left: 0;
-  height: 15px;
-  width: 15px;
+  height: 18px;
+  width: 18px;
   background-color: #ffffff;
   border-radius: 50%;
   border: 1px solid black;
 }
-
 .radio-personalizado input:checked ~ .boton {
-  background-color: #7991b2;
+  background-color: #093e61;
 }
-
 .boton:after {
   content: "";
   position: absolute;
   display: none;
 }
-
 .radio-personalizado input:checked ~ .boton:after {
   display: block;
 }
-
 .radio-personalizado .boton:after {
   top: 5px;
   left: 5px;
@@ -114,26 +119,27 @@ input:focus {
   border-radius: 50%;
   background: white;
 }
-
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 150px;
-  height: auto;
+.radio-buttons-label {
+  font-size: 16px;
+  color: #093e61;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center; 
 }
-
-
-.radio-personalizado .etiqueta {
-  margin-left: 10px;
-}
-
 .botones {
   display: flex;
   gap: 10px; 
   justify-content: center; 
 }
-.radio-buttons-label {
-  font-size: 1rem;
-  color: #7991b2; 
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
 }
