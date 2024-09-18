@@ -100,7 +100,7 @@
 .info-contacto .fila-contacto {
     display: flex;
     justify-content: center;
-    gap: 80px; /* Separamos más el correo y teléfono */
+    gap: 350px; /* Separamos más el correo y teléfono */
 }
 
 .info-contacto p {
