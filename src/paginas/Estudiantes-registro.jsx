@@ -2,7 +2,7 @@ import React from 'react';
 import Textbox from '../componetes/Caja-de-texto'; 
 import Button from '../componetes/Button';
 import RadioButtons from '../componetes/Radio-button';
-import '../Diseño-de-paginas/Estudiantes-registro.css'; 
+import '../hojas-de-estilo/Estudiantes-registro.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 
 const Registro = () => {
@@ -76,7 +76,6 @@ const Registro = () => {
             { value: 'CP', label: 'CP' },
             { value: 'II', label: 'II' },
             { value: 'IA', label: 'IA' },
-            { value: 'otro', label: 'Otro' },
           ]}
         />
       </div>

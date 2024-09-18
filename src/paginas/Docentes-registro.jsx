@@ -3,7 +3,7 @@ import Textbox from '../componetes/Caja-de-texto';
 import Button from '../componetes/Button'; 
 import RadioButtons from '../componetes/Radio-button'; 
 import Fecha from '../componetes/Fecha';
-import '../Diseño-de-paginas/Docentes-registro.css'; 
+import '../hojas-de-estilo/Docentes-registro.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 import Label from '../componetes/Etiquetas';
 
@@ -55,6 +55,11 @@ const RegistroDocentes = () => {
         <Label htmlFor="Telefon" text="Teléfono:" />
         <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
       </div>
+      
+      <div className="campo">
+        <label htmlFor="biografia">Biografía:</label>
+        <Textbox id="Biografia" name="Biografia" placeholder="Biografía" />
+      </div>
 
       <div className="campo">
         <Fecha />
@@ -82,14 +87,14 @@ const RegistroDocentes = () => {
           name="Ultimoniveldeestudios"
           options={[
             { value: 'doctorado', label: 'Doctorado' },
+            { value: 'maestria', label: 'Maestria' },
             { value: 'licenciatura', label: 'Licenciatura' },
-            { value: 'maestria', label: 'Maestría' },
           ]}
         />
       </div>
 
       <div className="campo-rh">
-        <Label htmlFor="noDocente" text="No. Docente:" />
+        <Label htmlFor="noDocente" text="No. Empleado:" />
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span>RH</span>
           <Textbox id="numerodeempleado" placeholder="Número RH" />

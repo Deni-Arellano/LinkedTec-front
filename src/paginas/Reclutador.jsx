@@ -3,7 +3,7 @@ import Textbox from '../componetes/Caja-de-texto';
 import Button from '../componetes/Button'; 
 import RadioButtons from '../componetes/Radio-button'; 
 import Fecha from '../componetes/Fecha';
-import '../Diseño-de-paginas/Reclutador.css'; 
+import '../hojas-de-estilo/Reclutador.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 
 const RegistroReclutador = () => {

@@ -3,7 +3,7 @@ import Textbox from '../componetes/Caja-de-texto';
 import Button from '../componetes/Button'; 
 import RadioButtons from '../componetes/Radio-button'; 
 import Fecha from '../componetes/Fecha';
-import '../Diseño-de-paginas/Egresados.css'; 
+import '../hojas-de-estilo/Egresados.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 
 const RegistroEgresado = () => {
@@ -66,7 +66,9 @@ const RegistroEgresado = () => {
           options={[
             { value: 'Masculino', label: 'Masculino' },
             { value: 'Femenino', label: 'Femenino' },
+            { value: 'Otro', label: 'Otro' },
           ]}
+          //poner especidfica el sexo
         />
       </div>
 
@@ -75,9 +77,12 @@ const RegistroEgresado = () => {
         <RadioButtons
           name="Carrera"
           options={[
-            { value: 'IGE', label: 'IGE' },
             { value: 'ISC', label: 'ISC' },
+            { value: 'IEM', label: 'IEM' },
+            { value: 'IGE', label: 'IGE' },
             { value: 'CP', label: 'CP' },
+            { value: 'II', label: 'II' },
+            { value: 'IA', label: 'IA' }
           ]}
         />
       </div>

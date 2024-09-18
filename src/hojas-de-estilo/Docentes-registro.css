@@ -38,13 +38,14 @@ h1 {
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
+  margin-top:10px ;
 }
 
 label {
   font-family: sans-serif;
   color: #012a6f;
   font-size: 16px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
@@ -54,12 +55,19 @@ label {
   height: 100px;
 }
 
+#Biografia {
+  width: 100%;
+  min-width: 500px;
+  height: 100px;
+}
+
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"], textarea {
   width: 100%;
   padding: 12px;
   font-size: 16px;
   box-sizing: border-box;
   border: 2px solid #000000;
+  margin-top:15px;
   border-radius: 15px;
   outline: none;
 }
@@ -82,15 +90,6 @@ input:focus, textarea:focus {
   font-size: 1rem;
   color: #093e61;
   text-align: center;
-}
-
-select {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 2px solid #000000;
-  border-radius: 15px;
-  outline: none;
 }
 
 .botones {

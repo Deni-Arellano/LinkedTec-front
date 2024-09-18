@@ -1,7 +1,7 @@
 import React from 'react';
 import RadioButtons from '../componetes/Radio-button';    
 import Button from '../componetes/Button';
-import '../Diseño-de-paginas/Rol.css';
+import '../hojas-de-estilo/Rol.css';
 import logo from '../imagenes/Logo24.png';
 
 const Pagina = () => {
@@ -15,9 +15,10 @@ const Pagina = () => {
   };
 
   const opcionesRol = [
-    { value: 'admin', label: 'Administrador' },
-    { value: 'user', label: 'Usuario' },
-    { value: 'guest', label: 'Invitado' }
+    { value: 'admin', label: 'Estudiante' },
+    { value: 'user', label: 'Docente' },
+    { value: 'guest', label: 'Reclutador' },
+    { value: 'guest', label: 'Egresado' }
   ];
 
   return (
@@ -27,7 +28,7 @@ const Pagina = () => {
       </header>
 
       <main className="main-content">
-        <h1>Definir Rol</h1>
+        
         
         <div className="radio-group">
           <RadioButtons 
