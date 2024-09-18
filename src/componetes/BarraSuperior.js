@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/Menu-navegacion.css';
+import '../hojas-de-estilo/MenuNavegacion.css';
 import Searchbar from './Searchbar'; // Importa el componente Searchbar
 import { VscAccount } from "react-icons/vsc"; 
 import { AiFillAlert } from "react-icons/ai"; 

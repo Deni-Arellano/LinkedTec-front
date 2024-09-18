@@ -1,12 +1,14 @@
-import React from "react";
-import '../hojas-de-estilo/Etiquetas.css';  // Asegúrate de que la ruta del CSS sea correcta
+import React from 'react';
 
-function Etiquetas({ text }) {
-    return (
-        <form>
-            <label id="etiquetastyle">{text}</label>
-        </form>
-    );
-}
+const Etiquetas = ({ tamano, texto }) => {
+    const estilo = {
+        fontSize: `${tamano}px`,
+        fontWeight: 'bold',
+        color: '#012a6f', // Asegúrate de que el color sea visible
+        marginBottom: '10px',
+    };
+
+    return <label style={estilo}>{texto}</label>;
+};
 
 export default Etiquetas;
