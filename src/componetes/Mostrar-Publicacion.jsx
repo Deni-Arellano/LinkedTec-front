@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import Texto from '../componetes/Etiquetas';
+import Texto from './Etiquetas';
 import '../hojas-de-estilo/mostrar-publicacion.css';
 import { BsThreeDots } from "react-icons/bs";
+import { AiFillLike } from "react-icons/ai";
+import { AiFillDislike } from "react-icons/ai";
+import { MdAddComment } from "react-icons/md";
 
 const MostrarPubli = () => {
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
@@ -39,6 +42,17 @@ const MostrarPubli = () => {
                     alt="Post" 
                     className="publicacion-imagen" 
                 />
+            </div>
+            <div className="botones">
+                <button className="Megusta">
+                    <AiFillLike  size={30}/>
+                </button>
+                <button className="Medisgusta">
+                    <AiFillDislike  size={30}/>
+                </button>
+                <button className="Comentar">
+                    <MdAddComment size={30}/>
+                </button>
             </div>
         </div>
     );

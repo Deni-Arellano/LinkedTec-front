@@ -90,3 +90,21 @@
     border-radius: 8px;
     margin-top: 10px;
 }
+
+.botones {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.Megusta {
+    margin-right: 10px;
+}
+
+.Medisgusta {
+    margin-right: 10px;
+}
+
+.Comentar {
+    margin-left: auto;
+}
