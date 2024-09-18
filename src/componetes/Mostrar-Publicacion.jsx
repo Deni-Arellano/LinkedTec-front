@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Texto from '../componetes/Etiquetas';
+import Texto from './Etiquetas';
 import '../hojas-de-estilo/mostrar-publicacion.css';
 import { BsThreeDots } from "react-icons/bs";
 import { AiFillLike } from "react-icons/ai";

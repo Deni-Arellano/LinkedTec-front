@@ -1,7 +1,7 @@
 import React from "react";
-import Boton from '../componetes/Button.js';
-import Cajatexto from '../componetes/Caja-de-texto.jsx';
-import Texto from '../componetes/Etiquetas.js';
+import Boton from './Button.js';
+import Cajatexto from './Caja-de-texto.jsx';
+import Texto from './Etiquetas.js';
 import { BiImageAdd } from "react-icons/bi";
 import '../hojas-de-estilo/Crear-publicacion.css';
 
