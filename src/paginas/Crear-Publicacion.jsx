@@ -1,28 +1,33 @@
 import React from "react";
 import Boton from '../componetes/Button.js';
 import Cajatexto from '../componetes/Caja-de-texto.jsx';
-import Texto from '../componetes/Etiquetas.jsx';
-import '../hojas-de-estilo/Crear-publicacion.css'
+import Texto from '../componetes/Etiquetas.js';
+import { BiImageAdd } from "react-icons/bi";
+import '../hojas-de-estilo/Crear-publicacion.css';
 
 const CrearPubli = () => {
     const handlePost = () => {
-        alert('Post Publicado')
+        alert('Post Publicado');
     };
 
     const handleImage = () => {
-        alert('Imagen agregada')
-    }
+        alert('Imagen agregada');
+    };
 
     return (
         <div className="caja-publicacion">
             <form className="estilo-caja-publicacion">
                 <Texto text='¿Qué estás pensando?'/>
-                <Cajatexto className='estilo-caja-texto'/>
+                <Cajatexto className='estilo-caja-texto' placeholder={'Ingresar texto...'}/>
                 
                 <div className="boton-contenedor">
-                    <Boton label='Publicar' className='boton1' onClick={handlePost}/>
-                    <Boton label='Agregar Imagen' className='boton1' onClick={handleImage}/>
-                    <Boton label='Cancelar' className='boton1'/>
+                    <button className="boton-imagen" onClick={handleImage}>
+                        <BiImageAdd size={30}/>
+                    </button>
+                    <div className="botones-derecha">
+                        <Boton texto='Publicar' className='boton1' onClick={handlePost}/>
+                        <Boton texto='Cancelar' className='boton1'/>
+                    </div>
                 </div>
             </form>
         </div>
