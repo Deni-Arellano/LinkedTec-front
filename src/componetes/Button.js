@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/Button.css';  // Ruta corregida
+import '../hojas-de-estilo/Button.css'; 
 
 const Button = ({ onClick, label }) => {
     return (
