@@ -22,47 +22,44 @@ const RegistroReclutador = () => {
 
       <div className="campo">
         <label htmlFor="nombre">Nombre(s):</label>
-        <Textbox id="nombre" placeholder="Nombre(s)" />
+        <Textbox id="Nombre" placeholder="Nombre(s)" />
       </div>
 
       <div className="campo">
         <label htmlFor="apellidoPaterno">Apellido paterno:</label>
-        <Textbox id="apellidoPaterno" placeholder="Apellido paterno" />
+        <Textbox id="ApellidoPat" placeholder="Apellido paterno" />
       </div>
 
       <div className="campo">
         <label htmlFor="apellidoMaterno">Apellido materno:</label>
-        <Textbox id="apellidoMaterno" placeholder="Apellido materno" />
+        <Textbox id="ApellidoMat" placeholder="Apellido materno" />
       </div>
 
       <div className="campo">
         <label htmlFor="correo">Correo:</label>
-        <Textbox id="correo" placeholder="Correo electrónico" type="email" />
+        <Textbox id="Correo" placeholder="Correo electrónico" type="email" />
       </div>
 
       <div className="campo">
         <label htmlFor="contraseña">Contraseña:</label>
-        <Textbox id="contraseña" placeholder="Contraseña" type="password" />
+        <Textbox id="Contraseña" placeholder="Contraseña" type="password" />
       </div>
 
       <div className="campo">
         <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
-        <Textbox id="confirmarContraseña" placeholder="Confirmar contraseña" type="password" />
+        <Textbox id="ConfirmarContraseña" placeholder="Confirmar contraseña" type="password" />
       </div>
 
       <div className="campo">
         <label htmlFor="telefono">Teléfono:</label>
-        <Textbox id="telefono" placeholder="Teléfono" type="tel" />
+        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
       </div>
 
-      <div className="campo">
-        <Fecha />
-      </div>
 
       <div className="campo-radio">
         <label className="radio-buttons-label">Sexo</label>
         <RadioButtons
-          name="sexo"
+          name="Sexo"
           options={[
             { value: 'femenino', label: 'Femenino' },
             { value: 'masculino', label: 'Masculino' },
@@ -71,23 +68,26 @@ const RegistroReclutador = () => {
         />
         <div className="descripcion-sexo">
           <label htmlFor="descripcionSexo">Descripción (si es necesario):</label>
-          <Textbox id="descripcionSexo" placeholder="Descripción..." />
+          <Textbox id="Describir" placeholder="Descripción..." />
         </div>
+      </div>
+      <div className="campo">
+        <Fecha />
       </div>
 
       <div className="campo">
         <label htmlFor="nombreEmpresa">Nombre de la Empresa:</label>
-        <Textbox id="nombreEmpresa" placeholder="Nombre de la Empresa" />
+        <Textbox id="NombredelaEmpresa" placeholder="Nombre de la Empresa" />
       </div>
 
       <div className="campo">
         <label htmlFor="sede">Sede:</label>
-        <Textbox id="sede" placeholder="Sede" />
+        <Textbox id="Sede" placeholder="Sede" />
       </div>
       <div className="campo-radio">
         <label className="radio-buttons-label">Giro</label>
         <RadioButtons
-          name="giro"
+          name="Giro"
           options={[
             { value: 'comercial', label: 'Comercial' },
             { value: 'servicio', label: 'Servicio' },

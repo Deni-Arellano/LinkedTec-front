@@ -1,8 +1,16 @@
 body {
-  font-family: 'Sans-serif', Arial, sans-serif;
+  font-family: 'Sans-serif', sans-serif;
   background-color: #e9ecef;
   margin: 0;
   padding: 0;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 150px;
+  height: auto;
 }
 
 .registro-contenedor {
@@ -16,172 +24,92 @@ body {
   margin: auto;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  position: relative;
 }
 
 h1 {
+  font-family: sans-serif;
   margin-bottom: 20px;
-  font-size: 2rem;
-  color: #7991b2;
+  font-size: 20px;
+  color: #093e61;
 }
 
 .campo {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
 }
 
 label {
-  font-size: 1rem;
-  color: #7991b2;
-  margin-right: 20px;
-  white-space: nowrap;
-  width: 200px;
-  text-align: right;
+  font-family: sans-serif;
+  color: #012a6f;
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"] {
-  flex: 1;
-  min-width: 250px;
+#Describir {
+  width: 100%;
+  min-width: 300px;
+  height: 100px;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"], textarea {
+  width: 100%;
   padding: 12px;
   font-size: 16px;
   box-sizing: border-box;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 2px solid #000000;
+  border-radius: 15px;
+  outline: none;
 }
 
-input:focus {
-  outline: none;
+input:focus, textarea:focus {
   border-color: #007bff;
   box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-}
-
-.radio-buttons-label {
-  font-size: 1rem;
-  color: #7991b2;
-  margin-bottom: 10px;
-  text-align: center;
 }
 
 .radio-grupo {
   display: flex;
-  flex-direction: column; 
-  align-items: flex-start; 
-  gap: 10px; 
-  width: 100%;
-  margin-left: 50px; 
-}
-
-.radio-personalizado {
-  display: flex;
-  align-items: center;
-  gap: 10px; 
-  cursor: pointer;
-  color: #7991b2;
-}
-
-.radio-personalizado input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.boton {
-  height: 15px;
-  width: 15px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  border: 1px solid black;
-  position: relative;
-}
-
-.radio-personalizado input:checked ~ .boton {
-  background-color: #7991b2;
-}
-
-.boton:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.radio-personalizado input:checked ~ .boton:after {
-  display: block;
-}
-
-.radio-personalizado .boton:after {
-  top: 5px;
-  left: 5px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: white;
-}
-
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 150px;
-  height: auto;
-}
-
-.fecha-container {
-  display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
-.fecha-label {
-  margin-bottom: 5px;
+.radio-grupo label {
   font-size: 1rem;
-  color: #7991b2;
+  color: #093e61;
+  text-align: center;
 }
 
-.fecha-input {
+select {
   width: 100%;
-  max-width: 250px;
   padding: 12px;
   font-size: 16px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.fecha-input:focus {
+  border: 2px solid #000000;
+  border-radius: 15px;
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
 
 .botones {
   display: flex;
   gap: 10px;
   justify-content: center;
-}
-
-.campo-carrera, .campo-rh, .campo-radio {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
-}
-
-.campo-carrera label, .campo-rh label, .campo-radio label {
-  font-size: 1rem;
-  color: #7991b2;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.campo-rh, .campo-carrera {
   margin-top: 20px;
 }
 
-.campo-rh input[type="text"] {
-  max-width: 150px;
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }

@@ -21,93 +21,75 @@ const RegistroEgresado = () => {
       <h1>Registro de Egresado</h1>
 
       <div className="campo">
-        <label htmlFor="nombre">Nombre(s):</label>
-        <Textbox id="nombre" placeholder="Nombre(s)" />
+        <label htmlFor="Nombre">Nombre(s):</label>
+        <Textbox id="Nombre" name="Nombre" placeholder="Nombre(s)" />
       </div>
 
       <div className="campo">
-        <label htmlFor="apellidoPaterno">Apellido paterno:</label>
-        <Textbox id="apellidoPaterno" placeholder="Apellido paterno" />
+        <label htmlFor="ApellidoPaterno">Apellido Paterno:</label>
+        <Textbox id="ApellidoPaterno" name="ApellidoPaterno" placeholder="Apellido Paterno" />
       </div>
 
       <div className="campo">
-        <label htmlFor="apellidoMaterno">Apellido materno:</label>
-        <Textbox id="apellidoMaterno" placeholder="Apellido materno" />
+        <label htmlFor="ApellidoMaterno">Apellido Materno:</label>
+        <Textbox id="ApellidoMaterno" name="ApellidoMaterno" placeholder="Apellido Materno" />
       </div>
 
       <div className="campo">
-        <label htmlFor="correo">Correo:</label>
-        <Textbox id="correo" placeholder="Correo electrónico" type="email" />
+        <label htmlFor="Correo">Correo:</label>
+        <Textbox id="Correo" name="Correo" placeholder="Correo electrónico" type="email" />
       </div>
 
       <div className="campo">
-        <label htmlFor="contraseña">Contraseña:</label>
-        <Textbox id="contraseña" placeholder="Contraseña" type="password" />
+        <label htmlFor="Contraseña">Contraseña:</label>
+        <Textbox id="Contraseña" name="Contraseña" placeholder="Contraseña" type="password" />
       </div>
 
       <div className="campo">
-        <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
-        <Textbox id="confirmarContraseña" placeholder="Confirmar contraseña" type="password" />
+        <label htmlFor="Telefono">Teléfono:</label>
+        <Textbox id="Telefono" name="Telefono" placeholder="Teléfono" type="tel" />
       </div>
 
       <div className="campo">
-        <label htmlFor="telefono">Teléfono:</label>
-        <Textbox id="telefono" placeholder="Teléfono" type="tel" />
+        <Fecha id="FechadeNacimiento" name="Fechade2Nacimiento" />
       </div>
 
-      <div className="campo">
-        <Fecha />
-      </div>
-      
       <div className="campo">
         <label htmlFor="biografia">Biografía:</label>
-        <Textbox id="biografia" placeholder="Biografía" />
+        <Textbox id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
       <div className="campo-radio">
         <label className="radio-buttons-label">Sexo</label>
         <RadioButtons
-          name="sexo"
+          name="Sexo"
           options={[
-            { value: 'femenino', label: 'Femenino' },
-            { value: 'masculino', label: 'Masculino' },
-            { value: 'otro', label: 'Otro' },
+            { value: 'Masculino', label: 'Masculino' },
+            { value: 'Femenino', label: 'Femenino' },
           ]}
         />
-        <div className="descripcion-sexo">
-          <label htmlFor="descripcionSexo">Descripción (si es necesario):</label>
-          <Textbox id="descripcionSexo" placeholder="Descripción..." />
-        </div>
       </div>
-
 
       <div className="campo-carrera">
         <label className="radio-buttons-label">Carrera</label>
         <RadioButtons
-          name="carrera"
+          name="Carrera"
           options={[
-            { value: 'isc', label: 'ISC' },
-            { value: 'iem', label: 'IEM' },
-            { value: 'ige', label: 'IGE' },
-            { value: 'cp', label: 'CP' },
-            { value: 'ii', label: 'II' },
-            { value: 'ia', label: 'IA' },
+            { value: 'IGE', label: 'IGE' },
+            { value: 'ISC', label: 'ISC' },
+            { value: 'CP', label: 'CP' },
           ]}
         />
       </div>
-      
+
       <div className="campo-añogd">
-        <label htmlFor="añograd">Año de Graduacion:</label>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Textbox id="añograd" placeholder="Año de graduacion" />
-        </div>
+        <label htmlFor="AñoGraduacion">Año de Graduación:</label>
+        <Textbox id="AñodeGraduacion" name="AñodeGraduacion" placeholder="Año de Graduación" />
       </div>
 
       <div className="campo-puesto">
-        <label htmlFor="puesto">Año de Graduacion:</label>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Textbox id="puest" placeholder="Puesto en la empresa" />
-        </div>
+        <label htmlFor="Puesto">Puesto:</label>
+        <Textbox id="Puesto" name="Puesto" placeholder="Puesto en la empresa" />
       </div>
 
       <div className="botones">

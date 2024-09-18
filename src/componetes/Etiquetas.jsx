@@ -1,13 +1,11 @@
 import React from "react";
-import '../hojas-de-estilo/Etiquetas.css';
+import '../hojas-de-estilo/Etiquetas.css';  // Asegúrate de que el CSS esté correctamente importado
 
-function Label({ text }) {
+function Label({ htmlFor, text }) {
     return (
-        <form>
-            <label id="etiquetastyle">{text}</label>
-            {/* Esto en main se usa para editar el texto
-            <Etiq text='Texto para editar'/> */}
-        </form>
+        <label htmlFor={htmlFor} className="etiquetastyle">
+            {text}
+        </label>
     );
 }
 

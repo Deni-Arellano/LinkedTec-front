@@ -5,6 +5,7 @@ import RadioButtons from '../componetes/Radio-button';
 import Fecha from '../componetes/Fecha';
 import '../Diseño-de-paginas/Docentes-registro.css'; 
 import Logo from '../imagenes/Logo24.png'; 
+import Label from '../componetes/Etiquetas';
 
 const RegistroDocentes = () => {
   const handleBack = () => {
@@ -21,38 +22,38 @@ const RegistroDocentes = () => {
       <h1>Registro de Docente</h1>
 
       <div className="campo">
-        <label htmlFor="nombre">Nombre(s):</label>
-        <Textbox id="nombre" placeholder="Nombre(s)" />
+        <Label htmlFor="Nombr" text="Nombre(s):" />
+        <Textbox id="Nombre" placeholder="Nombre(s)" />
       </div>
 
       <div className="campo">
-        <label htmlFor="apellidoPaterno">Apellido paterno:</label>
-        <Textbox id="apellidoPaterno" placeholder="Apellido paterno" />
+        <Label htmlFor="Appatern" text="Apellido paterno:" />
+        <Textbox id="Appaterno" placeholder="Apellido paterno" />
       </div>
 
       <div className="campo">
-        <label htmlFor="apellidoMaterno">Apellido materno:</label>
-        <Textbox id="apellidoMaterno" placeholder="Apellido materno" />
+        <Label htmlFor="Apmatern" text="Apellido materno:" />
+        <Textbox id="Apmaterno" placeholder="Apellido materno" />
       </div>
 
       <div className="campo">
-        <label htmlFor="correo">Correo:</label>
+        <Label htmlFor="corre" text="Correo:" />
         <Textbox id="correo" placeholder="Correo electrónico" type="email" />
       </div>
 
       <div className="campo">
-        <label htmlFor="contraseña">Contraseña:</label>
+        <Label htmlFor="contraseñ" text="Contraseña:" />
         <Textbox id="contraseña" placeholder="Contraseña" type="password" />
       </div>
 
       <div className="campo">
-        <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
-        <Textbox id="confirmarContraseña" placeholder="Confirmar contraseña" type="password" />
+        <Label htmlFor="Confirmarcontraseñ" text="Confirmar contraseña:" />
+        <Textbox id="Confirmarcontraseña" placeholder="Confirmar contraseña" type="password" />
       </div>
 
       <div className="campo">
-        <label htmlFor="telefono">Teléfono:</label>
-        <Textbox id="telefono" placeholder="Teléfono" type="tel" />
+        <Label htmlFor="Telefon" text="Teléfono:" />
+        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
       </div>
 
       <div className="campo">
@@ -60,9 +61,9 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="campo-radio">
-        <label className="radio-buttons-label">Sexo</label>
+        <Label htmlFor="Sex" text="Sexo" />
         <RadioButtons
-          name="sexo"
+          name="Sexo"
           options={[
             { value: 'femenino', label: 'Femenino' },
             { value: 'masculino', label: 'Masculino' },
@@ -70,15 +71,15 @@ const RegistroDocentes = () => {
           ]}
         />
         <div className="descripcion-sexo">
-          <label htmlFor="descripcionSexo">Descripción (si es necesario):</label>
-          <Textbox id="descripcionSexo" placeholder="Descripción..." />
+          <Label htmlFor="Describi" text="Descripción (si es necesario):" />
+          <Textbox id="Describir" placeholder="Descripción..." />
         </div>
       </div>
 
       <div className="campo-radio">
-        <label className="radio-buttons-label">Nivel de estudio</label>
+        <Label htmlFor="Ultimonivel" text="Nivel de estudio" />
         <RadioButtons
-          name="nivelEstudio"
+          name="Ultimoniveldeestudios"
           options={[
             { value: 'doctorado', label: 'Doctorado' },
             { value: 'licenciatura', label: 'Licenciatura' },
@@ -88,17 +89,17 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="campo-rh">
-        <label htmlFor="noDocente">No. Docente:</label>
+        <Label htmlFor="noDocente" text="No. Docente:" />
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span>RH</span>
-          <Textbox id="noDocente" placeholder="Número RH" />
+          <Textbox id="numerodeempleado" placeholder="Número RH" />
         </div>
       </div>
 
       <div className="campo-carrera">
-        <label className="radio-buttons-label">Carrera perteneciente</label>
+        <Label htmlFor="carrera" text="Carrera perteneciente" />
         <RadioButtons
-          name="carrera"
+          name="Academia"
           options={[
             { value: 'isc', label: 'ISC' },
             { value: 'iem', label: 'IEM' },

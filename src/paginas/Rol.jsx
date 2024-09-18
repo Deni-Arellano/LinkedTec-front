@@ -10,6 +10,10 @@ const Pagina = () => {
     alert('Has hecho clic en "Siguiente"');
   };
 
+  const handleBack = () => {
+    alert('Has hecho clic en "Atrás"');
+  };
+
   const opcionesRol = [
     { value: 'admin', label: 'Administrador' },
     { value: 'user', label: 'Usuario' },
@@ -33,7 +37,10 @@ const Pagina = () => {
           />
         </div>
 
-        <Button label="Siguiente" onClick={handleNext} />
+        <div className="botones">
+          <Button label="Atrás" onClick={handleBack} />
+          <Button label="Siguiente" onClick={handleNext} />
+        </div>
       </main>
     </div>
   );
