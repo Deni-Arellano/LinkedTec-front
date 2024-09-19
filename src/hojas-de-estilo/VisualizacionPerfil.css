@@ -2,10 +2,9 @@
 .perfil-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    padding: 50px; /* Aumenta el padding para que baje el contenido */
+    padding: 50px;
     background-color: #f0f4f8;
 }
 
@@ -13,7 +12,7 @@
 .nombre-usuario {
     display: flex;
     align-items: center;
-    margin-bottom: 50px; /* Aumenta el margen para separar el nombre del cuadro */
+    margin-bottom: 50px;
 }
 
 .foto-perfil {
@@ -24,7 +23,7 @@
 }
 
 .info-usuario h2 {
-    font-size: 36px; /* Tamaño del nombre más grande */
+    font-size: 36px;
     margin: 0;
     color: #012a6f;
 }
@@ -38,10 +37,12 @@
 .perfil-cuadro {
     background-color: #fff;
     border: 2px solid #012a6f;
-    padding: 30px; /* Aumenta el padding */
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 60%; /* Aumenta el ancho del cuadro */
+    width: 60%;
+    max-width: 800px;
+    margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 50px;
 }
@@ -49,10 +50,22 @@
 .perfil-cuadro p {
     font-size: 18px;
     margin-bottom: 10px;
+    line-height: 1.5; /* Mejora la legibilidad del texto */
 }
 
 .perfil-cuadro strong {
     color: #012a6f;
+}
+
+/* Ajuste específico para la biografía */
+.perfil-cuadro .biografia {
+    min-height: 100px; /* Asignamos espacio mínimo para biografía */
+    padding: 10px 0; /* Agregamos un poco de espacio interior */
+    color: #555;
+    white-space: pre-wrap; /* Permite que los saltos de línea sean respetados */
+    word-wrap: break-word; /* Evita que las palabras largas rompan el diseño */
+    border-top: 1px solid #ddd; /* Una línea sutil encima de la biografía */
+    margin-top: 10px; /* Un poco de separación */
 }
 
 /* Iconos */

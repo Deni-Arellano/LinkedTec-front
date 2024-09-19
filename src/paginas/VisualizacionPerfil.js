@@ -17,8 +17,10 @@ const VisualizacionPerfil = () => {
             {/* Cuadro de información */}
             <div className="perfil-cuadro">
                 <p><FaBriefcase className="icono"/> <strong>Carrera:</strong> Ingeniería en Sistemas</p>
-                <p><strong>Biografía:</strong></p> {
-}
+                
+                <p><strong>Biografía:</strong></p> 
+                <p className="biografia"></p>
+
                 <p><FaEnvelope className="icono"/> <strong>Correo:</strong> <a href="mailto:correo@gmail.com">correo@gmail.com</a></p>
                 <p><FaPhone className="icono"/> <strong>Teléfono:</strong> +52 123456789</p>
                 <p><FaBirthdayCake className="icono"/> <strong>Fecha de Nacimiento:</strong> 01/01/2060</p>

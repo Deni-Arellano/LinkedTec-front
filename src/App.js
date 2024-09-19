@@ -1,11 +1,14 @@
 import React from 'react';
-import './App.css';
-import Login from './paginas/Login'; // Cambia la ruta si es necesario
+import VisualizacionPerfil from './paginas/VisualizacionPerfil';
+import MenuNavegacion from './componetes/MenuNavegacion';
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      {/* Menú de navegación */}
+      <MenuNavegacion />
+      {/* Visualización del perfil */}
+      <VisualizacionPerfil />
     </div>
   );
 }
