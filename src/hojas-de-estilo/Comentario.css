@@ -59,9 +59,12 @@
 }
 
 .comentario-contenido {
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
 }
 
 .comentario-texto {
@@ -69,4 +72,9 @@
     flex-direction: column;
     margin-bottom: 10px;
     font-size: 90%;
+    margin-left: 5px;
+    margin-top: 5px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
