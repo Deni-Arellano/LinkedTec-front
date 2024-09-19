@@ -1,96 +1,74 @@
-/* Estilos generales del contenedor de login */
+/* Contenedor del login */
 .login-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 100%;
+  background-color: #f7f7f7;
 }
 
-/* Estilo para el contenedor del formulario */
-.login-form-container {
-  width: 35%; /* Aumentamos un poco el ancho del formulario */
-  background-color: #f9f9f9;
-  padding: 30px; /* Aumentamos el padding para más espacio */
-  border-radius: 10px;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más grande */
-  text-align: center;
-}
-
-/* Estilo para LinkedTec como título */
-h1 {
-  font-size: 36px; /* Aumentamos el tamaño del título */
-  font-weight: bold;
-  color: #012a6f;
-  margin-bottom: 30px; /* Aumentamos el espacio debajo del título */
-}
-
-/* Estilo para los campos */
-.campo-container {
-  margin-bottom: 20px; /* Espacio más grande entre los campos */
-  width: 100%;
-}
-
-/* Estilo para los inputs más pequeños */
-input {
-  padding: 15px 20px; /* Reducimos un poco el padding */
-  font-size: 18px; /* Letra más grande */
-  width: 95%; /* Reducimos el ancho para que sea un poco más pequeño */
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-  outline: none;
-  transition: box-shadow 0.3s ease;
-}
-
-input:focus {
-  border-color: #007BFF;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
-}
-
-/* Estilo para el botón de "Entrar" más grande */
-.btn {
-  background-color: #798eb2;
-  border: none;
-  color: white;
-  padding: 15px 25px; /* Botón más grande */
-  font-size: 18px; /* Letra más grande */
-  margin: 10px 0;
-  cursor: pointer;
-  border-radius: 10px;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #687a9e;
-}
-
-.btn:active {
-  background-color: #55628a;
-}
-
-/* Estilo para los enlaces de Recuperar contraseña y Registro */
-.extra-options {
+/* Caja del login */
+.login-box {
+  background-color: white;
+  padding: 60px;  /* Aumenta el padding para darle más altura */
+  border-radius: 12px;  /* Bordes redondeados */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);  /* Sombra más intensa */
   display: flex;
-  justify-content: center;
-  gap: 30px; /* Añadimos espacio entre los enlaces */
-  margin-top: 10px; /* Espacio entre los enlaces y el botón */
+  flex-direction: column;
+  align-items: center;
+  width: 500px;  /* Mantén el ancho más grande */
+  border: 3px solid #012a6f;  /* Borde azul elegante */
+  height: 700px;  /* Aumenta la altura del cuadro */
 }
 
-.extra-options a {
-  font-size: 16px; /* Letra más grande para los enlaces */
-  color: #012a6f;
+/* Estilo del logo */
+.logo-login {
+  width: 150px;  /* Aumenta el tamaño del logo */
+  height: auto;
+  margin-bottom: 40px;  /* Aumenta el margen inferior para espaciarlo del resto */
+}
+
+/* Input y botón de entrada */
+input {
+  width: 100%;
+  padding: 15px;  /* Inputs más grandes */
+  margin: 15px 0;  /* Más espacio entre los inputs */
+  border-radius: 8px;  /* Bordes redondeados */
+  border: 1px solid #ccc;
+  font-size: 18px;  /* Texto más grande */
+}
+
+.btn-entrar {
+  background-color: #2f6db7;
+  color: white;
+  border: none;
+  padding: 15px;  /* Botón más grande */
+  margin-top: 20px;
+  font-size: 20px;  /* Texto más grande */
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-entrar:hover {
+  background-color: #255693;
+}
+
+/* Estilo de los enlaces de recuperación y registro */
+.login-links {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.login-link {
+  color: #2f6db7;
   text-decoration: none;
-}
-
-.extra-options a:hover {
-  text-decoration: underline;
-}
-
-.registro-link {
   font-weight: bold;
-  font-size: 18px; /* Letra más grande y negritas */
-  color: #012a6f;
+  font-size: 16px;  /* Texto más grande para los enlaces */
+}
+
+.login-link:hover {
+  text-decoration: underline;
 }

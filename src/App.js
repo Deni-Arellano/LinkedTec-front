@@ -1,14 +1,11 @@
 import React from 'react';
-import MenuNavegacion from './componetes/MenuNavegacion'; // Corregido a 'componetes'
-import VisualizacionPerfil from './paginas/VisualizacionPerfil'; // Corregido a 'componetes'
+import './App.css';
+import Login from './paginas/Login'; // Cambia la ruta si es necesario
 
 function App() {
   return (
-    <div>
-      <MenuNavegacion />
-      <div className="contenido-perfil">
-        <VisualizacionPerfil />
-      </div>
+    <div className="App">
+      <Login />
     </div>
   );
 }
