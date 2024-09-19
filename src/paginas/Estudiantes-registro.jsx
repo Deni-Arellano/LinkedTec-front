@@ -2,7 +2,7 @@ import React from 'react';
 import Textbox from '../componetes/Caja-de-texto'; 
 import Button from '../componetes/Button';
 import RadioButtons from '../componetes/Radio-button';
-import '../Diseño-de-paginas/Estudiantes-registro.css'; 
+import '../hojas-de-estilo/Estudiantes-registro.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 
 const Registro = () => {
@@ -21,49 +21,54 @@ const Registro = () => {
 
       <div className="campo">
         <label htmlFor="nombre">Nombre(s):</label>
-        <Textbox id="nombre" placeholder="Nombre(s)" />
+        <Textbox id="Nombre" placeholder="Nombre(s)" />
       </div>
 
       <div className="campo">
         <label htmlFor="apellidoPaterno">Apellido paterno:</label>
-        <Textbox id="apellidoPaterno" placeholder="Apellido paterno" />
+        <Textbox id="ApellidoPaterno" placeholder="Apellido paterno" />
       </div>
 
       <div className="campo">
         <label htmlFor="apellidoMaterno">Apellido materno:</label>
-        <Textbox id="apellidoMaterno" placeholder="Apellido materno" />
+        <Textbox id="ApellidoMaterno" placeholder="Apellido materno" />
       </div>
 
       <div className="campo">
         <label htmlFor="correo">Correo:</label>
-        <Textbox id="correo" placeholder="Correo electrónico" type="email" />
+        <Textbox id="Correo" placeholder="Correo electrónico" type="email" />
       </div>
 
       <div className="campo">
         <label htmlFor="contraseña">Contraseña:</label>
-        <Textbox id="contraseña" placeholder="Contraseña" type="password" />
+        <Textbox id="Contraseña" placeholder="Contraseña" type="password" />
       </div>
 
       <div className="campo">
         <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
-        <Textbox id="confirmarContraseña" placeholder="Confirmar contraseña" type="password" />
+        <Textbox id="ConfirmarContraseña" placeholder="Confirmar contraseña" type="password" />
       </div>
 
       <div className="campo">
         <label htmlFor="noControl">No. Control:</label>
-        <Textbox id="noControl" placeholder="Número de control" />
+        <Textbox id="No.Control" placeholder="Número de control" />
+      </div>
+
+      <div className="campo">
+        <label htmlFor="biografia">Biografía:</label>
+        <Textbox id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
 
       <div className="campo">
         <label htmlFor="telefono">Teléfono:</label>
-        <Textbox id="telefono" placeholder="Teléfono" type="tel" />
+        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
       </div>
 
       <div className="campo">
         <label className="radio-buttons-label">Carrera</label>
         <RadioButtons
-          name="carrera"
+          name="Carrera"
           options={[
             { value: 'ISC', label: 'ISC' },
             { value: 'IEM', label: 'IEM' },
@@ -71,7 +76,6 @@ const Registro = () => {
             { value: 'CP', label: 'CP' },
             { value: 'II', label: 'II' },
             { value: 'IA', label: 'IA' },
-            { value: 'otro', label: 'Otro' },
           ]}
         />
       </div>
@@ -79,7 +83,7 @@ const Registro = () => {
       <div className="campo">
         <label className="radio-buttons-label">Semestre</label>
         <RadioButtons
-          name="semestre"
+          name="Semestre"
           options={[
             { value: 'I', label: 'I Semestre' },
             { value: 'II', label: 'II Semestre' },
@@ -97,7 +101,7 @@ const Registro = () => {
       <div className="campo">
         <label className="radio-buttons-label">Sexo</label>
         <RadioButtons
-          name="sexo"
+          name="Sexo"
           options={[
             { value: 'femenino', label: 'Femenino' },
             { value: 'masculino', label: 'Masculino' },
@@ -108,7 +112,7 @@ const Registro = () => {
 
       <div className="campo">
         <label htmlFor="descripcion">Descripción (si es necesario):</label>
-        <Textbox id="descripcion" placeholder="Descripción..." />
+        <Textbox id="Describir" placeholder="Descripción..." />
       </div>
 
       <div className="botones">

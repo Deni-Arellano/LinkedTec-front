@@ -2,27 +2,33 @@
     display: grid;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .estilo-caja-publicacion {
     border-radius: 8px;
     background-color: #f6faff;
-    width: 150%;
+    width: 178%;
     height: 25vh;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 }
 
 .boton-contenedor {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: auto;
-    
 }
 
 .boton1 {
     width: 100px;
+}
+
+.botones-derecha {
+    display: flex;
+    gap: 10px;
 }
