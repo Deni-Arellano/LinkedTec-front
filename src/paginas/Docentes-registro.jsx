@@ -22,37 +22,37 @@ const RegistroDocentes = () => {
       <h1>Registro de Docente</h1>
 
       <div className="campo">
-        <Label htmlFor="Nombr" text="Nombre(s):" />
+        <Label htmlFor="Nombr" texto="Nombre(s):" />
         <Textbox id="Nombre" placeholder="Nombre(s)" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="Appatern" text="Apellido paterno:" />
+        <Label htmlFor="Appatern" texto="Apellido paterno:" />
         <Textbox id="Appaterno" placeholder="Apellido paterno" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="Apmatern" text="Apellido materno:" />
+        <Label htmlFor="Apmatern" texto="Apellido materno:" />
         <Textbox id="Apmaterno" placeholder="Apellido materno" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="corre" text="Correo:" />
+        <Label htmlFor="corre" texto="Correo:" />
         <Textbox id="correo" placeholder="Correo electrónico" type="email" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="contraseñ" text="Contraseña:" />
+        <Label htmlFor="contraseñ" texto="Contraseña:" />
         <Textbox id="contraseña" placeholder="Contraseña" type="password" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="Confirmarcontraseñ" text="Confirmar contraseña:" />
+        <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
         <Textbox id="Confirmarcontraseña" placeholder="Confirmar contraseña" type="password" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="Telefon" text="Teléfono:" />
+        <Label htmlFor="Telefon" texto="Teléfono:" />
         <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
       </div>
       
@@ -63,11 +63,12 @@ const RegistroDocentes = () => {
 
         
       <div className="campo">
-        <Fecha label="Fecha de Nacimiento"/>
+      <Fecha label="Fecha de Nacimiento" />
       </div>
 
+
       <div className="campo-radio">
-        <Label htmlFor="Sex" text="Sexo" />
+        <Label htmlFor="Sex" texto="Sexo" />
         <RadioButtons
           name="Sexo"
           options={[
@@ -77,13 +78,13 @@ const RegistroDocentes = () => {
           ]}
         />
         <div className="descripcion-sexo">
-          <Label htmlFor="Describi" text="Descripción (si es necesario):" />
+          <Label htmlFor="Describi" texto="Descripción (si es necesario):" />
           <Textbox id="Describir" placeholder="Descripción..." />
         </div>
       </div>
 
       <div className="campo-radio">
-        <Label htmlFor="Ultimonivel" text="Nivel de estudio" />
+        <Label htmlFor="Ultimonivel" texto="Nivel de estudio" />
         <RadioButtons
           name="Ultimoniveldeestudios"
           options={[
