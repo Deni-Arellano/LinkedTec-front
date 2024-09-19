@@ -1,9 +1,9 @@
 import React from 'react';
-import Textbox from '../componetes/Caja-de-texto'; 
+import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Button from '../componetes/Button'; 
 import RadioButtons from '../componetes/Radio-button'; 
-import Fecha from '../componetes/Fecha';
 import '../hojas-de-estilo/Docentes-registro.css'; 
+import Fecha from '../componetes/Fecha.js';
 import Logo from '../imagenes/Logo24.png'; 
 import Label from '../componetes/Etiquetas';
 
@@ -61,8 +61,9 @@ const RegistroDocentes = () => {
         <Textbox id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
+        
       <div className="campo">
-        <Fecha />
+        <Fecha label="Fecha de Nacimiento"/>
       </div>
 
       <div className="campo-radio">
@@ -102,7 +103,7 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="campo-carrera">
-        <Label htmlFor="carrera" text="Carrera perteneciente" />
+        <Label htmlFor="carrera" text="Academia" />
         <RadioButtons
           name="Academia"
           options={[
@@ -117,8 +118,8 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="botones">
-        <Button label="Atrás" onClick={handleBack} />
-        <Button label="Siguiente" onClick={handleNext} />
+        <Button texto="Atrás" onClick={handleBack} />
+        <Button texto="Siguiente" onClick={handleNext} />
       </div>
     </div>
   );

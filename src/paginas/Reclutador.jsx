@@ -1,8 +1,8 @@
 import React from 'react';
-import Textbox from '../componetes/Caja-de-texto'; 
+import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Button from '../componetes/Button'; 
 import RadioButtons from '../componetes/Radio-button'; 
-import Fecha from '../componetes/Fecha';
+import Fecha from '../componetes/Fecha.js'; 
 import '../hojas-de-estilo/Reclutador.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 
@@ -55,7 +55,6 @@ const RegistroReclutador = () => {
         <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
       </div>
 
-
       <div className="campo-radio">
         <label className="radio-buttons-label">Sexo</label>
         <RadioButtons
@@ -68,11 +67,13 @@ const RegistroReclutador = () => {
         />
         <div className="descripcion-sexo">
           <label htmlFor="descripcionSexo">Descripción (si es necesario):</label>
-          <Textbox id="Describir" placeholder="Descripción..." />
+          <Textbox id="Descri" placeholder="Descripción..." />
         </div>
       </div>
+
+  
       <div className="campo">
-        <Fecha />
+        <Fecha label="Fecha de Nacimiento" />
       </div>
 
       <div className="campo">
@@ -84,6 +85,7 @@ const RegistroReclutador = () => {
         <label htmlFor="sede">Sede:</label>
         <Textbox id="Sede" placeholder="Sede" />
       </div>
+
       <div className="campo-radio">
         <label className="radio-buttons-label">Giro</label>
         <RadioButtons
@@ -98,8 +100,8 @@ const RegistroReclutador = () => {
       </div>
 
       <div className="botones">
-        <Button label="Atrás" onClick={handleBack} />
-        <Button label="Siguiente" onClick={handleNext} />
+        <Button texto="Atrás" onClick={handleBack} />
+        <Button texto="Siguiente" onClick={handleNext} />
       </div>
     </div>
   );
