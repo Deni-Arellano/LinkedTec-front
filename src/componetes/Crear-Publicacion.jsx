@@ -17,7 +17,7 @@ const CrearPubli = () => {
     return (
         <div className="caja-publicacion">
             <form className="estilo-caja-publicacion">
-                <Texto text='¿Qué estás pensando?'/>
+                <Texto tamano='20' texto='¿Qué estás pensando?'/>
                 <Cajatexto className='estilo-caja-texto' placeholder={'Ingresar texto...'}/>
                 
                 <div className="boton-contenedor">

@@ -3,25 +3,30 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .estilo-caja-publicacion {
     border-radius: 8px;
     background-color: #f6faff;
-    width: 178%;
-    height: 25vh;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 200%;
+    max-width: 670px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
 }
 
 .boton-contenedor {
     display: flex;
     justify-content: space-between;
-    margin-top: auto;
+    margin-top: 10px;
+    flex-wrap: wrap;
 }
 
 .boton1 {
@@ -31,4 +36,30 @@
 .botones-derecha {
     display: flex;
     gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .estilo-caja-publicacion {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .boton1 {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .boton-contenedor {
+        justify-content: center;
+    }
+
+    .boton1 {
+        width: 80px;
+    }
+    
+    .estilo-caja-publicacion {
+        padding: 10px;
+        max-width: 100%;
+    }
 }
