@@ -1,6 +1,6 @@
 import React from 'react';
-import '../hojas-de-estilo/VisualizacionPerfil.css';  // Asegúrate de que la ruta sea correcta
-import BarraSuperior from '../componetes/BarraSuperior';  // Ruta correcta de tu componente
+import './hojas-de-estilo/VisualizacionPerfil.css';  // Ruta correcta dentro de src
+import BarraSuperior from './componetes/BarraSuperior';  // Ruta correcta dentro de src
 
 const VisualizacionPerfil = () => {
   return (

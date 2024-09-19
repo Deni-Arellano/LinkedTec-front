@@ -1,19 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD
-import '../hojas-de-estilo/Menu-navegacion.css';
-import Searchbar from '../componetes/Searchbar';  // Asegúrate de que la ruta sea correcta
-import { VscAccount } from "react-icons/vsc";  // Ícono de cuenta
-import { AiFillAlert } from "react-icons/ai";  // Ícono de alerta
-import { BiChat } from "react-icons/bi";       // Ícono de chat
-import logo from '../imagenes/Logo24.png';     // Ruta de tu logo
-=======
-import '../hojas-de-estilo/MenuNavegacion.css';
-import Searchbar from './Searchbar'; // Importa el componente Searchbar
-import { VscAccount } from "react-icons/vsc"; 
-import { AiFillAlert } from "react-icons/ai"; 
-import { BiChat } from "react-icons/bi"; 
-import logo from '../imagenes/Logo24.png';
->>>>>>> origin/componentes
+import { BiChat } from 'react-icons/bi';
+import { AiFillAlert } from 'react-icons/ai';
+import { VscAccount } from 'react-icons/vsc';
+import Searchbar from './Searchbar';  // Asegúrate de que la ruta sea correcta
+import logo from '../imagenes/Logo24.png';  // Ruta correcta para el logo
 
 const BarraSuperior = () => {
     return (
