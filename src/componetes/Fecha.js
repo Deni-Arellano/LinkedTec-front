@@ -10,7 +10,7 @@ const Fecha = () => {
 
     return (
         <div className="fecha-container">
-            <label htmlFor="fecha-input" className="fecha-label">Selecciona una fecha:</label>
+            <label htmlFor="fecha-input" className="fecha-label">Fecha de Nacimiento:</label>
             <input
                 type="date"
                 id="fecha-input"

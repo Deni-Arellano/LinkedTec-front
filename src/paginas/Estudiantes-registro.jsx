@@ -1,7 +1,8 @@
 import React from 'react';
-import Textbox from '../componetes/Caja-de-texto'; 
+import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Button from '../componetes/Button';
 import RadioButtons from '../componetes/Radio-button';
+import Fecha from '../componetes/Fecha'; 
 import '../hojas-de-estilo/Estudiantes-registro.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 
@@ -64,6 +65,9 @@ const Registro = () => {
         <label htmlFor="telefono">Teléfono:</label>
         <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
       </div>
+      <div className="campo">
+        <Fecha label="Fecha de Nacimiento" />
+      </div>
 
       <div className="campo">
         <label className="radio-buttons-label">Carrera</label>
@@ -112,12 +116,12 @@ const Registro = () => {
 
       <div className="campo">
         <label htmlFor="descripcion">Descripción (si es necesario):</label>
-        <Textbox id="Describir" placeholder="Descripción..." />
+        <Textbox id="Describ" placeholder="Descripción..." />
       </div>
 
       <div className="botones">
-        <Button label="Atrás" onClick={handleBack} />
-        <Button label="Siguiente" onClick={handleNext} />
+        <Button texto="Atrás" onClick={handleBack} />
+        <Button texto="Siguiente" onClick={handleNext} />
       </div>
     </div>
   );

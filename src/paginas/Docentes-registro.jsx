@@ -1,9 +1,9 @@
 import React from 'react';
-import Textbox from '../componetes/Caja-de-texto'; 
+import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Button from '../componetes/Button'; 
 import RadioButtons from '../componetes/Radio-button'; 
-import Fecha from '../componetes/Fecha';
 import '../hojas-de-estilo/Docentes-registro.css'; 
+import Fecha from '../componetes/Fecha.js';
 import Logo from '../imagenes/Logo24.png'; 
 import Label from '../componetes/Etiquetas';
 
@@ -22,37 +22,37 @@ const RegistroDocentes = () => {
       <h1>Registro de Docente</h1>
 
       <div className="campo">
-        <Label htmlFor="Nombr" text="Nombre(s):" />
+        <Label htmlFor="Nombr" texto="Nombre(s):" />
         <Textbox id="Nombre" placeholder="Nombre(s)" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="Appatern" text="Apellido paterno:" />
+        <Label htmlFor="Appatern" texto="Apellido paterno:" />
         <Textbox id="Appaterno" placeholder="Apellido paterno" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="Apmatern" text="Apellido materno:" />
+        <Label htmlFor="Apmatern" texto="Apellido materno:" />
         <Textbox id="Apmaterno" placeholder="Apellido materno" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="corre" text="Correo:" />
+        <Label htmlFor="corre" texto="Correo:" />
         <Textbox id="correo" placeholder="Correo electrónico" type="email" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="contraseñ" text="Contraseña:" />
+        <Label htmlFor="contraseñ" texto="Contraseña:" />
         <Textbox id="contraseña" placeholder="Contraseña" type="password" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="Confirmarcontraseñ" text="Confirmar contraseña:" />
+        <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
         <Textbox id="Confirmarcontraseña" placeholder="Confirmar contraseña" type="password" />
       </div>
 
       <div className="campo">
-        <Label htmlFor="Telefon" text="Teléfono:" />
+        <Label htmlFor="Telefon" texto="Teléfono:" />
         <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
       </div>
       
@@ -61,12 +61,14 @@ const RegistroDocentes = () => {
         <Textbox id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
+        
       <div className="campo">
-        <Fecha />
+      <Fecha label="Fecha de Nacimiento" />
       </div>
 
+
       <div className="campo-radio">
-        <Label htmlFor="Sex" text="Sexo" />
+        <Label htmlFor="Sex" texto="Sexo" />
         <RadioButtons
           name="Sexo"
           options={[
@@ -76,13 +78,13 @@ const RegistroDocentes = () => {
           ]}
         />
         <div className="descripcion-sexo">
-          <Label htmlFor="Describi" text="Descripción (si es necesario):" />
+          <Label htmlFor="Describi" texto="Descripción (si es necesario):" />
           <Textbox id="Describir" placeholder="Descripción..." />
         </div>
       </div>
 
       <div className="campo-radio">
-        <Label htmlFor="Ultimonivel" text="Nivel de estudio" />
+        <Label htmlFor="Ultimonivel" texto="Nivel de estudio" />
         <RadioButtons
           name="Ultimoniveldeestudios"
           options={[
@@ -102,7 +104,7 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="campo-carrera">
-        <Label htmlFor="carrera" text="Carrera perteneciente" />
+        <Label htmlFor="carrera" text="Academia" />
         <RadioButtons
           name="Academia"
           options={[
@@ -117,8 +119,8 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="botones">
-        <Button label="Atrás" onClick={handleBack} />
-        <Button label="Siguiente" onClick={handleNext} />
+        <Button texto="Atrás" onClick={handleBack} />
+        <Button texto="Siguiente" onClick={handleNext} />
       </div>
     </div>
   );

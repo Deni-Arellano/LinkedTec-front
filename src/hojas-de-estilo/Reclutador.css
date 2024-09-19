@@ -11,7 +11,6 @@ body {
     width: 150px;
     height: auto;
 }
-
 .registro-contenedor {
     display: flex;
     flex-direction: column;
@@ -47,10 +46,13 @@ label {
     width: 100%; 
 }
 
-#Describir {
-    min-width: 300px; 
+#Descri {
+    width: 100%; 
+    max-width: 300px; 
     height: 100px;
+
   }
+
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"], textarea {
     padding: 12px;
     font-size: 16px;
@@ -87,11 +89,17 @@ textarea {
 .radio-personalizado {
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: flex-start; 
     cursor: pointer;
     color: #093e61;
-    gap: 10px; 
+    gap: 2px; 
 }
+
+  input[type="Sexo"] {
+    margin:10px;
+    padding: 10px; 
+  }
+  
 .radio-personalizado input {
     position: absolute;
     opacity: 0;

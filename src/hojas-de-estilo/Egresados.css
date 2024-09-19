@@ -48,11 +48,27 @@ label {
   font-weight: bold;
 }
 
+
 #Biografia {
   width: 100%; 
   min-width: 500px; 
   height: 100px;
 }
+
+#Describir {
+  width: 100%; 
+  max-width: 300px; 
+  height: 100px;
+  box-sizing: border-box; 
+  margin-left: 200px; 
+}
+label[for="descripcion"] {
+  width: 200px;
+  text-align: center; 
+  margin-left: 200px; 
+}
+
+
 
 
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"], textarea {
