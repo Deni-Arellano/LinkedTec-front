@@ -1,116 +1,75 @@
+/* Ajuste general del contenedor */
 .perfil-container {
-    display: flex;
-    height: 100vh;
-    background-color: #f0f4f8;
-}
-
-.barra-lateral {
-    width: 250px;
-    background-color: #798eb2;
-    color: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.barra-lateral h2 {
-    margin-bottom: 20px;
-}
-
-.barra-lateral ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
-.barra-lateral li {
-    margin: 15px 0;
-    cursor: pointer;
-}
-
-.barra-lateral li:hover {
-    text-decoration: underline;
-}
-
-.perfil-contenido {
-    flex-grow: 1;
-    padding: 40px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-}
-
-.nombre-usuario {
-    display: flex;
-    align-items: center; /* Alineamos verticalmente al centro */
-    margin-bottom: 30px;
-    margin-left: 300px;   /* Mueve el nombre de usuario más a la derecha */
-}
-
-.foto-perfil {
-    width: 150px;  /* Tamaño de la imagen de perfil */
-    height: 150px;
-    border-radius: 80%;
-    margin-right: 30px;
-}
-
-.nombre-usuario h2 {
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.carrera {
-    font-size: 18px;
-    color: #555;
-}
-
-.biografia {
-    margin-top: 40px;
-    margin-left: 0px;
-    text-align: center;
-}
-
-.biografia p {
-    margin-top: 10px;
-}
-
-.biografia strong {
-    font-size: 18px;
-}
-
-.perfil-info {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    padding: 50px;
+    background-color: #f0f4f8;
 }
 
-.contacto {
+/* Nombre y foto del usuario */
+.nombre-usuario {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.info-usuario h2 {
+    font-size: 36px;
+    margin: 0;
+    color: #012a6f;
+}
+
+.carrera {
+    font-size: 20px;
+    color: #555;
+}
+
+/* Cuadro de información */
+.perfil-cuadro {
+    background-color: #fff;
+    border: 2px solid #012a6f;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     width: 60%;
-    padding: 0 80px;
+    max-width: 800px;
+    margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 50px;
 }
 
-.correo {
-    font-size: 16px;
-    color: #333;
-    margin-right: 50px;
+.perfil-cuadro p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.5; /* Mejora la legibilidad del texto */
 }
 
-.telefono {
-    font-size: 16px;
-    color: #333;
-    margin-left: 50px;
+.perfil-cuadro strong {
+    color: #012a6f;
 }
 
-.fecha-nacimiento {
-    margin-top: 80px;
-    text-align: center;
-    font-size: 16px;
-    color: #333;
+/* Ajuste específico para la biografía */
+.perfil-cuadro .biografia {
+    min-height: 100px; /* Asignamos espacio mínimo para biografía */
+    padding: 10px 0; /* Agregamos un poco de espacio interior */
+    color: #555;
+    white-space: pre-wrap; /* Permite que los saltos de línea sean respetados */
+    word-wrap: break-word; /* Evita que las palabras largas rompan el diseño */
+    border-top: 1px solid #ddd; /* Una línea sutil encima de la biografía */
+    margin-top: 10px; /* Un poco de separación */
+}
+
+/* Iconos */
+.icono {
+    margin-right: 10px;
+    color: #012a6f;
 }

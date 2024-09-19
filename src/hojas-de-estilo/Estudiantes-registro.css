@@ -24,14 +24,25 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-#Describir {
-  min-width: 300px; 
-  height: 100px;
-}
+
 #Biografia {
   width: 100%; 
   min-width: 500px; 
   height: 100px;
+}
+
+#Describ {
+  width: 100%; 
+  max-width: 300px; 
+  height: 100px;
+  box-sizing: border-box; 
+  margin-left: 200px; 
+}
+
+label[for="descripcion"] {
+  width: 200px;
+  text-align: center; 
+  margin-left: 200px; 
 }
 
 
@@ -60,7 +71,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
   font-size: 16px;
   box-sizing: border-box;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 2px solid #000000;
   outline: none;
 }
 input:focus {

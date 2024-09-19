@@ -1,17 +1,16 @@
 import React from 'react';
-//import RegistroDocentes from './paginas/Docentes-registro';
-import RegistroReclutador from './paginas/Reclutador';
-//import RegistroReclutador from './paginas/Reclutador';
-//import RegistroEgresado from './paginas/Egresados';
-//import Registro from './paginas/Estudiantes-registro';
-//import Pagina from './paginas/Rol'
+import VisualizacionPerfil from './paginas/VisualizacionPerfil';
+import MenuNavegacion from './componetes/MenuNavegacion';
+
 function App() {
   return (
     <div className="App">
-      <RegistroReclutador/>
+      {/* Menú de navegación */}
+      <MenuNavegacion />
+      {/* Visualización del perfil */}
+      <VisualizacionPerfil />
     </div>
   );
 }
+
 export default App;
-//docente agregar biografia
-//general centar Radio Buttons

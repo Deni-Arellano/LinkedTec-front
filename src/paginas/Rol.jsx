@@ -39,8 +39,8 @@ const Pagina = () => {
         </div>
 
         <div className="botones">
-          <Button label="Atrás" onClick={handleBack} />
-          <Button label="Siguiente" onClick={handleNext} />
+          <Button texto="Atrás" onClick={handleBack} />
+          <Button texto="Siguiente" onClick={handleNext} />
         </div>
       </main>
     </div>
