@@ -13,6 +13,26 @@ const MostrarPubli = () => {
         setMostrarOpciones(!mostrarOpciones);
     };
 
+    const handleLike = () => {
+        alert('Te ha gustado')
+    }
+
+    const handleDislike = () => {
+        alert('Te ha disgustado')
+    }
+
+    const handleComment = () => {
+        alert('Haz comentado')
+    }
+
+    const handleEdit = () => {
+        alert('Publicacion editada')
+    }
+
+    const handleDelete = () => {
+        alert('Publicacion eliminada')
+    }
+
     return (
         <div className="Most-publicacion">
             <div className="publicacion-header">
@@ -21,20 +41,20 @@ const MostrarPubli = () => {
                     alt="Profile" 
                     className="imagen-perfil" 
                 />
-                <Texto text={'Nombre'}/>
+                <Texto texto={'Nombre'}/>
                 <BsThreeDots className="icono-tres-puntos" size={20} onClick={handleOpciones} 
                 />
                 {mostrarOpciones && (
                     <div className="opciones-dropdown">
-                        <button className="opcion-boton">Editar</button>
-                        <button className="opcion-boton">Eliminar</button>
+                        <button className="opcion-boton" onClick={handleEdit}>Editar</button>
+                        <button className="opcion-boton" onClick={handleDelete}>Eliminar</button>
                     </div>
                 )}
             </div>
             <div className="publicacion-contenido">
                 <div className="publicacion-texto">
                     <div className="Descripcion">
-                        <Texto text={'Descripcion de la publicacion'}/>
+                        <Texto texto={'Descripcion de la publicacion'}/>
                     </div>
                 </div>
                 <img 
@@ -45,13 +65,13 @@ const MostrarPubli = () => {
             </div>
             <div className="botones">
                 <button className="Megusta">
-                    <AiFillLike  size={30}/>
+                    <AiFillLike  size={30} onClick={handleLike}/>
                 </button>
                 <button className="Medisgusta">
-                    <AiFillDislike  size={30}/>
+                    <AiFillDislike  size={30} onClick={handleDislike}/>
                 </button>
                 <button className="Comentar">
-                    <MdAddComment size={30}/>
+                    <MdAddComment size={30} onClick={handleComment}/>
                 </button>
             </div>
         </div>
