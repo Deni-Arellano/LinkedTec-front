@@ -1,33 +1,19 @@
 /* Ajuste general del contenedor */
 .perfil-container {
     display: flex;
-    justify-content: flex-start;
-    min-height: 100vh;
-    background-color: #f0f4f8;
-    padding: 20px;
-    width: 100%;
-}
-
-/* Contenedor del perfil */
-.perfil-contenido {
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    border-radius: 8px;
-    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
+    min-height: 100vh;
+    padding: 50px; /* Aumenta el padding para que baje el contenido */
+    background-color: #f0f4f8;
 }
 
 /* Nombre y foto del usuario */
 .nombre-usuario {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px; /* Aumenta el margen para separar el nombre del cuadro */
 }
 
 .foto-perfil {
@@ -38,77 +24,39 @@
 }
 
 .info-usuario h2 {
-    font-size: 28px;
+    font-size: 36px; /* Tamaño del nombre más grande */
     margin: 0;
+    color: #012a6f;
 }
 
 .carrera {
-    font-size: 18px;
-    color: #012a6f;
-    margin: 5px 0;
+    font-size: 20px;
+    color: #555;
 }
 
-/* Cuadro con la información del perfil */
+/* Cuadro de información */
 .perfil-cuadro {
-    border: 1px solid #012a6f;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    width: 100%;
-    max-width: 600px;
+    background-color: #fff;
+    border: 2px solid #012a6f;
+    padding: 30px; /* Aumenta el padding */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 60%; /* Aumenta el ancho del cuadro */
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .perfil-cuadro p {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 10px;
-    text-decoration: none; /* Elimina cualquier subrayado */
-    border-bottom: none; /* Asegura que no haya línea debajo */
-}
-
-.perfil-cuadro p strong {
-    color: #012a6f;
     font-size: 18px;
-    display: inline-block;
+    margin-bottom: 10px;
 }
 
-.perfil-cuadro .icono-pastelito {
-    margin-left: 10px;
+.perfil-cuadro strong {
     color: #012a6f;
 }
 
-/* Ajuste de la barra de navegación superior */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    background-color: white;
-    border-bottom: 2px solid #012a6f;
-    height: 60px;
-    width: 100%;
-}
-
-/* Logo */
-.logo {
-    width: auto;
-    height: 58px;
-}
-
-/* Barra de búsqueda */
-.search {
-    width: 1000px;
-    margin: 0 auto;
-}
-
-/* Iconos en la barra superior */
-.icons {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.icon {
-    font-size: 24px;
+/* Iconos */
+.icono {
+    margin-right: 10px;
     color: #012a6f;
 }
