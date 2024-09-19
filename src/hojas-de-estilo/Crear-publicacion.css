@@ -1,12 +1,10 @@
 .caja-publicacion {
     display: grid;
-    justify-content: center;
     align-items: center;
     position: relative;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    padding: 10px;
 }
 
 .estilo-caja-publicacion {
