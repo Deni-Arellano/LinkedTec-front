@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../hojas-de-estilo/MenuNavegacion.css';
-import Button from './Button'; 
 import Searchbar from './Searchbar'; 
 import { VscAccount } from "react-icons/vsc"; 
 import { AiFillAlert } from "react-icons/ai"; 
@@ -10,17 +9,12 @@ import logo from '../imagenes/Logo24.png';
 const MenuNavegacion = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
 
-    const toggleSidebar = () => {
-        setSidebarVisible(!sidebarVisible);
-    };
-
     return (
         <div className="app">
             {/* Barra superior */}
             <header className="header">
                 <img src={logo} alt="Logo" className="logo" />
 
-                {/* Componente Searchbar */}
                 <div className="search">
                     <Searchbar />
                 </div>
@@ -30,13 +24,12 @@ const MenuNavegacion = () => {
                     <AiFillAlert className="icon" /> 
                     <VscAccount className="icon" /> 
                 </div>
-                
             </header>
             
             {/* Menú lateral */}
             <aside className={`sidebar ${sidebarVisible ? 'visible' : ''}`}>
                 <div className="profile">
-                    <img src="ruta/de/imagen-de-perfil.jpg" alt="Perfil" className="profile-pic" /> 
+                    <img src="https://via.placeholder.com/100" alt="Perfil" className="profile-pic" />
                     <p className="profile-name">Guisselle Iñiguez</p>
                 </div>
 

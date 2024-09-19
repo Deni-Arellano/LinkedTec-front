@@ -1,55 +1,31 @@
 /* Ajuste general del contenedor */
 .perfil-container {
     display: flex;
-    min-height: 100vh; /* Se asegura que ocupe toda la altura de la página */
+    justify-content: flex-start;
+    min-height: 100vh;
     background-color: #f0f4f8;
-    align-items: flex-start;
     padding: 20px;
-    width: 100%; /* Hacemos que abarque todo el ancho */
+    width: 100%;
 }
 
-/* Barra lateral */
-.barra-lateral {
-    width: 250px;
-    background-color: #798eb2;
-    color: white;
-    padding: 20px;
-    height: 100vh; /* Esto extiende la barra lateral hasta el final de la página */
-    flex-shrink: 0;
-}
-
-.barra-lateral ul {
-    list-style: none;
-    padding: 0;
-}
-
-.barra-lateral li {
-    margin: 15px 0;
-    cursor: pointer;
-}
-
-.barra-lateral li:hover {
-    text-decoration: underline;
-}
-
-/* Contenido del perfil */
+/* Contenedor del perfil */
 .perfil-contenido {
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 40px;
     border-radius: 8px;
-    flex-grow: 1;
-    max-width: 1100px; /* Hacemos que ocupe más espacio horizontal */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 20px;
-    width: 100%; /* Expandimos el contenido */
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
 }
 
 /* Nombre y foto del usuario */
 .nombre-usuario {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-bottom: 30px;
 }
@@ -68,68 +44,71 @@
 
 .carrera {
     font-size: 18px;
-    color: #555;
+    color: #012a6f;
     margin: 5px 0;
 }
 
-/* Biografía y detalles */
-.biografia, .perfil-info {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.biografia h3, .perfil-info h3, .publicaciones h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.biografia p, .perfil-info p {
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-/* Contacto */
-.info-contacto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.info-contacto .fila-contacto {
-    display: flex;
-    justify-content: center;
-    gap: 350px; /* Separamos más el correo y teléfono */
-}
-
-.info-contacto p {
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-/* Publicaciones */
-.publicaciones {
-    width: 100%;
-    margin-top: 30px;
-    text-align: center;
-}
-
-.publicacion {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 15px;
+/* Cuadro con la información del perfil */
+.perfil-cuadro {
+    border: 1px solid #012a6f;
     border-radius: 8px;
-    text-align: left;
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 600px;
 }
 
-.publicacion h4 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.publicacion p {
+.perfil-cuadro p {
     font-size: 16px;
-    color: #555;
+    color: #333;
+    margin-bottom: 10px;
+    text-decoration: none; /* Elimina cualquier subrayado */
+    border-bottom: none; /* Asegura que no haya línea debajo */
+}
+
+.perfil-cuadro p strong {
+    color: #012a6f;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.perfil-cuadro .icono-pastelito {
+    margin-left: 10px;
+    color: #012a6f;
+}
+
+/* Ajuste de la barra de navegación superior */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: white;
+    border-bottom: 2px solid #012a6f;
+    height: 60px;
+    width: 100%;
+}
+
+/* Logo */
+.logo {
+    width: auto;
+    height: 58px;
+}
+
+/* Barra de búsqueda */
+.search {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/* Iconos en la barra superior */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon {
+    font-size: 24px;
+    color: #012a6f;
 }
