@@ -2,7 +2,7 @@
     display: grid;
     align-items: center;
     position: relative;
-    width: 100%;
+    width: 50vh;
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -23,7 +23,7 @@
 .boton-contenedor {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 5vh;
     flex-wrap: wrap;
 }
 
