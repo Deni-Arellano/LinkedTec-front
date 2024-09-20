@@ -1,5 +1,5 @@
 import React from 'react';
-import RegistroExitoso from './paginas/RegistroExitoso';
+import Login from './paginas/Login';
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
      
       
       {/* Mostrar el contenido de VisualizacionPerfil en la página principal */}
-      <RegistroExitoso />
+      <Login />
     </div>
   );
 }
