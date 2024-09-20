@@ -58,7 +58,7 @@ const RegistroDocentes = () => {
       
       <div className="campo">
         <label htmlFor="biografia">Biografía:</label>
-        <Textbox id="Biografia" name="Biografia" placeholder="Biografía" />
+        <textarea id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
         
@@ -79,7 +79,7 @@ const RegistroDocentes = () => {
         />
         <div className="descripcion-sexo">
           <Label htmlFor="Describi" texto="Descripción (si es necesario):" />
-          <Textbox id="Describir" placeholder="Descripción..." />
+          <textarea id="Describir" placeholder="Descripción..." />
         </div>
       </div>
 

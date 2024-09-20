@@ -57,7 +57,7 @@ const Registro = () => {
 
       <div className="campo">
         <label htmlFor="biografia">Biografía:</label>
-        <Textbox id="Biografia" name="Biografia" placeholder="Biografía" />
+        <textarea id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
 
@@ -116,7 +116,7 @@ const Registro = () => {
 
       <div className="campo">
         <label htmlFor="descripcion">Descripción (si es necesario):</label>
-        <Textbox id="Describ" placeholder="Descripción..." />
+        <textarea id="Describ" placeholder="Descripción..." />
       </div>
 
       <div className="botones">

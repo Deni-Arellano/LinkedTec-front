@@ -29,6 +29,7 @@ body {
   width: 100%; 
   min-width: 500px; 
   height: 100px;
+  font-family: 'Sans-serif', sans-serif;
 }
 
 #Describ {
@@ -37,6 +38,7 @@ body {
   height: 100px;
   box-sizing: border-box; 
   margin-left: 200px; 
+  font-family: 'Sans-serif', sans-serif;
 }
 
 label[for="descripcion"] {

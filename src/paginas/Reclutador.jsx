@@ -67,7 +67,7 @@ const RegistroReclutador = () => {
         />
         <div className="descripcion-sexo">
           <label htmlFor="descripcionSexo">Descripción (si es necesario):</label>
-          <Textbox id="Descri" placeholder="Descripción..." />
+          <textarea id="Descri" placeholder="Descripción..." />
         </div>
       </div>
 

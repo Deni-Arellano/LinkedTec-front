@@ -53,12 +53,14 @@ label {
   width: 100%;
   min-width: 300px;
   height: 100px;
+  font-family: 'Sans-serif', sans-serif;
 }
 
 #Biografia {
   width: 100%;
   min-width: 500px;
   height: 100px;
+  font-family: 'Sans-serif', sans-serif;
 }
 
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"], textarea {
