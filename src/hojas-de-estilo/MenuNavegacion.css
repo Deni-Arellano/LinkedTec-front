@@ -119,3 +119,13 @@
 body {
     overflow-x: hidden;
 }
+/* Asegurar que el contenedor esté centrado */
+.contenedor-perfil-cuadro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto; /* Esto lo centrará horizontalmente */
+    max-width: 800px; /* O el tamaño que necesites */
+    width: 100%; /* O ajusta el porcentaje de ancho según el diseño */
+}

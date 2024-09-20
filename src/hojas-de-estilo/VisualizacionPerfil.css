@@ -1,47 +1,34 @@
 /* Ajuste general del contenedor */
-.perfil-container {
+.visualizacion-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 50px;
+    flex-direction: row;
+    justify-content: space-between; /* Distribuye el menú y el contenido */
+    width: 100%;
+    height: 100vh;
     background-color: #f0f4f8;
 }
 
-<<<<<<< HEAD
+/* Ajuste del contenido del perfil */
+.perfil-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px; /* Espacio para que no quede tan pegado a la barra superior */
+    width: 100%;
+}
+
 /* Nombre y foto del usuario */
+
 .nombre-usuario {
     display: flex;
     align-items: center;
     margin-bottom: 50px;
-}
-
-=======
-/* Div que contiene todo el contenido de la página */
-.perfil-contenido {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Mantiene la alineación de los elementos */
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
-    margin-left: 410px;
-    margin-top: 0px; /* Ajusta esto para acercarlo a la parte superior */
-}
-
-
-/* Información del usuario (nombre, carrera, foto) */
-.usuario-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-left: 180px; /* Ajusta este valor para mover el contenido a la derecha */
+    justify-content: flex-start; /* Alinea a la izquierda */
+    margin-left: -400px; /* Ajusta la alineación para que coincida con el cuadro */
 }
 
 
 /* Ajuste de la imagen de perfil */
->>>>>>> 23a576c8163f51e793d66047bcb1221ec9a7ce3e
 .foto-perfil {
     width: 150px;
     height: 150px;
@@ -49,15 +36,18 @@
     margin-right: 20px;
 }
 
+/* Información del usuario (nombre, carrera, foto) */
 .info-usuario h2 {
     font-size: 36px;
     margin: 0;
     color: #012a6f;
+    text-align: left; /* Alinea el texto a la izquierda */
 }
 
 .carrera {
     font-size: 20px;
     color: #555;
+    text-align: left; /* Alinea el texto a la izquierda */
 }
 
 /* Cuadro de información */
@@ -69,38 +59,48 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     width: 60%;
     max-width: 800px;
-<<<<<<< HEAD
-    margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 50px;
+    text-align: left;
+    margin-left: 150px; /* Asegura que ambos cuadros estén alineados */
 }
 
+
+/* Ajuste de los elementos dentro del cuadro */
 .perfil-cuadro p {
     font-size: 18px;
     margin-bottom: 10px;
-    line-height: 1.5; /* Mejora la legibilidad del texto */
+    line-height: 1.5;
 }
 
 .perfil-cuadro strong {
     color: #012a6f;
 }
 
-/* Ajuste específico para la biografía */
+/* Ajuste de la biografía */
 .perfil-cuadro .biografia {
-    min-height: 100px; /* Asignamos espacio mínimo para biografía */
-    padding: 10px 0; /* Agregamos un poco de espacio interior */
+    min-height: 100px;
+    padding: 10px 0;
     color: #555;
-    white-space: pre-wrap; /* Permite que los saltos de línea sean respetados */
-    word-wrap: break-word; /* Evita que las palabras largas rompan el diseño */
-    border-top: 1px solid #ddd; /* Una línea sutil encima de la biografía */
-    margin-top: 10px; /* Un poco de separación */
-=======
-    margin: 20px auto; /* Alinea el cuadro automáticamente */
->>>>>>> 23a576c8163f51e793d66047bcb1221ec9a7ce3e
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
 }
 
 /* Iconos */
 .icono {
     margin-right: 10px;
     color: #012a6f;
+}
+
+/* Ajustes generales para el contenedor de los componentes PEDE y Reclutador */
+.contenedor-perfil-cuadro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea ambos componentes a la izquierda */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
