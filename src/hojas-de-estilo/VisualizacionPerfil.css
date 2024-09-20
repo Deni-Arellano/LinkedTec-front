@@ -12,11 +12,12 @@
 .perfil-contenido {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar horizontalmente el contenido */
+    align-items: flex-start; /* Mantiene la alineación de los elementos */
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     margin: auto;
-    margin-top: 100px; /* Espacio para que el menú de navegación no lo cubra */
+    padding: 0 20px; /* Mantén este padding para pantallas más grandes */
+    margin-left: 410px; /* Agrega margen izquierdo para mover un poco a la derecha */
 }
 
 /* Información del usuario (nombre, carrera, foto) */
@@ -24,8 +25,9 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    margin-left: 0px; /* Mueve el contenido 125px a la derecha */
+    margin-left: 180px; /* Ajusta este valor para mover el contenido a la derecha */
 }
+
 
 /* Ajuste de la imagen de perfil */
 .foto-perfil {
@@ -55,8 +57,7 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 800px;
-    margin: 20px auto 0 auto; /* Ajuste de márgenes (top, left, bottom, right) */
-    margin-left: 125px; /* Ajusta el cuadro para alinearse con el contenido */
+    margin: 20px auto; /* Alinea el cuadro automáticamente */
 }
 
 /* Iconos */
