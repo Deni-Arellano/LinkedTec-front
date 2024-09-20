@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../componetes/Button'; // Asegúrate de que sea el Button correcto
-import Cajadetexto from '../componetes/Cajadetexto'; // Asegúrate de que sea el Cajadetexto correcto
+import Cajadetexto from '../componetes/Caja-de-texto'; // Asegúrate de que sea el Cajadetexto correcto
 import '../hojas-de-estilo/Login.css';  // Importa tu hoja de estilo
 import logo from '../imagenes/Logo24.png';  // Importa tu logo
 
