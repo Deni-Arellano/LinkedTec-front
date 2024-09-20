@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuNavegacion from '../componetes/MenuNavegacion'; // Ajusta la ruta según tu estructura
+import MenuNavegacion from '../componetes/MenuNavegacion'; // Cambiar de BarraSuperior a MenuNavegacion
 import Etiquetas from '../componetes/Etiquetas'; // Ajusta la ruta según tu estructura
 import CajaDeTexto from '../componetes/Caja-de-texto'; // Ajusta la ruta según tu estructura
 import Button from '../componetes/Button'; // Ajusta la ruta según tu estructura
@@ -8,7 +8,7 @@ import '../hojas-de-estilo/PaginaEmpleo.css'; // Asegúrate de que el archivo ex
 const PaginaFormulario = () => {
     return (
         <>
-            <MenuNavegacion /> {/* Reemplacé BarraSuperior por MenuNavegacion */}
+            <MenuNavegacion /> {/* Cambiado de BarraSuperior a MenuNavegacion */}
             <div className="container">
                 <div className="form">
                     <Etiquetas tamano={20} texto="+ Nuevo Empleo" />
@@ -43,12 +43,11 @@ const PaginaFormulario = () => {
                         <select id="nivel-ingles" className="dropdown">
                             <option value="avanzado">Avanzado</option>
                             <option value="intermedio">Intermedio</option>
-                            <option value="basico">Básico</option>
+                            <option value="basico">Basico</option>
                             <option value="no-aplica">No aplica</option>
                         </select>
                     </div>
 
-                    {/* Actualiza el texto del botón */}
                     <Button texto="Publicar empleo" />
                 </div>
             </div>

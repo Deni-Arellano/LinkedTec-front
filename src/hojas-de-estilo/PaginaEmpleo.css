@@ -1,66 +1,88 @@
-/* Barra superior integrada desde MenuNavegacion */
-
-/* Contenedor de la publicación */
-.publicacion-container {
+/* Estilos para el contenedor general */
+.container {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    padding: 80px 20px; /* Ajusta el padding superior para evitar que se superponga con la barra de navegación */
-    margin-top: 60px; /* Margen superior para acomodar la barra de navegación */
-    height: calc(100vh - 60px); /* Ajusta según la altura de la barra de navegación */
-}
-
-/* Estilos de la publicación */
-.publicacion {
-    background-color: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Aumenta el ancho máximo como desees */
-    width: 100%;
-}
-
-/* Perfil */
-.perfil {
-    display: flex;
+    justify-content: center;
     align-items: center;
+    height: 100vh; /* Centra el contenido verticalmente */
+    padding: 20px;
+    background-color: #f5f5f5; /* Color de fondo ligero */
+}
+
+/* Estilos para el formulario */
+.form {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilos para cada grupo de entrada */
+.input-group {
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
-.foto-perfil {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-/* Nombre del usuario */
-.nombre-usuario {
-    font-size: 18px;
+/* Estilo para las etiquetas */
+label {
     font-weight: bold;
-}
-
-/* Título de la publicación */
-.titulo-publicacion {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-/* Detalles del empleo */
-.detalle h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.detalle p {
+    color: #012a6f;
     margin-bottom: 5px;
-    font-size: 16px;
+    font-family: 'sans-serif';
 }
 
-/* Ajustes adicionales */
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
+/* Estilo para los campos de texto */
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Estilo para el campo de descripción */
+.descripcion-textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Estilo para el botón */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50; /* Color verde para el botón */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049; /* Color más oscuro en hover */
+}
+
+/* Estilos para el dropdown */
+.dropdown {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Resetea algunos estilos por defecto */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #4CAF50; /* Resalta el borde al estar enfocado */
 }

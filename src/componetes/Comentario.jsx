@@ -35,6 +35,10 @@ const Comentar = () => {
                         <button className="opcion-boton-comentario" onClick={handleDelete}>Eliminar</button>
                     </div>
                 )}
+            
+            </div>
+            <div className="Fecha">
+                <Texto tamano={15} texto={'Publicado el:'} />
             </div>
             <div className="comentario-contenido">
                 <div className="comentario-texto">
