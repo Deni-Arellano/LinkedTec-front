@@ -1,45 +1,83 @@
 .verificacion-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;   /* Centra horizontalmente */
-    justify-content: center; /* Centra verticalmente */
-    min-height: 100vh;      /* Ocupará el 100% de la pantalla */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
+  min-height: 100vh;      /* Ocupará el 100% de la pantalla */
+}
+
+.titulo-verificacion {
+  font-size: 36px; /* Tamaño del título */
+  color: #333;     /* Color del título */
+  margin-bottom: 80px;
+  text-align: center;  /* Asegura que el texto del título esté centrado */
+}
+
+.codigo-inputs {
+  display: flex;
+  gap: 15px; /* Espaciado entre inputs */
+  margin-bottom: 20px;
+}
+
+.codigo-input {
+  width: 50px;      /* Tamaño de los inputs */
+  height: 50px;
+  font-size: 24px;
+  text-align: center;
+  border: 2px solid #798eb2;  /* Color del borde del input */
+  border-radius: 5px;
+}
+
+.submit-btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #798eb2;  /* Color del botón */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 80px;  /* Ajusta el espacio entre los inputs y el botón */
+}
+
+.submit-btn:hover {
+  background-color: #627399;  /* Color al pasar el mouse (hover) */
+}
+
+/* Media Queries para hacer el diseño responsivo */
+@media (max-width: 768px) {
   .titulo-verificacion {
-    font-size: 36px; /* Tamaño del título */
-    color: #333;     /* Color del título */
-    margin-bottom: 80px;
-    text-align: center;  /* Asegura que el texto del título esté centrado */
+      font-size: 28px; /* Ajusta el tamaño del título en pantallas más pequeñas */
+      margin-bottom: 40px;
   }
-  
-  .codigo-inputs {
-    display: flex;
-    gap: 15px; /* Espaciado entre inputs */
-    margin-bottom: 20px;
-  }
-  
+
   .codigo-input {
-    width: 50px;      /* Tamaño de los inputs */
-    height: 50px;
-    font-size: 24px;
-    text-align: center;
-    border: 2px solid #798eb2;  /* Color del borde del input */
-    border-radius: 5px;
+      width: 40px;   /* Reduce el tamaño de los inputs */
+      height: 40px;
+      font-size: 20px;
   }
-  
+
   .submit-btn {
-    padding: 12px 24px;
-    font-size: 18px;
-    background-color: #798eb2;  /* Color del botón */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 80px;  /* Ajusta el espacio entre los inputs y el botón */
+      font-size: 16px; /* Reduce el tamaño del botón */
+      padding: 10px 20px;
+      margin-top: 40px; /* Reduce el margen superior del botón */
   }
-  
-  .submit-btn:hover {
-    background-color: #627399;  /* Color al pasar el mouse (hover) */
+}
+
+@media (max-width: 480px) {
+  .titulo-verificacion {
+      font-size: 24px; /* Ajusta aún más el tamaño del título en pantallas más pequeñas */
+      margin-bottom: 30px;
   }
-  
+
+  .codigo-input {
+      width: 35px;   /* Ajusta aún más el tamaño de los inputs */
+      height: 35px;
+      font-size: 18px;
+  }
+
+  .submit-btn {
+      font-size: 14px; /* Reduce el tamaño del botón en pantallas muy pequeñas */
+      padding: 8px 16px;
+      margin-top: 30px; /* Reduce el margen superior del botón */
+  }
+}
