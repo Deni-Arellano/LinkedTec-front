@@ -1,14 +1,19 @@
 import React from 'react';
 import MenuNavegacion from '../componetes/MenuNavegacion';
 import Etiquetas from '../componetes/Etiquetas';
-import BotonPublicar from '../componetes/BotonPublicar'; // Importa el botón
+import BotonPublicar from '../componetes/BotonPublicarEmpleo'; // Importamos el botón
 import '../hojas-de-estilo/PaginaEmpleo.css'; 
 
 const PublicacionEmpleo = ({ datos }) => {
     return (
         <>
             <MenuNavegacion />
-            <BotonPublicar /> {/* Agrega el botón aquí */}
+            
+            {/* Botón Publicar justo debajo del menú de navegación */}
+            <div className="boton-flotante">
+                <BotonPublicar onClick={() => alert('Publicar Empleo')} />
+            </div>
+            
             <div className="publicacion-container">
                 <div className="publicacion">
                     <div className="perfil">
