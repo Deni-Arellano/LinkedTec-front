@@ -1,13 +1,12 @@
 import React from 'react';
-import VisualizacionPerfil from './paginas/VisualizacionPerfil';
-import MenuNavegacion from './componetes/MenuNavegacion';
+import VisualizacionPerfil from './paginas/VisualizacionPerfil'; // Ajusta la ruta si es necesario
 
 function App() {
   return (
-    <div className="App">
-      {/* Menú de navegación */}
-      <MenuNavegacion />
-      {/* Visualización del perfil */}
+    <div>
+     
+      
+      {/* Mostrar el contenido de VisualizacionPerfil en la página principal */}
       <VisualizacionPerfil />
     </div>
   );

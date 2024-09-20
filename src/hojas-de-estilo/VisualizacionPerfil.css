@@ -1,20 +1,33 @@
 /* Ajuste general del contenedor */
-.perfil-container {
+.perfil-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
     min-height: 100vh;
     padding: 50px;
     background-color: #f0f4f8;
 }
 
-/* Nombre y foto del usuario */
-.nombre-usuario {
+/* Div que contiene todo el contenido de la página */
+.perfil-contenido {
     display: flex;
-    align-items: center;
-    margin-bottom: 50px;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente el contenido */
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 100px; /* Espacio para que el menú de navegación no lo cubra */
 }
 
+/* Información del usuario (nombre, carrera, foto) */
+.usuario-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 0px; /* Mueve el contenido 125px a la derecha */
+}
+
+/* Ajuste de la imagen de perfil */
 .foto-perfil {
     width: 150px;
     height: 150px;
@@ -40,36 +53,61 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 60%;
+    width: 100%;
     max-width: 800px;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
-
-.perfil-cuadro p {
-    font-size: 18px;
-    margin-bottom: 10px;
-    line-height: 1.5; /* Mejora la legibilidad del texto */
-}
-
-.perfil-cuadro strong {
-    color: #012a6f;
-}
-
-/* Ajuste específico para la biografía */
-.perfil-cuadro .biografia {
-    min-height: 100px; /* Asignamos espacio mínimo para biografía */
-    padding: 10px 0; /* Agregamos un poco de espacio interior */
-    color: #555;
-    white-space: pre-wrap; /* Permite que los saltos de línea sean respetados */
-    word-wrap: break-word; /* Evita que las palabras largas rompan el diseño */
-    border-top: 1px solid #ddd; /* Una línea sutil encima de la biografía */
-    margin-top: 10px; /* Un poco de separación */
+    margin: 20px auto 0 auto; /* Ajuste de márgenes (top, left, bottom, right) */
+    margin-left: 125px; /* Ajusta el cuadro para alinearse con el contenido */
 }
 
 /* Iconos */
 .icono {
     margin-right: 10px;
     color: #012a6f;
+}
+
+/* Estilos para el componente Etiquetas */
+.etiqueta-visualizacion {
+    font-weight: bold;
+    font-size: 18px;
+    color: #012a6f;
+    margin-right: 10px;
+}
+
+/* Caja de texto dentro del perfil */
+.caja-texto-visualizacion {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #f0f4f8;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Menú de navegación */
+.menu-navegacion {
+    position: fixed; /* Fijo en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1000; /* Siempre visible */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .usuario-info {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .perfil-cuadro {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 20px;
+    }
 }
