@@ -1,14 +1,10 @@
 import React from 'react';
-import VisualizacionPerfil from './paginas/VisualizacionPerfil';
-import MenuNavegacion from './componetes/MenuNavegacion';
+import PaginaEmpleo from './paginas/PublicacionEmpleo';
 
 function App() {
   return (
     <div className="App">
-      {/* Menú de navegación */}
-      <MenuNavegacion />
-      {/* Visualización del perfil */}
-      <VisualizacionPerfil />
+      <PaginaEmpleo/>
     </div>
   );
 }
