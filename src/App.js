@@ -1,5 +1,5 @@
 import React from 'react';
-import CodigoVerificacion from './paginas/CodigoVerificacion';
+import RegistroExitoso from './paginas/RegistroExitoso';
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
      
       
       {/* Mostrar el contenido de VisualizacionPerfil en la página principal */}
-      <CodigoVerificacion />
+      <RegistroExitoso />
     </div>
   );
 }
