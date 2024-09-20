@@ -1,10 +1,10 @@
 import React from 'react';
-import PaginaEmpleo from './paginas/Login';
+import VisualizacionPerfil from './paginas/VisualizacionPerfil';
 
 function App() {
   return (
     <div className="App">
-      <PaginaEmpleo/>
+      <VisualizacionPerfil/>
     </div>
   );
 }
