@@ -1,10 +1,11 @@
 import React from 'react';
-import Textbox from '../componetes/Caja-de-texto.jsx'; 
+import Textbox from '../componetes/Caja-de-texto'; 
 import Button from '../componetes/Button';
-import RadioButtons from '../componetes/Radio-button';
+import RadioButtons from '../componetes/Radio_buton.jsx';
 import Fecha from '../componetes/Fecha'; 
 import '../hojas-de-estilo/Estudiantes-registro.css'; 
 import Logo from '../imagenes/Logo24.png'; 
+import Textarea from '../componetes/Text-area.jsx';
 
 const Registro = () => {
   const handleBack = () => {
@@ -57,7 +58,7 @@ const Registro = () => {
 
       <div className="campo">
         <label htmlFor="biografia">Biografía:</label>
-        <textarea id="Biografia" name="Biografia" placeholder="Biografía" />
+        <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
 
@@ -116,7 +117,7 @@ const Registro = () => {
 
       <div className="campo">
         <label htmlFor="descripcion">Descripción (si es necesario):</label>
-        <textarea id="Describ" placeholder="Descripción..." />
+        <Textarea id="Describ" placeholder="Descripción..." />
       </div>
 
       <div className="botones">

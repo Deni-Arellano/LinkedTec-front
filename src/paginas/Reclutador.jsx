@@ -1,8 +1,9 @@
 import React from 'react';
+import Textarea from '../componetes/Text-area.jsx'; 
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
-import Button from '../componetes/Button'; 
-import RadioButtons from '../componetes/Radio-button'; 
-import Fecha from '../componetes/Fecha.js'; 
+import Button from '../componetes/Button.jsx'; 
+import RadioButtons from '../componetes/Radio_buton.jsx'; 
+import Fecha from '../componetes/Fecha.jsx'; 
 import '../hojas-de-estilo/Reclutador.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 
@@ -67,7 +68,7 @@ const RegistroReclutador = () => {
         />
         <div className="descripcion-sexo">
           <label htmlFor="descripcionSexo">Descripción (si es necesario):</label>
-          <textarea id="Descri" placeholder="Descripción..." />
+          <Textarea id="Descri" placeholder="Descripción..." />
         </div>
       </div>
 
