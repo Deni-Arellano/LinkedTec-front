@@ -6,7 +6,7 @@ const RegistroExitoso = () => {
     <div className="registro-exitoso-container">
       <h2>¡Registro Exitoso!</h2>
       <p>Gracias por registrarte. Ahora puedes acceder a todas las funcionalidades de LinkedTec.</p>
-      <button className="boton-exito" onClick={() => window.location.href = "/login"}>Ir al Login</button>
+      <button className="boton-exito" onClick={() => window.location.href = "/login"}>Ir al Login</button>  {/* Aquí se añade el texto */}
     </div>
   );
 }

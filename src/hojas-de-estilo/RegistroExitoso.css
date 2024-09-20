@@ -4,31 +4,53 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding: 20px;
+  text-align: center;
   background-color: #f0f4f8;
 }
 
 h2 {
-  font-size: 36px;
-  color: #333;
-  margin-bottom: 20px;
+  font-size: 36px !important;
+  color: #333 !important;
+  margin-bottom: 20px !important;
 }
 
 p {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 40px;
+  font-size: 18px !important;
+  color: #555 !important;
+  margin-bottom: 40px !important;
 }
 
 .boton-exito {
-  padding: 10px 20px;
-  background-color: #798eb2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 18px;
+  font-size: 20px !important; /* Aumentamos el tamaño del texto */
+  padding: 15px 30px !important; /* Ajustamos el padding para hacerlo más grande */
+  background-color: #798eb2 !important;
+  color: white !important; /* Asegúrate de que el color de la fuente sea blanco para mejor visibilidad */
+  border: none !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
 }
 
 .boton-exito:hover {
-  background-color: #677a9f;
+  background-color: #677a9f !important; /* Cambia el color del botón al hacer hover */
+}
+
+.boton-exito:active {
+  background-color: #556a8d !important; /* Cambia el color cuando se hace clic */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 28px !important;
+  }
+
+  p {
+    font-size: 16px !important;
+  }
+
+  .boton-exito {
+    font-size: 18px !important;
+    padding: 10px 20px !important;
+  }
 }

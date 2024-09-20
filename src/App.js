@@ -1,5 +1,5 @@
 import React from 'react';
-import VisualizacionPerfil from './paginas/VisualizacionPerfil'; // Ajusta la ruta si es necesario
+import RegistroExitoso from './paginas/RegistroExitoso'; // Ajusta la ruta si es necesario
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
      
       
       {/* Mostrar el contenido de VisualizacionPerfil en la página principal */}
-      <VisualizacionPerfil />
+      <RegistroExitoso />
     </div>
   );
 }
