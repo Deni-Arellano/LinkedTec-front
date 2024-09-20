@@ -1,8 +1,9 @@
 import React from 'react';
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
+import Textarea from '../componetes/Text-area.jsx';
 import Button from '../componetes/Button'; 
-import RadioButtons from '../componetes/Radio-button'; 
-import Fecha from '../componetes/Fecha';
+import RadioButtons from '../componetes/Radio_buton'; 
+import Fecha from '../componetes/Fecha.jsx';
 import '../hojas-de-estilo/Egresados.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 
@@ -55,7 +56,7 @@ const RegistroEgresado = () => {
 
       <div className="campo">
         <label htmlFor="biografia">Biografía:</label>
-        <textarea id="Biografia" name="Biografia" placeholder="Biografía" />
+        <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
       <div className="campo-radio">
@@ -71,7 +72,7 @@ const RegistroEgresado = () => {
       </div>
       <div className="campo">
         <label htmlFor="descripcion">Descripción (si es necesario):</label>
-        <textarea id="Describir" placeholder="Descripción..." />
+        <Textarea id="Describir" placeholder="Descripción..." />
       </div>
 
 

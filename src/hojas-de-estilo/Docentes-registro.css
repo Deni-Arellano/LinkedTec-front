@@ -51,7 +51,7 @@ label {
 
 #Describir {
   width: 100%;
-  min-width: 300px;
+  max-width: 300px;
   height: 100px;
   font-family: 'Sans-serif', sans-serif;
 }

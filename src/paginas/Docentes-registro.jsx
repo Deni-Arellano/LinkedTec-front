@@ -1,9 +1,10 @@
 import React from 'react';
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
+import Textarea from '../componetes/Text-area.jsx'; 
 import Button from '../componetes/Button'; 
-import RadioButtons from '../componetes/Radio-button'; 
+import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import '../hojas-de-estilo/Docentes-registro.css'; 
-import Fecha from '../componetes/Fecha.js';
+import Fecha from '../componetes/Fecha.jsx';
 import Logo from '../imagenes/Logo24.png'; 
 import Label from '../componetes/Etiquetas';
 
@@ -58,7 +59,7 @@ const RegistroDocentes = () => {
       
       <div className="campo">
         <label htmlFor="biografia">Biografía:</label>
-        <textarea id="Biografia" name="Biografia" placeholder="Biografía" />
+        <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
         
@@ -79,7 +80,7 @@ const RegistroDocentes = () => {
         />
         <div className="descripcion-sexo">
           <Label htmlFor="Describi" texto="Descripción (si es necesario):" />
-          <textarea id="Describir" placeholder="Descripción..." />
+          <Textarea id="Describir" placeholder="Descripción..." />
         </div>
       </div>
 

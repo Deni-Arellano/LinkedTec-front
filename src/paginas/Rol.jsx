@@ -1,6 +1,6 @@
 import React from 'react';
-import RadioButtons from '../componetes/Radio-button';    
-import Button from '../componetes/Button';
+import RadioButtons from '../componetes/Radio_buton.jsx';    
+import Button from '../componetes/Button.jsx';
 import '../hojas-de-estilo/Rol.css';
 import logo from '../imagenes/Logo24.png';
 
@@ -32,7 +32,7 @@ const Pagina = () => {
         
         <div className="radio-group">
           <RadioButtons 
-            label="Selecciona tu rol" 
+            label="Selecciona tu rol"
             name="rol" 
             options={opcionesRol} 
           />

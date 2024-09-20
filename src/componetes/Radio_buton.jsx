@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../hojas-de-estilo/Radio_buton.css'; 
+import '../hojas-de-estilo/Radio-button.css'; 
 
-const BotonesRadio = () => {
+const RadioButtons = ({ label, name, options }) => {
   const [opcion, setOpcion] = useState('');
 
   const manejarCambio = (e) => {
@@ -9,47 +9,25 @@ const BotonesRadio = () => {
   };
 
   return (
-    <div>
-      <h2>¿Cual es tu rol?</h2>
+    <div className="campo">
+      <h2>{label}</h2> 
       <div className="grupo-radio">
-        <label className="radio-personalizado">
-          <input
-            type="radio"
-            value="Estudiante"
-            checked={opcion === 'Estudiante'}
-            onChange={manejarCambio}
-          />
-          <span className="etiqueta">Estudiante</span>
-          <span className="boton"></span>
-        </label>
-        
-        <label className="radio-personalizado">
-          <input
-            type="radio"
-            value="Docente"
-            checked={opcion === 'Docente'}
-            onChange={manejarCambio}
-          />
-          <span className="etiqueta">Docente</span>
-          <span className="boton"></span>
-        </label>
-        
-        <label className="radio-personalizado">
-          <input
-            type="radio"
-            value="Reclutador"
-            checked={opcion === 'Reclutador'}
-            onChange={manejarCambio}
-          />
-          <span className="etiqueta">Reclutador</span>
-          <span className="boton"></span>
-        </label>
+        {options.map((option) => (
+          <label key={option.value} className="radio-personalizado">
+            <input
+              type="radio"
+              name={name}
+              value={option.value}
+              checked={opcion === option.value}
+              onChange={manejarCambio}
+            />
+            <span className="etiqueta">{option.label}</span>
+            <span className="boton"></span>
+          </label>
+        ))}
       </div>
     </div>
   );
 };
-//sss
 
-export default BotonesRadio;
-
-
+export default RadioButtons;
