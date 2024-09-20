@@ -1,5 +1,5 @@
 import React from 'react';
-import PaginaEmpleo from './paginas/PublicacionEmpleo';
+import PaginaEmpleo from './paginas/Login';
 
 function App() {
   return (
