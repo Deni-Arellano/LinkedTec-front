@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../hojas-de-estilo/CodigoVerificacion.css'; // Ruta corregida para los estilos
+import Button from '../componetes/Button'; // Asegúrate de que la ruta sea correcta
 
 const CodigoVerificacion = () => {
   const [codigo, setCodigo] = useState(Array(6).fill(""));
@@ -14,10 +15,6 @@ const CodigoVerificacion = () => {
     if (value !== "" && index < codigo.length - 1) {
       document.getElementById(`input-${index + 1}`).focus();
     }
-  };
-
-  const handleSubmit = () => {
-    alert(`Código ingresado: ${codigo.join("")}`);
   };
 
   return (
@@ -36,9 +33,8 @@ const CodigoVerificacion = () => {
           />
         ))}
       </div>
-      <button onClick={handleSubmit} className="submit-btn">
-        Verificar
-      </button>
+      {/* Aquí usamos tu componente Button */}
+      <Button texto="Verificar" />
     </div>
   );
 };
