@@ -20,9 +20,16 @@ const MenuNavegacion = () => {
                 </div>
 
                 <div className="icons">
-                    <BiChat className="icon" /> 
-                    <AiFillAlert className="icon" /> 
-                    <VscAccount className="icon" /> 
+                    {/* Iconos como botones */}
+                    <button className="icon-button">
+                        <BiChat className="icon" />
+                    </button>
+                    <button className="icon-button">
+                        <AiFillAlert className="icon" />
+                    </button>
+                    <button className="icon-button">
+                        <VscAccount className="icon" />
+                    </button>
                 </div>
             </header>
             
@@ -39,6 +46,11 @@ const MenuNavegacion = () => {
                     <button className="menu-button">Publicaciones</button>
                 </nav>
             </aside>
+            
+            {/* Contenido principal */}
+            <div className="content">
+                {/* Aquí va el contenido */}
+            </div>
         </div>
     );
 };
