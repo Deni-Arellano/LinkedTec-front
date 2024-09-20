@@ -16,9 +16,11 @@
     width: 100%;
     max-width: 1200px;
     margin: auto;
-    padding: 0 20px; /* Mantén este padding para pantallas más grandes */
-    margin-left: 410px; /* Agrega margen izquierdo para mover un poco a la derecha */
+    padding: 0 20px;
+    margin-left: 410px;
+    margin-top: 0px; /* Ajusta esto para acercarlo a la parte superior */
 }
+
 
 /* Información del usuario (nombre, carrera, foto) */
 .usuario-info {
