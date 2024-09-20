@@ -42,6 +42,7 @@ const MostrarPubli = () => {
                     className="imagen-perfil" 
                 />
                 <Texto texto={'Nombre'}/>
+                
                 <BsThreeDots className="icono-tres-puntos" size={20} onClick={handleOpciones} 
                 />
                 {mostrarOpciones && (
@@ -50,6 +51,10 @@ const MostrarPubli = () => {
                         <button className="opcion-boton" onClick={handleDelete}>Eliminar</button>
                     </div>
                 )}
+                
+            </div>
+            <div className="Fecha">
+                <Texto tamano={15} texto={'Publicado el:'} />
             </div>
             <div className="publicacion-contenido">
                 <div className="publicacion-texto">
