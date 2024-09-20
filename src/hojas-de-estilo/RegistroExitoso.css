@@ -3,8 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100vh; /* Esto asegura que ocupe toda la altura de la pantalla */
+  text-align: center; /* Centra el texto */
   background-color: #f0f4f8;
+  max-width: 90%; /* Limitar el ancho máximo a un 90% del viewport */
+  padding: 20px; /* Añadir padding para pantallas más pequeñas */
 }
 
 h2 {
@@ -20,15 +23,47 @@ p {
 }
 
 .boton-exito {
+  font-size: 18px;
   padding: 10px 20px;
   background-color: #798eb2;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 18px;
 }
 
 .boton-exito:hover {
-  background-color: #677a9f;
+  background-color: #218838; /* Color al hacer hover */
+}
+
+/* Responsividad para pantallas pequeñas (tabletas y móviles grandes) */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .boton-exito {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* Responsividad adicional para pantallas muy pequeñas (teléfonos pequeños) */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .boton-exito {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
 }

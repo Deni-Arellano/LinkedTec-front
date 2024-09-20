@@ -10,47 +10,47 @@
 /* Caja del login */
 .login-box {
   background-color: white;
-  padding: 60px;  /* Aumenta el padding para darle más altura */
-  border-radius: 12px;  /* Bordes redondeados */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);  /* Sombra más intensa */
+  padding: 40px; /* Reduce un poco el padding para hacerlo más cuadrado */
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;  /* Mantén el ancho más grande */
-  border: 3px solid #012a6f;  /* Borde azul elegante */
-  height: 700px;  /* Aumenta la altura del cuadro */
+  width: 350px; /* Ajusta el ancho para que sea más cuadrado */
+  border: 3px solid #012a6f;
 }
 
 /* Estilo del logo */
 .logo-login {
-  width: 150px;  /* Aumenta el tamaño del logo */
+  width: 180px; /* Reduce el tamaño del logo */
   height: auto;
-  margin-bottom: 40px;  /* Aumenta el margen inferior para espaciarlo del resto */
+  margin-bottom: 30px;
 }
 
 /* Input y botón de entrada */
 input {
-  width: 100%;
-  padding: 15px;  /* Inputs más grandes */
-  margin: 15px 0;  /* Más espacio entre los inputs */
-  border-radius: 8px;  /* Bordes redondeados */
-  border: 1px solid #ccc;
-  font-size: 18px;  /* Texto más grande */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 300px; /* Define un máximo */
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  font-size: 18px;
 }
 
-.btn-entrar {
+.btn {
   background-color: #2f6db7;
   color: white;
   border: none;
-  padding: 15px;  /* Botón más grande */
+  padding: 15px;
   margin-top: 20px;
-  font-size: 20px;  /* Texto más grande */
+  font-size: 20px;
   border-radius: 8px;
   cursor: pointer;
-  width: 100%;
+  width: 100%; /* Botón más ancho */
 }
 
-.btn-entrar:hover {
+.btn:hover {
   background-color: #255693;
 }
 
@@ -60,15 +60,26 @@ input {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  max-width: 300px;
 }
 
 .login-link {
   color: #2f6db7;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;  /* Texto más grande para los enlaces */
+  font-size: 16px;
 }
 
 .login-link:hover {
   text-decoration: underline;
+}
+/* Estilo específico para los inputs dentro del componente Cajadetexto */
+.input-personalizado {
+  width: 100% !important;
+  padding: 20px !important;
+  font-size: 18px !important;
+  border-radius: 8px !important;
+  border: 2px solid #ccc !important;
+  margin-bottom: 15px !important;
+  box-sizing: border-box !important;
 }
