@@ -44,6 +44,7 @@ const MenuNavegacion = () => {
                     <button className="menu-button">Noticias</button>
                     <button className="menu-button">Empleos</button>
                     <button className="menu-button">Publicaciones</button>
+                    <button className="menu-button">Foro</button>
                 </nav>
             </aside>
             
