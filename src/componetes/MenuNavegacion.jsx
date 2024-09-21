@@ -5,9 +5,16 @@ import { VscAccount } from "react-icons/vsc";
 import { AiFillAlert } from "react-icons/ai"; 
 import { BiChat } from "react-icons/bi"; 
 import logo from '../imagenes/Logo24.png';
+import { Navigate } from 'react-router-dom';
 
 const MenuNavegacion = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
+
+    const [VerPerfil, irAVerPerfil] = React.useState(false);
+
+    if (VerPerfil) {
+        return <Navigate to={'/Perfil'}/>
+    }
 
     return (
         <div className="app">
@@ -27,7 +34,7 @@ const MenuNavegacion = () => {
                     <button className="icon-button">
                         <AiFillAlert className="icon" />
                     </button>
-                    <button className="icon-button">
+                    <button className="icon-button" onClick={() => {irAVerPerfil(true);}}>
                         <VscAccount className="icon" />
                     </button>
                 </div>
