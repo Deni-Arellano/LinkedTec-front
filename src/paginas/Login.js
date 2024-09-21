@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Importamos Link de react-router-dom
 import Button from '../componetes/Button'; // Asegúrate de que sea el Button correcto
 import Cajadetexto from '../componetes/Caja-de-texto'; // Asegúrate de que sea el Cajadetexto correcto
 import '../hojas-de-estilo/Login.css';  // Importa tu hoja de estilo
@@ -18,7 +19,8 @@ const Login = () => {
                 </form>
                 <div className="login-links">
                     <a href="/recuperar" className="login-link">Recuperar contraseña</a>
-                    <a href="/registro" className="login-link">Registro</a>
+                    {/* Cambiamos a Link para redirigir a Rol */}
+                    <Link to="/rol" className="login-link">Registro</Link> 
                 </div>
             </div>
         </div>

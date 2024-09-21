@@ -3,6 +3,7 @@ import PublicacionEmpleo from './paginas/PublicacionEmpleo';
 import FormularioPublicacionEmpleo from './paginas/FormularioPublicacionEmpleo';  
 import Publicaciones from './paginas/Publicaciones';  
 import Login from './paginas/Login';  // Importa el componente Login
+import Rol from './paginas/Rol'; // Importa el componente Rol
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/formulario-publicacion-empleo" element={<FormularioPublicacionEmpleo />} />
                 <Route path="/publicaciones" element={<Publicaciones />} />
                 <Route path="/login" element={<Login />} />  {/* Agrega la ruta para Login */}
+                <Route path="/rol" element={<Rol />} /> {/* Agrega la ruta para Rol */}
             </Routes>
         </Router>
     );
