@@ -1,0 +1,125 @@
+/* Ajuste del contenido del perfil */
+.perfil-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px; /* Espacio para que no quede tan pegado a la barra superior */
+    width: 100%;
+    margin-top: 60px;
+}
+
+/* Nombre y foto del usuario */
+.nombre-usuario {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    justify-content: flex-start; /* Alinea a la izquierda */
+    margin-left: -400px; /* Ajusta la alineación para que coincida con el cuadro */
+}
+
+/* Ajuste de la imagen de perfil */
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Hace la imagen redonda */
+    border: 2px solid #012a6f; /* Bordes de la imagen */
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Información del usuario (nombre, carrera, foto) */
+.info-usuario h2 {
+    font-size: 36px;
+    margin: 0;
+    color: #012a6f;
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.carrera {
+    font-size: 20px;
+    color: #555;
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* Cuadro de información */
+.perfil-cuadro {
+    background-color: #fff;
+    border: 2px solid #012a6f;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    max-width: 800px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-align: left;
+    margin-left: 50px; /* Asegura que ambos cuadros estén alineados */
+
+}
+
+/* Ajuste de los elementos dentro del cuadro */
+.perfil-cuadro p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center; /* Alinea los iconos con el texto */
+}
+
+.perfil-cuadro strong {
+    color: #012a6f;
+}
+
+/* Iconos */
+.icono {
+    margin-right: 10px;
+    color: #012a6f;
+}
+
+/* Ajustes generales para el contenedor de los componentes PEDE y Reclutador */
+.contenedor-perfil-cuadro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea ambos componentes a la izquierda */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* Ajuste de la imagen de perfil */
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Hace la imagen redonda */
+    border: 2px solid #012a6f; /* Bordes de la imagen */
+    background-color: #e0e0e0; /* Color gris de fondo */
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+}
+.nombre-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinea a la izquierda */
+    margin-left: -350px; /* Ajusta este valor para mover a la izquierda */
+    margin-bottom: 10px;
+    flex-direction: row; /* Mantiene la imagen y el nombre en fila */
+}
+
+/* Estilo para el título de Biografía */
+.perfil-cuadro .biografia {
+    min-height: 50px;
+    padding: 10px 0;
+    color: #555;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-top: 1px solid #ddd;
+    margin-top: 20px; /* Ajusta el margen para dar espacio después del título */
+}

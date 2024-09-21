@@ -2,7 +2,8 @@ import React from 'react';
 import '../hojas-de-estilo/VisualizacionPerfil.css';
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
 import PEDE from '../componetes/PEDE'; 
-import Reclutador from '../componetes/Reclutador'; 
+import Reclutador from '../componetes/Reclutador';
+
 
 const VisualizacionPerfil = () => {
     return (
