@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Importamos Link de react-router-dom
-import Button from '../componetes/Button'; // Asegúrate de que sea el Button correcto
 import Cajadetexto from '../componetes/Caja-de-texto'; // Asegúrate de que sea el Cajadetexto correcto
 import '../hojas-de-estilo/Login.css';  // Importa tu hoja de estilo
 import logo from '../imagenes/Logo24.png';  // Importa tu logo
@@ -15,11 +14,11 @@ const Login = () => {
                     <Cajadetexto placeholder="Ingresa tu usuario" />
                     <label>Contraseña</label>
                     <Cajadetexto type="password" placeholder="Ingresa tu contraseña" />
-                    <Button texto="Entrar" />
+                    {/* Aquí aplicamos la clase específica btn-login */}
+                    <button className="btn-login">Entrar</button>
                 </form>
                 <div className="login-links">
                     <a href="/recuperar" className="login-link">Recuperar contraseña</a>
-                    {/* Cambiamos a Link para redirigir a Rol */}
                     <Link to="/rol" className="login-link">Registro</Link> 
                 </div>
             </div>

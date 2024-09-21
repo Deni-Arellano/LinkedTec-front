@@ -39,20 +39,21 @@ input {
   box-sizing: border-box;
 }
 
-/* Botón de entrada */
-.btn {
+/* Botón de entrada específico para el login */
+.btn-login {
   background-color: #2f6db7;
   color: white;
   border: none;
-  padding: 15px;
+  padding: 15px 0; /* Ajusta el padding para hacerlo más alto */
   margin-top: 20px;
-  font-size: 30px;
+  font-size: 20px; /* Aumenta el tamaño del texto */
   border-radius: 8px;
   cursor: pointer;
   width: 100%;
+  max-width: 300px; /* Máximo ancho del botón */
 }
 
-.btn:hover {
+.btn-login:hover {
   background-color: #255693;
 }
 
