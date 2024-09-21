@@ -4,6 +4,7 @@ import FormularioPublicacionEmpleo from './paginas/FormularioPublicacionEmpleo';
 import Publicaciones from './paginas/Publicaciones';  
 import Login from './paginas/Login';  // Importa el componente Login
 import Rol from './paginas/Rol'; // Importa el componente Rol
+import CodigoVerificacion from './paginas/CodigoVerificacion'; // Importa el componente CodigoVerificacion
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/publicaciones" element={<Publicaciones />} />
                 <Route path="/login" element={<Login />} />  {/* Agrega la ruta para Login */}
                 <Route path="/rol" element={<Rol />} /> {/* Agrega la ruta para Rol */}
+                <Route path="/codigo-verificacion" element={<CodigoVerificacion />} /> {/* Agrega la ruta para CodigoVerificacion */}
             </Routes>
         </Router>
     );
