@@ -10,34 +10,36 @@
 /* Caja del login */
 .login-box {
   background-color: white;
-  padding: 40px; /* Reduce un poco el padding para hacerlo más cuadrado */
+  padding: 40px;
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 350px; /* Ajusta el ancho para que sea más cuadrado */
+  width: 350px;
   border: 3px solid #012a6f;
 }
 
 /* Estilo del logo */
 .logo-login {
-  width: 180px; /* Reduce el tamaño del logo */
+  width: 180px;
   height: auto;
   margin-bottom: 30px;
 }
 
-/* Input y botón de entrada */
+/* Estilo base para los inputs de usuario y contraseña */
 input {
-  width: 100%; /* Ocupa todo el ancho disponible */
-  max-width: 300px; /* Define un máximo */
+  width: 100%;
+  max-width: 300px; /* Define un tamaño máximo uniforme */
   padding: 15px;
   margin: 15px 0;
   border-radius: 8px;
   border: 2px solid #ccc;
   font-size: 18px;
+  box-sizing: border-box;
 }
 
+/* Botón de entrada */
 .btn {
   background-color: #2f6db7;
   color: white;
@@ -47,7 +49,7 @@ input {
   font-size: 20px;
   border-radius: 8px;
   cursor: pointer;
-  width: 100%; /* Botón más ancho */
+  width: 100%;
 }
 
 .btn:hover {
@@ -73,13 +75,17 @@ input {
 .login-link:hover {
   text-decoration: underline;
 }
-/* Estilo específico para los inputs dentro del componente Cajadetexto */
-.input-personalizado {
+
+/* Estilo base para los inputs de usuario y contraseña */
+input, .input-personalizado {
   width: 100% !important;
-  padding: 20px !important;
-  font-size: 18px !important;
+  max-width: 300px !important; /* Define un tamaño máximo uniforme */
+  padding: 15px !important;
+  margin: 15px 0 !important;
   border-radius: 8px !important;
   border: 2px solid #ccc !important;
-  margin-bottom: 15px !important;
+  font-size: 18px !important;
   box-sizing: border-box !important;
+  height: auto !important; /* Para asegurarse que la altura sea consistente */
+  display: inline-block !important; /* Asegura que ambos sean elementos en línea */
 }
