@@ -1,25 +1,47 @@
-import React from 'react';
-import RadioButtons from '../componetes/Radio_buton.jsx';    
+import React, { useState } from 'react'; 
+import { useNavigate } from 'react-router-dom'; 
+import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import Button from '../componetes/Button.jsx';
 import '../hojas-de-estilo/Rol.css';
 import logo from '../imagenes/Logo24.png';
 
 const Pagina = () => {
-
-  const handleNext = () => {
-    alert('Has hecho clic en "Siguiente"');
-  };
-
-  const handleBack = () => {
-    alert('Has hecho clic en "Atrás"');
-  };
+  const [rolSeleccionado, setRolSeleccionado] = useState(''); 
+  const navigate = useNavigate(); 
 
   const opcionesRol = [
-    { value: 'admin', label: 'Estudiante' },
-    { value: 'user', label: 'Docente' },
-    { value: 'guest', label: 'Reclutador' },
-    { value: 'guest', label: 'Egresado' }
+    { value: 'Estudiante', label: 'Estudiante' },
+    { value: 'Docente', label: 'Docente' },
+    { value: 'Reclutador', label: 'Reclutador' },
+    { value: 'Egresado', label: 'Egresado' }
   ];
+
+  const handleNext = () => {
+    if (rolSeleccionado) {
+      switch (rolSeleccionado) {
+        case 'Docente': 
+          console.log("Navegando a /registro-docentes");
+          navigate('/registro-docentes'); 
+          break;
+        case 'Estudiante':
+          console.log("Navegando a /registro-estudiantes");
+          navigate('/registro-estudiantes'); 
+          break;
+        case 'Reclutador':
+          console.log("Navegando a /registro-reclutador");
+          navigate('/registro-reclutador'); 
+          break;
+        case 'Egresado':
+          console.log("Navegando a /registro-egresado");
+          navigate('/registro-egresado'); 
+          break;
+        default:
+          break;
+      }
+    } else {
+      alert('Por favor selecciona un rol antes de continuar.');
+    }
+  };
 
   return (
     <div className="contenedor-pagina">
@@ -28,19 +50,18 @@ const Pagina = () => {
       </header>
 
       <main className="main-content">
-        
-        
         <div className="radio-group">
           <RadioButtons 
             label="Selecciona tu rol"
-            name="rol" 
+            name="rol"
             options={opcionesRol} 
+            onChange={(e) => setRolSeleccionado(e.target.value)} 
           />
         </div>
 
         <div className="botones">
-          <Button texto="Atrás" onClick={handleBack} />
-          <Button texto="Siguiente" onClick={handleNext} />
+          <Button texto="Atrás" />
+          <Button texto="Siguiente" onClick={handleNext} /> 
         </div>
       </main>
     </div>

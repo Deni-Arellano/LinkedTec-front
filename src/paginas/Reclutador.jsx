@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';  
 import Textarea from '../componetes/Text-area.jsx'; 
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Button from '../componetes/Button.jsx'; 
@@ -8,12 +9,17 @@ import '../hojas-de-estilo/Reclutador.css';
 import Logo from '../imagenes/Logo24.png'; 
 
 const RegistroReclutador = () => {
+  const navigate = useNavigate(); 
+
   const handleBack = () => {
-    alert('Ir atrás');
+    console.log("Navegando a /Rol");
+    navigate('/'); 
   };
+  
 
   const handleNext = () => {
-    alert('Ir a la siguiente página');
+    console.log("Navegando a /codigo-verificacion");
+    navigate('/codigo-verificacion'); 
   };
 
   return (
@@ -72,7 +78,6 @@ const RegistroReclutador = () => {
         </div>
       </div>
 
-  
       <div className="campo">
         <Fecha label="Fecha de Nacimiento" />
       </div>
@@ -101,8 +106,8 @@ const RegistroReclutador = () => {
       </div>
 
       <div className="botones">
-        <Button texto="Atrás" onClick={handleBack} />
-        <Button texto="Siguiente" onClick={handleNext} />
+        <Button texto="Atrás" onClick={handleBack} />  
+        <Button texto="Siguiente" onClick={handleNext} />  
       </div>
     </div>
   );

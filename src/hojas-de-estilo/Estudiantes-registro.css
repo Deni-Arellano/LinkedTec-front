@@ -1,17 +1,5 @@
-body {
-  font-family: 'Sans-serif', Arial, sans-serif;
-  background-color: #e9ecef;
-  margin: 0;
-  padding: 0;
-}
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 150px;
-  height: auto;
-}
-.registro-contenedor {
+/* Estilos del contenedor principal de Estudiantes */
+.estudiantes-contenedor {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,126 +12,37 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-
-#Biografia {
-  width: 100%; 
-  min-width: 500px; 
-  height: 100px;
-  font-family: 'Sans-serif', sans-serif;
-}
-
 #Describ {
-  width: 100%; 
-  max-width: 300px; 
+  width: 100%;
   height: 100px;
-  box-sizing: border-box; 
-  margin-left: 200px; 
+  max-width: 300px;
+  margin-left: 150px;
   font-family: 'Sans-serif', sans-serif;
 }
 
-label[for="descripcion"] {
-  width: 200px;
-  text-align: center; 
-  margin-left: 200px; 
-}
-
-
-h1 {
-  margin-bottom: 20px;
-  font-size: 20px; 
-  color: #093e61;  
-}
-.campo {
+/* Estilos generales para los campos */
+.estudiantes-campo {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
-label {
-  font-size: 16px;
+
+.estudiantes-campo label {
+  font-family: sans-serif;
   color: #093e61;
+  font-size: 16px;
   margin-bottom: 5px;
   font-weight: bold;
-  text-align: left;
 }
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
-  width: 100%; 
-  min-width: 250px;
-  padding: 12px;
-  font-size: 16px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  border: 2px solid #000000;
-  outline: none;
-}
-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-}
-.grupo-radio {
+
+.estudiantes-botones {
   display: flex;
-  flex-direction: column;
-  align-items: center; 
-  margin-bottom: 20px; 
-  width: 100%; 
-}
-.radio-personalizado {
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  color: #093e61;
-  display: flex;
-  align-items: center;
+  gap: 10px;
   justify-content: center;
+  margin-top: 20px;
 }
-.radio-personalizado input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-.boton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 18px;
-  width: 18px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  border: 1px solid black;
-}
-.radio-personalizado input:checked ~ .boton {
-  background-color: #093e61;
-}
-.boton:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-.radio-personalizado input:checked ~ .boton:after {
-  display: block;
-}
-.radio-personalizado .boton:after {
-  top: 5px;
-  left: 5px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: white;
-}
-.radio-buttons-label {
-  font-size: 16px;
-  color: #093e61;
-  font-weight: bold;
-  margin-bottom: 5px;
-  text-align: center; 
-}
-.botones {
-  display: flex;
-  gap: 10px; 
-  justify-content: center; 
-}
+
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -153,6 +52,23 @@ button {
   color: white;
   cursor: pointer;
 }
+
 button:hover {
   background-color: #0056b3;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row; /* Permite que los radio buttons y las etiquetas se dispongan en línea */
+  justify-content:right; /* Controla la alineación horizontal: 'center', 'flex-start' o 'flex-end' */
+  align-items: center; /* Alinea verticalmente los radio buttons y etiquetas */
+  margin-bottom: 15px; /* Espacio debajo de cada grupo de radio button */
+}
+
+.radio-group label {
+  margin-left: 10px; /* Controla la distancia entre el botón de radio y su etiqueta */
+}
+
+.radio-group.center {
+  justify-content: center; /* Alinea los elementos en el centro horizontalmente */
 }
