@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import PublicacionEmpleo from './paginas/PublicacionEmpleo';  
 import FormularioPublicacionEmpleo from './paginas/FormularioPublicacionEmpleo';  
 import Publicaciones from './paginas/Publicaciones';  
-import Login from './paginas/Login';  // Importa el componente Login
-import Rol from './paginas/Rol'; // Importa el componente Rol
-import CodigoVerificacion from './paginas/CodigoVerificacion'; // Importa el componente CodigoVerificacion
-import RegistroExitoso from './paginas/RegistroExitoso'; // Importa el componente RegistroExitoso
+import Login from './paginas/Login';  
+import Rol from './paginas/Rol'; 
+import CodigoVerificacion from './paginas/CodigoVerificacion'; 
+import RegistroExitoso from './paginas/RegistroExitoso'; 
 
 function App() {
     return (
