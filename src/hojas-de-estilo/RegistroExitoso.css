@@ -6,7 +6,7 @@
   height: 100vh; /* Esto asegura que ocupe toda la altura de la pantalla */
   text-align: center; /* Centra el texto */
   background-color: #f0f4f8;
-  max-width: 90%; /* Limitar el ancho máximo a un 90% del viewport */
+  max-width: 100%; /* Limitar el ancho máximo a un 90% del viewport */
   padding: 20px; /* Añadir padding para pantallas más pequeñas */
 }
 

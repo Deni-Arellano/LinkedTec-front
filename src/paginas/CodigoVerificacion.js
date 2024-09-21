@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import '../hojas-de-estilo/CodigoVerificacion.css'; // Ruta corregida para los estilos
-import Button from '../componetes/Button'; // Asegúrate de que la ruta sea correcta
+import { useNavigate } from 'react-router-dom';  // Importa useNavigate
+import '../hojas-de-estilo/CodigoVerificacion.css';
+import Button from '../componetes/Button';  // Asegúrate de que la ruta sea correcta
 
 const CodigoVerificacion = () => {
   const [codigo, setCodigo] = useState(Array(6).fill(""));
+  const navigate = useNavigate();  // Inicializa el hook de navegación
 
   const handleInputChange = (index, value) => {
     if (value.length > 1) return;
@@ -15,6 +17,12 @@ const CodigoVerificacion = () => {
     if (value !== "" && index < codigo.length - 1) {
       document.getElementById(`input-${index + 1}`).focus();
     }
+  };
+
+  const handleVerificar = () => {
+    // Aquí puedes agregar lógica para verificar el código si lo deseas
+    // Si todo es correcto, redirige a la página de éxito
+    navigate('/registro-exitoso');  // Redirige a RegistroExitoso
   };
 
   return (
@@ -33,10 +41,9 @@ const CodigoVerificacion = () => {
           />
         ))}
       </div>
-      {/* Aquí usamos tu componente Button */}
-      <Button texto="Verificar" />
+      <Button texto="Verificar" onClick={handleVerificar} />  {/* Maneja el click para redirigir */}
     </div>
   );
-};
+}
 
 export default CodigoVerificacion;
