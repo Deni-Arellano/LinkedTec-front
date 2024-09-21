@@ -1,88 +1,82 @@
-/* Estilos para el contenedor general */
-.container {
+/* Barra superior integrada desde MenuNavegacion */
+
+/* Contenedor de la publicación */
+.publicacion-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh; /* Centra el contenido verticalmente */
-    padding: 20px;
-    background-color: #f5f5f5; /* Color de fondo ligero */
+    padding: 80px 20px; /* Ajusta el padding superior para evitar que se superponga con la barra de navegación */
+    margin-top: 60px; /* Margen superior para acomodar la barra de navegación */
 }
 
-/* Estilos para el formulario */
-.form {
-    width: 100%;
-    max-width: 600px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
-
-/* Estilos para cada grupo de entrada */
-.input-group {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Estilo para las etiquetas */
-label {
-    font-weight: bold;
-    color: #012a6f;
-    margin-bottom: 5px;
-    font-family: 'sans-serif';
-}
-
-/* Estilo para los campos de texto */
-input[type="text"],
-textarea,
-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-/* Estilo para el campo de descripción */
-.descripcion-textarea {
-    height: 100px;
-    resize: vertical;
-}
-
-/* Estilo para el botón */
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50; /* Color verde para el botón */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #45a049; /* Color más oscuro en hover */
-}
-
-/* Estilos para el dropdown */
-.dropdown {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* Estilos de la publicación */
+.publicacion {
     background-color: white;
-    font-size: 14px;
-    cursor: pointer;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
 }
 
-/* Resetea algunos estilos por defecto */
-input:focus,
-textarea:focus,
-select:focus {
-    outline: none;
-    border-color: #4CAF50; /* Resalta el borde al estar enfocado */
+/* Perfil */
+.perfil {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.foto-perfil {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* Nombre del usuario */
+.nombre-usuario {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Título de la publicación */
+.titulo-publicacion {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Detalles del empleo */
+.detalle h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.detalle p {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Contenedor del botón de publicar flotante */
+.boton-flotante {
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-top: 10px;
+    padding: 10px 0;
+    background-color: #f5f5f5; /* Para simular la línea amarilla */
+    position: fixed; /* Fijo en la parte superior */
+    top: 60px; /* Ajusta esto para que esté justo debajo de la barra de navegación */
+    right: 0; /* Lo coloca a la derecha */
+    left: 400px; /* Alinea con la barra lateral */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    max-width: 800px; /* Ajusta el tamaño para que coincida con la publicación */
+    width: calc(100% - 220px); /* Asegura que el ancho ocupe el espacio restante */
+    border-radius: 8px; /* Opcional, para dar consistencia con la publicación */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Similar a la publicación */
+}
+
+/* Ajustes adicionales */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
 }

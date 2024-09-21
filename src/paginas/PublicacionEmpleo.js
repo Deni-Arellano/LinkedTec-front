@@ -1,17 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate para la navegación
 import MenuNavegacion from '../componetes/MenuNavegacion';
 import Etiquetas from '../componetes/Etiquetas';
 import BotonPublicar from '../componetes/BotonPublicarEmpleo'; // Importamos el botón
-import '../hojas-de-estilo/PaginaEmpleo.css'; 
+import '../hojas-de-estilo/PublicacionEmpleo.css'; 
 
 const PublicacionEmpleo = ({ datos }) => {
+    const navigate = useNavigate(); // Hook para navegar a otras páginas
+
     return (
         <>
             <MenuNavegacion />
             
             {/* Botón Publicar justo debajo del menú de navegación */}
             <div className="boton-flotante">
-                <BotonPublicar onClick={() => alert('Publicar Empleo')} />
+                <BotonPublicar onClick={() => navigate('/formulario-publicacion-empleo')} /> {/* Redirige al formulario */}
             </div>
             
             <div className="publicacion-container">

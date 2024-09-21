@@ -1,9 +1,9 @@
 import React from 'react';
-import MenuNavegacion from '../componetes/MenuNavegacion'; // Cambiar de BarraSuperior a MenuNavegacion
-import Etiquetas from '../componetes/Etiquetas'; // Ajusta la ruta según tu estructura
-import CajaDeTexto from '../componetes/Caja-de-texto'; // Ajusta la ruta según tu estructura
-import Button from '../componetes/Button'; // Ajusta la ruta según tu estructura
-import '../hojas-de-estilo/PaginaEmpleo.css'; // Asegúrate de que el archivo existe en la misma carpeta
+import MenuNavegacion from '../componetes/MenuNavegacion'; // Cambiado de BarraSuperior a MenuNavegacion
+import Etiquetas from '../componetes/Etiquetas'; // Asegura que la ruta sea correcta
+import CajaDeTexto from '../componetes/Caja-de-texto'; // Asegura que la ruta sea correcta
+import Button from '../componetes/Button'; // Asegura que la ruta sea correcta
+import '../hojas-de-estilo/PaginaEmpleo.css'; // Verifica que el archivo CSS existe
 
 const PaginaFormulario = () => {
     return (
@@ -14,7 +14,7 @@ const PaginaFormulario = () => {
                     <Etiquetas tamano={20} texto="+ Nuevo Empleo" />
                     
                     <div className="input-group">
-                        <Etiquetas tamano={14} texto="Titulo empleo:" />
+                        <Etiquetas tamano={14} texto="Título empleo:" />
                         <CajaDeTexto id="titulo-empleo" />
                     </div>
 
@@ -29,21 +29,21 @@ const PaginaFormulario = () => {
                     </div>
 
                     <div className="input-group">
-                        <Etiquetas tamano={14} texto="Descripcion:" />
+                        <Etiquetas tamano={14} texto="Descripción:" />
                         <CajaDeTexto id="descripcion" className="descripcion-textarea" multiline />
                     </div>
 
                     <div className="input-group">
-                        <Etiquetas tamano={14} texto="Ubicacion (Estado):" />
+                        <Etiquetas tamano={14} texto="Ubicación (Estado):" />
                         <CajaDeTexto id="ubicacion" />
                     </div>
 
                     <div className="input-group">
-                        <Etiquetas tamano={14} texto="Nivel de Ingles requerido:" />
+                        <Etiquetas tamano={14} texto="Nivel de Inglés requerido:" />
                         <select id="nivel-ingles" className="dropdown">
                             <option value="avanzado">Avanzado</option>
                             <option value="intermedio">Intermedio</option>
-                            <option value="basico">Basico</option>
+                            <option value="basico">Básico</option>
                             <option value="no-aplica">No aplica</option>
                         </select>
                     </div>

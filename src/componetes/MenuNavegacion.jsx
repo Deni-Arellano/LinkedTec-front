@@ -5,16 +5,11 @@ import { VscAccount } from "react-icons/vsc";
 import { AiFillAlert } from "react-icons/ai"; 
 import { BiChat } from "react-icons/bi"; 
 import logo from '../imagenes/Logo24.png';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Asegúrate de importar useNavigate
 
 const MenuNavegacion = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
-
-    const [VerPerfil, irAVerPerfil] = React.useState(false);
-
-    if (VerPerfil) {
-        return <Navigate to={'/Perfil'}/>
-    }
+    const navigate = useNavigate(); // Hook para navegación
 
     return (
         <div className="app">
@@ -34,7 +29,7 @@ const MenuNavegacion = () => {
                     <button className="icon-button">
                         <AiFillAlert className="icon" />
                     </button>
-                    <button className="icon-button" onClick={() => {irAVerPerfil(true);}}>
+                    <button className="icon-button" onClick={() => navigate('/Perfil')}>
                         <VscAccount className="icon" />
                     </button>
                 </div>
@@ -49,8 +44,8 @@ const MenuNavegacion = () => {
 
                 <nav className="menu">
                     <button className="menu-button">Noticias</button>
-                    <button className="menu-button">Empleos</button>
-                    <button className="menu-button">Publicaciones</button>
+                    <button className="menu-button" onClick={() => navigate('/publicacion-empleo')}>Empleos</button>
+                    <button className="menu-button" onClick={() => navigate('/publicaciones')}>Publicaciones</button>
                     <button className="menu-button">Foro</button>
                 </nav>
             </aside>
