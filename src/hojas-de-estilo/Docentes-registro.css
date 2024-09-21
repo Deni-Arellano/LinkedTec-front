@@ -1,19 +1,6 @@
-body {
-  font-family: 'Sans-serif', sans-serif;
-  background-color: #e9ecef;
-  margin: 0;
-  padding: 0;
-}
+/* Hoja de estilo para Docentes */
 
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 150px;
-  height: auto;
-}
-
-.registro-contenedor {
+.docentes-contenedor {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,79 +13,33 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-  font-family: sans-serif;
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #093e61;
-}
-
-.campo {
+.docentes-campo {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
-  margin-top:10px ;
 }
 
-label {
+.docentes-campo label {
   font-family: sans-serif;
-  color: #012a6f;
+  color: #093e61;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
-#Describir {
-  width: 100%;
-  max-width: 300px;
-  height: 100px;
-  font-family: 'Sans-serif', sans-serif;
-}
-
-#Biografia {
-  width: 100%;
-  min-width: 500px;
-  height: 100px;
-  font-family: 'Sans-serif', sans-serif;
-}
-
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="date"], textarea {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  box-sizing: border-box;
-  border: 2px solid #000000;
-  margin-top:15px;
-  border-radius: 15px;
-  outline: none;
-}
-
-input:focus, textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-}
-
-.radio-grupo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.radio-grupo label {
-  font-size: 1rem;
-  color: #093e61;
-  text-align: center;
-}
-
-.botones {
+.docentes-botones {
   display: flex;
   gap: 10px;
   justify-content: center;
   margin-top: 20px;
+}
+
+#Descri{
+  width: 100%;
+  height:100px;
+  max-width:300px;
+  margin-left:-30px;
 }
 
 button {

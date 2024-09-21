@@ -2,18 +2,24 @@ import React from 'react';
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Textarea from '../componetes/Text-area.jsx';
 import Button from '../componetes/Button'; 
-import RadioButtons from '../componetes/Radio_buton'; 
+import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import Fecha from '../componetes/Fecha.jsx';
 import '../hojas-de-estilo/Egresados.css'; 
-import Logo from '../imagenes/Logo24.png'; 
+import Logo from '../imagenes/Logo24.png';
+import { useNavigate } from 'react-router-dom';  
 
+  
 const RegistroEgresado = () => {
+  const navigate = useNavigate(); 
+
   const handleBack = () => {
-    alert('Ir atrás');
+    console.log("Navegando a /Rol");
+    navigate('/'); 
   };
 
   const handleNext = () => {
-    alert('Ir a la siguiente página');
+    console.log("Navegando a /codigo-verificacion");
+    navigate('/codigo-verificacion'); 
   };
 
   return (
