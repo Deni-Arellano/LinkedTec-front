@@ -1,28 +1,25 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';  // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
 import '../hojas-de-estilo/CodigoVerificacion.css';
-import Button from '../componetes/Button';  // Asegúrate de que la ruta sea correcta
+import Button from '../componetes/Button';
 
 const CodigoVerificacion = () => {
-  const [codigo, setCodigo] = useState(Array(6).fill(""));
+  const [codigo, setCodigo] = useState(Array(6).fill(""));  // Inicializa correctamente el estado
   const navigate = useNavigate();  // Inicializa el hook de navegación
 
   const handleInputChange = (index, value) => {
     if (value.length > 1) return;
 
-    const newCodigo = [...codigo];
+    const newCodigo = [...codigo];  // Se usa correctamente 'codigo'
     newCodigo[index] = value;
-    setCodigo(newCodigo);
+    setCodigo(newCodigo);  // Actualiza el estado con setCodigo
 
     if (value !== "" && index < codigo.length - 1) {
       document.getElementById(`input-${index + 1}`).focus();
     }
   };
-
   const handleVerificar = () => {
-    // Aquí puedes agregar lógica para verificar el código si lo deseas
-    // Si todo es correcto, redirige a la página de éxito
-    navigate('/registro-exitoso');  // Redirige a RegistroExitoso
+    navigate('/registro-exitoso');  
   };
 
   return (
@@ -36,12 +33,12 @@ const CodigoVerificacion = () => {
             type="text"
             maxLength="1"
             value={num}
-            onChange={(e) => handleInputChange(index, e.target.value)}
-            className="codigo-input"
+            onChange={(e) => handleInputChange(index, e.target.value)}  // 'handleInputChange' está definido
+       
           />
         ))}
       </div>
-      <Button texto="Verificar" onClick={handleVerificar} />  {/* Maneja el click para redirigir */}
+      <Button texto="Verificar" onClick={handleVerificar} /> 
     </div>
   );
 }

@@ -1,4 +1,3 @@
-/* Contenedor del login */
 .login-container {
   display: flex;
   justify-content: center;
@@ -7,7 +6,6 @@
   background-color: #f7f7f7;
 }
 
-/* Caja del login */
 .login-box {
   background-color: white;
   padding: 40px;
@@ -20,17 +18,15 @@
   border: 3px solid #012a6f;
 }
 
-/* Estilo del logo */
 .logo-login {
   width: 180px;
   height: auto;
   margin-bottom: 30px;
 }
 
-/* Estilo base para los inputs de usuario y contraseña */
-input {
+.Login-input {
   width: 100%;
-  max-width: 300px; /* Define un tamaño máximo uniforme */
+  max-width: 300px;
   padding: 15px;
   margin: 15px 0;
   border-radius: 8px;
@@ -39,25 +35,23 @@ input {
   box-sizing: border-box;
 }
 
-/* Botón de entrada específico para el login */
 .btn-login {
   background-color: #2f6db7;
   color: white;
   border: none;
-  padding: 15px 0; /* Ajusta el padding para hacerlo más alto */
+  padding: 15px 0;
   margin-top: 20px;
-  font-size: 20px; /* Aumenta el tamaño del texto */
+  font-size: 20px;
   border-radius: 8px;
   cursor: pointer;
   width: 100%;
-  max-width: 300px; /* Máximo ancho del botón */
+  max-width: 300px;
 }
 
 .btn-login:hover {
   background-color: #255693;
 }
 
-/* Estilo de los enlaces de recuperación y registro */
 .login-links {
   margin-top: 25px;
   display: flex;
@@ -77,16 +71,15 @@ input {
   text-decoration: underline;
 }
 
-/* Estilo base para los inputs de usuario y contraseña */
-input, .input-personalizado {
+.Login-input-personalizado {
   width: 100% !important;
-  max-width: 300px !important; /* Define un tamaño máximo uniforme */
+  max-width: 300px !important;
   padding: 15px !important;
   margin: 15px 0 !important;
   border-radius: 8px !important;
   border: 2px solid #ccc !important;
   font-size: 18px !important;
   box-sizing: border-box !important;
-  height: auto !important; /* Para asegurarse que la altura sea consistente */
-  display: inline-block !important; /* Asegura que ambos sean elementos en línea */
+  height: auto !important;
+  display: inline-block !important;
 }

@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../hojas-de-estilo/Radio-button.css'; 
 
-const RadioButtons = ({ label, name, options }) => {
-  const [opcion, setOpcion] = useState('');
-
-  const manejarCambio = (e) => {
-    setOpcion(e.target.value);
-  };
-
+const RadioButtons = ({ label, name, options, selectedOption, onChange }) => {
   return (
     <div className="campo">
       <h2>{label}</h2> 
@@ -18,8 +12,8 @@ const RadioButtons = ({ label, name, options }) => {
               type="radio"
               name={name}
               value={option.value}
-              checked={opcion === option.value}
-              onChange={manejarCambio}
+              checked={selectedOption === option.value}
+              onChange={onChange}
             />
             <span className="etiqueta">{option.label}</span>
             <span className="boton"></span>
@@ -31,3 +25,4 @@ const RadioButtons = ({ label, name, options }) => {
 };
 
 export default RadioButtons;
+

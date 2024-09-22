@@ -6,6 +6,10 @@ import '../hojas-de-estilo/Rol.css';
 import logo from '../imagenes/Logo24.png';
 
 const Pagina = () => {
+  const handleBack = () => {
+    console.log("Navegando a /Rol");
+    navigate('/'); 
+  };
   const [rolSeleccionado, setRolSeleccionado] = useState(''); 
   const navigate = useNavigate(); 
 
@@ -20,19 +24,15 @@ const Pagina = () => {
     if (rolSeleccionado) {
       switch (rolSeleccionado) {
         case 'Docente': 
-          console.log("Navegando a /registro-docentes");
           navigate('/registro-docentes'); 
           break;
         case 'Estudiante':
-          console.log("Navegando a /registro-estudiantes");
           navigate('/registro-estudiantes'); 
           break;
         case 'Reclutador':
-          console.log("Navegando a /registro-reclutador");
           navigate('/registro-reclutador'); 
           break;
         case 'Egresado':
-          console.log("Navegando a /registro-egresado");
           navigate('/registro-egresado'); 
           break;
         default:
@@ -55,12 +55,13 @@ const Pagina = () => {
             label="Selecciona tu rol"
             name="rol"
             options={opcionesRol} 
+            selectedOption={rolSeleccionado}  
             onChange={(e) => setRolSeleccionado(e.target.value)} 
           />
         </div>
 
         <div className="botones">
-          <Button texto="Atrás" />
+          <Button texto="Atrás" onClick={handleBack}/>
           <Button texto="Siguiente" onClick={handleNext} /> 
         </div>
       </main>

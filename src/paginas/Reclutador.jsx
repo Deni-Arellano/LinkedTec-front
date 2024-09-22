@@ -13,7 +13,7 @@ const RegistroReclutador = () => {
 
   const handleBack = () => {
     console.log("Navegando a /Rol");
-    navigate('/'); 
+    navigate('/Rol'); 
   };
   
 

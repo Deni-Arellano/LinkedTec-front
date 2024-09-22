@@ -13,7 +13,7 @@ const RegistroDocentes = () => {
   const navigate = useNavigate(); 
   const handleBack = () => {
     console.log("Navegando a /Rol");
-    navigate('/'); 
+    navigate('/Rol'); 
   };
 
   const handleNext = () => {

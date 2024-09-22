@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
 import '../hojas-de-estilo/MenuNavegacion.css';
-import Searchbar from './Searchbar'; 
-import { VscAccount } from "react-icons/vsc"; 
-import { AiFillAlert } from "react-icons/ai"; 
-import { BiChat } from "react-icons/bi"; 
+import Searchbar from './Searchbar';
+import { VscAccount } from "react-icons/vsc";
+import { AiFillAlert } from "react-icons/ai";
+import { BiChat } from "react-icons/bi";
 import logo from '../imagenes/Logo24.png';
-import { useNavigate } from 'react-router-dom'; // Asegúrate de importar useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const MenuNavegacion = () => {
-    const [sidebarVisible, setSidebarVisible] = useState(false);
-    const navigate = useNavigate(); // Hook para navegación
+    const [sidebarVisible] = useState(false);
+    const navigate = useNavigate();
 
     return (
-        <div className="app">
+        <div className="menu-navegacion app">
             {/* Barra superior */}
             <header className="header">
-                <img src={logo} alt="Logo" className="logo" />
+                <img 
+                    src={logo} 
+                    alt="Logo" 
+                    className="logo" 
+                    onClick={() => navigate('/')} 
+                    style={{ cursor: 'pointer' }}
+                />
 
                 <div className="search">
                     <Searchbar />
                 </div>
 
                 <div className="icons">
-                    {/* Iconos como botones */}
                     <button className="icon-button">
                         <BiChat className="icon" />
                     </button>
@@ -35,7 +40,6 @@ const MenuNavegacion = () => {
                 </div>
             </header>
             
-            {/* Menú lateral */}
             <aside className={`sidebar ${sidebarVisible ? 'visible' : ''}`}>
                 <div className="profile">
                     <img src="https://via.placeholder.com/100" alt="Perfil" className="profile-pic" />
@@ -45,12 +49,11 @@ const MenuNavegacion = () => {
                 <nav className="menu">
                     <button className="menu-button">Noticias</button>
                     <button className="menu-button" onClick={() => navigate('/publicacion-empleo')}>Empleos</button>
-                    <button className="menu-button" onClick={() => navigate('/publicaciones')}>Publicaciones</button>
+                    <button className="menu-button" onClick={() => navigate('/publi-usuarios')}>Publicaciones</button>
                     <button className="menu-button">Foro</button>
                 </nav>
             </aside>
             
-            {/* Contenido principal */}
             <div className="content">
                 {/* Aquí va el contenido */}
             </div>

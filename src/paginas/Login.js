@@ -3,8 +3,15 @@ import { Link } from 'react-router-dom'; // Importamos Link de react-router-dom
 import Cajadetexto from '../componetes/Caja-de-texto'; // Asegúrate de que sea el Cajadetexto correcto
 import '../hojas-de-estilo/Login.css';  // Importa tu hoja de estilo
 import logo from '../imagenes/Logo24.png';  // Importa tu logo
+import { useNavigate } from 'react-router-dom';  
+
 
 const Login = () => {
+    const navigate = useNavigate(); 
+    const handlepub = () => {
+      console.log("Navegando a /Publicaciones");
+      navigate('/publi-usuarios'); 
+    };
     return (
         <div className="login-container">
             <div className="login-box">
@@ -15,7 +22,7 @@ const Login = () => {
                     <label>Contraseña</label>
                     <Cajadetexto type="password" placeholder="Ingresa tu contraseña" />
                     {/* Aquí aplicamos la clase específica btn-login */}
-                    <button className="btn-login">Entrar</button>
+                    <button className="btn-login" onClick={handlepub}>Entrar </button>
                 </form>
                 <div className="login-links">
                     <a href="/recuperar" className="login-link">Recuperar contraseña</a>
