@@ -34,7 +34,6 @@ label {
 }
 
 /* Estilo para los campos de texto */
-input[type="text"],
 textarea,
 select {
     width: 100%;
@@ -43,7 +42,7 @@ select {
     border-radius: 4px;
     font-size: 14px;
     box-sizing: border-box;
-}
+} 
 
 /* Estilo para el campo de descripción */
 .descripcion-textarea {

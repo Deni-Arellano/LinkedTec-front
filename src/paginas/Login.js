@@ -18,9 +18,9 @@ const Login = () => {
                 <img src={logo} alt="Logo LinkedTec" className="logo-login" />
                 <form>
                     <label>Usuario</label>
-                    <Cajadetexto placeholder="Ingresa tu usuario" />
+                    <Cajadetexto placeholder="Ingresa tu usuario" className="login-input" />
                     <label>Contraseña</label>
-                    <Cajadetexto type="password" placeholder="Ingresa tu contraseña" />
+                    <Cajadetexto type="password" placeholder="Ingresa tu contraseña" className="login-input" />
                     {/* Aquí aplicamos la clase específica btn-login */}
                     <button className="btn-login" onClick={handlepub}>Entrar </button>
                 </form>

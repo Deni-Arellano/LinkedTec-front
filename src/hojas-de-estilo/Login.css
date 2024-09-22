@@ -71,15 +71,12 @@
   text-decoration: underline;
 }
 
-.Login-input-personalizado {
-  width: 100% !important;
-  max-width: 300px !important;
-  padding: 15px !important;
-  margin: 15px 0 !important;
-  border-radius: 8px !important;
-  border: 2px solid #ccc !important;
-  font-size: 18px !important;
-  box-sizing: border-box !important;
-  height: auto !important;
-  display: inline-block !important;
+.login-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 2px solid #000000;
+  border-radius: 15px;
+  outline: none;
 }

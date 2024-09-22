@@ -14,7 +14,7 @@ const PublicacionEmpleo = ({ datos }) => {
             
             {/* Botón Publicar justo debajo del menú de navegación */}
             <div className="boton-flotante">
-                <BotonPublicar onClick={() => navigate('/formulario-publicacion-empleo')} /> {/* Redirige al formulario */}
+                <BotonPublicar onClick={() => navigate('/FormularioPublicacionEmpleo')} /> {/* Redirige al formulario */}
             </div>
             
             <div className="publicacion-container">

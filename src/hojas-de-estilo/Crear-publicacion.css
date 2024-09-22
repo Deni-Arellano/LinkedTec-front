@@ -8,7 +8,7 @@
 }
 
 .estilo-caja-publicacion {
-    border-radius: 8px;
+    border-radius: 8px !important;
     background-color: #f6faff;
     width: 200%;
     max-width: 670px;

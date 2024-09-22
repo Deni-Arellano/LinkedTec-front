@@ -46,7 +46,7 @@ const Pagina = () => {
   return (
     <div className="contenedor-pagina">
       <header className="header">
-        <img src={logo} alt="Logo" className="logo" />
+        <img src={logo} alt="Logo" className="logo-Rol" />
       </header>
 
       <main className="main-content">

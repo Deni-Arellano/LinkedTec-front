@@ -18,7 +18,7 @@ const MenuNavegacion = () => {
                 <img 
                     src={logo} 
                     alt="Logo" 
-                    className="logo" 
+                    className="logo-Menu" 
                     onClick={() => navigate('/')} 
                     style={{ cursor: 'pointer' }}
                 />

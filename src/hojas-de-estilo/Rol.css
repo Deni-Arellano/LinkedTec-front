@@ -22,12 +22,11 @@ body {
   left: 10px;
 }
 
-.logo {
-  position: absolute;
+.logo-Rol { 
   top: 20px;
   left: 20px;
-  width: 150px; 
-  height: auto;
+  width: auto; 
+  height: 55px;
 }
 
 .main-content {
