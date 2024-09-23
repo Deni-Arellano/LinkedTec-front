@@ -121,3 +121,11 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.egresado-campo label {
+  font-family: sans-serif;
+  color: #093e61;
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}

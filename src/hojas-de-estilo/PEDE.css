@@ -2,7 +2,11 @@
     display: flex;
     width: 150%;
     max-width: 800px;
-    margin: 40px 2%; /* Alinea el cuadro automáticamente */
+    margin: 5vh ; /* Alinea el cuadro automáticamente */
+    margin-top: -10px;
+
+    
+
 
 }
 

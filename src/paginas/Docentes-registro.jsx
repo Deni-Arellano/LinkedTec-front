@@ -23,6 +23,7 @@ const RegistroDocentes = () => {
 
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [nivelSeleccionado, setNivelSeleccionado] = useState('');
+  const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
 
   return (
     <div className="docentes-contenedor">  
@@ -45,39 +46,7 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="corre" texto="Correo:" />
-        <Textbox id="correo" placeholder="Correo electrónico" type="email" />
-      </div>
-
-      <div className="docentes-campo">
-        <Label htmlFor="contraseñ" texto="Contraseña:" />
-        <Textbox id="contraseña" placeholder="Contraseña" type="password" />
-      </div>
-
-      <div className="docentes-campo">
-        <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
-        <Textbox id="Confirmarcontraseña" placeholder="Confirmar contraseña" type="password" />
-      </div>
-
-      <div className="docentes-campo">
-        <Label htmlFor="Telefon" texto="Teléfono:" />
-        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
-      </div>
-      
-      <div className="docentes-campo">
-        <label htmlFor="biografia">Biografía:</label>
-        <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
-      </div>
-
-      <div className="docentes-campo">
         <Fecha label="Fecha de Nacimiento" />
-      </div>
-      <div className="docentes-campo">
-        <Label htmlFor="noDocente" texto="No. Empleado:" />
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <span>RH</span>
-          <Textbox id="numerodeempleado" placeholder="Número RH" />
-        </div>
       </div>
 
       <div className="docentes-campo">
@@ -93,10 +62,60 @@ const RegistroDocentes = () => {
           onChange={(e) => setSexoSeleccionado(e.target.value)}
         />
       </div>
+
+      
       <div className="docentes-campo">
-          <Label htmlFor="Describi" texto="Descripción (si es necesario):" />
-          <Textarea id="Descri" placeholder="Descripción..." />
+        <Label htmlFor="Telefono" texto="Teléfono:" />
+        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
+      </div>
+
+      <div className="docentes-campo">
+        <Label htmlFor="corre" texto="Correo:" />
+        <Textbox id="correo" placeholder="Correo electrónico" type="email" />
+      </div>
+
+      <div className="docentes-campo">
+        <Label htmlFor="contraseñ" texto="Contraseña:" />
+        <Textbox id="contraseña" placeholder="Contraseña" type="password" />
+      </div>
+
+      <div className="docentes-campo">
+        <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
+        <Textbox id="Confirmarcontraseña" placeholder="Confirmar contraseña" type="password" />
+      </div>
+
+      
+      <div className="docentes-campo">
+        <label htmlFor="biografia">Biografía:</label>
+        <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
+      </div>
+
+
+      <div className="docentes-campo">
+        <Label htmlFor="noDocente" texto="No. Empleado:" />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <span style={{marginRight: '5px'}}>RH</span>
+          <Textbox id="numerodeempleado" placeholder="Número RH" />
         </div>
+      </div>
+
+      <div className="docentes-campo">
+        <Label htmlFor="Acade" texto="Academia" />
+        <RadioButtons
+          name="Academia"
+          options={[
+            { value: 'ISC', label: 'ISC' },
+            { value: 'IEM', label: 'IEM' },
+            { value: 'IGE', label: 'IGE' },
+            { value: 'CP', label: 'CP' },
+            { value: 'II', label: 'II' },
+            { value: 'IA', label: 'IA' },
+          ]}
+          selectedOption={carreraSeleccionada}  
+          onChange={(e) => setCarreraSeleccionada(e.target.value)}
+        />
+      </div>
+
       <div className="docentes-campo">
         <Label htmlFor="Ultimonivel" texto="Nivel de estudio" />
         <RadioButtons
@@ -110,6 +129,8 @@ const RegistroDocentes = () => {
           onChange={(e) => setNivelSeleccionado(e.target.value)}
         />
       </div>
+
+
       
 
       <div className="docentes-botones">  

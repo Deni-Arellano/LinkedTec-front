@@ -5,13 +5,18 @@ import '../hojas-de-estilo/Publicaciones.css'
 
 const PubliUsuarios = () => {
     return (
+        <>
         <div className="Menu-principal">
             <MenuNavegacion/>
-            <div className="Crear-publicacion">
-                <Crearpubli/>
-            </div>
+            
         </div>
-    );
+
+        <div className="Crear-publicacion">
+                <Crearpubli/>
+        </div>
+
+        </>
+    )
 }
 
 export default PubliUsuarios;

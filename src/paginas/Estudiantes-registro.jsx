@@ -45,6 +45,29 @@ const Registro = () => {
       </div>
 
       <div className="estudiantes-campo">
+        <Fecha label="Fecha de Nacimiento" />
+      </div>
+
+      <div className="estudiantes-campo">
+        <label className="radio-buttons-label">Sexo</label>
+        <RadioButtons
+          name="Sexo"
+          options={[
+            { value: 'femenino', label: 'Femenino' },
+            { value: 'masculino', label: 'Masculino' },
+            { value: 'otro', label: 'Otro' },
+          ]}
+          selectedOption={sexoSeleccionado}  
+          onChange={(e) => setSexoSeleccionado(e.target.value)}
+        />
+      </div>
+
+      <div className="estudiantes-campo">
+        <label htmlFor="telefono">Teléfono:</label>
+        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
+      </div>
+
+      <div className="estudiantes-campo">
         <label htmlFor="correo">Correo:</label>
         <Textbox id="Correo" placeholder="Correo electrónico" type="email" />
       </div>
@@ -60,21 +83,13 @@ const Registro = () => {
       </div>
 
       <div className="estudiantes-campo">
-        <label htmlFor="noControl">No. Control:</label>
-        <Textbox id="No.Control" placeholder="Número de control" />
-      </div>
-
-      <div className="estudiantes-campo">
         <label htmlFor="biografia">Biografía:</label>
         <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
       </div>
 
       <div className="estudiantes-campo">
-        <label htmlFor="telefono">Teléfono:</label>
-        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
-      </div>
-      <div className="estudiantes-campo">
-        <Fecha label="Fecha de Nacimiento" />
+        <label htmlFor="noControl">No. Control:</label>
+        <Textbox id="No.Control" placeholder="Número de control" />
       </div>
 
       <div className="estudiantes-campo">
@@ -99,38 +114,19 @@ const Registro = () => {
         <RadioButtons
           name="Semestre"
           options={[
-            { value: 'I', label: 'I Semestre' },
-            { value: 'II', label: 'II Semestre' },
-            { value: 'III', label: 'III Semestre' },
-            { value: 'IV', label: 'IV Semestre' },
-            { value: 'V', label: 'V Semestre' },
-            { value: 'VI', label: 'VI Semestre' },
-            { value: 'VII', label: 'VII Semestre' },
-            { value: 'VIII', label: 'VIII Semestre' },
-            { value: 'IX', label: 'IX Semestre' },
+            { value: 'I', label: 'I' },
+            { value: 'II', label: 'II' },
+            { value: 'III', label: 'III' },
+            { value: 'IV', label: 'IV' },
+            { value: 'V', label: 'V' },
+            { value: 'VI', label: 'VI' },
+            { value: 'VII', label: 'VII' },
+            { value: 'VIII', label: 'VIII' },
+            { value: 'IX', label: 'IX' },
           ]}
           selectedOption={semestreSeleccionado}  
           onChange={(e) => setSemestreSeleccionado(e.target.value)}
         />
-      </div>
-
-      <div className="estudiantes-campo">
-        <label className="radio-buttons-label">Sexo</label>
-        <RadioButtons
-          name="Sexo"
-          options={[
-            { value: 'femenino', label: 'Femenino' },
-            { value: 'masculino', label: 'Masculino' },
-            { value: 'otro', label: 'Otro' },
-          ]}
-          selectedOption={sexoSeleccionado}  
-          onChange={(e) => setSexoSeleccionado(e.target.value)}
-        />
-      </div>
-
-      <div className="estudiantes-campo">
-        <label htmlFor="descripcion">Descripción (si es necesario):</label>
-        <Textarea id="Describ" placeholder="Descripción..." />
       </div>
 
       <div className="estudiantes-botones">  

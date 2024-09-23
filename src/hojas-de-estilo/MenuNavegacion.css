@@ -24,8 +24,8 @@
 .search {
     flex-grow: 1; /* Permite que la barra de búsqueda crezca para ocupar el espacio disponible */
     max-width: 900px; /* Asegura que no se expanda más allá de un tamaño razonable */
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 20vw;
+    
 }
 
 /* Iconos en la barra superior */

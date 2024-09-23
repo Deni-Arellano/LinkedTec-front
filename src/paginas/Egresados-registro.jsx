@@ -45,28 +45,9 @@ const RegistroEgresado = () => {
           <Textbox id="ApellidoMaterno" name="ApellidoMaterno" placeholder="Apellido Materno" />
         </div>
 
-        <div className="egresado-campo">
-          <label htmlFor="Correo">Correo:</label>
-          <Textbox id="Correo" name="Correo" placeholder="Correo electrónico" type="email" />
-        </div>
-
-        <div className="egresado-campo">
-          <label htmlFor="Contraseña">Contraseña:</label>
-          <Textbox id="Contraseña" name="Contraseña" placeholder="Contraseña" type="password" />
-        </div>
-
-        <div className="egresado-campo">
-          <label htmlFor="Telefono">Teléfono:</label>
-          <Textbox id="Telefono" name="Telefono" placeholder="Teléfono" type="tel" />
-        </div>
 
         <div className="egresado-campo">
           <Fecha label="Fecha de Nacimiento" />
-        </div>
-
-        <div className="egresado-campo">
-          <label htmlFor="biografia">Biografía:</label>
-          <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
         </div>
 
         <div className="egresado-campo">
@@ -84,8 +65,29 @@ const RegistroEgresado = () => {
         </div>
 
         <div className="egresado-campo">
-          <label htmlFor="descripcion">Descripción (si es necesario):</label>
-          <Textarea id="Describir" placeholder="Descripción..." />
+          <label htmlFor="Telefono">Teléfono:</label>
+          <Textbox id="Telefono" name="Telefono" placeholder="Teléfono" type="tel" />
+        </div>
+
+        <div className="egresado-campo">
+          <label htmlFor="Correo">Correo:</label>
+          <Textbox id="Correo" name="Correo" placeholder="Correo electrónico" type="email" />
+        </div>
+
+        <div className="egresado-campo">
+          <label htmlFor="Contraseña">Contraseña:</label>
+          <Textbox id="Contraseña" name="Contraseña" placeholder="Contraseña" type="password" />
+        </div>
+
+        <div className="egresado-campo">
+          <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
+          <Textbox id="ConfirmarContraseña" placeholder="Confirmar contraseña" type="password" />
+        </div>
+
+
+        <div className="egresado-campo">
+          <label htmlFor="biografia">Biografía:</label>
+          <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
         </div>
 
         <div className="egresado-campo">

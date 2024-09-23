@@ -46,23 +46,7 @@ const RegistroReclutador = () => {
       </div>
 
       <div className="reclutador-campo">
-        <label htmlFor="correo">Correo:</label>
-        <Textbox id="Correo" placeholder="Correo electrónico" type="email" />
-      </div>
-
-      <div className="reclutador-campo">
-        <label htmlFor="contraseña">Contraseña:</label>
-        <Textbox id="Contraseña" placeholder="Contraseña" type="password" />
-      </div>
-
-      <div className="reclutador-campo">
-        <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
-        <Textbox id="ConfirmarContraseña" placeholder="Confirmar contraseña" type="password" />
-      </div>
-
-      <div className="reclutador-campo">
-        <label htmlFor="telefono">Teléfono:</label>
-        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
+        <Fecha label="Fecha de Nacimiento" />
       </div>
 
       <div className="reclutador-campo">
@@ -77,14 +61,27 @@ const RegistroReclutador = () => {
           selectedOption={sexoSeleccionado}  
           onChange={(e) => setSexoSeleccionado(e.target.value)}
         />
-        <div className="reclutador-campo">
-          <label htmlFor="descripcionSexo">Descripción (si es necesario):</label>
-          <Textarea id="Descri" placeholder="Descripción..." />
-        </div>
+  
       </div>
 
       <div className="reclutador-campo">
-        <Fecha label="Fecha de Nacimiento" />
+        <label htmlFor="telefono">Teléfono:</label>
+        <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
+      </div>
+
+      <div className="reclutador-campo">
+        <label htmlFor="correo">Correo:</label>
+        <Textbox id="Correo" placeholder="Correo electrónico" type="email" />
+      </div>
+
+      <div className="reclutador-campo">
+        <label htmlFor="contraseña">Contraseña:</label>
+        <Textbox id="Contraseña" placeholder="Contraseña" type="password" />
+      </div>
+
+      <div className="reclutador-campo">
+        <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
+        <Textbox id="ConfirmarContraseña" placeholder="Confirmar contraseña" type="password" />
       </div>
 
       <div className="reclutador-campo">
