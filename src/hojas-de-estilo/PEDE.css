@@ -1,14 +1,26 @@
 .nombre-usuario {
     display: flex;
-    align-items: center;
-    margin-bottom: 50px;
+    width: 150%;
+    max-width: 800px;
+    margin: 40px 2%; /* Alinea el cuadro automáticamente */
+
+}
+
+.pede-container{
+    width: 60%;
+    max-width: 800px;
 }
 
 .foto-perfil {
+    margin-bottom: 10%;
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    margin-right: 20px;
+    margin-right: 20px; 
+}
+
+.info-usuario {
+    width: auto;
 }
 
 .info-usuario h2 {

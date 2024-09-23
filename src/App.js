@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Pagina from '../src/paginas/Rol'; 
 import RegistroDocentes from '../src/paginas/Docentes-registro'; 
 import Registro from '../src/paginas/Estudiantes-registro';
-import RegistroReclutador from './paginas/Reclutador';
-import RegistroEgresado from '../src/paginas/Egresados';
+import RegistroReclutador from './paginas/Reclutador-registro';
+import RegistroEgresado from '../src/paginas/Egresados-registro';
 import CodigoVerificacion from './paginas/CodigoVerificacion';
 import Login from '../src/paginas/Login'
 import RegistroExitoso from './paginas/RegistroExitoso';

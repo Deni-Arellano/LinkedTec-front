@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/Reclutador.css';
+import '../hojas-de-estilo/Reclutador-registro.css';
 import { FaEnvelope, FaPhone, FaBirthdayCake, FaBriefcase, FaVenusMars } from 'react-icons/fa';  // Añadimos el icono de sexo
 
 const Reclutador = () => {

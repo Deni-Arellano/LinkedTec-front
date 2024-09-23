@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Textarea from '../componetes/Text-area.jsx'; 
 import Button from '../componetes/Button'; 
@@ -20,6 +20,9 @@ const RegistroDocentes = () => {
     console.log("Navegando a /codigo-verificacion");
     navigate('/codigo-verificacion'); 
   };
+
+  const [sexoSeleccionado, setSexoSeleccionado] = useState('');
+  const [nivelSeleccionado, setNivelSeleccionado] = useState('');
 
   return (
     <div className="docentes-contenedor">  
@@ -77,7 +80,7 @@ const RegistroDocentes = () => {
         </div>
       </div>
 
-      <div className="docentes-campo-radio">
+      <div className="docentes-campo">
         <Label htmlFor="Sex" texto="Sexo" />
         <RadioButtons
           name="Sexo"
@@ -86,14 +89,15 @@ const RegistroDocentes = () => {
             { value: 'masculino', label: 'Masculino' },
             { value: 'otro', label: 'Otro' },
           ]}
+          selectedOption={sexoSeleccionado}  
+          onChange={(e) => setSexoSeleccionado(e.target.value)}
         />
-        <div className="descripcion-sexo">
+      </div>
+      <div className="docentes-campo">
           <Label htmlFor="Describi" texto="Descripción (si es necesario):" />
           <Textarea id="Descri" placeholder="Descripción..." />
         </div>
-      </div>
-
-      <div className="docentes-campo-radio">
+      <div className="docentes-campo">
         <Label htmlFor="Ultimonivel" texto="Nivel de estudio" />
         <RadioButtons
           name="Ultimoniveldeestudios"
@@ -102,6 +106,8 @@ const RegistroDocentes = () => {
             { value: 'maestria', label: 'Maestria' },
             { value: 'licenciatura', label: 'Licenciatura' },
           ]}
+          selectedOption={nivelSeleccionado}  
+          onChange={(e) => setNivelSeleccionado(e.target.value)}
         />
       </div>
       

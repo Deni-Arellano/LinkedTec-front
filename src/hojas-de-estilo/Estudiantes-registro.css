@@ -12,14 +12,6 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-#Describ {
-  width: 100%;
-  height: 100px;
-  max-width: 300px;
-  margin-left: 150px;
-  font-family: 'Sans-serif', sans-serif;
-}
-
 /* Estilos generales para los campos */
 .estudiantes-campo {
   display: flex;
@@ -63,10 +55,12 @@ button:hover {
   justify-content:right; /* Controla la alineación horizontal: 'center', 'flex-start' o 'flex-end' */
   align-items: center; /* Alinea verticalmente los radio buttons y etiquetas */
   margin-bottom: 15px; /* Espacio debajo de cada grupo de radio button */
+  
 }
 
 .radio-group label {
-  margin-left: 10px; /* Controla la distancia entre el botón de radio y su etiqueta */
+  margin-left: 25%; /* Controla la distancia entre el botón de radio y su etiqueta */
+
 }
 
 .radio-group.center {

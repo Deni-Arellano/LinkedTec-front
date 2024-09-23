@@ -6,7 +6,7 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     width: 60%;
     max-width: 800px;
-    margin: 20px auto; /* Alinea el cuadro automáticamente */
+    margin: -50px 10%; /* Alinea el cuadro automáticamente */
 }
 
 .perfil-cuadro p {
@@ -33,3 +33,10 @@
     margin-right: 10px;
     color: #012a6f;
 }
+
+.reclutador-campo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+  }

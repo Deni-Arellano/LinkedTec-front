@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Textbox from '../componetes/Caja-de-texto'; 
 import Button from '../componetes/Button';
 import RadioButtons from '../componetes/Radio_buton.jsx';
@@ -19,6 +19,10 @@ const Registro = () => {
     console.log("Navegando a /codigo-verificacion");
     navigate('/codigo-verificacion'); 
   };
+
+  const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
+  const [sexoSeleccionado, setSexoSeleccionado] = useState('');
+  const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
 
   return (
     <div className="estudiantes-contenedor"> 
@@ -85,6 +89,8 @@ const Registro = () => {
             { value: 'II', label: 'II' },
             { value: 'IA', label: 'IA' },
           ]}
+          selectedOption={carreraSeleccionada}  
+          onChange={(e) => setCarreraSeleccionada(e.target.value)}
         />
       </div>
 
@@ -103,6 +109,8 @@ const Registro = () => {
             { value: 'VIII', label: 'VIII Semestre' },
             { value: 'IX', label: 'IX Semestre' },
           ]}
+          selectedOption={semestreSeleccionado}  
+          onChange={(e) => setSemestreSeleccionado(e.target.value)}
         />
       </div>
 
@@ -115,6 +123,8 @@ const Registro = () => {
             { value: 'masculino', label: 'Masculino' },
             { value: 'otro', label: 'Otro' },
           ]}
+          selectedOption={sexoSeleccionado}  
+          onChange={(e) => setSexoSeleccionado(e.target.value)}
         />
       </div>
 

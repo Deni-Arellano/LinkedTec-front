@@ -11,8 +11,8 @@ const PaginaFormulario = () => {
             <MenuNavegacion /> {/* Cambiado de BarraSuperior a MenuNavegacion */}
             <div className="container">
                 <div className="form">
-                    <Etiquetas tamano={20} texto="+ Nuevo Empleo" />
-                    
+                    <Etiquetas tamano={20} texto="+ Nuevo Empleo"  id="titulo-publicacion-empleo" />
+                    &nbsp;
                     <div className="input-group">
                         <Etiquetas tamano={14} texto="Título empleo:" />
                         <CajaDeTexto id="titulo-empleo" />

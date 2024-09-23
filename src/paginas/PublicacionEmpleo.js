@@ -21,7 +21,7 @@ const PublicacionEmpleo = ({ datos }) => {
                 <div className="publicacion">
                     <div className="perfil">
                         <img src={datos.fotoPerfil} alt="Foto de Perfil" className="foto-perfil" />
-                        <p className="nombre-usuario">{datos.nombreUsuario}</p>
+                        <p className="usuario-publicacion-empleo">{datos.nombreUsuario}</p>
                     </div>
                     
                     <h1 className="titulo-publicacion">{datos.tituloEmpleo}</h1>

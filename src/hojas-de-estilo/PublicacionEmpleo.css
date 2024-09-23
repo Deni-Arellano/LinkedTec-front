@@ -85,3 +85,9 @@ select:focus {
     outline: none;
     border-color: #4CAF50; /* Resalta el borde al estar enfocado */
 }
+
+#titulo-publicacion-empleo{
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
