@@ -7,6 +7,7 @@ import Fecha from '../componetes/Fecha.jsx';
 import '../hojas-de-estilo/Egresados-registro.css';
 import Logo from '../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
+import Label from '../componetes/Etiquetas';
 
 const RegistroEgresado = () => {
   const navigate = useNavigate();
@@ -26,23 +27,22 @@ const RegistroEgresado = () => {
 
   return (
     <div className="registro-egresado">
-      <div className="registro-contenedor">
+      <div className="egresado-contenedor">
         <img src={Logo} alt="Logo" className="logo" />
         <h1>Registro de Egresado</h1>
 
         <div className="egresado-campo">
-          <label htmlFor="Nombre">Nombre(s):</label>
-          <Textbox id="Nombre" name="Nombre" placeholder="Nombre(s)" />
+          <Label htmlFor="Nombre" texto='Nombre(s):'/>
+          <Textbox id="Nombre" placeholder="Nombre(s)" />
+        </div>
+        <div className="egresado-campo">
+          <Label htmlFor="ApellidoPaterno" texto='Apellido Paterno:'/>
+          <Textbox id="ApellidoPaterno" placeholder="Apellido Paterno" />
         </div>
 
         <div className="egresado-campo">
-          <label htmlFor="ApellidoPaterno">Apellido Paterno:</label>
-          <Textbox id="ApellidoPaterno" name="ApellidoPaterno" placeholder="Apellido Paterno" />
-        </div>
-
-        <div className="egresado-campo">
-          <label htmlFor="ApellidoMaterno">Apellido Materno:</label>
-          <Textbox id="ApellidoMaterno" name="ApellidoMaterno" placeholder="Apellido Materno" />
+          <Label htmlFor="ApellidoMaterno" texto='Apellido Materno:'/>
+          <Textbox id="ApellidoMaterno" placeholder="Apellido Materno" />
         </div>
 
 
@@ -51,7 +51,7 @@ const RegistroEgresado = () => {
         </div>
 
         <div className="egresado-campo">
-          <label className="radio-buttons-label">Sexo</label>
+          <Label className="radio-buttons-label"texto='Sexo'/>
           <RadioButtons
             name="Sexo"
             options={[
@@ -65,33 +65,33 @@ const RegistroEgresado = () => {
         </div>
 
         <div className="egresado-campo">
-          <label htmlFor="Telefono">Teléfono:</label>
-          <Textbox id="Telefono" name="Telefono" placeholder="Teléfono" type="tel" />
+          <Label htmlFor="Telefono" texto='Teléfono'/>
+          <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
         </div>
 
         <div className="egresado-campo">
-          <label htmlFor="Correo">Correo:</label>
-          <Textbox id="Correo" name="Correo" placeholder="Correo electrónico" type="email" />
+          <Label htmlFor="Correo" texto='Correo:'/>
+          <Textbox id="Correo" placeholder="Correo electrónico" type="email" />
         </div>
 
         <div className="egresado-campo">
-          <label htmlFor="Contraseña">Contraseña:</label>
-          <Textbox id="Contraseña" name="Contraseña" placeholder="Contraseña" type="password" />
+          <Label htmlFor="Contraseña" texto='Contraseña:'/>
+          <Textbox id="Contraseña" placeholder="Contraseña" type="password" />
         </div>
 
         <div className="egresado-campo">
-          <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
+          <Label htmlFor="confirmarContraseña" texto='Confirmar contraseña:'/>
           <Textbox id="ConfirmarContraseña" placeholder="Confirmar contraseña" type="password" />
         </div>
 
 
         <div className="egresado-campo">
-          <label htmlFor="biografia">Biografía:</label>
-          <Textarea id="Biografia" name="Biografia" placeholder="Biografía" />
+          <Label htmlFor="biografia" texto='Biografía:'/>
+          <Textarea id="Biografia"  placeholder="Biografía" />
         </div>
 
         <div className="egresado-campo">
-          <label className="radio-buttons-label">Carrera</label>
+          <Label className="radio-buttons-label" texto='Carrera'/>
           <RadioButtons
             name="Carrera"
             options={[
@@ -109,13 +109,13 @@ const RegistroEgresado = () => {
         </div>
 
         <div className="egresado-campo">
-          <label htmlFor="AñoGraduacion">Año de Graduación:</label>
-          <Textbox id="AñodeGraduacion" name="AñodeGraduacion" placeholder="Año de Graduación" />
+          <Label htmlFor="AñoGraduacion" texto='Año de Graduación:'/>
+          <Textbox id="AñodeGraduacion"  placeholder="Año de Graduación" />
         </div>
 
         <div className="egresado-campo">
-          <label htmlFor="Puesto">Puesto:</label>
-          <Textbox id="Puesto" name="Puesto" placeholder="Puesto en la empresa" />
+          <Label htmlFor="Puesto" texto='Puesto:'/>
+          <Textbox id="Puesto"  placeholder="Puesto en la empresa" />
         </div>
 
         <div className="botones">

@@ -1,4 +1,3 @@
-/* Hoja de estilo para Docentes */
 
 .docentes-contenedor {
   display: flex;
@@ -35,7 +34,7 @@
   margin-top: 20px;
 }
 
-button {
+.docentes-button {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
@@ -45,6 +44,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.docentes-button:hover {
   background-color: #0056b3;
 }
