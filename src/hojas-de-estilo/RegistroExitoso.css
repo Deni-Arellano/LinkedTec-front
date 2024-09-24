@@ -1,69 +1,81 @@
-.registro-exitoso-container {
+/* Acomodo principal del contenido */
+.RegistroExitoso-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Esto asegura que ocupe toda la altura de la pantalla */
-  text-align: center; /* Centra el texto */
+  flex-direction: column; /* Acomodo los elementos en columna */
+  align-items: center; /* Centro horizontalmente los elementos */
+  justify-content: center; /* Centro verticalmente los elementos */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  text-align: center; /* Centro el texto */
   background-color: #f0f4f8;
-  max-width: 100%; /* Limitar el ancho máximo a un 100% del viewport */
-  padding: 20px; /* Añadir padding para pantallas más pequeñas */
+  max-width: 100%; /* Limito el ancho máximo */
+  padding: 20px; /* Agrego padding para darle espacio en pantallas pequeñas */
 }
 
-h2 {
-  font-size: 36px;
+/* Título principal */
+.RegistroExitoso-h2 {
+  font-size: 36px; /* Ajusto el tamaño del título */
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Espacio debajo del título */
 }
 
-p {
-  font-size: 18px;
+/* Texto descriptivo */
+.RegistroExitoso-p {
+  font-size: 18px; /* Ajusto el tamaño del texto */
   color: #555;
-  margin-bottom: 40px;
+  margin-bottom: 40px; /* Espacio debajo del texto */
 }
 
-.boton-exito {
-  font-size: 18px;
-  padding: 10px 20px;
+/* Estilos del botón */
+.RegistroExitoso-boton-exito {
+  font-size: 14px; /* Ajusto el tamaño del texto del botón */
+  padding: 6px 12px; /* Defino el espacio interno del botón */
   background-color: #798eb2;
   color: white;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Aplico el cursor de pointer */
 }
 
-.boton-exito:hover {
-  background-color: #218838; /* Color al hacer hover */
+/* Efecto hover del botón */
+.RegistroExitoso-boton-exito:hover {
+  background-color: #218838; /* Cambio el color cuando paso el cursor */
 }
 
-/* Responsividad para pantallas pequeñas (tabletas y móviles grandes) */
+/* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
-  h2 {
-    font-size: 28px;
+  .RegistroExitoso-h2 {
+    font-size: 28px; /* Hago más pequeño el título */
   }
 
-  p {
-    font-size: 16px;
+  .RegistroExitoso-p {
+    font-size: 16px; /* Ajusto el tamaño del texto */
   }
 
-  .boton-exito {
-    font-size: 16px;
-    padding: 8px 16px;
+  .RegistroExitoso-boton-exito {
+    font-size: 12px; /* Reduzco el tamaño del texto del botón */
+    padding: 5px 10px; /* Ajusto el padding del botón */
   }
 }
 
-/* Responsividad adicional para pantallas muy pequeñas (teléfonos pequeños) */
+/* Ajustes para pantallas muy pequeñas */
 @media (max-width: 480px) {
-  h2 {
-    font-size: 24px;
+  .RegistroExitoso-h2 {
+    font-size: 24px; /* Hago más pequeño el título en pantallas chicas */
   }
 
-  p {
-    font-size: 14px;
+  .RegistroExitoso-p {
+    font-size: 14px; /* Ajusto el tamaño del texto para pantallas chicas */
   }
 
-  .boton-exito {
-    font-size: 14px;
-    padding: 6px 12px;
+  .RegistroExitoso-boton-exito {
+    font-size: 10px; /* Reduzco más el texto del botón */
+    padding: 4px 8px; /* Ajusto el padding en pantallas pequeñas */
   }
+}
+
+/* Ajuste específico para el botón dentro de root */
+#root > div > button {
+  width: 150px; /* Limito el ancho del botón */
+  max-width: 150px; /* Aseguro que no crezca más allá de 150px */
+  padding: 6px 12px; /* Mantengo el padding actual */
 }

@@ -10,10 +10,10 @@ const RegistroExitoso = () => {
     navigate('/publi-usuarios'); 
   };
   return (
-    <div className="registro-exitoso-container">
-      <h2>¡Registro Exitoso!</h2>
-      <p>Gracias por registrarte. Ahora puedes acceder a todas las funcionalidades de LinkedTec.</p>
-      <Button texto="Ingresar" onClick={handleNavigate}/>
+    <div className="RegistroExitoso-container">
+      <h2 className="RegistroExitoso-h2">¡Registro Exitoso!</h2>
+      <p className="RegistroExitoso-p">Gracias por registrarte. Ahora puedes acceder a todas las funcionalidades de LinkedTec.</p>
+      <Button className="RegistroExitoso-boton-exito" texto="Ingresar" onClick={handleNavigate} />
     </div>
   );
 }
