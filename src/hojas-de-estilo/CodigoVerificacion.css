@@ -1,4 +1,5 @@
-.verificacion-container {
+/* Contenedor general */
+.CodigoVerificacion-verificacion-container {
   display: flex;
   flex-direction: column;
   align-items: center;   
@@ -9,83 +10,88 @@
   padding: 20px;
 }
 
-.titulo-verificacion {
+/* Título de verificación */
+.CodigoVerificacion-titulo-verificacion {
   font-size: 28px;
   color: #333;
-  margin-bottom: 20px;  /* Menor margen para acercar el título a los inputs */
+  margin-bottom: 20px; /* Para separar el título de los inputs */
   text-align: center;
   white-space: nowrap;
 }
 
-.codigo-inputs {
+/* Contenedor de los inputs del código */
+.CodigoVerificacion-codigo-inputs {
   display: flex;
-  gap: 10px; /* Espaciado entre inputs */
-  margin-bottom: 15px;
+  gap: 10px; /* Espacio entre cada input */
+  margin-bottom: 15px; /* Para separar los inputs del botón */
 }
 
-.codigo-input {
-  width: 55px;      /* Ajusta el tamaño de los inputs para que coincidan con la imagen */
+/* Estilos para cada input individual */
+.CodigoVerificacion-codigo-input {
+  width: 55px;
   height: 55px;
   font-size: 22px;
   text-align: center;
-  border: 2px solid #798eb2;  /* Borde más visible */
+  border: 2px solid #798eb2; /* Para darle un borde visible */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+/* Estilos del botón */
+.CodigoVerificacion-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #798eb2;
+  color: white;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
+  margin-top: 25px; /* Espaciado entre los inputs y el botón */
+  width: auto;
+  text-align: center;
 }
 
-.btn {
-  padding: 6px 12px !important; /* Ajuste de padding para que se vea más pequeño */
-  font-size: 14px !important;   /* Tamaño de texto más pequeño */
-  background-color: #798eb2 !important;  
-  color: white !important;
-  border: none !important;
-  border-radius: 5px !important;
-  cursor: pointer !important;
-  margin-top: 25px !important;  /* Espaciado adecuado entre los inputs y el botón */
-  width: auto !important;  /* Asegura que el botón se ajuste al contenido */
-  text-align: center !important;
+/* Efecto hover para el botón */
+.CodigoVerificacion-btn:hover {
+  background-color: #627399; /* Cambia el color cuando pasas el cursor */
 }
 
-.btn:hover {
-  background-color: #627399 !important;
-}
-
-/* Media Queries para hacer el diseño responsivo */
+/* Ajustes responsivos para pantallas más pequeñas */
 @media (max-width: 768px) {
-  .titulo-verificacion {
-    font-size: 24px;
+  .CodigoVerificacion-titulo-verificacion {
+    font-size: 24px; /* Reduce el tamaño del título */
     margin-bottom: 15px;
   }
 
-  .codigo-input {
-    width: 45px;
+  .CodigoVerificacion-codigo-input {
+    width: 45px; /* Reduce el tamaño de los inputs */
     height: 45px;
     font-size: 20px;
   }
 
-  .btn {
-    font-size: 12px !important;
-    padding: 6px 10px !important;
-    margin-top: 20px !important;
-    width: auto !important;
+  .CodigoVerificacion-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+    margin-top: 20px;
+    width: auto;
   }
 }
 
 @media (max-width: 480px) {
-  .titulo-verificacion {
+  .CodigoVerificacion-titulo-verificacion {
     font-size: 18px;
     margin-bottom: 10px;
   }
 
-  .codigo-input {
+  .CodigoVerificacion-codigo-input {
     width: 40px;
     height: 40px;
     font-size: 18px;
   }
 
-  .btn {
-    font-size: 10px !important;
-    padding: 4px 8px !important;
-    margin-top: 15px !important;
-    width: auto !important;
+  .CodigoVerificacion-btn {
+    font-size: 10px;
+    padding: 4px 8px;
+    margin-top: 15px;
+    width: auto;
   }
 }
