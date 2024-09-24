@@ -26,7 +26,7 @@
 }
 
 /* Estilo para las etiquetas */
-label {
+.label {
     font-weight: bold;
     color: #012a6f;
     margin-bottom: 5px;
@@ -35,7 +35,8 @@ label {
 
 /* Estilo para los campos de texto */
 textarea,
-select {
+select,
+.input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -45,13 +46,13 @@ select {
 } 
 
 /* Estilo para el campo de descripción */
-.descripcion-textarea {
+.textarea {
     height: 100px;
     resize: vertical;
 }
 
 /* Estilo para el botón */
-button {
+.button {
     width: 100%;
     padding: 12px;
     background-color: #4CAF50; /* Color verde para el botón */
@@ -63,7 +64,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+.button:hover {
     background-color: #45a049; /* Color más oscuro en hover */
 }
 
@@ -79,14 +80,14 @@ button:hover {
 }
 
 /* Resetea algunos estilos por defecto */
-input:focus,
+.input:focus,
 textarea:focus,
 select:focus {
     outline: none;
     border-color: #4CAF50; /* Resalta el borde al estar enfocado */
 }
 
-#titulo-publicacion-empleo{
+.title {
     display: block;
     text-align: center;
     margin-top: 30px;

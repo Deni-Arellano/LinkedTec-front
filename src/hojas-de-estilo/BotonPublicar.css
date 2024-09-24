@@ -1,13 +1,14 @@
-.boton-publicar {
+/* Estilo del botón de publicar empleo */
+.button {
   display: flex;
   align-items: center; /* Alinea el contenido horizontalmente */
   justify-content: center;
   width: 200px; /* Ajusta el ancho según sea necesario */
   height: 60px; /* Ajusta la altura según sea necesario */
-  background-color: #4CAF50; /* Verde del botón */
+  background-color: #4CAF50; /* Color verde del botón */
   color: white;
   border: 2px solid white;
-  border-radius: 30px; /* Radio de borde para orillas redondas */
+  border-radius: 30px; /* Orillas redondeadas */
   font-family: 'Sans Serif', Arial, sans-serif;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -15,20 +16,20 @@
   padding: 0 15px; /* Espacio horizontal para el contenido */
 }
 
-.boton-publicar:hover {
-  transform: scale(1.05);
+.button:hover {
+  transform: scale(1.05); /* Efecto hover */
 }
 
-.icono-mas {
-  font-size: 24px; /* Ajusta el tamaño del icono según sea necesario */
+.icon {
+  font-size: 24px; /* Ajusta el tamaño del icono */
   font-weight: bold;
   margin-right: 10px; /* Espacio entre el icono y el texto */
 }
 
-.texto {
+.text {
   font-size: 16px;
 }
 
-.boton-publicar:focus {
-  outline: none;
+.button:focus {
+  outline: none; /* Elimina el borde de enfoque predeterminado */
 }

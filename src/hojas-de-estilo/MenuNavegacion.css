@@ -2,69 +2,68 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Asegura que los elementos estén espaciados correctamente */
-    padding: 5px 20px; /* Ajuste de padding para espacio alrededor de los bordes */
+    justify-content: space-between;
+    padding: 5px 20px;
     background-color: white;
     border-bottom: 2px solid #012a6f;
-    height: 58px; /* Aumenta la altura para acomodar el contenido */
-    width: 100vw; /* Asegura que la barra ocupe el ancho completo de la ventana */
+    height: 58px;
+    width: 100vw;
     position: fixed;
     top: 0;
     z-index: 1000;
-    box-sizing: border-box; /* Para asegurar que padding no haga que la barra se exceda en ancho */
+    box-sizing: border-box;
 }
 
 /* Logo */
-.logo-Menu {
+.logo {
     width: auto;
     height: 55px;
 }
 
 /* Barra de búsqueda */
 .search {
-    flex-grow: 1; /* Permite que la barra de búsqueda crezca para ocupar el espacio disponible */
-    max-width: 900px; /* Asegura que no se expanda más allá de un tamaño razonable */
+    flex-grow: 1;
+    max-width: 900px;
     margin-left: 20vw;
-    
 }
 
 /* Iconos en la barra superior */
 .icons {
     display: flex;
     align-items: center;
-    gap: 12px; /* Espaciado entre los íconos */
+    gap: 12px;
 }
 
 /* Botones de los íconos */
-.icon-button {
+.icon {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px; /* Ajuste del espacio alrededor del ícono */
-}
-
-.icon-button:focus {
-    outline: none; /* Elimina el borde de enfoque predeterminado del botón */
-}
-
-/* Tamaño de los iconos */
-.icon {
-    font-size: 40px; /* Ajusta el tamaño del ícono */
+    padding: 5px;
+    font-size: 40px;
     color: #012a6f;
 }
 
+/* Botones de los íconos (añadido para mantener consistencia) */
+.icon-button {
+    cursor: pointer;
+}
+
+.icon-button:focus {
+    outline: none;
+}
 
 /* Menú lateral */
 .sidebar {
-    position: fixed; /* Fija el menú lateral */
-    top: 58px; /* Ajusta la altura justo debajo de la barra superior */
+    position: fixed;
+    top: 58px;
     left: 0;
-    height: calc(100% - 58px); /* Ocupa el espacio disponible menos la barra superior */
+    height: calc(100% - 58px);
     width: 220px;
     background-color: #f0f0f0;
     border-right: 2px solid #012a6f;
     padding: 20px;
-    z-index: 900; /* Mantén el z-index más bajo que la barra superior */
+    z-index: 900;
 }
 
 .sidebar.visible {
@@ -88,7 +87,7 @@
 }
 
 /* Botones del menú lateral */
-.menu-button {
+.button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -102,30 +101,31 @@
     border-radius: 10px;
 }
 
-.menu-button:hover {
+.button:hover {
     background-color: white;
     color: #012a6f;
 }
 
 /* Contenido principal */
 .content {
-    margin-left: 220px; /* Ajusta el margen izquierdo para que no se superponga con el menú lateral */
+    margin-left: 220px;
     padding: 20px;
-    padding-top: 60px; /* Asegura que el contenido no quede detrás de la barra superior */
-    overflow-y: auto; /* Añade el scroll vertical */
+    padding-top: 60px;
+    overflow-y: auto;
 }
 
 /* Evitar el deslizamiento horizontal */
 body {
     overflow-x: hidden;
 }
+
 /* Asegurar que el contenedor esté centrado */
-.contenedor-perfil-cuadro {
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-left: auto;
-    margin-right: auto; /* Esto lo centrará horizontalmente */
-    max-width: 800px; /* O el tamaño que necesites */
-    width: 100%; /* O ajusta el porcentaje de ancho según el diseño */
+    margin-right: auto;
+    max-width: 800px;
+    width: 100%;
 }
