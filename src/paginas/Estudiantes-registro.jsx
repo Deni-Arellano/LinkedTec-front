@@ -86,6 +86,7 @@ const Registro = () => {
 
     .then((response) => {
       console.log("Respuesta del servidor:", response.data);
+      handleNext();
     })
     .catch((error) => {
       if (error.response) {
@@ -111,9 +112,7 @@ const Registro = () => {
           id="Nombre" 
           placeholder="Nombre(s)"
           value={nombre} 
-          onChange={(e)=>{
-            console.log("Nombre: ", e.target.value) 
-           setNombre(e.target.value)}}/>
+          onChange={(e)=>{setNombre(e.target.value)}}/>
       </div>
 
       <div className="estudiantes-campo">
