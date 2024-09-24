@@ -1,14 +1,13 @@
-.caja-publicacion {
+.caja-crear-publicacion {
     display: grid;
     align-items: center;
     position: relative;
     width: 50vh;
     max-width: 100%;
     box-sizing: border-box;
-    margin-top: 75px;
 }
 
-.estilo-caja-publicacion {
+.estilo-caja-crear-publicacion {
     border-radius: 8px !important;
     background-color: #f6faff;
     width: 200%;
@@ -21,43 +20,43 @@
     box-sizing: border-box;
 }
 
-.boton-contenedor {
+.boton-contenedor-crear-publicacion {
     display: flex;
     justify-content: space-between;
     margin-top: 5vh;
     flex-wrap: wrap;
 }
 
-.boton1 {
+.boton-crear-publicacion {
     width: 100px;
 }
 
-.botones-derecha {
+.botones-derecha-crear-publicacion {
     display: flex;
     gap: 10px;
 }
 
 @media screen and (max-width: 768px) {
-    .estilo-caja-publicacion {
+    .estilo-caja-crear-publicacion {
         padding: 15px;
         max-width: 90%;
     }
 
-    .boton1 {
+    .boton-crear-publicacion {
         width: 80px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .boton-contenedor {
+    .boton-contenedor-crear-publicacion {
         justify-content: center;
     }
 
-    .boton1 {
+    .boton-crear-publicacion {
         width: 80px;
     }
     
-    .estilo-caja-publicacion {
+    .estilo-caja-crear-publicacion {
         padding: 10px;
         max-width: 100%;
     }

@@ -9,40 +9,32 @@ const Comentar = () => {
     const handleOpciones = () => {
         setMostrarOpciones(!mostrarOpciones);
     };
-
-    const handleEdit = () => {
-        alert('Publicacion editada')
-    }
-
-    const handleDelete = () => {
-        alert('Publicacion eliminada')
-    }
     
     return (
-        <div className="Most-comentario">
-            <div className="comentario-header">
+        <div className="mostrar-comentario">
+            <div className="mostrar-comentario-header">
                 <img 
                     src="https://via.placeholder.com/50" 
                     alt="Profile" 
-                    className="imagen-perfil-comentario" 
+                    className="mostrar-imagen-perfil-comentario" 
                 />
                 <Texto texto={'Nombre'}/>
-                <BsThreeDots className="icono-tres-puntos" size={20} onClick={handleOpciones} 
+                <BsThreeDots className="mostrar-comentario-icono-tres-puntos" size={20} onClick={handleOpciones} 
                 />
                 {mostrarOpciones && (
                     <div className="opciones-dropdown-comentario">
-                        <button className="opcion-boton-comentario" onClick={handleEdit}>Editar</button>
-                        <button className="opcion-boton-comentario" onClick={handleDelete}>Eliminar</button>
+                        <button className="opcion-boton-comentario">Editar</button>
+                        <button className="opcion-boton-comentario">Eliminar</button>
                     </div>
                 )}
             
             </div>
-            <div className="Fecha">
+            <div className="fecha-comentario">
                 <Texto tamano={15} texto={'Publicado el:'} />
             </div>
             <div className="comentario-contenido">
                 <div className="comentario-texto">
-                    <div className="Descripcion">
+                    <div className="comentario-descripcion">
                         <Texto texto={'Descripcion del comentario'}/>
                     </div>
                 </div>

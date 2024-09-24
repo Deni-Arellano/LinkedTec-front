@@ -13,70 +13,50 @@ const MostrarPubli = () => {
         setMostrarOpciones(!mostrarOpciones);
     };
 
-    const handleLike = () => {
-        alert('Te ha gustado')
-    }
-
-    const handleDislike = () => {
-        alert('Te ha disgustado')
-    }
-
-    const handleComment = () => {
-        alert('Haz comentado')
-    }
-
-    const handleEdit = () => {
-        alert('Publicacion editada')
-    }
-
-    const handleDelete = () => {
-        alert('Publicacion eliminada')
-    }
-
     return (
-        <div className="Most-publicacion">
-            <div className="publicacion-header">
+        <div className="Mostrar-publicacion">
+            <div className="mostrar-publicacion-header">
                 <img 
                     src="https://via.placeholder.com/50" 
                     alt="Profile" 
-                    className="imagen-perfil" 
+                    className="mostrar-publicacion-imagen-perfil" 
                 />
                 <Texto texto={'Nombre'}/>
                 
-                <BsThreeDots className="icono-tres-puntos" size={20} onClick={handleOpciones} 
+                <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} 
                 />
                 {mostrarOpciones && (
-                    <div className="opciones-dropdown">
-                        <button className="opcion-boton" onClick={handleEdit}>Editar</button>
-                        <button className="opcion-boton" onClick={handleDelete}>Eliminar</button>
+                    <div className="mostrar-publicacion-opciones-dropdown">
+                        <button className="mostrar-publicacion-opcion-boton">Editar</button>
+                        <button className="mostrar-publicacion-opcion-boton">Eliminar</button>
                     </div>
                 )}
                 
             </div>
-            <div className="Fecha">
+            <div className="Fecha-mostrar-publicacion">
                 <Texto tamano={15} texto={'Publicado el:'} />
             </div>
-            <div className="publicacion-contenido">
-                <div className="publicacion-texto">
-                    <div className="Descripcion">
+            <div className="mostrar-publicacion-contenido">
+                <div className="mostrar-publicacion-texto">
+                    <div className="mostrar-publicacion-descripcion">
                         <Texto texto={'Descripcion de la publicacion'}/>
                     </div>
                 </div>
                 <img 
                     src="https://via.placeholder.com/300" 
                     alt="Post" 
-                    className="publicacion-imagen" 
+                    className="mostrar-publicacion-imagen" 
                 />
             </div>
-            <div className="botones">
-                <button className="Megusta">
-                    <AiFillLike  size={30} onClick={handleLike}/>
+            <div className="mostrar-publicacion-botones">
+                <button className="mostrar-publicacion-megusta">
+                    <AiFillLike  size={30}/>
                 </button>
-                <button className="Medisgusta">
-                    <AiFillDislike  size={30} onClick={handleDislike}/>
+                <button className="mostrar-publicacion-medisgusta">
+                    <AiFillDislike  size={30}/>
                 </button>
-                <button className="Comentar">
-                    <MdAddComment size={30} onClick={handleComment}/>
+                <button className="mostrar-publicacion-comentar">
+                    <MdAddComment size={30}/>
                 </button>
             </div>
         </div>

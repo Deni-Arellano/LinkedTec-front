@@ -6,27 +6,19 @@ import { BiImageAdd } from "react-icons/bi";
 import '../hojas-de-estilo/Crear-publicacion.css';
 
 const CrearPubli = () => {
-    const handlePost = () => {
-        alert('Post Publicado');
-    };
-
-    const handleImage = () => {
-        alert('Imagen agregada');
-    };
-
     return (
-        <div className="caja-publicacion">
-            <form className="estilo-caja-publicacion">
+        <div className="caja-crear-publicacion">
+            <form className="estilo-caja-crear-publicacion">
                 <Texto tamano='20' texto='¿Qué estás pensando?'/>
                 <Cajatexto className='estilo-caja-texto' placeholder={'Ingresar texto...'}/>
                 
-                <div className="boton-contenedor">
-                    <button className="boton-imagen" onClick={handleImage}>
+                <div className="boton-contenedor-crear-publicacion">
+                    <button className="boton-imagen-crear-publicacion">
                         <BiImageAdd size={30}/>
                     </button>
-                    <div className="botones-derecha">
-                        <Boton texto='Publicar' className='boton1' onClick={handlePost}/>
-                        <Boton texto='Cancelar' className='boton1'/>
+                    <div className="botones-derecha-crear-publicacion">
+                        <Boton texto='Publicar' className='boton-crear-publicacion'/>
+                        <Boton texto='Cancelar' className='boton-crear-publicacion'/>
                     </div>
                 </div>
             </form>
