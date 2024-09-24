@@ -1,4 +1,18 @@
-.perfil-cuadro {
+.reclutador-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: white;
+    max-width: 650px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+
+.reclutador-perfil-cuadro {
     background-color: #fff;
     border: 2px solid #012a6f;
     padding: 30px;
@@ -6,20 +20,20 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     width: 60%;
     max-width: 800px;
-    margin: -50px 10%; /* Alinea el cuadro automáticamente */
+    margin: -50px 10%; 
 }
 
-.perfil-cuadro p {
+.reclutador-perfil-cuadro p {
     font-size: 18px;
     margin-bottom: 10px;
     line-height: 1.5;
 }
 
-.perfil-cuadro strong {
+.reclutador-perfil-cuadro strong {
     color: #012a6f;
 }
 
-.biografia {
+.reclutador-biografia {
     min-height: 100px;
     padding: 10px 0;
     color: #555;
@@ -29,7 +43,7 @@
     margin-top: 10px;
 }
 
-.icono {
+.reclutador-icono {
     margin-right: 10px;
     color: #012a6f;
 }

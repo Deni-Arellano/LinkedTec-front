@@ -1,4 +1,4 @@
-/* Estilos del contenedor principal de Estudiantes */
+
 .estudiantes-contenedor {
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos generales para los campos */
+
 .estudiantes-campo {
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   margin-top: 20px;
 }
 
-button {
+.estudiantes-button {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
@@ -45,24 +45,24 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.estudiantes-button:hover {
   background-color: #0056b3;
 }
 
-.radio-group {
+.estudiantes-radio-group {
   display: flex;
-  flex-direction: row; /* Permite que los radio buttons y las etiquetas se dispongan en línea */
-  justify-content:right; /* Controla la alineación horizontal: 'center', 'flex-start' o 'flex-end' */
-  align-items: center; /* Alinea verticalmente los radio buttons y etiquetas */
-  margin-bottom: 15px; /* Espacio debajo de cada grupo de radio button */
+  flex-direction: row; 
+  justify-content:right; 
+  align-items: center;
+  margin-bottom: 15px; 
   
 }
 
-.radio-group label {
-  margin-left: 25%; /* Controla la distancia entre el botón de radio y su etiqueta */
+.estudiantes-radio-group label {
+  margin-left: 25%;
 
 }
 
-.radio-group.center {
-  justify-content: center; /* Alinea los elementos en el centro horizontalmente */
+.estudiantes-radio-group.center {
+  justify-content: center; 
 }

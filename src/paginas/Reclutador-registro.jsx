@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  
-import Textarea from '../componetes/Text-area.jsx'; 
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Button from '../componetes/Button.jsx'; 
 import RadioButtons from '../componetes/Radio_buton.jsx'; 
@@ -26,7 +25,7 @@ const RegistroReclutador = () => {
   const [giroSeleccionado, setGiroSeleccionado] = useState('');
 
   return (
-    <div className="registro-contenedor">
+    <div className="reclutador-contenedor">
       <img src={Logo} alt="Logo" className="logo" />
       <h1>Registro de Reclutador</h1>
 
@@ -95,7 +94,7 @@ const RegistroReclutador = () => {
       </div>
 
       <div className="reclutador-campo">
-        <label className="radio-buttons-label">Giro</label>
+        <label className="reclutador-radio-buttons-label">Giro</label>
         <RadioButtons
           name="Giro"
           options={[
@@ -109,7 +108,7 @@ const RegistroReclutador = () => {
         />
       </div>
 
-      <div className="botones">
+      <div className="reclutador-botones">
         <Button texto="Atrás" onClick={handleBack} />  
         <Button texto="Siguiente" onClick={handleNext} />  
       </div>

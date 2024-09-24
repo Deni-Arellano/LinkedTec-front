@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Textbox from '../componetes/Caja-de-texto'; 
 import Button from '../componetes/Button';
 import RadioButtons from '../componetes/Radio_buton.jsx';
-import Fecha from '../componetes/Fecha'; 
+import Fecha from '../componetes/Fecha';
 import '../hojas-de-estilo/Estudiantes-registro.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 import Textarea from '../componetes/Text-area.jsx';
@@ -69,6 +69,7 @@ const Registro = () => {
           'sexo': sexoSeleccionado,
           'biografia': biografia,
           'role': 'estudiante',
+          "imagen_usuario": ''
         },
         'estudiante': {
           'no_control': noControl,
