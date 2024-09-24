@@ -34,7 +34,7 @@ const CodigoVerificacion = () => {
             key={index}
             id={`input-${index}`}
             type="text"
-            maxLength="1"  // Solo permito un carácter por input
+            maxLength="1"  // Solo permito un carácter por input.
             value={num}
             onChange={(e) => handleInputChange(index, e.target.value)}  // Manejo el cambio del input
             className="CodigoVerificacion-codigo-input"
