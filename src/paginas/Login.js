@@ -25,7 +25,10 @@ const Login = () => {
                     <button className="btn-login" onClick={handlepub}>Entrar </button>
                 </form>
                 <div className="login-links">
-                    <a href="/recuperar" className="login-link">Recuperar contraseña</a>
+                <a href="/recuperar" className="login-link" onClick={(e) => e.preventDefault()}>
+                Recuperar contraseña
+                </a>
+
                     <Link to="/rol" className="login-link">Registro</Link> 
                 </div>
             </div>
