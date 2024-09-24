@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
-import '../hojas-de-estilo/Fecha.css';  // Ruta corregida
+import React from 'react';
+import '../hojas-de-estilo/Fecha.css';  
 
-const Fecha = () => {
-    const [selectedDate, setSelectedDate] = useState('');
-
-    const handleDateChange = (e) => {
-        setSelectedDate(e.target.value);
-    };
-
+const Fecha = ({ value, onChange }) => {
     return (
         <div className="fecha-container">
             <label htmlFor="fecha-input" className="fecha-label">Fecha de Nacimiento:</label>
             <input
                 type="date"
                 id="fecha-input"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={value} 
+                onChange={onChange} 
                 className="fecha-input"
             />
         </div>
