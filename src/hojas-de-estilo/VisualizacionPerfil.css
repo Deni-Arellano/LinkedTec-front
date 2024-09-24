@@ -1,5 +1,5 @@
 /* Ajuste general del contenedor */
-.visualizacion-container {
+.VisualizacionPerfil-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between; /* Distribuye el menú y el contenido */
@@ -9,7 +9,7 @@
 }
 
 /* Ajuste del contenido del perfil */
-.perfil-contenido {
+.VisualizacionPerfil-perfil-contenido {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,8 +18,7 @@
 }
 
 /* Nombre y foto del usuario */
-
-.nombre-usuario {
+.VisualizacionPerfil-nombre-usuario {
     display: flex;
     align-items: center;
     margin-bottom: 50px;
@@ -27,9 +26,8 @@
     margin-left: -400px; /* Ajusta la alineación para que coincida con el cuadro */
 }
 
-
 /* Ajuste de la imagen de perfil */
-.foto-perfil {
+.VisualizacionPerfil-foto-perfil {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -37,21 +35,21 @@
 }
 
 /* Información del usuario (nombre, carrera, foto) */
-.info-usuario h2 {
+.VisualizacionPerfil-info-usuario h2 {
     font-size: 36px;
     margin: 0;
     color: #012a6f;
     text-align: left; /* Alinea el texto a la izquierda */
 }
 
-.carrera {
+.VisualizacionPerfil-carrera {
     font-size: 20px;
     color: #555;
     text-align: left; /* Alinea el texto a la izquierda */
 }
 
 /* Cuadro de información */
-.perfil-cuadro {
+.VisualizacionPerfil-perfil-cuadro {
     background-color: #fff;
     border: 2px solid #012a6f;
     padding: 30px;
@@ -64,20 +62,19 @@
     margin-left: 150px; /* Asegura que ambos cuadros estén alineados */
 }
 
-
 /* Ajuste de los elementos dentro del cuadro */
-.perfil-cuadro p {
+.VisualizacionPerfil-perfil-cuadro p {
     font-size: 18px;
     margin-bottom: 10px;
     line-height: 1.5;
 }
 
-.perfil-cuadro strong {
+.VisualizacionPerfil-perfil-cuadro strong {
     color: #012a6f;
 }
 
 /* Ajuste de la biografía */
-.perfil-cuadro .biografia {
+.VisualizacionPerfil-perfil-cuadro .VisualizacionPerfil-biografia {
     min-height: 100px;
     padding: 10px 0;
     color: #555;
@@ -88,13 +85,13 @@
 }
 
 /* Iconos */
-.icono {
+.VisualizacionPerfil-icono {
     margin-right: 10px;
     color: #012a6f;
 }
 
 /* Ajustes generales para el contenedor de los componentes PEDE y Reclutador */
-.contenedor-perfil-cuadro {
+.VisualizacionPerfil-contenedor-perfil-cuadro {
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Alinea ambos componentes a la izquierda */
@@ -102,4 +99,13 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+}
+
+
+
+
+
+
+.VisualizacionPerfil-pede-container {
+    margin-left: -520px; /* Ajusta el valor para mover hacia la izquierda */
 }
