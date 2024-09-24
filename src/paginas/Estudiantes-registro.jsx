@@ -69,6 +69,7 @@ const Registro = () => {
           'sexo': sexoSeleccionado,
           'biografia': biografia,
           'role': 'estudiante',
+          "imagen_usuario": ''
         },
         'estudiante': {
           'no_control': noControl,
