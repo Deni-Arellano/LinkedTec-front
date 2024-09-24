@@ -1,17 +1,18 @@
 /* Barra superior integrada desde MenuNavegacion */
 
 /* Contenedor de la publicación */
-.publicacion-container {
-    display: box;
+.publication-container {
+    display: flex; /* Cambiado de box a flex */
     justify-content: center;
-    place-items: center;
+    align-items: center; /* Añadido para asegurar que los elementos estén centrados */
     padding: 80px 20px; /* Ajusta el padding superior para evitar que se superponga con la barra de navegación */
     margin-top: 60px; /* Margen superior para acomodar la barra de navegación */
-    margin-left: 28.2%;
+    margin-left: auto; /* Centra horizontalmente en lugar de usar un porcentaje */
+    margin-right: auto; /* Centra horizontalmente en lugar de usar un porcentaje */
 }
 
 /* Estilos de la publicación */
-.publicacion {
+.publication {
     background-color: white;
     border-radius: 8px;
     padding: 20px;
@@ -21,13 +22,13 @@
 }
 
 /* Perfil */
-.perfil {
+.profile {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
 
-.foto-perfil {
+.profile-pic {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -35,31 +36,31 @@
 }
 
 /* Nombre del usuario */
-.usuario-publicacion-empleo {
+.user-name {
     font-size: 18px;
     font-weight: bold;
 }
 
 /* Título de la publicación */
-.titulo-publicacion {
+.publication-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 /* Detalles del empleo */
-.detalle h2 {
+.details h2 {
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.detalle p {
+.details p {
     margin-bottom: 5px;
     font-size: 16px;
 }
 
 /* Contenedor del botón de publicar flotante */
-.boton-flotante {
+.floating-button {
     display: flex;
     justify-content: center; /* Centra el botón horizontalmente */
     margin-top: 10px;

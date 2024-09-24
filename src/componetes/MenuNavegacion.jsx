@@ -18,7 +18,7 @@ const MenuNavegacion = () => {
                 <img 
                     src={logo} 
                     alt="Logo" 
-                    className="logo-Menu" 
+                    className="logo" // Cambiado de "logo-Menu" a "logo"
                     onClick={() => navigate('/')} 
                     style={{ cursor: 'pointer' }}
                 />
@@ -41,9 +41,9 @@ const MenuNavegacion = () => {
             </header>
             
             <aside className={`sidebar ${sidebarVisible ? 'visible' : ''}`}>
-                <div className="profile">
-                    <img src="https://via.placeholder.com/100" alt="Perfil" className="profile-pic" />
-                    <p className="profile-name">Guisselle Iñiguez</p>
+                <div className="perfil"> {/* Cambiado de "profile" a "perfil" */}
+                    <img src="https://via.placeholder.com/100" alt="Perfil" className="foto-perfil" /> {/* Cambiado de "profile-pic" a "foto-perfil" */}
+                    <p className="usuario-publicacion-empleo">Guisselle Iñiguez</p> {/* Cambiado de "profile-name" a "usuario-publicacion-empleo" */}
                 </div>
 
                 <nav className="menu">
