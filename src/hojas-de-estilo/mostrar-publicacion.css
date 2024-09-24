@@ -1,4 +1,4 @@
-.Most-publicacion {
+.Mostrar-publicacion {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -10,7 +10,7 @@
     background-color: #f6faff;
 }
 
-.publicacion-header {
+.mostrar-publicacion-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,19 +18,19 @@
     position: relative;
 }
 
-.imagen-perfil {
+.mostrar-publicacion-imagen-perfil {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
 }
 
-.icono-tres-puntos {
+.mostrar-publicacion-icono-tres-puntos {
     margin-left: auto;
     cursor: pointer;
 }
 
-.opciones-dropdown {
+.mostrar-publicacion-opciones-dropdown {
     position: absolute;
     right: 0;
     top: 100%;
@@ -44,7 +44,7 @@
     z-index: 10;
 }
 
-.opcion-boton {
+.mostrar-publicacion-opcion-boton {
     background-color: white;
     border: none;
     padding: 8px 12px;
@@ -54,24 +54,24 @@
     border-radius: 4px;
 }
 
-.opcion-boton:hover {
+.mostrar-publicacion-opcion-boton:hover {
     background-color: #f1f1f1;
 }
 
-.publicacion-contenido {
+.mostrar-publicacion-contenido {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.publicacion-texto {
+.mostrar-publicacion-texto {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
     font-size: 90%;
 }
 
-.Descripcion {
+.mostrar-publicacion-descripcion {
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 5px;
@@ -83,7 +83,7 @@
     margin-top: 1%;
 }
 
-.publicacion-imagen {
+.mostrar-publicacion-imagen {
     width: 100%;
     max-height: 300px;
     max-width: 100%;
@@ -92,24 +92,24 @@
     margin-top: 10px;
 }
 
-.botones {
+.mostrar-publicacion-botones {
     margin-top: 10px;
     display: flex;
     align-items: center;
 }
 
-.Megusta {
+.mostrar-publicacion-megusta {
     margin-right: 10px;
 }
 
-.Medisgusta {
+.mostrar-publicacion-medisgusta {
     margin-right: 10px;
 }
 
-.Comentar {
+.mostrar-publicacion-comentar {
     margin-left: auto;
 }
 
-.Fecha {
+.Fecha-mostrar-publicacion {
    margin-top: 1vh;
 }

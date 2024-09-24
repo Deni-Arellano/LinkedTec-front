@@ -17,9 +17,9 @@ function SearchBar() {
     return (
         <form className="searchbar-form">
             <div className="searchbar-container">
-                <input id='busquedastyle' type="text" placeholder="Buscar..." onKeyDown={handleKeyDown}
+                <input id='searchbar-style' type="text" placeholder="Buscar..." onKeyDown={handleKeyDown}
                 />
-                <HiOutlineSearch className="search-icon" />
+                <HiOutlineSearch className="searchbar-icon" />
             </div>
         </form>
     );
