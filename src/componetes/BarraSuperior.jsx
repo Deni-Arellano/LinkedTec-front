@@ -7,19 +7,19 @@ import logo from '../imagenes/Logo24.png';  // Ruta correcta para el logo
 
 const BarraSuperior = () => {
     return (
-        <header className="header">
-            <img src={logo} alt="Logo" className="logo" />
+        <header className="barra-superior">
+            <img src={logo} alt="Logo" className="barra-superior-logo" />
 
             {/* Barra de búsqueda */}
-            <div className="search">
+            <div className="barra-superior-busqueda">
                 <Searchbar />
             </div>
 
             {/* Íconos a la derecha */}
-            <div className="icons">
-                <BiChat className="icon" />     {/* Icono de chat */}
-                <AiFillAlert className="icon" />  {/* Icono de alerta */}
-                <VscAccount className="icon" />   {/* Icono de cuenta */}
+            <div className="barra-superior-iconos">
+                <BiChat className="barra-superior-icono" />     {/* Icono de chat */}
+                <AiFillAlert className="barra-superior-icono" />  {/* Icono de alerta */}
+                <VscAccount className="barra-superior-icono" />   {/* Icono de cuenta */}
             </div>
         </header>
     );

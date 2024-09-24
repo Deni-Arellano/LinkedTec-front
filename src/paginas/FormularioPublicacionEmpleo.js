@@ -9,46 +9,46 @@ const PaginaFormulario = () => {
     return (
         <>
             <MenuNavegacion /> {/* Asegura que la barra de navegación funcione correctamente */}
-            <div className="container">
-                <div className="form">
+            <div className="fromularioempleoo-container">
+                <div className="fromularioempleoo-form">
                     {/* Título del formulario */}
-                    <Etiquetas tamano={20} texto="+ Nuevo Empleo" id="titulo-publicacion-empleo" />
+                    <Etiquetas tamano={20} texto="+ Nuevo Empleo" id="fromularioempleoo-titulo-publicacion-empleo" />
                     &nbsp;
 
                     {/* Campo para Título de empleo */}
-                    <div className="input-group">
+                    <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Título empleo:" />
-                        <CajaDeTexto id="titulo-empleo" />
+                        <CajaDeTexto id="fromularioempleoo-titulo-empleo" />
                     </div>
 
                     {/* Campo para Empresa */}
-                    <div className="input-group">
+                    <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Empresa:" />
-                        <CajaDeTexto id="empresa" />
+                        <CajaDeTexto id="fromularioempleoo-empresa" />
                     </div>
 
                     {/* Campo para Salario */}
-                    <div className="input-group">
+                    <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Salario:" />
-                        <CajaDeTexto id="salario" placeholder="$" />
+                        <CajaDeTexto id="fromularioempleoo-salario" placeholder="$" />
                     </div>
 
                     {/* Campo para Descripción */}
-                    <div className="input-group">
+                    <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Descripción:" />
-                        <CajaDeTexto id="descripcion" className="descripcion-textarea" multiline />
+                        <CajaDeTexto id="fromularioempleoo-descripcion" className="fromularioempleoo-descripcion-textarea" multiline />
                     </div>
 
                     {/* Campo para Ubicación */}
-                    <div className="input-group">
+                    <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Ubicación (Estado):" />
-                        <CajaDeTexto id="ubicacion" />
+                        <CajaDeTexto id="fromularioempleoo-ubicacion" />
                     </div>
 
                     {/* Selección de Nivel de Inglés */}
-                    <div className="input-group">
+                    <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Nivel de Inglés requerido:" />
-                        <select id="nivel-ingles" className="dropdown">
+                        <select id="fromularioempleoo-nivel-ingles" className="fromularioempleoo-dropdown">
                             <option value="avanzado">Avanzado</option>
                             <option value="intermedio">Intermedio</option>
                             <option value="basico">Básico</option>

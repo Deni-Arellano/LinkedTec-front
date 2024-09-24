@@ -5,7 +5,7 @@ import Etiquetas from '../componetes/Etiquetas'; // Importar el componente Etiqu
 import BotonPublicar from '../componetes/BotonPublicarEmpleo'; // Importar el botón de publicación
 import '../hojas-de-estilo/PublicacionEmpleo.css'; // Estilos de la publicación
 
-const PublicacionEmpleo = ({ datos }) => {
+const PublicacionEmpleoNuevo = ({ datos }) => {
     const navigate = useNavigate(); // Hook para navegar a otras páginas
 
     return (
@@ -13,21 +13,21 @@ const PublicacionEmpleo = ({ datos }) => {
             <MenuNavegacion /> {/* Menú de navegación */}
             
             {/* Botón flotante para publicar */}
-            <div className="boton-flotante">
+            <div className="PublicacioEmpleoNuevo-boton-flotante">
                 <BotonPublicar onClick={() => navigate('/FormularioPublicacionEmpleo')} /> {/* Redirige al formulario de publicación */}
             </div>
             
             {/* Contenedor de la publicación */}
-            <div className="publicacion-container">
-                <div className="publicacion">
-                    <div className="perfil">
-                        <img src={datos.fotoPerfil} alt="Foto de Perfil" className="foto-perfil" /> {/* Foto de perfil */}
-                        <p className="usuario-publicacion-empleo">{datos.nombreUsuario}</p> {/* Nombre del usuario */}
+            <div className="PublicacioEmpleoNuevo-publicacion-container">
+                <div className="PublicacioEmpleoNuevo-publicacion">
+                    <div className="PublicacioEmpleoNuevo-perfil">
+                        <img src={datos.fotoPerfil} alt="Foto de Perfil" className="PublicacioEmpleoNuevo-foto-perfil" /> {/* Foto de perfil */}
+                        <p className="PublicacioEmpleoNuevo-usuario-publicacion-empleo">{datos.nombreUsuario}</p> {/* Nombre del usuario */}
                     </div>
                     
-                    <h1 className="titulo-publicacion">{datos.tituloEmpleo}</h1> {/* Título del empleo */}
+                    <h1 className="PublicacioEmpleoNuevo-titulo-publicacion">{datos.tituloEmpleo}</h1> {/* Título del empleo */}
                     
-                    <div className="detalle">
+                    <div className="PublicacioEmpleoNuevo-detalle">
                         <h2>Detalles del Empleo:</h2>
                         <p><strong><Etiquetas texto="Empresa" />:</strong> {datos.empresa}</p>
                         <p><strong><Etiquetas texto="Salario" />:</strong> {datos.salario}</p>
@@ -54,5 +54,5 @@ const datosFicticios = {
 };
 
 export default function App() {
-    return <PublicacionEmpleo datos={datosFicticios} />; // Renderiza la publicación con datos ficticios
+    return <PublicacionEmpleoNuevo datos={datosFicticios} />; // Renderiza la publicación con datos ficticios
 }

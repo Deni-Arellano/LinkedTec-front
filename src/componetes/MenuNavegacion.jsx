@@ -12,49 +12,49 @@ const MenuNavegacion = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="menu-navegacion app">
+        <div className="MenuNavegacion-app">
             {/* Barra superior */}
-            <header className="header">
+            <header className="MenuNavegacion-barrasuperiordeMenuNavegacion">
                 <img 
                     src={logo} 
                     alt="Logo" 
-                    className="logo" // Cambiado de "logo-Menu" a "logo"
+                    className="MenuNavegacion-logo" 
                     onClick={() => navigate('/')} 
                     style={{ cursor: 'pointer' }}
                 />
 
-                <div className="search">
+                <div className="MenuNavegacion-search">
                     <Searchbar />
                 </div>
 
-                <div className="icons">
-                    <button className="icon-button">
-                        <BiChat className="icon" />
+                <div className="MenuNavegacion-icons">
+                    <button className="MenuNavegacion-icon-button">
+                        <BiChat className="MenuNavegacion-icon" />
                     </button>
-                    <button className="icon-button">
-                        <AiFillAlert className="icon" />
+                    <button className="MenuNavegacion-icon-button">
+                        <AiFillAlert className="MenuNavegacion-icon" />
                     </button>
-                    <button className="icon-button" onClick={() => navigate('/Perfil')}>
-                        <VscAccount className="icon" />
+                    <button className="MenuNavegacion-icon-button" onClick={() => navigate('/Perfil')}>
+                        <VscAccount className="MenuNavegacion-icon" />
                     </button>
                 </div>
             </header>
             
-            <aside className={`sidebar ${sidebarVisible ? 'visible' : ''}`}>
-                <div className="perfil"> {/* Cambiado de "profile" a "perfil" */}
-                    <img src="https://via.placeholder.com/100" alt="Perfil" className="foto-perfil" /> {/* Cambiado de "profile-pic" a "foto-perfil" */}
-                    <p className="usuario-publicacion-empleo">Guisselle Iñiguez</p> {/* Cambiado de "profile-name" a "usuario-publicacion-empleo" */}
+            <aside className={`MenuNavegacion-sidebar ${sidebarVisible ? 'MenuNavegacion-visible' : ''}`}>
+                <div className="MenuNavegacion-perfil">
+                    <img src="https://via.placeholder.com/100" alt="Perfil" className="MenuNavegacion-foto-perfil" />
+                    <p className="MenuNavegacion-usuario-publicacion-empleo">Guisselle Iñiguez</p>
                 </div>
 
-                <nav className="menu">
-                    <button className="menu-button">Noticias</button>
-                    <button className="menu-button" onClick={() => navigate('/publicacion-empleo')}>Empleos</button>
-                    <button className="menu-button" onClick={() => navigate('/publi-usuarios')}>Publicaciones</button>
-                    <button className="menu-button">Foro</button>
+                <nav className="MenuNavegacion-menu">
+                    <button className="MenuNavegacion-menu-button">Noticias</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicacion-empleo')}>Empleos</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publi-usuarios')}>Publicaciones</button>
+                    <button className="MenuNavegacion-menu-button">Foro</button>
                 </nav>
             </aside>
             
-            <div className="content">
+            <div className="MenuNavegacion-content">
                 {/* Aquí va el contenido */}
             </div>
         </div>

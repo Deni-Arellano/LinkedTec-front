@@ -1,5 +1,5 @@
 /* Barra superior */
-.header {
+.MenuNavegacion-barrasuperiordeMenuNavegacion {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,46 +15,45 @@
 }
 
 /* Logo */
-.logo {
+.MenuNavegacion-logo {
+    height: 65px;
     width: auto;
-    height: 55px;
 }
 
 /* Barra de búsqueda */
-.search {
+.MenuNavegacion-search {
     flex-grow: 1;
     max-width: 900px;
     margin-left: 20vw;
 }
 
 /* Iconos en la barra superior */
-.icons {
+.MenuNavegacion-icons {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
 /* Botones de los íconos */
-.icon {
+.MenuNavegacion-icon-button {
     background: none;
     border: none;
     cursor: pointer;
     padding: 5px;
+}
+
+.MenuNavegacion-icon-button:focus {
+    outline: none;
+}
+
+/* Tamaño de los iconos */
+.MenuNavegacion-icon {
     font-size: 40px;
     color: #012a6f;
 }
 
-/* Botones de los íconos (añadido para mantener consistencia) */
-.icon-button {
-    cursor: pointer;
-}
-
-.icon-button:focus {
-    outline: none;
-}
-
 /* Menú lateral */
-.sidebar {
+.MenuNavegacion-sidebar {
     position: fixed;
     top: 58px;
     left: 0;
@@ -66,19 +65,19 @@
     z-index: 900;
 }
 
-.sidebar.visible {
+.MenuNavegacion-sidebar.MenuNavegacion-visible {
     transform: translateX(0);
 }
 
 /* Imagen de perfil */
-.profile {
+.MenuNavegacion-perfil {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.profile-pic {
+.MenuNavegacion-foto-perfil {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -87,7 +86,7 @@
 }
 
 /* Botones del menú lateral */
-.button {
+.MenuNavegacion-menu-button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -101,13 +100,13 @@
     border-radius: 10px;
 }
 
-.button:hover {
+.MenuNavegacion-menu-button:hover {
     background-color: white;
     color: #012a6f;
 }
 
 /* Contenido principal */
-.content {
+.MenuNavegacion-content {
     margin-left: 220px;
     padding: 20px;
     padding-top: 60px;
@@ -120,7 +119,7 @@ body {
 }
 
 /* Asegurar que el contenedor esté centrado */
-.container {
+.MenuNavegacion-contenedor-perfil-cuadro {
     display: flex;
     flex-direction: column;
     align-items: center;
