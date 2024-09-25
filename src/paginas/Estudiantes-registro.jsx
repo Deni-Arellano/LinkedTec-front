@@ -105,7 +105,7 @@ const Registro = () => {
   return (
     <div className="estudiantes-contenedor"> 
       <img src={Logo} alt="Logo" className="logo" /> 
-      <h1>Registro de Estudiantes</h1>
+      <h1>Registro de Estudiante</h1>
 
       <div className="estudiantes-campo">  
         <label htmlFor="nombre">Nombre(s):</label>

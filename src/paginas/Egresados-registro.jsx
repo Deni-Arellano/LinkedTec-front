@@ -8,6 +8,7 @@ import '../hojas-de-estilo/Egresados-registro.css';
 import Logo from '../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
 import Label from '../componetes/Etiquetas';
+import axios from 'axios';
 
 const RegistroEgresado = () => {
   const navigate = useNavigate();
@@ -22,8 +23,79 @@ const RegistroEgresado = () => {
     navigate('/codigo-verificacion');
   };
 
+  const [nombre, setNombre] = useState('');
+  const [apellidoPaterno, setApellidoPaterno] = useState('');
+  const [apellidoMaterno, setApellidoMaterno] = useState('');
+  const [fechaNacimiento, setFechaNacimiento] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [contraseña, setContraseña] = useState('');
+  const [confirmarContraseña, setConfirmarContraseña] = useState('');
+  const [biografia, setBiografia] = useState('');
+  const [Puesto, setPuesto] = useState('');
+  const [AñoGraduacion, setAñoGraduacion] = useState('');
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
+
+
+  const add = () => {
+    console.log('Agregando egresado');
+    console.log('Nombre: ' + nombre);
+    console.log('Apellido Paterno: ' + apellidoPaterno);
+    console.log('Apellido Materno: ' + apellidoMaterno);
+    console.log('Fecha de Nacimiento: ' + fechaNacimiento);
+    console.log('Teléfono: ' + telefono);
+    console.log('Correo: ' + correo);
+    console.log('Contraseña: ' + contraseña);
+    console.log('Confirmar Contraseña: ' + confirmarContraseña);
+    console.log('Biografía: ' + biografia);
+    console.log('Puesto: ' + Puesto);
+    console.log('Año de Graduación: ' + AñoGraduacion);
+
+    if (contraseña !== confirmarContraseña) {
+      console.log("Las contraseñas no coinciden");
+      return; 
+    }
+
+    const datosEnviar = {
+      "usuario": {
+      "nombre": nombre,
+      "apellido_paterno": apellidoPaterno,
+      "apellido_materno": apellidoMaterno,
+      "correo": correo,
+      "contraseña": contraseña,
+      "fecha_nacimiento": fechaNacimiento,
+      "telefono": telefono,
+      "sexo": sexoSeleccionado,
+      "biografia": biografia,
+      "role": "Egresado", 
+      "imagen_usuario": ""
+      },
+      "egresado": {
+      "carrera": carreraSeleccionada,
+      "año_graduacion": AñoGraduacion,
+      "puesto": Puesto
+      }
+     }
+
+    console.log(datosEnviar);
+
+    axios.post('http://localhost:3000/usuarios/egresados', datosEnviar)
+
+    .then((response) => {
+      console.log("Respuesta del servidor:", response.data);
+      handleNext();
+    })
+    .catch((error) => {
+      if (error.response) {
+          console.log("Error de respuesta del servidor:", error.response.data);
+          console.log("Código de estado:", error.response.status);
+      } else {
+          console.log("Error en la solicitud:", error.message);
+      }
+    })
+    ;
+  }
 
   return (
     <div className="registro-egresado">
@@ -33,21 +105,43 @@ const RegistroEgresado = () => {
 
         <div className="egresado-campo">
           <Label htmlFor="Nombre" texto='Nombre(s):'/>
-          <Textbox id="Nombre" placeholder="Nombre(s)" />
+          <Textbox 
+          id="Nombre" 
+          placeholder="Nombre(s)" 
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          
+          />
         </div>
         <div className="egresado-campo">
           <Label htmlFor="ApellidoPaterno" texto='Apellido Paterno:'/>
-          <Textbox id="ApellidoPaterno" placeholder="Apellido Paterno" />
+          <Textbox 
+          id="ApellidoPaterno" 
+          placeholder="Apellido Paterno"
+          value={apellidoPaterno} 
+          onChange={(e) => setApellidoPaterno(e.target.value)}
+          
+          />
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="ApellidoMaterno" texto='Apellido Materno:'/>
-          <Textbox id="ApellidoMaterno" placeholder="Apellido Materno" />
+          <Textbox 
+          id="ApellidoMaterno" 
+          placeholder="Apellido Materno" 
+          value={apellidoMaterno}
+          onChange={(e) => setApellidoMaterno(e.target.value)}
+          
+          />
         </div>
 
 
         <div className="egresado-campo">
-          <Fecha label="Fecha de Nacimiento" />
+          <Fecha label="Fecha de Nacimiento" 
+          value={fechaNacimiento}
+          onChange={(e) => setFechaNacimiento(e.target.value)}
+          
+          />
         </div>
 
         <div className="egresado-campo">
@@ -66,28 +160,63 @@ const RegistroEgresado = () => {
 
         <div className="egresado-campo">
           <Label htmlFor="Telefono" texto='Teléfono'/>
-          <Textbox id="Telefono" placeholder="Teléfono" type="tel" />
+          <Textbox 
+          id="Telefono" 
+          placeholder="Teléfono" 
+          type="tel" 
+          value={telefono}
+          onChange={(e) => setTelefono(e.target.value)}
+          
+          />
+
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="Correo" texto='Correo:'/>
-          <Textbox id="Correo" placeholder="Correo electrónico" type="email" />
+          <Textbox 
+          id="Correo" 
+          placeholder="Correo electrónico" 
+          type="email" 
+          value={correo}
+          onChange={(e) => setCorreo(e.target.value)}
+          
+          />
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="Contraseña" texto='Contraseña:'/>
-          <Textbox id="Contraseña" placeholder="Contraseña" type="password" />
+          <Textbox 
+          id="Contraseña" 
+          placeholder="Contraseña" 
+          type="password" 
+          value={contraseña}
+          onChange={(e) => setContraseña(e.target.value)}
+          
+          />
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="confirmarContraseña" texto='Confirmar contraseña:'/>
-          <Textbox id="ConfirmarContraseña" placeholder="Confirmar contraseña" type="password" />
+          <Textbox 
+          id="ConfirmarContraseña" 
+          placeholder="Confirmar contraseña" 
+          type="password" 
+          value={confirmarContraseña}
+          onChange={(e) => setConfirmarContraseña(e.target.value)}
+          
+          />
         </div>
 
 
         <div className="egresado-campo">
           <Label htmlFor="biografia" texto='Biografía:'/>
-          <Textarea id="Biografia"  placeholder="Biografía" />
+          <Textarea 
+          id="Biografia"  
+          placeholder="Biografía" 
+          value={biografia}
+          onChange={(e) => setBiografia(e.target.value)}
+          
+          />
         </div>
 
         <div className="egresado-campo">
@@ -96,7 +225,7 @@ const RegistroEgresado = () => {
             name="Carrera"
             options={[
               { value: 'ISC', label: 'ISC' },
-              { value: 'IEM', label: 'IEM' },
+              { value: 'IE', label: 'IE' },
               { value: 'IGE', label: 'IGE' },
               { value: 'CP', label: 'CP' },
               { value: 'II', label: 'II' },
@@ -110,17 +239,29 @@ const RegistroEgresado = () => {
 
         <div className="egresado-campo">
           <Label htmlFor="AñoGraduacion" texto='Año de Graduación:'/>
-          <Textbox id="AñodeGraduacion"  placeholder="Año de Graduación" />
+          <Textbox 
+          id="AñodeGraduacion"  
+          placeholder="Año de Graduación" 
+          value={AñoGraduacion}
+          onChange={(e) => setAñoGraduacion(e.target.value)}
+
+          />
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="Puesto" texto='Puesto:'/>
-          <Textbox id="Puesto"  placeholder="Puesto en la empresa" />
+          <Textbox 
+          id="Puesto"  
+          placeholder="Puesto en la empresa"
+          value={Puesto}
+          onChange={(e) => setPuesto(e.target.value)}
+          
+          />
         </div>
 
         <div className="botones">
           <Button texto="Atrás" onClick={handleBack} />
-          <Button texto="Siguiente" onClick={handleNext} />
+          <Button texto="Siguiente" onClick={add} />
         </div>
       </div>
     </div>
