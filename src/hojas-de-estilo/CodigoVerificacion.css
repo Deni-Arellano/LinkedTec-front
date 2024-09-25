@@ -90,3 +90,10 @@
     padding: 4px 8px;
   }
 }
+.CodigoVerificacion-titulo-verificacion {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}

@@ -35,23 +35,26 @@
   box-sizing: border-box;
 }
 
+/* Estilo específico para el botón de login con color del botón de verificación */
 .btn-login {
-  background-color: #2f6db7;
-  color: white;
-  border: none;
-  padding: 15px 0;
-  margin-top: 20px;
-  font-size: 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 100%;
-  max-width: 300px;
+  background-color: #798eb2; /* Mismo color de fondo que los botones de verificación */
+  color: white;              /* Texto en blanco */
+  border: none;              /* Sin borde */
+  padding: 10px 0;           /* Espaciado interno más pequeño */
+  margin-top: 20px;          /* Espaciado superior */
+  font-size: 16px;           /* Tamaño de fuente más pequeño */
+  border-radius: 8px;        /* Bordes redondeados */
+  cursor: pointer;           /* Cambia el cursor al pasar el ratón */
+  width: 100%;               /* Ancho completo del botón */
+  max-width: 250px;          /* Máximo ancho reducido */
 }
 
+/* Efecto hover para el botón de login */
 .btn-login:hover {
-  background-color: #255693;
+  background-color: #627399; /* Color más oscuro al pasar el ratón, similar a los botones de verificación */
 }
 
+/* Estilos adicionales para enlaces de login */
 .login-links {
   margin-top: 25px;
   display: flex;
@@ -71,12 +74,13 @@
   text-decoration: underline;
 }
 
+/* Estilos de los inputs */
 .login-input {
   width: 100%;
   padding: 12px;
   font-size: 16px;
   box-sizing: border-box;
-  border: 2px solid #000000;
-  border-radius: 15px;
-  outline: none;
+  border: 2px solid #000000; /* Borde negro */
+  border-radius: 15px;       /* Bordes redondeados */
+  outline: none;             /* Sin borde al enfocar */
 }
