@@ -227,7 +227,7 @@ const Registro = () => {
           name="Carrera"
           options={[
             { value: 'ISC', label: 'ISC' },
-            { value: 'IEM', label: 'IEM' },
+            { value: 'IE', label: 'IE' },
             { value: 'IGE', label: 'IGE' },
             { value: 'CP', label: 'CP' },
             { value: 'II', label: 'II' },
