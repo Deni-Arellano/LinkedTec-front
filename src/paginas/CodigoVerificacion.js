@@ -1,44 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../hojas-de-estilo/CodigoVerificacion.css';
 import Button from '../componetes/Button';
 
 const CodigoVerificacion = () => {
-  const [codigo, setCodigo] = useState(Array(6).fill(""));  // Inicializa correctamente el estado
-  const navigate = useNavigate();  // Inicializa el hook de navegación
+  const [codigo, setCodigo] = useState(Array(6).fill(""));
+  const inputsRef = useRef([]);
+  const navigate = useNavigate();
 
   const handleInputChange = (index, value) => {
     if (value.length > 1) return;
 
-    const newCodigo = [...codigo];  // Se usa correctamente 'codigo'
+    const newCodigo = [...codigo];
     newCodigo[index] = value;
-    setCodigo(newCodigo);  // Actualiza el estado con setCodigo
+    setCodigo(newCodigo);
 
     if (value !== "" && index < codigo.length - 1) {
-      document.getElementById(`input-${index + 1}`).focus();
+      inputsRef.current[index + 1].focus(); // Usa ref para enfocar el siguiente input
     }
   };
+
   const handleVerificar = () => {
-    navigate('/registro-exitoso');  
+    if (codigo.every(num => num !== "")) {
+      navigate('/registro-exitoso');
+    } else {
+      alert("Por favor completa todos los campos.");
+    }
   };
 
   return (
-    <div className="verificacion-container">
-      <h2 className="titulo-verificacion">¡Se ha enviado un código a tu correo!</h2>
-      <div className="codigo-inputs">
+    <div className="CodigoVerificacion-verificacion-container">
+      <h2 className="CodigoVerificacion-titulo-verificacion">¡Se ha enviado un código a tu correo!</h2>
+      <div className="CodigoVerificacion-codigo-inputs">
         {codigo.map((num, index) => (
           <input
             key={index}
-            id={`input-${index}`}
+            ref={(el) => inputsRef.current[index] = el}  // Asigna la ref a cada input
+            className="CodigoVerificacion-codigo-input"
             type="text"
-            maxLength="1"  // Solo permito un carácter por input.
+            maxLength="1"
             value={num}
-            onChange={(e) => handleInputChange(index, e.target.value)}  // 'handleInputChange' está definido
-       
+            onChange={(e) => handleInputChange(index, e.target.value)}
           />
         ))}
       </div>
-      <Button texto="Verificar" onClick={handleVerificar} /> 
+      <Button texto="Verificar" onClick={handleVerificar} />
     </div>
   );
 }

@@ -14,16 +14,15 @@
 .CodigoVerificacion-titulo-verificacion {
   font-size: 28px;
   color: #333;
-  margin-bottom: 20px; /* Para separar el título de los inputs */
+  margin-bottom: 20px;
   text-align: center;
-  white-space: nowrap;
 }
 
 /* Contenedor de los inputs del código */
 .CodigoVerificacion-codigo-inputs {
   display: flex;
-  gap: 10px; /* Espacio entre cada input */
-  margin-bottom: 15px; /* Para separar los inputs del botón */
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 /* Estilos para cada input individual */
@@ -32,47 +31,45 @@
   height: 55px;
   font-size: 22px;
   text-align: center;
-  border: 2px solid #798eb2; /* Para darle un borde visible */
-  border-radius: 5px; /* Bordes redondeados */
+  border: 2px solid #798eb2;
+  border-radius: 5px;
 }
 
 /* Estilos del botón */
 .CodigoVerificacion-btn {
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 8px 16px;
+  font-size: 16px;
   background-color: #798eb2;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 25px; /* Espaciado entre los inputs y el botón */
+  margin-top: 25px;
   width: auto;
   text-align: center;
 }
 
 /* Efecto hover para el botón */
 .CodigoVerificacion-btn:hover {
-  background-color: #627399; /* Cambia el color cuando pasas el cursor */
+  background-color: #627399;
 }
 
 /* Ajustes responsivos para pantallas más pequeñas */
 @media (max-width: 768px) {
   .CodigoVerificacion-titulo-verificacion {
-    font-size: 24px; /* Reduce el tamaño del título */
+    font-size: 24px;
     margin-bottom: 15px;
   }
 
   .CodigoVerificacion-codigo-input {
-    width: 45px; /* Reduce el tamaño de los inputs */
+    width: 45px;
     height: 45px;
     font-size: 20px;
   }
 
   .CodigoVerificacion-btn {
-    font-size: 12px;
-    padding: 6px 10px;
-    margin-top: 20px;
-    width: auto;
+    font-size: 14px;
+    padding: 6px 12px;
   }
 }
 
@@ -89,9 +86,7 @@
   }
 
   .CodigoVerificacion-btn {
-    font-size: 10px;
+    font-size: 12px;
     padding: 4px 8px;
-    margin-top: 15px;
-    width: auto;
   }
 }
