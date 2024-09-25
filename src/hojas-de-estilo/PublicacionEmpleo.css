@@ -5,8 +5,8 @@
     display: box;
     justify-content: center;
     place-items: center;
-    padding: 80px 20px; /* Ajusta el padding superior para evitar que se superponga con la barra de navegación */
-    margin-top: 60px; /* Margen superior para acomodar la barra de navegación */
+    padding: 80px 20px;
+    margin-top: 60px;
     margin-left: 28.2%;
 }
 
@@ -61,19 +61,19 @@
 /* Contenedor del botón de publicar flotante */
 .PublicacioEmpleoNuevo-boton-flotante {
     display: flex;
-    justify-content: center; /* Centra el botón horizontalmente */
+    justify-content: center;
     margin-top: 10px;
     padding: 10px 0;
-    background-color: #f5f5f5; /* Para simular la línea amarilla */
-    position: fixed; /* Fijo en la parte superior */
-    top: 60px; /* Ajusta esto para que esté justo debajo de la barra de navegación */
-    right: 0; /* Lo coloca a la derecha */
-    left: 400px; /* Alinea con la barra lateral */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    max-width: 800px; /* Ajusta el tamaño para que coincida con la publicación */
-    width: calc(100% - 220px); /* Asegura que el ancho ocupe el espacio restante */
-    border-radius: 8px; /* Opcional, para dar consistencia con la publicación */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Similar a la publicación */
+    background-color: #f5f5f5;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    left: 400px;
+    z-index: 1000;
+    max-width: 800px;
+    width: calc(100% - 220px);
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Ajustes adicionales */
@@ -81,4 +81,36 @@ body {
     margin: 0;
     font-family: 'sans-serif', sans-serif;
     background-color: #f5f5f5;
+}
+
+/* Específicos para elementos de formulario */
+.PublicacioEmpleoNuevo-textarea,
+.PublicacioEmpleoNuevo-input,
+.PublicacioEmpleoNuevo-button,
+.PublicacioEmpleoNuevo-select {
+    /* Estilos personalizados */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.PublicacioEmpleoNuevo-textarea {
+    resize: vertical;
+    height: 100px; /* Altura por defecto para textarea */
+}
+
+.PublicacioEmpleoNuevo-input {
+    width: 100%;
+}
+
+.PublicacioEmpleoNuevo-button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.PublicacioEmpleoNuevo-select {
+    width: 100%;
+    padding: 8px;
 }
