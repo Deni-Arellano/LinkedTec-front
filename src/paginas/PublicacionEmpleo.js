@@ -35,38 +35,6 @@ const PublicacionEmpleoNuevo = ({ datos }) => {
                         <p><strong><Etiquetas texto="Ubicación (Estado)" />:</strong> {datos.ubicacion}</p>
                         <p><strong><Etiquetas texto="Nivel de Inglés Requerido" />:</strong> {datos.nivelIngles}</p>
                     </div>
-
-                    {/* Elementos de formulario personalizados */}
-                    <form>
-                        <label htmlFor="comentarios">Comentarios:</label>
-                        <textarea
-                            id="comentarios"
-                            className="PublicacioEmpleoNuevo-textarea"
-                            placeholder="Escribe tus comentarios aquí..."
-                        ></textarea>
-
-                        <label htmlFor="nombre">Nombre:</label>
-                        <input
-                            id="nombre"
-                            className="PublicacioEmpleoNuevo-input"
-                            type="text"
-                            placeholder="Tu nombre"
-                        />
-
-                        <label htmlFor="categoria">Categoría:</label>
-                        <select
-                            id="categoria"
-                            className="PublicacioEmpleoNuevo-select"
-                        >
-                            <option value="tecnologia">Tecnología</option>
-                            <option value="diseño">Diseño</option>
-                            <option value="marketing">Marketing</option>
-                        </select>
-
-                        <button className="PublicacioEmpleoNuevo-button" type="submit">
-                            Enviar
-                        </button>
-                    </form>
                 </div>
             </div>
         </>
