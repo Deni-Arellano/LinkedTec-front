@@ -1,12 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Hook para navegación
-import MenuNavegacion from '../componetes/MenuNavegacion'; // Importar el menú de navegación
-import Etiquetas from '../componetes/Etiquetas'; // Importar el componente Etiquetas
-import BotonPublicar from '../componetes/BotonPublicarEmpleo'; // Importar el botón de publicación
-import '../hojas-de-estilo/PublicacionEmpleo.css'; // Estilos de la publicación
+import { useNavigate } from 'react-router-dom'; 
+import MenuNavegacion from '../componetes/MenuNavegacion'; 
+import Etiquetas from '../componetes/Etiquetas'; 
+import BotonPublicar from '../componetes/BotonPublicarEmpleo'; 
+import '../hojas-de-estilo/PublicacionEmpleo.css'; 
+import { BsThreeDots } from "react-icons/bs";
 
 const PublicacionEmpleoNuevo = ({ datos }) => {
-    const navigate = useNavigate(); // Hook para navegar a otras páginas
+    const navigate = useNavigate(); 
 
     return (
         <>
@@ -41,7 +42,7 @@ const PublicacionEmpleoNuevo = ({ datos }) => {
     );
 };
 
-// Datos ficticios para prueba
+
 const datosFicticios = {
     tituloEmpleo: 'Desarrollador Frontend',
     empresa: 'Tech Inc.',
