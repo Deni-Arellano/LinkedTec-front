@@ -2,7 +2,7 @@ import React from 'react';
 import '../hojas-de-estilo/R2.css';  // Asegúrate de que el CSS esté enlazado correctamente
 import { FaEnvelope, FaPhone, FaBirthdayCake, FaVenusMars, FaBuilding, FaIndustry, FaBriefcase } from 'react-icons/fa';  // Solo íconos necesarios
 
-const R2 = () => {
+const DatosUsu_Rec = () => {
     return (
         <div className="perfil-contenido">
             <div className="nombre-usuario">
@@ -29,4 +29,4 @@ const R2 = () => {
     );
 }
 
-export default R2;
+export default DatosUsu_Rec;

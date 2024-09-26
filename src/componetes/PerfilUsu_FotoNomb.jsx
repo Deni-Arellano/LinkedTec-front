@@ -1,7 +1,7 @@
 import React from 'react';
 import '../hojas-de-estilo/PEDE.css';  // Recuerda ajustar la ruta si es necesario
 
-const PEDE = () => {
+const FotoNombre = () => {
     return (
         <div className="nombre-usuario">
             <img src="https://via.placeholder.com/150" alt="Foto de perfil" className="foto-perfil" />
@@ -13,4 +13,4 @@ const PEDE = () => {
     );
 }
 
-export default PEDE;
+export default FotoNombre;
