@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import '../hojas-de-estilo/VisualizacionPerfil.css';
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
 import FotoNombre from '../componetes/PerfilUsu_FotoNomb'; 
 import DatosUsu_Rec from '../componetes/DatosUsu_EsDoEg';
+import {usuarioContext} from '../App';
 
 const VisualizacionPerfil = () => {
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+
     return (
         <div className="VisualizacionPerfil-container">
             <MenuNavegacion />

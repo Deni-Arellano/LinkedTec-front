@@ -1,92 +1,102 @@
-/* Ajuste general del contenedor */
+/* Estilo general del contenedor principal */
 .visualizacion-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* Distribuye el menú y el contenido */
+    flex-direction: row; /* Menú y contenido lado a lado */
+    justify-content: space-between;
     width: 100%;
     height: 100vh;
     background-color: #f0f4f8;
+    padding: 20px;
 }
 
-/* Ajuste del contenido del perfil */
+/* Estilo del contenido de perfil */
 .perfil-contenido {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 100px; /* Espacio para que no quede tan pegado a la barra superior */
-    width: 100%;
+    align-items: flex-start;
+    width: 60%;
+    margin-left: 20%; /* Centrado del contenido */
 }
 
-/* Nombre y foto del usuario */
-.nombre-usuario {
-    display: flex;
-    align-items: center;
-    margin-bottom: 50px;
-    justify-content: flex-start; /* Alinea a la izquierda */
-    margin-left: -400px; /* Ajusta la alineación para que coincida con el cuadro */
+/* Estilo del cuadro de perfil */
+#root > div > div.perfil-contenido > div.perfil-cuadro {
+    background-color: #fff;
+    border: 2px solid #08016f;
+    padding: 30px;  /* Aumentar el padding para dar más espacio */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Sombra ligera */
+    width: 80%;
+    max-width: 800px;
+    margin-left: 20%; /* Centrado del cuadro */
+    margin-top: 20px;
+    text-align: left;
 }
 
-/* Ajuste de la imagen de perfil */
-.foto-perfil {
+/* Estilo de los párrafos dentro del cuadro del perfil */
+#root > div > div.perfil-contenido > div.perfil-cuadro p {
+    font-size: 18px;
+    margin-bottom: 15px;  /* Espacio entre los párrafos */
+    line-height: 1.6;
+    border: none; /* Sin bordes */
+    padding: 0; /* Sin padding adicional */
+    margin: 0; /* Sin márgenes adicionales */
+}
+
+/* Estilo para los títulos en negrita dentro del cuadro */
+#root > div > div.perfil-contenido > div.perfil-cuadro strong {
+    color: #012a6f; /* Color del texto */
+    border: none;   /* Sin bordes */
+    padding: 0;     /* Sin padding extra */
+    margin: 0;      /* Sin márgenes adicionales */
+}
+
+/* Ajuste para los íconos dentro del cuadro */
+#root > div > div.perfil-contenido > div.perfil-cuadro .VisualizacionPerfil-icono {
+    margin-right: 10px;
+    color: #012a6f; /* Color del icono */
+}
+
+/* Estilo de las imágenes de perfil */
+.VisualizacionPerfil-foto-perfil {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     margin-right: 20px;
 }
 
-/* Información del usuario (nombre, carrera, foto) */
-.info-usuario h2 {
-    font-size: 36px;
+/* Estilo del nombre del usuario */
+.VisualizacionPerfil-info-usuario h2 {
+    font-size: 2vw;
     margin: 0;
     color: #012a6f;
-    text-align: left; /* Alinea el texto a la izquierda */
+    text-align: left;
 }
 
-.carrera {
+/* Ajuste para la sección de carrera */
+.VisualizacionPerfil-carrera {
     font-size: 20px;
     color: #555;
-    text-align: left; /* Alinea el texto a la izquierda */
-}
-
-/* Cuadro de información */
-.perfil-cuadro {
-    background-color: #fff;
-    border: 2px solid #012a6f;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    max-width: 800px;
-    margin-top: 20px;
-    margin-bottom: 50px;
     text-align: left;
-    margin-left: 150px; /* Asegura que ambos cuadros estén alineados */
 }
 
-/* Ajuste de los elementos dentro del cuadro */
-.perfil-cuadro p {
-    font-size: 18px;
-    margin-bottom: 10px;
-    line-height: 1.5;
-}
-
-.perfil-cuadro strong {
-    color: #012a6f;
-}
-
-/* Iconos */
-.icono {
-    margin-right: 10px;
-    color: #012a6f;
-}
-
-/* Ajustes generales para el contenedor de los componentes */
-.contenedor-perfil-cuadro {
+/* Ajuste del contenedor para foto y nombre */
+.VisualizacionPerfil-pede-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea ambos componentes a la izquierda */
-    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 80%;
     max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    margin-left: 20%;
+    margin-right: auto;
+}
+
+#root > div > div.perfil-contenido > div.nombre-usuario {
+    margin-top: 140px; /* Puedes ajustar el valor para darle más espacio */
+    margin-left: -10%;
+}
+
+
+#root > div > div.perfil-contenido > div.perfil-cuadro {
+    margin-left: -10%; /* Ajusta este valor para mover más a la derecha */
+    margin-top: 0px; 
 }

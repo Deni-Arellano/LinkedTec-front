@@ -1,7 +1,7 @@
 /* Ajuste general del contenedor */
 .VisualizacionPerfil-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Distribuye el menú y el contenido */
     justify-content: space-between; /* Distribuye el menú y el contenido */
     width: 100%;
     height: 100vh;
@@ -11,55 +11,66 @@
 /* Ajuste del contenido del perfil */
 .VisualizacionPerfil-perfil-contenido {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px; /* Espacio para que no quede tan pegado a la barra superior */
-    width: 100%;
+    flex-direction: column; /* Mantiene los elementos apilados */
+    align-items: flex-start; /* Alinea todos los elementos a la izquierda */
+    width: 100%; /* Ocupa todo el ancho */
+    padding: 20px; /* Espacio alrededor del contenido */
+}
+
+/* Contenedor para la sección de Foto y Nombre */
+.VisualizacionPerfil-pede-container {
+    display: flex; /* Utiliza flexbox para alinear la foto y el nombre */
+    align-items: center; /* Centra verticalmente la foto y el nombre */
+    margin-bottom: 20px; /* Espacio inferior para separar del cuadro */
+    width: 80%; /* Ancho ajustable (puedes cambiar este valor) */
+    max-width: 800px; /* Ancho máximo para pantallas grandes */
+    margin-left: 20%; /* Ajusta este valor para mover hacia la izquierda o derecha */
+    margin-right: auto; /* Permite centrar el contenedor */
 }
 
 /* Nombre y foto del usuario */
 .VisualizacionPerfil-nombre-usuario {
     display: flex;
-    align-items: center;
-    margin-bottom: 50px;
+    align-items: center; /* Alinea verticalmente la foto y el nombre */
     justify-content: flex-start; /* Alinea a la izquierda */
-    margin-left: -400px; /* Ajusta la alineación para que coincida con el cuadro */
+    width: 100%; /* Asegura que ocupe todo el ancho */
 }
 
 /* Ajuste de la imagen de perfil */
 .VisualizacionPerfil-foto-perfil {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-right: 20px;
+    width: 10vw; /* Tamaño proporcional */
+    height: 10vw; /* Mantiene la relación de aspecto */
+    border-radius: 50%; /* Imagen redonda */
+    margin-right: 10px; /* Espacio entre imagen y nombre */
+    max-width: 150px; /* No permito que crezca más de 150px */
+    max-height: 150px; /* No permito que crezca más de 150px */
 }
 
 /* Información del usuario (nombre, carrera, foto) */
 .VisualizacionPerfil-info-usuario h2 {
-    font-size: 36px;
+    font-size: 2.5vw; /* Ajuste proporcional */
     margin: 0;
     color: #012a6f;
-    text-align: left; /* Alinea el texto a la izquierda */
+    text-align: left; /* Alineo el texto a la izquierda */
 }
 
 .VisualizacionPerfil-carrera {
-    font-size: 20px;
+    font-size: 20px; /* Ajuste para el tamaño */
     color: #555;
-    text-align: left; /* Alinea el texto a la izquierda */
+    text-align: left; /* Alineo a la izquierda */
 }
 
 /* Cuadro de información con la especificidad */
 #root > div > div.VisualizacionPerfil-perfil-contenido > div.perfil-cuadro {
     background-color: #fff;
     border: 2px solid #08016f; /* Asegura que el borde sea visible y con color */
-    padding: 30px;
-    border-radius: 10px;
+    padding: 30px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para darle profundidad */
-    width: 60%;
-    max-width: 800px;
-    margin-bottom: 50px;
+    width: 80%; /* Ancho ajustable para el cuadro */
+    max-width: 800px; /* Ancho máximo */
+    margin: 0 auto; /* Centrado automático */
     text-align: left;
-    margin-left: 20px; /* Ajuste para alinear a la izquierda */
 }
 
 /* Ajuste de los elementos dentro del cuadro */
@@ -75,43 +86,38 @@
 
 /* Ajuste de la biografía */
 .VisualizacionPerfil-perfil-cuadro .VisualizacionPerfil-biografia {
-    min-height: 100px;
-    padding: 10px 0;
+    min-height: 100px; /* Altura mínima */
+    padding: 10px 0; /* Espacio interno */
     color: #555;
     white-space: pre-wrap;
-    word-wrap: break-word;
-    border-top: 1px solid #ddd;
+    word-wrap: break-word; /* Rompe palabras largas */
+    border-top: 1px solid #ddd; /* Línea superior sutil */
     margin-top: 10px;
 }
 
 /* Iconos */
 .VisualizacionPerfil-icono {
-    margin-right: 10px;
+    margin-right: 10px; /* Espacio a la derecha del ícono */
     color: #012a6f;
 }
 
 /* Ajustes generales para el contenedor de los componentes PEDE y Reclutador */
 .VisualizacionPerfil-contenedor-perfil-cuadro {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Los componentes irán uno debajo del otro */
     align-items: flex-start; /* Alinea ambos componentes a la izquierda */
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%; /* Ocupa todo el ancho */
+    max-width: 800px; /* Máximo ancho relativo a la ventana */
+    margin: 0 auto; /* Lo centro automáticamente */
     padding: 20px;
-    
 }
 
-/* Ajuste adicional para el contenedor PEDE */
-.VisualizacionPerfil-pede-container {
-    margin-left: -400px; /* Ajusta el valor para mover hacia la izquierda */
-}
-
-
+/* Ajuste del cuadro en la sección PEDE */
 #root > div > div.VisualizacionPerfil-perfil-contenido > div.VisualizacionPerfil-pede-container > div {
-    margin-top: 40px; /* Cambia el valor según lo que necesites */
+    margin-top: 15vh; /* Espacio ajustable y responsivo */
 }
 
+/* Ajuste del cuadro superior */
 #root > div > div.VisualizacionPerfil-perfil-contenido > div.perfil-cuadro {
     margin-top: -50px; /* Reduce este valor para acercarlo más al div superior */
 }
