@@ -52,10 +52,158 @@ const RegistroDocentes = () => {
     console.log("Academia: " + academiaSeleccionada);
     console.log("Sexo: " + sexoSeleccionado);
     console.log("Nivel de estudios: " + nivelSeleccionado);
+    if (nombre.length <2 || nombre.length > 50) {
+      console.log("El nombre debe tener entre 2 y 50 caracteres.");
+      return; 
+    }
 
+    const Caracteres_especialesn= /^[A-Za-z\s]+$/; 
+    if (!Caracteres_especialesn.test(nombre))
+    {
+      console.log("El nombre solo puede contener letras ")
+      return; 
+    }
+
+    if (nombre.trim() === '') {
+      console.log("El nombre no debe estar vacio ")
+      return; 
+    }
+
+    if (nombre.trim().length === 0) {
+      console.log("El nombre no puede tener solo espacios vacios")
+      return; 
+    }
+
+    if (/[\s]{2,}/.test(nombre)) {
+      console.log("El nombre no puede tener mas de dos espacios vacios")
+      return; 
+    }
+    
+    
+
+    /*--------------------apellido paterno-------------------------*/
+
+    if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
+      console.log("El apellido paterno debe tener entre 2 y 50 caracteres.");
+      return; 
+    }
+    const caracteres_especiales_ap = /^[A-Za-z\s]+$/;
+    if (caracteres_especiales_ap.test(apellidoPaterno)) {
+      console.log("Error: El apellido paterno solo puede contener letras y espacios.");
+      return; 
+    }
+
+    if (apellidoPaterno.trim() === '') {
+      console.log("El apellido paterno no puede estar vacío.");
+      return; 
+    }
+    if (/[\s]{2,}/.test(apellidoPaterno)) {
+      console.log("El apellido paterno no debe contener espacios consecutivos.");
+      return; 
+    }
+
+    const Caracteres_especiales_ap = /^[A-Za-z\s]+$/; 
+    if (!Caracteres_especiales_ap.test(apellidoPaterno))
+    {
+      console.log("El apellido paterno solo puede contener letras ")
+      return; 
+    }
+    /*-------------------- appellido materno-------------------------*/
+    if (apellidoMaterno.length < 2 || apellidoMaterno.length > 50) {
+      console.log("El apellido materno debe tener entre 2 y 50 caracteres.");
+      return; 
+    }
+
+    const caracteres_especiales_am = /^[A-Za-z\s]+$/;
+    if (caracteres_especiales_am.test(apellidoMaterno)) {
+      console.log("El apellido materno solo puede contener letras y espacios.");
+      return; 
+    }
+    if (/[\s]{2,}/.test(apellidoMaterno)) {
+      console.log("El apellido materno no debe contener espacios consecutivos.");
+      return; 
+    }
+
+
+    /*--------------------fecha-------------------------*/
+    const fechaIngresada = new Date(fechaNacimiento); 
+    const anioNacimiento = fechaIngresada.getFullYear(); 
+
+    const fechaActual = new Date(); 
+    const edad = fechaActual.getFullYear() - anioNacimiento; 
+    const haCumplidoAnios = (fechaActual.getMonth() > fechaIngresada.getMonth()) ||
+      (fechaActual.getMonth() === fechaIngresada.getMonth() && fechaActual.getDate() >= fechaIngresada.getDate());
+    const edadReal = haCumplidoAnios ? edad : edad - 1;
+
+    if (anioNacimiento <= 1950) {
+      console.log('El año de nacimiento debe ser mayor a 1950.');
+      return; 
+    }
+    if (edadReal < 17) {
+      console.log('Debes tener al menos 17 años.');
+      return; 
+    }
+    /*------------------telefono---------------*/
+    if (telefono.trim() === '') {
+      console.log('Error: El teléfono no puede estar vacío.');
+      return; 
+    }
+    if (telefono.length < 10 || telefono.length > 15) {
+      console.log('Error: El teléfono debe tener entre 10 y 15 caracteres.');
+      return; 
+    }
+
+  /*------------------correo---------------*/
+    if (correo.trim() === '') {
+      console.log('Error: El correo no puede estar vacío.');
+      return;
+    }
+
+    const Correoval = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (Correoval.test(correo)) {
+      console.log('Error: El formato del correo es inválido.');
+      return;
+    }
+
+  /*--------------------contraseña y confirmar-------------------------- */
+
+    
+    if (contraseña.length >= 7 && contraseña.length <= 12) {
+      console.log("La contraseña debe contener entre 8 y caracteres")
+
+
+    } 
     if (contraseña !== confirmarContraseña) {
       console.log("Las contraseñas no coinciden");
       return; 
+    }
+
+
+    if (confirmarContraseña !== contraseña) {
+      console.log("Las contraseñas no coinciden");
+      return; 
+    }
+
+    /*------------------No.empleado------------------------*/
+    const regexNoEmpleado = /^RH\d{3}$/;
+    if (!regexNoEmpleado.test(noEmpleado)) {console.log(" El No. de Empleado debe comenzar con 'RH' y estar seguido de 3 dígitos.");
+      return;
+    }
+
+    /*-------------carrera,sexo,semestre----------------- */
+    if (academiaSeleccionada === '') {
+      console.log("Error: Debes seleccionar una carrera.");
+      return;
+    }
+    
+    if (sexoSeleccionado === '') {
+      console.log("Error: Debes seleccionar un sexo.");
+      return;
+    }
+    
+    if (nivelSeleccionado=== '') {
+      console.log("Error: Debes seleccionar un semestre.");
+      return;
     }
 
     const datosEnviar={
