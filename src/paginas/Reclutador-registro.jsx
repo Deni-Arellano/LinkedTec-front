@@ -66,6 +66,109 @@ const RegistroReclutador = () => {
       return; 
     }
 
+    // some(field => !field) verifica si el campo esta vacio
+    if ([nombre].some(field => !field)) {
+      console.log("El nombre no debe quedar vacio");
+      return;
+    }
+
+    // con esto solo se permiten letras (mayúsculas y minúsculas) y espacios en blanco.
+    if (!/^[A-Za-z\s]+$/.test(nombre)) {
+      console.log("El nombre no debe contener números ni caracteres especiales");
+      return;
+    }
+
+    if ([apellidoPaterno].some(field => !field)) {
+      console.log("El apellido paterno no debe quedar vacio");
+      return;
+    }
+
+    if (!/^[A-Za-z\s]+$/.test(apellidoPaterno)) {
+      console.log("El apellido paterno no debe contener números ni caracteres especiales");
+      return;
+    }
+
+    // Si esta vacio aun lo deja pasar
+    if (apellidoMaterno && !/^[A-Za-z\s]*$/.test(apellidoMaterno)) {
+      console.log("El apellido materno no debe contener números ni caracteres especiales");
+      return;
+    }
+
+    if (!fechaNacimiento) {
+      console.log("La fecha de nacimiento no debe quedar vacía.");
+      return;
+    }
+
+    // Verificar que el año de nacimiento sea mayor a 1950
+    const obtenerAño = new Date(fechaNacimiento).getFullYear();
+    if (obtenerAño <= 1950) {
+      console.log(obtenerAño)
+      console.log("El año de nacimiento debe ser mayor a 1950.");
+      return;
+    }
+
+    // Verificar que tenga minimo 17 años
+    const añoActual = new Date().getFullYear();
+    const edad = añoActual - obtenerAño;
+    if (edad <= 17) {
+      console.log(edad)
+      console.log("Debes tener al menos 17 años.");
+      return;
+    }
+
+    if (!sexoSeleccionado) {
+      console.log("Se debe ingresar el sexo.");
+      return;
+    }
+
+    if ([telefono].some(field => !field)) {
+      console.log("El telefono no debe quedar vacio");
+      return;
+    }
+
+    // Verificar que el telefono sea solo numeros
+    if (!/^\d+$/.test(telefono)) {
+      console.log("El teléfono debe contener solo dígitos.");
+      return;
+    }
+
+    if (!correo) {
+      console.log("El correo no debe quedar vacio");
+      return;
+    }
+
+    // verificar bien el formato del correo electronico
+    const obtenerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!obtenerEmail.test(correo)) {
+      console.log("El formato del correo no es válido");
+      return;
+    }
+
+    if (!contraseña) {
+      console.log("La contraseña no debe quedar vacia");
+      return;
+    }
+
+    if (contraseña.length < 8 || contraseña.length > 12) {
+      console.log("La contraseña debe tener entre 8 y 12 caracteres");
+      return;
+    }
+
+    if (!nombreEmpresa) {
+      console.log("El nombre de la empresa no debe quedar vacia");
+      return;
+    }
+
+    if (!sede) {
+      console.log("Sede no debe quedar vacio.");
+      return;
+    }
+
+    if (!giroSeleccionado) {
+      console.log("Su giro no debe quedar vacio");
+      return;
+    }
+
     const datosEnviar={
       "usuario": {
       "nombre": nombre,
