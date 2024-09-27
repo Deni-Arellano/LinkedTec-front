@@ -18,9 +18,10 @@ const V2 = () => {
                 
                 {/* Contenedor de datos adicionales y empresa */}
                 <div className="perfil-cuadro">
+                    {/* Información del usuario */}
                     <DatosUsu_Rec />
 
-                    {/* Añadimos la empresa y giro de la empresa dentro del mismo div */}
+                    {/* Incluimos empresa y giro de la empresa dentro del mismo grupo de p */}
                     <p><FaBuilding style={{ marginRight: '10px' }} /><strong>Empresa:</strong> XYZ Corporativo</p>
                     <p><FaIndustry style={{ marginRight: '10px' }} /><strong>Giro de la Empresa:</strong> Tecnología</p>
                 </div>
