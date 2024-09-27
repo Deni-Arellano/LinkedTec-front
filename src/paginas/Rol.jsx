@@ -1,11 +1,20 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect, useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
 import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import Button from '../componetes/Button.jsx';
 import '../hojas-de-estilo/Rol.css';
 import logo from '../imagenes/Logo24.png';
+import {usuarioContext} from '../App'; 
 
 const Pagina = () => {
+
+  const {setUsuarioLog} = useContext(usuarioContext);
+    
+    useEffect(() => {
+        setUsuarioLog(null); // Restablece el contexto del usuario 
+      }, [setUsuarioLog]);
+
+
   const handleBack = () => {
     console.log("Navegando a /Rol");
     navigate('/'); 

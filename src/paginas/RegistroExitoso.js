@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const RegistroExitoso = () => {
   const navigate = useNavigate(); 
   const handleNavigate = () => {
-    console.log("Navegando a /Login");
+    console.log("Navegando a /Publicaiones");
     navigate('/publi-usuarios'); 
   };
   return (

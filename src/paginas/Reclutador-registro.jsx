@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Button from '../componetes/Button.jsx'; 
@@ -8,8 +8,16 @@ import '../hojas-de-estilo/Reclutador-registro.css';
 import Logo from '../imagenes/Logo24.png'; 
 import Textarea from '../componetes/Text-area.jsx';
 import axios from 'axios';
+import {usuarioContext} from '../App';
+
 
 const RegistroReclutador = () => {
+  const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+
+  useEffect(() => {
+    setUsuarioLog(null); // Restablece el contexto del usuario 
+  }, [setUsuarioLog]);
+
   const navigate = useNavigate(); 
 
   const handleBack = () => {
@@ -82,7 +90,10 @@ const RegistroReclutador = () => {
       
     axios.post('http://localhost:3000/usuarios/reclutadores', datosEnviar)
       .then((response) => {
+        //Muestra los datos devueltos por el servidor y agrega el id al contexto
         console.log("Respuesta del servidor:", response.data);
+        setUsuarioLog(response.data.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
+        console.log("Usuario guardado sin actualizar:", usuarioLog);
         handleNext();
       })
       .catch((error) => {

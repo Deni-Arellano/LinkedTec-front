@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
 import Etiquetas from '../componetes/Etiquetas'; 
 import BotonPublicar from '../componetes/BotonPublicarEmpleo'; 
 import '../hojas-de-estilo/PublicacionEmpleo.css'; 
 import { BsThreeDots } from "react-icons/bs";
+import {usuarioContext} from '../App';
 
 const PublicacionEmpleoNuevo = ({ datos }) => {
     const navigate = useNavigate(); 
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
 
     return (
         <>
             <MenuNavegacion /> {/* Menú de navegación */}
+            
             
             {/* Botón flotante para publicar */}
             <div className="PublicacioEmpleoNuevo-boton-flotante">
