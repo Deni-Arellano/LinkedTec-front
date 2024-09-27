@@ -155,6 +155,11 @@ const RegistroEgresado = () => {
       return;
     }
 
+    if (AñoGraduacion <= 0) {
+      console.log("El año de graduación debe ser mayor a 0?");
+      return;
+    }
+
     // Verificar si es numero entero y de 4 dígitos
     if (!/^\d{4}$/.test(AñoGraduacion)) {
       console.log("El año de graduación debe ser numero entero de 4 dígitos");
