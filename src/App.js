@@ -12,6 +12,7 @@ import PubliUsuarios from './paginas/Publicaciones';
 import VisualizacionPerfil from './paginas/VisualizacionPerfil';
 import PublicacionEmpleo from '../src/paginas/PublicacionEmpleo'
 import FormularioPublicacionEmpleo from '../src/paginas/FormularioPublicacionEmpleo'
+import V2 from './paginas/V2';
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/Perfil" element={<VisualizacionPerfil />} /> 
           <Route path="/publicacion-empleo" element={<PublicacionEmpleo />} /> 
           <Route path="/FormularioPublicacionEmpleo" element={<FormularioPublicacionEmpleo />} />
+          <Route path="/Perfil-reclutador" element={<V2 />} />
         </Routes>
       </Router>
     </usuarioContext.Provider>
