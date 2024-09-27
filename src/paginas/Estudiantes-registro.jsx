@@ -272,7 +272,7 @@ const Registro = () => {
   return (
     <div className="estudiantes-contenedor"> 
       <img src={Logo} alt="Logo" className="logo" /> 
-      <h1>Registro de Estudiante</h1>
+      <h1>Registro de estudiante</h1>
 
       <div className="estudiantes-campo">  
         <label htmlFor="nombre">Nombre(s):</label>
@@ -379,7 +379,7 @@ const Registro = () => {
       </div>
 
       <div className="estudiantes-campo">
-        <label htmlFor="noControl">No. Control:</label>
+        <label htmlFor="noControl">No. control:</label>
         <Textbox 
           id="No.Control" 
           placeholder="Número de control" 

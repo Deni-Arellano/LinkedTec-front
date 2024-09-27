@@ -260,7 +260,7 @@ const RegistroDocentes = () => {
   return (
     <div className="docentes-contenedor">  
       <img src={Logo} alt="Logo" className="logo" />
-      <h1>Registro de Docente</h1>
+      <h1>Registro de docente</h1>
 
       <div className="docentes-campo">  
         <Label htmlFor="Nombr" texto="Nombre(s):" />
@@ -293,7 +293,7 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="docentes-campo">
-        <Fecha label="Fecha de Nacimiento" 
+        <Fecha label="Fecha de nacimiento" 
         value={fechaNacimiento}
         onChange={(e) => setFechaNacimiento(e.target.value)}
         />
