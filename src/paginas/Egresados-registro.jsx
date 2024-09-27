@@ -64,6 +64,108 @@ const RegistroEgresado = () => {
       return; 
     }
 
+    if ([nombre].some(field => !field)) {
+      console.log("El nombre no debe quedar vacio");
+      return;
+    }
+
+    if (!/^[A-Za-z\s]+$/.test(nombre)) {
+      console.log("El nombre no debe contener números ni caracteres especiales");
+      return;
+    }
+
+    if ([apellidoPaterno].some(field => !field)) {
+      console.log("El apellido paterno no debe quedar vacio");
+      return;
+    }
+
+    if (!/^[A-Za-z\s]+$/.test(apellidoPaterno)) {
+      console.log("El apellido paterno no debe contener números ni caracteres especiales");
+      return;
+    }
+
+    if (apellidoMaterno && !/^[A-Za-z\s]*$/.test(apellidoMaterno)) {
+      console.log("El apellido materno no debe contener números ni caracteres especiales");
+      return;
+    }
+
+    if (!fechaNacimiento) {
+      console.log("La fecha de nacimiento no debe quedar vacía.");
+      return;
+    }
+
+    const obtenerAño = new Date(fechaNacimiento).getFullYear();
+    if (obtenerAño <= 1950) {
+      console.log(obtenerAño)
+      console.log("El año de nacimiento debe ser mayor a 1950.");
+      return;
+    }
+
+    const añoActual = new Date().getFullYear();
+    const edad = añoActual - obtenerAño;
+    if (edad <= 17) {
+      console.log(edad)
+      console.log("Debes tener al menos 17 años.");
+      return;
+    }
+
+    if (!sexoSeleccionado) {
+      console.log("Se debe ingresar el sexo.");
+      return;
+    }
+
+    if ([telefono].some(field => !field)) {
+      console.log("El telefono no debe quedar vacio");
+      return;
+    }
+
+    if (!/^\d+$/.test(telefono)) {
+      console.log("El teléfono debe contener solo dígitos.");
+      return;
+    }
+
+    if (!correo) {
+      console.log("El correo no debe quedar vacio");
+      return;
+    }
+
+    const obtenerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!obtenerEmail.test(correo)) {
+      console.log("El formato del correo no es válido");
+      return;
+    }
+
+    if (!contraseña) {
+      console.log("La contraseña no debe quedar vacia");
+      return;
+    }
+
+    if (contraseña.length < 8 || contraseña.length > 12) {
+      console.log("La contraseña debe tener entre 8 y 12 caracteres");
+      return;
+    }
+
+    if (!carreraSeleccionada) {
+      console.log("La carrera no debe quedar vacia");
+      return;
+    }
+
+    if (!AñoGraduacion) {
+      console.log("El año de graduacion no debe quedar vacio");
+      return;
+    }
+
+    // Verificar si es numero entero y de 4 dígitos
+    if (!/^\d{4}$/.test(AñoGraduacion)) {
+      console.log("El año de graduación debe ser numero entero de 4 dígitos");
+      return;
+    }
+
+    if (!Puesto) {
+      console.log("El puesto no debe quedar vacio");
+      return;
+    }
+
     const datosEnviar = {
       "usuario": {
       "nombre": nombre,
