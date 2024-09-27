@@ -1,9 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../hojas-de-estilo/CodigoVerificacion.css';
 import Button from '../componetes/Button';
+import { usuarioContext } from '../App';
+
 
 const CodigoVerificacion = () => {
+
+  const { usuarioLog} = useContext(usuarioContext);
+  console.log("Usuario en verificacion: ", usuarioLog)
   const [codigo, setCodigo] = useState(Array(6).fill(""));
   const inputsRef = useRef([]);
   const navigate = useNavigate();

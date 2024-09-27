@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Textbox from '../componetes/Caja-de-texto.jsx';
 import Textarea from '../componetes/Text-area.jsx';
 import Button from '../componetes/Button';
@@ -9,8 +9,15 @@ import Logo from '../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
 import Label from '../componetes/Etiquetas';
 import axios from 'axios';
+import {usuarioContext} from '../App';
 
 const RegistroEgresado = () => {
+  const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+
+  useEffect(() => {
+    setUsuarioLog(null); // Restablece el contexto del usuario 
+  }, [setUsuarioLog]);
+
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -83,7 +90,10 @@ const RegistroEgresado = () => {
     axios.post('http://localhost:3000/usuarios/egresados', datosEnviar)
 
     .then((response) => {
+      //Muestra los datos devueltos por el servidor y agrega el id al contexto
       console.log("Respuesta del servidor:", response.data);
+      setUsuarioLog(response.data.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
+      console.log("Usuario guardado sin actualizar:", usuarioLog);
       handleNext();
     })
     .catch((error) => {

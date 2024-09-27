@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Textarea from '../componetes/Text-area.jsx'; 
 import Button from '../componetes/Button'; 
@@ -9,8 +9,15 @@ import Label from '../componetes/Etiquetas';
 import '../hojas-de-estilo/Docentes-registro.css';
 import { useNavigate } from 'react-router-dom'; 
 import Axios from 'axios'; 
+import {usuarioContext} from '../App';
 
 const RegistroDocentes = () => {
+  const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+
+  useEffect(() => {
+    setUsuarioLog(null); // Restablece el contexto del usuario
+  }, [setUsuarioLog]);
+
   const navigate = useNavigate(); 
   const handleBack = () => {
     console.log("Navegando a /Rol");
@@ -83,7 +90,10 @@ const RegistroDocentes = () => {
 
     Axios.post('http://localhost:3000/api/docentes', datosEnviar)
     .then((response) => {
+      //Muestra los datos devueltos por el servidor y agrega el id al contexto
       console.log("Respuedsta del servidor:", response.data);
+      setUsuarioLog(response.data);
+      console.log("Usuario guardado sin actualizar:", usuarioLog);
       handleNext();
     })
     .catch((error) => {

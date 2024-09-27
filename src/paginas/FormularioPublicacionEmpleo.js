@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
 import Etiquetas from '../componetes/Etiquetas'; 
 import CajaDeTexto from '../componetes/Caja-de-texto';
 import Button from '../componetes/Button'; 
 import '../hojas-de-estilo/PaginaEmpleo.css'; 
+import {usuarioContext} from '../App';
 
 const PaginaFormulario = () => {
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
     return (
         <>
             <MenuNavegacion /> {/* Asegura que la barra de navegación funcione correctamente */}

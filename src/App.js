@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, createContext} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Pagina from '../src/paginas/Rol'; 
 import RegistroDocentes from '../src/paginas/Docentes-registro'; 
@@ -13,28 +13,30 @@ import VisualizacionPerfil from './paginas/VisualizacionPerfil';
 import PublicacionEmpleo from '../src/paginas/PublicacionEmpleo'
 import FormularioPublicacionEmpleo from '../src/paginas/FormularioPublicacionEmpleo'
 
-const usuarioContext = React.createContext(); //Contexto para poder pasar el usuario a los componentes hijos
+export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
-  const [usuario, setUsuario] = useState(null); //Estado para guardar el usuario
+  const [usuarioLog, setUsuarioLog] = useState(null); //Estado para guardar el usuario
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} /> 
-        <Route path="/Rol" element={<Pagina />} /> 
-        <Route path="/registro-estudiantes" element={<Registro />} /> 
-        <Route path="/registro-docentes" element={<RegistroDocentes />} /> 
-        <Route path="/registro-reclutador" element={<RegistroReclutador />} /> 
-        <Route path="/registro-egresado" element={<RegistroEgresado />} /> 
-        <Route path="/codigo-verificacion" element={<CodigoVerificacion />} /> 
-        <Route path="/registro-exitoso" element={<RegistroExitoso />} /> 
-        <Route path="/publi-usuarios" element={<PubliUsuarios />} /> 
-        <Route path="/Perfil" element={<VisualizacionPerfil />} /> 
-        <Route path="/publicacion-empleo" element={<PublicacionEmpleo />} /> 
-        <Route path="/FormularioPublicacionEmpleo" element={<FormularioPublicacionEmpleo />} />
-
-      </Routes>
-    </Router>
+    //Pasa a los componentes hijos el usuario
+    <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} /> 
+          <Route path="/Rol" element={<Pagina />} /> 
+          <Route path="/registro-estudiantes" element={<Registro />} /> 
+          <Route path="/registro-docentes" element={<RegistroDocentes />} /> 
+          <Route path="/registro-reclutador" element={<RegistroReclutador />} /> 
+          <Route path="/registro-egresado" element={<RegistroEgresado />} /> 
+          <Route path="/codigo-verificacion" element={<CodigoVerificacion />} /> 
+          <Route path="/registro-exitoso" element={<RegistroExitoso />} /> 
+          <Route path="/publi-usuarios" element={<PubliUsuarios />} /> 
+          <Route path="/Perfil" element={<VisualizacionPerfil />} /> 
+          <Route path="/publicacion-empleo" element={<PublicacionEmpleo />} /> 
+          <Route path="/FormularioPublicacionEmpleo" element={<FormularioPublicacionEmpleo />} />
+        </Routes>
+      </Router>
+    </usuarioContext.Provider>
   );
 }
 
