@@ -1,8 +1,8 @@
 import React from 'react';
 import '../hojas-de-estilo/VisualizacionPerfil.css';
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
-import PEDE from '../componetes/PEDE'; 
-import Reclutador from '../componetes/Reclutador';
+import FotoNombre from '../componetes/PerfilUsu_FotoNomb'; 
+import DatosUsu_Rec from '../componetes/DatosUsu_EsDoEg';
 
 const VisualizacionPerfil = () => {
     return (
@@ -12,10 +12,10 @@ const VisualizacionPerfil = () => {
             {/* Contenedor de PEDE con la clase para moverlo a la derecha */}
             <div className="VisualizacionPerfil-perfil-contenido">
                 <div className="VisualizacionPerfil-pede-container">
-                    <PEDE /> {/* Componente de arriba que muestra el nombre y la foto del usuario */}
+                    <FotoNombre /> {/* Componente de arriba que muestra el nombre y la foto del usuario */}
                 </div>
                 
-                <Reclutador /> {/* Componente que muestra el cuadro de información */}
+                <DatosUsu_Rec /> {/* Componente que muestra el cuadro de información */}
             </div>
         </div>
     );

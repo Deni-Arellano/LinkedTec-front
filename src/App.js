@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Pagina from '../src/paginas/Rol'; 
 import RegistroDocentes from '../src/paginas/Docentes-registro'; 
@@ -14,8 +14,10 @@ import PublicacionEmpleo from '../src/paginas/PublicacionEmpleo'
 import FormularioPublicacionEmpleo from '../src/paginas/FormularioPublicacionEmpleo'
 import V2 from '../src/paginas/V2' 
 
+const usuarioContext = React.createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
+  const [usuario, setUsuario] = useState(null); //Estado para guardar el usuario
   return (
     <Router>
       <Routes>

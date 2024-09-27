@@ -6,6 +6,8 @@
     height: 100vh; /* Centra el contenido verticalmente */
     padding: 20px;
     background-color: #f5f5f5; /* Color de fondo ligero */
+    margin-left: 250px; /* Espacio equivalente al ancho de la barra lateral */
+    box-sizing: border-box;
 }
 
 /* Estilos para el formulario */
@@ -16,6 +18,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    box-sizing: border-box;
 }
 
 /* Estilos para cada grupo de entrada */
@@ -46,7 +49,7 @@ select {
 
 /* Estilo para el campo de descripción */
 .fromularioempleoo-descripcion-textarea {
-    height: 100px;
+    height: 200px;
     resize: vertical;
 }
 
@@ -86,8 +89,33 @@ select:focus {
     border-color: #4CAF50; /* Resalta el borde al estar enfocado */
 }
 
+/* Título centrado */
 #fromularioempleoo-titulo-publicacion-empleo {
     display: block;
     text-align: center;
     margin-top: 30px;
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 1024px) {
+    .fromularioempleoo-container {
+        margin-left: 200px; /* Ajusta según el tamaño de la barra en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 768px) {
+    .fromularioempleoo-container {
+        margin-left: 0; /* En pantallas pequeñas, la barra podría desaparecer, centrando todo */
+    }
+}
+.fromularioempleoo-descripcion-textarea {
+    width: 100%; /* Asegura que ocupe el 100% del contenedor */
+    height: auto; /* Ajusta la altura automáticamente */
+    resize: vertical; /* Permite al usuario cambiar el tamaño verticalmente */
+    overflow-wrap: break-word; /* Hace que las palabras largas se dividan para evitar el desbordamiento */
+    word-wrap: break-word;
+    padding: 10px; /* Espacio interno para mejorar la legibilidad */
+    font-size: 14px; /* Ajusta el tamaño de la fuente */
+    border: 1px solid #ccc; /* Añade un borde */
+    border-radius: 4px; /* Bordes redondeados */
 }

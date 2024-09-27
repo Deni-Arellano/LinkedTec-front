@@ -1,9 +1,9 @@
 import React from 'react';
-import MenuNavegacion from '../componetes/MenuNavegacion'; // Asegura que la ruta sea correcta
-import Etiquetas from '../componetes/Etiquetas'; // Asegura que la ruta sea correcta
-import CajaDeTexto from '../componetes/Caja-de-texto'; // Asegura que la ruta sea correcta
-import Button from '../componetes/Button'; // Asegura que la ruta sea correcta
-import '../hojas-de-estilo/PaginaEmpleo.css'; // Verifica que el archivo CSS existe
+import MenuNavegacion from '../componetes/MenuNavegacion'; 
+import Etiquetas from '../componetes/Etiquetas'; 
+import CajaDeTexto from '../componetes/Caja-de-texto';
+import Button from '../componetes/Button'; 
+import '../hojas-de-estilo/PaginaEmpleo.css'; 
 
 const PaginaFormulario = () => {
     return (
@@ -36,7 +36,7 @@ const PaginaFormulario = () => {
                     {/* Campo para Descripción */}
                     <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Descripción:" />
-                        <CajaDeTexto id="fromularioempleoo-descripcion" className="fromularioempleoo-descripcion-textarea" multiline />
+                        <textarea id="fromularioempleoo-descripcion" className="fromularioempleoo-descripcion-textarea" rows="5" cols="50"></textarea>
                     </div>
 
                     {/* Campo para Ubicación */}

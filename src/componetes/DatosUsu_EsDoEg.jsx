@@ -2,7 +2,7 @@ import React from 'react';
 import '../hojas-de-estilo/Reclutador-registro.css';
 import { FaEnvelope, FaPhone, FaBirthdayCake, FaBriefcase, FaVenusMars } from 'react-icons/fa';  // Añadimos el icono de sexo
 
-const Reclutador = () => {
+const DatosUsu_EsDoRec = () => {
     return (
         <div className="perfil-cuadro">
             <p><FaBriefcase className="icono"/> <strong>Carrera:</strong> Ingeniería en Sistemas</p>
@@ -17,4 +17,4 @@ const Reclutador = () => {
     );
 }
 
-export default Reclutador;
+export default DatosUsu_EsDoRec;

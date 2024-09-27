@@ -34,16 +34,26 @@
     gap: 12px;
 }
 
+.MenuNavegacion-opcion-boton:hover {
+    background-color: #012a6f;
+}
+
 /* Botones de los íconos */
 .MenuNavegacion-icon-button {
-    background: none;
+    background: white;
     border: none;
     cursor: pointer;
     padding: 5px;
 }
 
+/* Cambiar el color cuando el cursor esté sobre los botones */
+.MenuNavegacion-icon-button:hover {
+    background-color: lightblue;
+}
+
 .MenuNavegacion-icon-button:focus {
     outline: none;
+    background-color: #012a6f;
 }
 
 /* Tamaño de los iconos */
