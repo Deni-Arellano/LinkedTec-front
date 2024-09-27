@@ -1,33 +1,39 @@
-/* Barra superior integrada desde MenuNavegacion */
-
 /* Contenedor de la publicación */
-.PublicacioEmpleoNuevo-publicacion-container {
-    display: box;
+.PublicacionEmpleoNuevo-publicacion-container {
+    display: flex;
     justify-content: center;
-    place-items: center;
+    align-items: center;
     padding: 80px 20px;
     margin-top: 80px;
-    margin-left: 30%;
+    /* margin-left: 30%; */ /* Ajustado para mejor responsividad */
 }
 
 /* Estilos de la publicación */
-.PublicacioEmpleoNuevo-publicacion {
+.PublicacionEmpleoNuevo-publicacion {
     background-color: white;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     max-width: 800px;
-    width: 81.8%;
+    width: 100%;
+}
+
+/* Header de la publicación */
+.PublicacionEmpleoNuevo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
 }
 
 /* Perfil */
-.PublicacioEmpleoNuevo-perfil {
+.PublicacionEmpleoNuevo-perfil {
     display: flex;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px; /* Ajustado para mejor espacio */
 }
 
-.PublicacioEmpleoNuevo-foto-perfil {
+.PublicacionEmpleoNuevo-foto-perfil {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -35,36 +41,70 @@
 }
 
 /* Nombre del usuario */
-.PublicacioEmpleoNuevo-usuario-publicacion-empleo {
+.PublicacionEmpleoNuevo-usuario-publicacion-empleo {
     font-size: 18px;
     font-weight: bold;
 }
 
+
+.mostrar-publicacion-icono-tres-puntos {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.mostrar-publicacion-opciones-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black (0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.mostrar-publicacion-opcion-boton {
+    background-color: lightblue;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.mostrar-publicacion-opcion-boton:hover {
+    background-color: #012a6f;
+}
+
 /* Título de la publicación */
-.PublicacioEmpleoNuevo-titulo-publicacion {
+.PublicacionEmpleoNuevo-titulo-publicacion {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 /* Detalles del empleo */
-.PublicacioEmpleoNuevo-detalle h2 {
+.PublicacionEmpleoNuevo-detalle h2 {
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.PublicacioEmpleoNuevo-detalle p {
+.PublicacionEmpleoNuevo-detalle p {
     margin-bottom: 5px;
     font-size: 16px;
 }
 
 /* Contenedor del botón de publicar flotante */
-.PublicacioEmpleoNuevo-boton-flotante {
+.PublicacionEmpleoNuevo-boton-flotante {
     display: flex;
     justify-content: center;
     margin-top: 10px;
     padding: 10px 0;
-    background-color: #f5f5f5;
+    background-color: white;
     position: fixed;
     top: 53px;
     right: 0;
@@ -84,10 +124,10 @@ body {
 }
 
 /* Específicos para elementos de formulario */
-.PublicacioEmpleoNuevo-textarea,
-.PublicacioEmpleoNuevo-input,
-.PublicacioEmpleoNuevo-button,
-.PublicacioEmpleoNuevo-select {
+.PublicacionEmpleoNuevo-textarea,
+.PublicacionEmpleoNuevo-input,
+.PublicacionEmpleoNuevo-button,
+.PublicacionEmpleoNuevo-select {
     /* Estilos personalizados */
     border: 1px solid #ccc;
     padding: 10px;
@@ -95,22 +135,22 @@ body {
     font-size: 16px;
 }
 
-.PublicacioEmpleoNuevo-textarea {
+.PublicacionEmpleoNuevo-textarea {
     resize: vertical;
     height: 100px; /* Altura por defecto para textarea */
 }
 
-.PublicacioEmpleoNuevo-input {
+.PublicacionEmpleoNuevo-input {
     width: 100%;
 }
 
-.PublicacioEmpleoNuevo-button {
+.PublicacionEmpleoNuevo-button {
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
 }
 
-.PublicacioEmpleoNuevo-select {
+.PublicacionEmpleoNuevo-select {
     width: 100%;
     padding: 8px;
 }
