@@ -57,6 +57,11 @@ const PublicacionEmpleoNuevo = ({ datos }) => {
                         <p><strong><Etiquetas texto="Ubicación (Estado)" />:</strong> {datos.ubicacion}</p>
                         <p><strong><Etiquetas texto="Nivel de Inglés Requerido" />:</strong> {datos.nivelIngles}</p>
                     </div>
+
+                    {/* Botón para postularse */}
+                    <div className="PublicacionEmpleoNuevo-boton-postularse-container">
+                        <button className="PublicacionEmpleoNuevo-boton-postularse">Postularse</button>
+                    </div>
                 </div>
             </div>
         </>

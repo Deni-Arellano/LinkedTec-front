@@ -5,7 +5,6 @@
     align-items: center;
     padding: 80px 20px;
     margin-top: 80px;
-    /* margin-left: 30%; */ /* Ajustado para mejor responsividad */
 }
 
 /* Estilos de la publicación */
@@ -30,7 +29,7 @@
 .PublicacionEmpleoNuevo-perfil {
     display: flex;
     align-items: center;
-    margin-bottom: 20px; /* Ajustado para mejor espacio */
+    margin-bottom: 20px;
 }
 
 .PublicacionEmpleoNuevo-foto-perfil {
@@ -45,7 +44,6 @@
     font-size: 18px;
     font-weight: bold;
 }
-
 
 .mostrar-publicacion-icono-tres-puntos {
     margin-left: auto;
@@ -98,37 +96,27 @@
     font-size: 16px;
 }
 
-/* Contenedor del botón de publicar flotante */
+/* Estilos del botón flotante de publicar */
 .PublicacionEmpleoNuevo-boton-flotante {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    padding: 10px 0;
-    background-color: white;
     position: fixed;
-    top: 53px;
-    right: 0;
-    left: 540px;
+    top: 60px;
+    right: 20px;
     z-index: 1000;
-    max-width: 800px;
-    width: calc(100% - 220px);
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 10px;
 }
 
-/* Ajustes adicionales */
+/* Estilos adicionales */
 body {
     margin: 0;
     font-family: 'sans-serif', sans-serif;
     background-color: #f5f5f5;
 }
 
-/* Específicos para elementos de formulario */
 .PublicacionEmpleoNuevo-textarea,
 .PublicacionEmpleoNuevo-input,
 .PublicacionEmpleoNuevo-button,
 .PublicacionEmpleoNuevo-select {
-    /* Estilos personalizados */
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 4px;
@@ -137,7 +125,7 @@ body {
 
 .PublicacionEmpleoNuevo-textarea {
     resize: vertical;
-    height: 100px; /* Altura por defecto para textarea */
+    height: 100px;
 }
 
 .PublicacionEmpleoNuevo-input {
@@ -153,4 +141,35 @@ body {
 .PublicacionEmpleoNuevo-select {
     width: 100%;
     padding: 8px;
+}
+
+/* Contenedor de la publicación */
+.PublicacionEmpleoNuevo-publicacion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    margin-top: 0; /* Ajustado a 0 para quitar el espacio */
+}
+
+/* Contenedor para el botón Postularse */
+.PublicacionEmpleoNuevo-boton-postularse-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Botón Postularse */
+.PublicacionEmpleoNuevo-boton-postularse {
+    background-color: #012a6f; /* Azul utilizado en el texto */
+    color: white; /* Texto blanco */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.PublicacionEmpleoNuevo-boton-postularse:hover {
+    background-color: #011c4f; /* Un azul más oscuro para el hover */
 }
