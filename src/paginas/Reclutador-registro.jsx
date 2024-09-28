@@ -194,7 +194,7 @@ const RegistroReclutador = () => {
       .then((response) => {
         //Muestra los datos devueltos por el servidor y agrega el id al contexto
         console.log("Respuesta del servidor:", response.data);
-        setUsuarioLog(response.data.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
+        setUsuarioLog(response.data.usuario.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
         console.log("Usuario guardado sin actualizar:", usuarioLog);
         handleNext();
       })
