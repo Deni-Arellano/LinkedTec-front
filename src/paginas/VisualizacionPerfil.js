@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import '../hojas-de-estilo/VisualizacionPerfil.css';
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
 import FotoNombre from '../componetes/PerfilUsu_FotoNomb'; 
-import DatosUsu_Rec from '../componetes/DatosUsu_EsDoEg';
+import DatosUsu_Rec from '../componetes/DatosUsu_Rec';
 import {usuarioContext} from '../App';
 
 const VisualizacionPerfil = () => {

@@ -4,9 +4,6 @@ import { FaEnvelope, FaPhone, FaBirthdayCake, FaVenusMars, FaBuilding, FaIndustr
 
 const DatosUsu_Rec = () => {
     return (
-        <div className="perfil-contenido">
-
-            {/* Cuadro de información del perfil */}
             <div className="perfil-cuadro">
                 <p><strong><FaBriefcase className="icono" /> Carrera:</strong> Ingeniería en Sistemas</p>
                 <p><strong><i className="icono fas fa-info-circle"></i> Biografía:</strong></p>
@@ -18,7 +15,6 @@ const DatosUsu_Rec = () => {
                 <p><strong><FaBuilding className="icono" /> Empresa:</strong> XYZ Corporativo</p>
                 <p><strong><FaIndustry className="icono" /> Giro de la Empresa:</strong> Tecnología</p>
             </div>
-        </div>
     );
 }
 
