@@ -5,13 +5,6 @@ import { FaEnvelope, FaPhone, FaBirthdayCake, FaVenusMars, FaBuilding, FaIndustr
 const DatosUsu_Rec = () => {
     return (
         <div className="perfil-contenido">
-            <div className="nombre-usuario">
-                <div className="foto-perfil">150 x 150</div> {/* Imagen de perfil */}
-                <div className="info-usuario">
-                    <h2>Deni Arellano</h2>
-                    <p className="estudiante">Estudiante</p>
-                </div>
-            </div>
 
             {/* Cuadro de información del perfil */}
             <div className="perfil-cuadro">
