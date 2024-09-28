@@ -96,25 +96,8 @@ const Registro = () => {
       console.log("El apellido paterno debe tener entre 2 y 50 caracteres.");
       return; 
     }
-    const caracteres_especiales_ap = /^[A-Za-z\s]+$/;
-    if (caracteres_especiales_ap.test(apellidoPaterno)) {
-      console.log("Error: El apellido paterno solo puede contener letras y espacios.");
-      return; 
-    }
-
     if (apellidoPaterno.trim() === '') {
       console.log("El apellido paterno no puede estar vacío.");
-      return; 
-    }
-    if (/[\s]{2,}/.test(apellidoPaterno)) {
-      console.log("El apellido paterno no debe contener espacios consecutivos.");
-      return; 
-    }
-
-    const Caracteres_especiales_ap = /^[A-Za-z\s]+$/; 
-    if (!Caracteres_especiales_ap.test(apellidoPaterno))
-    {
-      console.log("El apellido paterno solo puede contener letras ")
       return; 
     }
     /*-------------------- appellido materno-------------------------*/
@@ -122,17 +105,6 @@ const Registro = () => {
       console.log("El apellido materno debe tener entre 2 y 50 caracteres.");
       return; 
     }
-
-    const caracteres_especiales_am = /^[A-Za-z\s]+$/;
-    if (caracteres_especiales_am.test(apellidoMaterno)) {
-      console.log("El apellido materno solo puede contener letras y espacios.");
-      return; 
-    }
-    if (/[\s]{2,}/.test(apellidoMaterno)) {
-      console.log("El apellido materno no debe contener espacios consecutivos.");
-      return; 
-    }
-
 
     /*--------------------fecha-------------------------*/
     const fechaIngresada = new Date(fechaNacimiento); 
@@ -167,13 +139,6 @@ const Registro = () => {
       console.log('Error: El correo no puede estar vacío.');
       return;
     }
-
-    const Correoval = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (Correoval.test(correo)) {
-      console.log('Error: El formato del correo es inválido.');
-      return;
-    }
-
   /*--------------------contraseña y confirmar-------------------------- */
 
     
