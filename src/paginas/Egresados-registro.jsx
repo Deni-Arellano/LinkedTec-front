@@ -69,23 +69,23 @@ const RegistroEgresado = () => {
       return;
     }
 
-    if (!/^[A-Za-z\s]+$/.test(nombre)) {
-      console.log("El nombre no debe contener números ni caracteres especiales");
+    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+      console.log("El nombre no debe contener números ni caracteres especiales.");
       return;
     }
-
+    
     if ([apellidoPaterno].some(field => !field)) {
-      console.log("El apellido paterno no debe quedar vacio");
+      console.log("El apellido paterno no debe quedar vacío.");
       return;
     }
-
-    if (!/^[A-Za-z\s]+$/.test(apellidoPaterno)) {
-      console.log("El apellido paterno no debe contener números ni caracteres especiales");
+    
+    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
+      console.log("El apellido paterno no debe contener números ni caracteres especiales.");
       return;
     }
-
-    if (apellidoMaterno && !/^[A-Za-z\s]*$/.test(apellidoMaterno)) {
-      console.log("El apellido materno no debe contener números ni caracteres especiales");
+    
+    if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+      console.log("El apellido materno no debe contener números ni caracteres especiales.");
       return;
     }
 
