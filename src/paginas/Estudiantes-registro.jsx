@@ -195,7 +195,7 @@ const Registro = () => {
           'telefono': telefono,
           'sexo': sexoSeleccionado,
           'biografia': biografia,
-          'role': 'estudiante',
+          'role': 'Estudiantes',
           "imagen_usuario": ''
         },
         'estudiante': {

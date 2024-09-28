@@ -182,7 +182,7 @@ const RegistroEgresado = () => {
       "telefono": telefono,
       "sexo": sexoSeleccionado,
       "biografia": biografia,
-      "role": "Egresado", 
+      "role": "Egresados", 
       "imagen_usuario": ""
       },
       "egresado": {
