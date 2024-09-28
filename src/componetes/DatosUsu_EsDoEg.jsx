@@ -7,7 +7,7 @@ const DatosUsu_EsDoRec = () => {
         <div className="perfil-cuadro">
             <p><FaBriefcase className="icono"/> <strong>Carrera:</strong> Ingeniería en Sistemas</p>
             <p><strong>Biografía:</strong></p>
-            <p className="biografia"></p>
+            <p className="biografia">zzzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzz  zzzzzzzzzzz zzzzzzzzzzzzzzzzzz</p>
 
             <p><FaEnvelope className="icono"/> <strong>Correo:</strong> <a href="mailto:correo@gmail.com">correo@gmail.com</a></p>
             <p><FaPhone className="icono"/> <strong>Teléfono:</strong> +52 123456789</p>
