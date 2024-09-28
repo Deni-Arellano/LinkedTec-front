@@ -8,7 +8,7 @@ import { usuarioContext } from '../App';
 const CodigoVerificacion = () => {
 
   const { usuarioLog} = useContext(usuarioContext);
-  console.log("Usuario en verificacion: ", usuarioLog)
+  //console.log("Usuario en verificacion: ", usuarioLog)
   const [codigo, setCodigo] = useState(Array(6).fill(""));
   const inputsRef = useRef([]);
   const navigate = useNavigate();

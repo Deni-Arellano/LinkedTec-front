@@ -1,10 +1,14 @@
 
-import React from 'react';
+import React, {useContext} from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
 import BotonPublicar from '../componetes/BotonPublicarEmpleo'; 
 import PublicacionEmpleoNuevo from '../componetes/PublicacionEmpleo'; 
 import '../hojas-de-estilo/PublicacionEmpleo.css'; 
+import { usuarioContext } from '../App';
+
+
+
 
 const datosFicticios = {
     tituloEmpleo: 'Desarrollador Frontend',
@@ -18,6 +22,9 @@ const datosFicticios = {
 };
 
 const PublicacionEmpleo = () => {
+    const {usuarioLog} = useContext(usuarioContext);
+    //console.log("Usuario en publicacion empleo: ", usuarioLog)
+
     const navigate = useNavigate();
 
     return (

@@ -1,4 +1,4 @@
-import React, { useContext, useState, navigate } from 'react';
+import React, { useContext, useState } from 'react';
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
 import Etiquetas from '../componetes/Etiquetas'; 
 import CajaDeTexto from '../componetes/Caja-de-texto';
@@ -6,25 +6,37 @@ import Button from '../componetes/Button';
 import '../hojas-de-estilo/PaginaEmpleo.css'; 
 import {usuarioContext} from '../App';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';  
 
 const PaginaFormulario = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    //console.log("Usuario en formulario publicacion empleo: ", usuarioLog)
 
+    
     const [usuarioCreador, setUsuarioCreador] = useState(usuarioLog);
     const [tituloEmpleo, settituloEmpleo] = useState('');
     const [empresa, setempresa] = useState('');
     const [salario, setSalario] = useState('');
-    const [Descripcion, setDescripcion] = useState('');
+    const [descripcion, setDescripcion] = useState('');
     const [Ubicacion, setUbicacion] = useState('');
-    const [NivelIngles, setNivelIngles] = useState('Avanzado');
+    const [nivelIngles, setNivelIngles] = useState('Avanzado');
+
+    const navigate = useNavigate(); 
+
+
+    const handleBack = () => {
+    console.log("Navegando a /PublicacionEmpleo");
+    navigate('/publicacion-empleo'); 
+  };
+
 
     const add = () => {
         console.log('Titulo empleo: ' + tituloEmpleo)
         console.log('Empresa: ' + empresa)
         console.log('Salario: ' + salario)
-        console.log('Descripcion: ' + Descripcion)
+        console.log('Descripcion: ' + descripcion)
         console.log('Ubicacion: ' + Ubicacion)
-        console.log('Nivel de ingles: ' + NivelIngles)
+        console.log('Nivel de ingles: ' + nivelIngles)
         console.log('Usuario creador: ' + usuarioCreador)
 
         if (!tituloEmpleo) {
@@ -47,7 +59,7 @@ const PaginaFormulario = () => {
             return;
         }
 
-        if (!Descripcion) {
+        if (!descripcion) {
             console.log("La descripcion no debe estar vacia");
             return; 
         }
@@ -61,10 +73,10 @@ const PaginaFormulario = () => {
             "titulo": tituloEmpleo,
             "empresa": empresa,
             "salario": salario,
-            "descripcion": Descripcion,
+            "descripcion": descripcion,
             "ubicacion": Ubicacion,
-            "nivel_de_ingles:": NivelIngles,
-            "id_usuario": 1//usuarioCreador
+            "nivel_de_ingles": nivelIngles,
+            "id_usuario": usuarioCreador
     
         }
 
@@ -74,11 +86,11 @@ const PaginaFormulario = () => {
         .then((response) => {
             //Muestra los datos devueltos por el servidor y agrega el id al contexto
             console.log("Respuesta del servidor:", response.data);
-            setUsuarioLog(response.data.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
             console.log("Usuario guardado sin actualizar:", usuarioLog);
 
             //PONER MENSAJE EMERGENTE DE EMPLEO CREADO EXITOSAMENTE
-            navigate('/publicacion-empleo')
+            handleBack();
+            
             
           })
           .catch((error) => {
@@ -137,7 +149,7 @@ const PaginaFormulario = () => {
                         <textarea id="fromularioempleoo-descripcion" 
                         className="fromularioempleoo-descripcion-textarea" 
                         rows="5" cols="50"
-                        value={Descripcion} 
+                        value={descripcion} 
                         onChange={(e) => setDescripcion(e.target.value)}>
 
                         </textarea>
@@ -156,12 +168,12 @@ const PaginaFormulario = () => {
                     <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Nivel de Inglés requerido:" />
                         <select id="fromularioempleoo-nivel-ingles" className="fromularioempleoo-dropdown" 
-                        value={NivelIngles} 
+                        value={nivelIngles} 
                         onChange={(e) => setNivelIngles(e.target.value)}>
-                            <option value="avanzado">Avanzado</option>
-                            <option value="intermedio">Intermedio</option>
-                            <option value="basico">Básico</option>
-                            <option value="no-aplica">No aplica</option>
+                            <option value="Avanzado">Avanzado</option>
+                            <option value="Intermedio">Intermedio</option>
+                            <option value="Básico">Básico</option>
+                            <option value="No aplica">No aplica</option>
                         </select>
                     </div>
 

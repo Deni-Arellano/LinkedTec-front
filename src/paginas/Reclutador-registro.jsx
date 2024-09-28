@@ -360,7 +360,7 @@ const RegistroReclutador = () => {
           options={[
             { value: 'Comercial', label: 'Comercial' },
             { value: 'Servicio', label: 'Servicio' },
-            { value: 'Manufactura', label: 'Manufactura' },
+            { value: 'Manufacturera', label: 'Manufactura' },
             { value: 'Agricultura', label: 'Agricultura' },
           ]}
           selectedOption={giroSeleccionado}  
