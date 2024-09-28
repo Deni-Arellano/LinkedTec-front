@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/R2.css';  // Asegúrate de que el CSS esté enlazado correctamente
+import '../hojas-de-estilo/DatosUsu_Rec.css';  // Asegúrate de que el CSS esté enlazado correctamente
 import { FaEnvelope, FaPhone, FaBirthdayCake, FaVenusMars, FaBuilding, FaIndustry, FaBriefcase } from 'react-icons/fa';  // Solo íconos necesarios
 
 const DatosUsu_Rec = () => {
