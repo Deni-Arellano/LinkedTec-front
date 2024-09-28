@@ -162,7 +162,7 @@ const RegistroDocentes = () => {
     }
 
     /*------------------No.empleado------------------------*/
-    const regexNoEmpleado = /^RH\d{3}$/;
+    const regexNoEmpleado = /^\d{3}$/;
     if (!regexNoEmpleado.test(noEmpleado)) {console.log(" El No. de Empleado debe comenzar con 'RH' y estar seguido de 3 dígitos.");
       return;
     }
