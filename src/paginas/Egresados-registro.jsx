@@ -69,23 +69,23 @@ const RegistroEgresado = () => {
       return;
     }
 
-    if (!/^[A-Za-z\s]+$/.test(nombre)) {
-      console.log("El nombre no debe contener números ni caracteres especiales");
+    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+      console.log("El nombre no debe contener números ni caracteres especiales.");
       return;
     }
-
+    
     if ([apellidoPaterno].some(field => !field)) {
-      console.log("El apellido paterno no debe quedar vacio");
+      console.log("El apellido paterno no debe quedar vacío.");
       return;
     }
-
-    if (!/^[A-Za-z\s]+$/.test(apellidoPaterno)) {
-      console.log("El apellido paterno no debe contener números ni caracteres especiales");
+    
+    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
+      console.log("El apellido paterno no debe contener números ni caracteres especiales.");
       return;
     }
-
-    if (apellidoMaterno && !/^[A-Za-z\s]*$/.test(apellidoMaterno)) {
-      console.log("El apellido materno no debe contener números ni caracteres especiales");
+    
+    if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+      console.log("El apellido materno no debe contener números ni caracteres especiales.");
       return;
     }
 
@@ -182,7 +182,7 @@ const RegistroEgresado = () => {
       "telefono": telefono,
       "sexo": sexoSeleccionado,
       "biografia": biografia,
-      "role": "Egresado", 
+      "role": "Egresados", 
       "imagen_usuario": ""
       },
       "egresado": {
@@ -199,7 +199,7 @@ const RegistroEgresado = () => {
     .then((response) => {
       //Muestra los datos devueltos por el servidor y agrega el id al contexto
       console.log("Respuesta del servidor:", response.data);
-      setUsuarioLog(response.data.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
+      setUsuarioLog(response.data.usuario.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
       console.log("Usuario guardado sin actualizar:", usuarioLog);
       handleNext();
     })

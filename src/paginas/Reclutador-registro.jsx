@@ -4,7 +4,7 @@ import Textbox from '../componetes/Caja-de-texto.jsx';
 import Button from '../componetes/Button.jsx'; 
 import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import Fecha from '../componetes/Fecha.jsx'; 
-import '../hojas-de-estilo/Reclutador-registro.css'; 
+import '../hojas-de-estilo/DatosUsu_EsDoEg.css'; 
 import Logo from '../imagenes/Logo24.png'; 
 import Textarea from '../componetes/Text-area.jsx';
 import axios from 'axios';
@@ -73,24 +73,23 @@ const RegistroReclutador = () => {
     }
 
     // con esto solo se permiten letras (mayúsculas y minúsculas) y espacios en blanco.
-    if (!/^[A-Za-z\s]+$/.test(nombre)) {
-      console.log("El nombre no debe contener números ni caracteres especiales");
+    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+      console.log("El nombre no debe contener números ni caracteres especiales.");
       return;
     }
-
+    
     if ([apellidoPaterno].some(field => !field)) {
-      console.log("El apellido paterno no debe quedar vacio");
+      console.log("El apellido paterno no debe quedar vacío.");
       return;
     }
-
-    if (!/^[A-Za-z\s]+$/.test(apellidoPaterno)) {
-      console.log("El apellido paterno no debe contener números ni caracteres especiales");
+    
+    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
+      console.log("El apellido paterno no debe contener números ni caracteres especiales.");
       return;
     }
-
-    // Si esta vacio aun lo deja pasar
-    if (apellidoMaterno && !/^[A-Za-z\s]*$/.test(apellidoMaterno)) {
-      console.log("El apellido materno no debe contener números ni caracteres especiales");
+    
+    if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+      console.log("El apellido materno no debe contener números ni caracteres especiales.");
       return;
     }
 
@@ -180,7 +179,7 @@ const RegistroReclutador = () => {
       "telefono": telefono,
       "sexo": sexoSeleccionado,
       "biografia": biografia ,
-      "tipo_usuario": "Empleador",
+      "tipo_usuario": "Reclutadores",
       "imagen_usuario":""
       },
       "reclutador": {
@@ -195,7 +194,7 @@ const RegistroReclutador = () => {
       .then((response) => {
         //Muestra los datos devueltos por el servidor y agrega el id al contexto
         console.log("Respuesta del servidor:", response.data);
-        setUsuarioLog(response.data.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
+        setUsuarioLog(response.data.usuario.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
         console.log("Usuario guardado sin actualizar:", usuarioLog);
         handleNext();
       })
@@ -360,7 +359,7 @@ const RegistroReclutador = () => {
           options={[
             { value: 'Comercial', label: 'Comercial' },
             { value: 'Servicio', label: 'Servicio' },
-            { value: 'Manufactura', label: 'Manufactura' },
+            { value: 'Manufacturera', label: 'Manufactura' },
             { value: 'Agricultura', label: 'Agricultura' },
           ]}
           selectedOption={giroSeleccionado}  

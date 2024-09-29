@@ -1,0 +1,43 @@
+.mostrar-crear-comentario {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: 35%;
+    box-sizing: border-box;
+    background-color: #f6faff;
+}
+
+.texto-crear-comentario {
+    flex-grow: 1;
+    border: none;
+    border-radius: 20px;
+    border-color: black;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    background-color: #f6faff;
+    resize: none; 
+    overflow-y: auto;
+}
+
+.crear-comentario {
+    background-color: #f6faff;
+    color: gray;
+    display: block;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 10%;
+    float: right;
+}
+
+.crear-comentario:hover {
+    background-color: #f6faff !important;
+}
+
+.boton-crear-formulario{
+    width: 100%;
+}

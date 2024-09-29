@@ -60,10 +60,129 @@ const Registro = () => {
     console.log("Sexo: " + sexoSeleccionado);
     console.log("Semestre: " + semestreSeleccionado);
 
+
+    if (nombre.length <2 || nombre.length > 50) {
+      console.log("El nombre debe tener entre 2 y 50 caracteres.");
+      return; 
+    }
+
+    const Caracteres_especialesn= /^[A-Za-z\s]+$/; 
+    if (!Caracteres_especialesn.test(nombre))
+    {
+      console.log("El nombre solo puede contener letras ")
+      return; 
+    }
+
+    if (nombre.trim() === '') {
+      console.log("El nombre no debe estar vacio ")
+      return; 
+    }
+
+    if (nombre.trim().length === 0) {
+      console.log("El nombre no puede tener solo espacios vacios")
+      return; 
+    }
+
+    if (/[\s]{2,}/.test(nombre)) {
+      console.log("El nombre no puede tener mas de dos espacios vacios")
+      return; 
+    }
+    
+    
+
+    /*--------------------apellido paterno-------------------------*/
+
+    if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
+      console.log("El apellido paterno debe tener entre 2 y 50 caracteres.");
+      return; 
+    }
+    if (apellidoPaterno.trim() === '') {
+      console.log("El apellido paterno no puede estar vacío.");
+      return; 
+    }
+    /*-------------------- appellido materno-------------------------*/
+    if (apellidoMaterno.length < 2 || apellidoMaterno.length > 50) {
+      console.log("El apellido materno debe tener entre 2 y 50 caracteres.");
+      return; 
+    }
+
+    /*--------------------fecha-------------------------*/
+    const fechaIngresada = new Date(fechaNacimiento); 
+    const anioNacimiento = fechaIngresada.getFullYear(); 
+
+    const fechaActual = new Date(); 
+    const edad = fechaActual.getFullYear() - anioNacimiento; 
+    const haCumplidoAnios = (fechaActual.getMonth() > fechaIngresada.getMonth()) ||
+      (fechaActual.getMonth() === fechaIngresada.getMonth() && fechaActual.getDate() >= fechaIngresada.getDate());
+    const edadReal = haCumplidoAnios ? edad : edad - 1;
+
+    if (anioNacimiento <= 1950) {
+      console.log('El año de nacimiento debe ser mayor a 1950.');
+      return; 
+    }
+    if (edadReal < 17) {
+      console.log('Debes tener al menos 17 años.');
+      return; 
+    }
+    /*------------------telefono---------------*/
+    if (telefono.trim() === '') {
+      console.log('Error: El teléfono no puede estar vacío.');
+      return; 
+    }
+    if (telefono.length < 10 || telefono.length > 15) {
+      console.log('Error: El teléfono debe tener entre 10 y 15 caracteres.');
+      return; 
+    }
+
+  /*------------------correo---------------*/
+    if (correo.trim() === '') {
+      console.log('Error: El correo no puede estar vacío.');
+      return;
+    }
+  /*--------------------contraseña y confirmar-------------------------- */
+
+    
+    if (contraseña.length >= 7 && contraseña.length <= 12) {
+      console.log("La contraseña debe contener entre 8 y caracteres")
+
+
+    } 
     if (contraseña !== confirmarContraseña) {
       console.log("Las contraseñas no coinciden");
       return; 
     }
+
+
+    if (confirmarContraseña !== contraseña) {
+      console.log("Las contraseñas no coinciden");
+      return; 
+    }
+
+    /*------------------No.control------------------------*/
+    const regexNoControl = /^Z\d{8}$/;
+    if (!regexNoControl.test(noControl)) {console.log("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.");
+      return;
+    }
+
+    /*-------------carrera,sexo,semestre----------------- */
+    if (carreraSeleccionada === '') {
+      console.log("Error: Debes seleccionar una carrera.");
+      return;
+    }
+    
+    if (sexoSeleccionado === '') {
+      console.log("Error: Debes seleccionar un sexo.");
+      return;
+    }
+    
+    if (semestreSeleccionado === '') {
+      console.log("Error: Debes seleccionar un semestre.");
+      return;
+    }
+    
+
+
+    
 
     const datosEnviar={
         'usuario': {
@@ -76,7 +195,7 @@ const Registro = () => {
           'telefono': telefono,
           'sexo': sexoSeleccionado,
           'biografia': biografia,
-          'role': 'estudiante',
+          'role': 'Estudiantes',
           "imagen_usuario": ''
         },
         'estudiante': {
@@ -118,7 +237,7 @@ const Registro = () => {
   return (
     <div className="estudiantes-contenedor"> 
       <img src={Logo} alt="Logo" className="logo" /> 
-      <h1>Registro de Estudiante</h1>
+      <h1>Registro de estudiante</h1>
 
       <div className="estudiantes-campo">  
         <label htmlFor="nombre">Nombre(s):</label>
@@ -225,7 +344,7 @@ const Registro = () => {
       </div>
 
       <div className="estudiantes-campo">
-        <label htmlFor="noControl">No. Control:</label>
+        <label htmlFor="noControl">No. control:</label>
         <Textbox 
           id="No.Control" 
           placeholder="Número de control" 
