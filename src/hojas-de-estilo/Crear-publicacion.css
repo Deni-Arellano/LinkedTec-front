@@ -23,6 +23,13 @@
 
 .boton-imagen-crear-publicacion {
     width: 10%;
+    background-color:#798eb2;
+    
+}
+
+.boton-imagen-crear-publicacion:hover {
+    background-color: #35548b;
+    color: white;
 }
 
 .boton-contenedor-crear-publicacion {
@@ -39,6 +46,7 @@
 .botones-derecha-crear-publicacion {
     display: flex;
     gap: 10px;
+    
 }
 
 @media screen and (max-width: 768px) {
@@ -65,4 +73,13 @@
         padding: 10px;
         max-width: 100%;
     }
+}
+
+.input-imagen-crear-publicacion {
+    display: none; 
+}
+
+.boton-imagen-crear-publicacion.imagen-seleccionada {
+    background-color: #4caf50; 
+    color: white; 
 }

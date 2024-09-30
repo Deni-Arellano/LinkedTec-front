@@ -100,11 +100,6 @@ const RegistroDocentes = () => {
       return; 
     }
 
-    /*-------------------- appellido materno-------------------------*/
-    if (apellidoMaterno.length < 2 || apellidoMaterno.length > 50) {
-      console.log("El apellido materno debe tener entre 2 y 50 caracteres.");
-      return; 
-    }
 
 
     /*--------------------fecha-------------------------*/

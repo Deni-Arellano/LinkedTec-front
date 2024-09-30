@@ -101,11 +101,7 @@ const Registro = () => {
       console.log("El apellido paterno no puede estar vacío.");
       return; 
     }
-    /*-------------------- appellido materno-------------------------*/
-    if (apellidoMaterno.length < 2 || apellidoMaterno.length > 50) {
-      console.log("El apellido materno debe tener entre 2 y 50 caracteres.");
-      return; 
-    }
+
 
     /*--------------------fecha-------------------------*/
     const fechaIngresada = new Date(fechaNacimiento); 

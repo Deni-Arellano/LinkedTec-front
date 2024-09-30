@@ -218,7 +218,7 @@ const RegistroEgresado = () => {
     <div className="registro-egresado">
       <div className="egresado-contenedor">
         <img src={Logo} alt="Logo" className="logo" />
-        <h1>Registro de Egresado</h1>
+        <h1>Registro de egresado</h1>
 
         <div className="egresado-campo">
           <Label htmlFor="Nombre" texto='Nombre(s):'/>
@@ -231,7 +231,7 @@ const RegistroEgresado = () => {
           />
         </div>
         <div className="egresado-campo">
-          <Label htmlFor="ApellidoPaterno" texto='Apellido Paterno:'/>
+          <Label htmlFor="ApellidoPaterno" texto='Apellido paterno:'/>
           <Textbox 
           id="ApellidoPaterno" 
           placeholder="Apellido Paterno"
@@ -242,7 +242,7 @@ const RegistroEgresado = () => {
         </div>
 
         <div className="egresado-campo">
-          <Label htmlFor="ApellidoMaterno" texto='Apellido Materno:'/>
+          <Label htmlFor="ApellidoMaterno" texto='Apellido materno:'/>
           <Textbox 
           id="ApellidoMaterno" 
           placeholder="Apellido Materno" 
@@ -355,7 +355,7 @@ const RegistroEgresado = () => {
         </div>
 
         <div className="egresado-campo">
-          <Label htmlFor="AñoGraduacion" texto='Año de Graduación:'/>
+          <Label htmlFor="AñoGraduacion" texto='Año de graduación:'/>
           <Textbox 
           id="AñodeGraduacion"  
           placeholder="Año de Graduación" 
