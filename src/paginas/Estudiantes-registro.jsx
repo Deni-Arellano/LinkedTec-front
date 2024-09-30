@@ -59,6 +59,7 @@ const Registro = () => {
     console.log("Carrera: " + carreraSeleccionada);
     console.log("Sexo: " + sexoSeleccionado);
     console.log("Semestre: " + semestreSeleccionado);
+    
 
 
     if (nombre.length <2 || nombre.length > 50) {
@@ -139,11 +140,25 @@ const Registro = () => {
       console.log('Error: El correo no puede estar vacío.');
       return;
     }
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regexCorreo.test(correo)) {
+      console.log('Introduzca un correo electrónico válido.');
+      return;
+    }
+
   /*--------------------contraseña y confirmar-------------------------- */
 
     
     if (contraseña.length >= 7 && contraseña.length <= 12) {
       console.log("La contraseña debe contener entre 8 y caracteres")
+
+    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
+
+    if (!regexContraseña.test(contraseña)) {
+      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      return;
+      }
 
 
     } 
@@ -158,9 +173,11 @@ const Registro = () => {
       return; 
     }
 
+    
+
     /*------------------No.control------------------------*/
-    const regexNoControl = /^Z\d{8}$/;
-    if (!regexNoControl.test(noControl)) {console.log("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.");
+    const regexNoControl = /^Z\d{9}$/;
+    if (!regexNoControl.test(noControl)) {console.log("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 9 dígitos.");
       return;
     }
 
@@ -179,6 +196,7 @@ const Registro = () => {
       console.log("Error: Debes seleccionar un semestre.");
       return;
     }
+    
     
 
 
@@ -211,6 +229,8 @@ const Registro = () => {
 
 
     Axios.post('http://localhost:3000/api/estudiantes', datosEnviar)
+    
+    
 
     .then((response) => {
       //Muestra los datos devueltos por el servidor y agrega el id al contexto
@@ -228,8 +248,6 @@ const Registro = () => {
       } else {
           console.log("Error en la solicitud:", error.message);
       }
-
-
     })
     ;
   }

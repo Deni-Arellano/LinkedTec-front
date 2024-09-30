@@ -141,12 +141,28 @@ const RegistroDocentes = () => {
       return;
     }
 
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regexCorreo.test(correo)) {
+      console.log('Introduzca un correo electrónico válido.');
+      return;
+    }
+
 
   /*--------------------contraseña y confirmar-------------------------- */
 
     
     if (contraseña.length >= 7 && contraseña.length <= 12) {
       console.log("La contraseña debe contener entre 8 y caracteres")
+
+    
+    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
+
+    if (!regexContraseña.test(contraseña)) {
+      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      return;
+      }
+  
 
 
     } 
