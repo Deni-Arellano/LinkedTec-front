@@ -4,7 +4,7 @@ import '../hojas-de-estilo/Fecha.css';
 const Fecha = ({ value, onChange }) => {
     return (
         <div className="fecha-container">
-            <label htmlFor="fecha-input" className="fecha-label">Fecha de Nacimiento:</label>
+            <label htmlFor="fecha-input" className="fecha-label">Fecha de nacimiento:</label>
             <input
                 type="date"
                 id="fecha-input"

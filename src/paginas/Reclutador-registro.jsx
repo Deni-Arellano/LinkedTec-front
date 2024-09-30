@@ -212,7 +212,7 @@ const RegistroReclutador = () => {
   return (
     <div className="reclutador-contenedor">
       <img src={Logo} alt="Logo" className="logo" />
-      <h1>Registro de Reclutador</h1>
+      <h1>Registro de reclutador</h1>
 
       <div className="reclutador-campo">
         <label htmlFor="nombre">Nombre(s):</label>
@@ -330,7 +330,7 @@ const RegistroReclutador = () => {
       </div>
 
       <div className="reclutador-campo">
-        <label htmlFor="nombreEmpresa">Nombre de la Empresa:</label>
+        <label htmlFor="nombreEmpresa">Nombre de la empresa:</label>
         <Textbox 
         id="NombredelaEmpresa" 
         placeholder="Nombre de la Empresa"
