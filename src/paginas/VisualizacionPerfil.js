@@ -34,15 +34,15 @@ const VisualizacionPerfil = () => {
 
     //Actualiza los datos del perfil dependiendo su rol
     useEffect(() => {
-        if (datosUsuario.role === 'Reclutador') {
+        if (datosUsuario.role === 'Reclutadores') {
             setDatosPerfil({
                 biografia: datosUsuario.biografia,
                 correo: datosUsuario.correo,
                 telefono: datosUsuario.telefono,
                 fecha: datosUsuario.fecha_nacimiento,
                 sexo: datosUsuario.sexo,
-                empresa: datosUsuario.empresa,
-                giro: datosUsuario.giro_empresa
+                empresa: datosUsuario.nombre_empresa,
+                giro: datosUsuario.giro
             });
             console.log("Datos del perfil");
             console.log(datosPerfil);
@@ -113,9 +113,9 @@ const VisualizacionPerfil = () => {
             </div>
 
             {datosUsuario.role === 'Reclutadores' ? (
-                <DatosUsu_Rec datos={datosPerfil} /> // Renderiza si es Reclutador
+                <DatosUsu_Rec datos={datosPerfil} /> 
             ) : (
-                <DatosUsu_EsDoEg datos={datosPerfil} /> // Renderiza si es Estudiante, Egresado o Docente
+                <DatosUsu_EsDoEg datos={datosPerfil} /> 
             )}
         </div>
     </div>
