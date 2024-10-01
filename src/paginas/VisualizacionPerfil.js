@@ -5,10 +5,15 @@ import FotoNombre from '../componetes/PerfilUsu_FotoNomb';
 import DatosUsu_Rec from '../componetes/DatosUsu_Rec';
 import DatosUsu_EsDoEg from '../componetes/DatosUsu_EsDoEg';
 import {usuarioContext} from '../App';
-import axios, { Axios } from 'axios';
+import Axios from 'axios';
+import MostrarPublicacion from '../componetes/Mostrar-Publicacion';
+import EditarPublicacion from '../componetes/Editarpublicacion';
+import CrearComentario from '../componetes/CrearComentario';
+import Comentario from '../componetes/Comentario';
 
 const VisualizacionPerfil = () => {
-    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    //const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    const usuarioLog=1;
     const [datosUsuario, setDatosUsuario] = useState('');
     const [datosPerfil, setDatosPerfil] = useState('');
     const [datosEncabezado, setDatosEncabezado] = useState('')
@@ -17,7 +22,7 @@ const VisualizacionPerfil = () => {
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
             //console.log("Servidor dice")
             console.log(response.data);
             setDatosUsuario(response.data);
@@ -98,28 +103,47 @@ const VisualizacionPerfil = () => {
         
     }, [datosUsuario]);
 
+    //Ver publicaciones hechas por el usuario
+
 
 
     
 
     return (
         <div className="VisualizacionPerfil-container">
-        <MenuNavegacion />
+            <MenuNavegacion />
 
-        {/* Contenedor de PEDE con la clase para moverlo a la derecha */}
-        <div className="VisualizacionPerfil-perfil-contenido">
-            <div className="VisualizacionPerfil-pede-container">
-                <FotoNombre datos={datosEncabezado} /> {/* Componente que muestra el nombre y la foto del usuario */}
+            <div className="VisualizacionPerfil-perfil-contenido">
+                <div className="VisualizacionPerfil-pede-container">
+                    <FotoNombre datos={datosEncabezado} />
+                </div>
+
+                {datosUsuario.role === 'Reclutadores' ? (
+                    <DatosUsu_Rec datos={datosPerfil} />
+                ) : (
+                    <DatosUsu_EsDoEg datos={datosPerfil} />
+
+                )}
+
+
+                {/* Contenedor de publicaciones */}
+                <div className='conenedorPublicaciones-Usuario'>
+                    
+                    <MostrarPublicacion />
+                    <CrearComentario />
+                    <Comentario />
+                    
+                    <EditarPublicacion />
+
+
+                </div>
+
+
             </div>
 
-            {datosUsuario.role === 'Reclutadores' ? (
-                <DatosUsu_Rec datos={datosPerfil} /> 
-            ) : (
-                <DatosUsu_EsDoEg datos={datosPerfil} /> 
-            )}
+
         </div>
-    </div>
-);
+    );
 };
 
 export default VisualizacionPerfil;

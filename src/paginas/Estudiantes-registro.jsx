@@ -172,8 +172,8 @@ const Registro = () => {
     
 
     /*------------------No.control------------------------*/
-    const regexNoControl = /^Z\d{9}$/;
-    if (!regexNoControl.test(noControl)) {console.log("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 9 dígitos.");
+    const regexNoControl = /^Z\d{8}$/;
+    if (!regexNoControl.test(noControl)) {console.log("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.");
       return;
     }
 
@@ -194,10 +194,6 @@ const Registro = () => {
     }
     
     
-
-
-    
-
     const datosEnviar={
         'usuario': {
           'nombre': nombre,
