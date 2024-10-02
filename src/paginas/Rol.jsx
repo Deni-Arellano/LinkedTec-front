@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import Button from '../componetes/Button.jsx';
+import VentanaEmergente from '../componetes/VentanaEmergente.jsx'; // Importar el componente
 import '../hojas-de-estilo/Rol.css';
 import logo from '../imagenes/Logo24.png';
 import {usuarioContext} from '../App'; 
@@ -19,7 +20,9 @@ const Pagina = () => {
     console.log("Navegando a /Rol");
     navigate('/'); 
   };
+  
   const [rolSeleccionado, setRolSeleccionado] = useState(''); 
+  const [mostrarVentana, setMostrarVentana] = useState(false); // Estado para la ventana emergente
   const navigate = useNavigate(); 
 
   const opcionesRol = [
@@ -48,8 +51,12 @@ const Pagina = () => {
           break;
       }
     } else {
-      alert('Por favor selecciona un rol antes de continuar.');
+      setMostrarVentana(true); // Mostrar la ventana emergente si no hay rol seleccionado
     }
+  };
+
+  const cerrarVentana = () => {
+    setMostrarVentana(false); // Cerrar la ventana emergente
   };
 
   return (
@@ -73,6 +80,13 @@ const Pagina = () => {
           <Button texto="Atrás" onClick={handleBack}/>
           <Button texto="Siguiente" onClick={handleNext} /> 
         </div>
+
+        {/* Componente de Ventana Emergente */}
+        <VentanaEmergente 
+          mostrar={mostrarVentana} 
+          mensaje="Selecciona una opción" 
+          cerrarVentana={cerrarVentana} 
+        />
       </main>
     </div>
   );
