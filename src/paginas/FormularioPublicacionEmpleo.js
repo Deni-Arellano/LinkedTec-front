@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 const PaginaFormulario = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
     //console.log("Usuario en formulario publicacion empleo: ", usuarioLog)
+    //const usuarioLog=2;
 
     
     const [usuarioCreador, setUsuarioCreador] = useState(usuarioLog);

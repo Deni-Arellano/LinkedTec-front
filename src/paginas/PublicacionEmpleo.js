@@ -25,6 +25,8 @@ const PublicacionEmpleo = () => {
     const [datosEmpleos, setDatosEmpleos] = useState([]);
     const [componentesEmpleos, setComponentesEmpleos] = useState([]); 
 
+    
+
     //Obtiene todos los empleos
     const getEmpleos = async () => {
         try {
@@ -40,7 +42,7 @@ const PublicacionEmpleo = () => {
     const getUsuarios = async (id) => {
         try {
             const response = await axios.get(`http://localhost:3000/usuarios/${id}`);
-            console.log("Datos del usuario:", response.data);
+            //console.log("Datos del usuario:", response.data);
             return [response.data.nombre, response.data.apellido_paterno, response.data.apellido_materno, response.data.imagen_usuario];
         } catch (err) {
             console.error('Error al obtener el usuario:', err);
@@ -53,16 +55,19 @@ const PublicacionEmpleo = () => {
         getEmpleos();
     }, []);
 
+
     // Genera los componentes para cada empleo
     useEffect(() => {
         const generarComponentesEmpleos = async () => {
             const componentesEmpleosPromises = datosEmpleos.map(async (empleo) => {
                 const datosUsuario = await getUsuarios(empleo.id_usuario); 
+                
 
                 return (
                     <PublicacionEmpleoNuevo
                         key={empleo.id}
                         datos={{
+                            id_empleo: empleo.id_empleo,
                             tituloEmpleo: empleo.titulo,
                             empresa: empleo.empresa,
                             salario: empleo.salario,
@@ -72,6 +77,10 @@ const PublicacionEmpleo = () => {
                             fotoPerfil: datosUsuario[3] || 'https://via.placeholder.com/100', 
                             nombreUsuario: `${datosUsuario[0] || ''} ${datosUsuario[1] || ''} ${datosUsuario[2] || ''}`
                         }}
+
+                        onEliminar={id => {
+                            setDatosEmpleos(prevEmpleos => prevEmpleos.filter(empleo => empleo.id_empleo !== id));
+                        }}
                     />
                 );
             });
@@ -80,9 +89,9 @@ const PublicacionEmpleo = () => {
             setComponentesEmpleos(componentes); 
         };
 
-        if (datosEmpleos.length > 0) {
-            generarComponentesEmpleos();
-        }
+        
+        generarComponentesEmpleos();
+        
     }, [datosEmpleos]); 
 
     return (

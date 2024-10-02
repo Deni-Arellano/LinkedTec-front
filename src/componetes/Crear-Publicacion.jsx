@@ -8,8 +8,10 @@ import { usuarioContext } from '../App';
 import { BiImageAdd } from 'react-icons/bi';
 
 const CrearPubli = () => {
-    const [textoPubli, setTextoPubli] = useState('');
     const { usuarioLog } = useContext(usuarioContext);
+    //const usuarioLog=1;
+    const [textoPubli, setTextoPubli] = useState('');
+    
     const [image, setImage] = useState(null);
     const fileInputRef = useRef(null);
     const [imagenSeleccionada, setImagenSeleccionada] = useState(false);//Para indicar si se ha subido una imagen o no

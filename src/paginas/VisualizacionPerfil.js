@@ -7,9 +7,9 @@ import DatosUsu_EsDoEg from '../componetes/DatosUsu_EsDoEg';
 import {usuarioContext} from '../App';
 import Axios from 'axios';
 import MostrarPublicacion from '../componetes/Mostrar-Publicacion';
-import EditarPublicacion from '../componetes/Editarpublicacion';
 import CrearComentario from '../componetes/CrearComentario';
 import Comentario from '../componetes/Comentario';
+
 
 const VisualizacionPerfil = () => {
     //const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
@@ -17,6 +17,8 @@ const VisualizacionPerfil = () => {
     const [datosUsuario, setDatosUsuario] = useState('');
     const [datosPerfil, setDatosPerfil] = useState('');
     const [datosEncabezado, setDatosEncabezado] = useState('')
+    const [datosPublicaciones, setDatosPublicaciones] = useState([]);
+    const [componentesPublicaciones, setComponentesPublicaciones] = useState([]);
 
 
     //Obtener los datos del usuario logeado
@@ -103,11 +105,71 @@ const VisualizacionPerfil = () => {
         
     }, [datosUsuario]);
 
-    //Ver publicaciones hechas por el usuario
+    //Extrae todas las publicaciones que hizo el usuario
+    const getPublicacionesUsu = async () => {
+        try {
+            const response = await Axios.get(`http://localhost:3000/publicaciones/usuario/${usuarioLog}`);
+            console.log("Datos de publicaciones:", response.data);
+            setDatosPublicaciones(response.data);
+            console.log('http://localhost:3000' + response.data[0].imagen);
+        } catch (err) {
+            console.error('Error al obtener los empleos:', err);
+        }
+    };
+
+    //Manda a llamar la imagen del servidor
+
+    const getImagen = async (url) => {
+        try {
+            const response = await Axios.get(`http://localhost:3000/imagenes${url}`);
+            console.log("Imagen:", response.data);
+            return response.data;
+        } catch (err) {
+            console.error('Error al obtener la imagen:', err);
+        }
+    }
 
 
+    useEffect(() => {
+        getPublicacionesUsu();
+    }, []);
 
+
+    // Genera los componentes para cada publicacióion
+    useEffect(() => {
+        const generarComponentesPublicaciones = async () => {
+            const componentesPublicacionesPromises = datosPublicaciones.map(async (publicacion) => {
+                console.log("Datos de la publicacionñññññ", publicacion);
+                return (
+                    <MostrarPublicacion
+                        key={publicacion.id_publicacion}
+                        datos={{
+                            descripcion: publicacion.descripcion,
+                            imagen:publicacion.imagen,  
+                            fecha: publicacion.fecha,
+                            meGusta: publicacion.me_gusta,
+                            disgusta: publicacion.disgusta,
+                            fotoPerfil: datosUsuario.imagen_usuario || 'https://via.placeholder.com/100', 
+                            nombreUsuario: `${datosUsuario.nombre || ''} ${datosUsuario.apellido_paterno || ''} ${datosUsuario.apellido_materno || ''}`,
+                            id_publicacion: publicacion.id_publicacion
+                        }}
+                        
+                        onEliminar={id => {
+                            setDatosPublicaciones(prevPublicaciones => prevPublicaciones.filter(publicacion => publicacion.id_publicacion !== id));
+                        }}
+                    />
+                );
+            });
     
+            const componentes = await Promise.all(componentesPublicacionesPromises);
+            setComponentesPublicaciones(componentes); 
+        };
+    
+       
+            generarComponentesPublicaciones();
+        
+    }, [datosPublicaciones, datosUsuario]);
+
 
     return (
         <div className="VisualizacionPerfil-container">
@@ -128,14 +190,7 @@ const VisualizacionPerfil = () => {
 
                 {/* Contenedor de publicaciones */}
                 <div className='conenedorPublicaciones-Usuario'>
-                    
-                    <MostrarPublicacion />
-                    <CrearComentario />
-                    <Comentario />
-                    
-                    <EditarPublicacion />
-
-
+                    {componentesPublicaciones} 
                 </div>
 
 

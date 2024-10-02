@@ -5,58 +5,76 @@ import { BsThreeDots } from "react-icons/bs";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { MdAddComment } from "react-icons/md";
+import Axios from 'axios';
 
-const MostrarPubli = () => {
+const MostrarPubli = ({ datos, onEliminar }) => {
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
 
     const handleOpciones = () => {
         setMostrarOpciones(!mostrarOpciones);
+
     };
 
+    const formatFecha = (fechaString) => {
+        const fecha = new Date(fechaString);
+        return fecha.toLocaleDateString(); 
+    };
+
+    const eliminarPublicacion = async () => { //Elimina el empleo seleccionadop al dar en Eliminar
+        try {
+            console.log("Eliminando publicación con id:", datos.id_empleo);
+            const response = await Axios.delete(`http://localhost:3000/publicaciones/${datos.id_publicacion}`);
+            console.log(response.data);
+            //MENSAJE DE ELIMINADO CON EXITO
+            onEliminar(datos.id_publicacion);
+        } catch (err) {
+            console.error('Error al eliminar la publicación:', err);
+        }
+    }
+
     return (
+        console.log("Datos de la publicacion", datos),
         <div className="Mostrar-publicacion">
             <div className="mostrar-publicacion-header">
                 <img 
-                    src="https://via.placeholder.com/50" 
+                    src={datos.fotoPerfil || "https://via.placeholder.com/50"} 
                     alt="Profile" 
                     className="mostrar-publicacion-imagen-perfil" 
                 />
-                <Texto texto={'Nombre'}/>
+                <Texto texto={datos.nombreUsuario} />
                 
-                <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} 
-                />
+                <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} />
                 {mostrarOpciones && (
                     <div className="mostrar-publicacion-opciones-dropdown">
                         <button className="mostrar-publicacion-opcion-boton">Editar</button>
-                        <button className="mostrar-publicacion-opcion-boton">Eliminar</button>
+                        <button className="mostrar-publicacion-opcion-boton" onClick={eliminarPublicacion}>Eliminar</button>
                     </div>
                 )}
-                
             </div>
             <div className="Fecha-mostrar-publicacion">
-                <Texto tamano={15} texto={'Publicado el:'} />
+                <Texto tamano={15} texto={`Publicado el: ${formatFecha(datos.fecha) || ''}`} />
             </div>
             <div className="mostrar-publicacion-contenido">
                 <div className="mostrar-publicacion-texto">
                     <div className="mostrar-publicacion-descripcion">
-                        <Texto texto={'Descripcion de la publicacion'}/>
+                        <Texto texto={datos.descripcion} />
                     </div>
                 </div>
                 <img 
-                    src="https://via.placeholder.com/300" 
+                    src={datos.imagen || "https://via.placeholder.com/300"} 
                     alt="Post" 
                     className="mostrar-publicacion-imagen" 
                 />
             </div>
             <div className="mostrar-publicacion-botones">
                 <button className="mostrar-publicacion-megusta">
-                    <AiFillLike  size={30}/>
+                    <AiFillLike size={30} /> {datos.meGusta || 0}
                 </button>
                 <button className="mostrar-publicacion-medisgusta">
-                    <AiFillDislike  size={30}/>
+                    <AiFillDislike size={30} /> {datos.disgusta || 0}
                 </button>
                 <button className="mostrar-publicacion-comentar">
-                    <MdAddComment size={30}/>
+                    <MdAddComment size={30} />
                 </button>
             </div>
         </div>

@@ -4,14 +4,28 @@ import { BsThreeDots } from "react-icons/bs";
 import Etiquetas from '../componetes/Etiquetas';
 import '../hojas-de-estilo/PublicacionEmpleo.css';
 import { usuarioContext } from '../App';
+import Axios from 'axios';
 
-const PublicacionEmpleoNuevo = ({ datos }) => {
+const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
+    console.log("Datos de la publicacion", datos);
     const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
 
     const handleOpciones = () => {
         setMostrarOpciones(!mostrarOpciones);
     };
+
+    const eliminarPublicacionEmpleo = async () => { //Elimioina el empleo seleccionadop al dar en Eliminar
+        try {
+            console.log("Eliminando publicación con id:", datos.id_empleo);
+            const response = await Axios.delete(`http://localhost:3000/empleos/${datos.id_empleo}`);
+            console.log(response.data);
+            //MENSAJE DE ELIMINADO CON EXITO
+            onEliminar(datos.id_empleo);
+        } catch (err) {
+            console.error('Error al eliminar la publicación:', err);
+        }
+    }
 
     return (
         <div className="PublicacionEmpleoNuevo-publicacion-container">
@@ -31,7 +45,7 @@ const PublicacionEmpleoNuevo = ({ datos }) => {
                     {mostrarOpciones && (
                         <div className="mostrar-publicacion-opciones-dropdown">
                             <button className="mostrar-publicacion-opcion-boton">Editar</button>
-                            <button className="mostrar-publicacion-opcion-boton">Eliminar</button>
+                            <button className="mostrar-publicacion-opcion-boton" onClick={eliminarPublicacionEmpleo}>Eliminar</button>
                         </div>
                     )}
                 </div>
