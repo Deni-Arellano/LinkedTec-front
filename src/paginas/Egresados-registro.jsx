@@ -145,6 +145,12 @@ const RegistroEgresado = () => {
       return;
     }
 
+    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
+    if (!regexContraseña.test(contraseña)) {
+      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      return;
+    }
+
     if (!carreraSeleccionada) {
       console.log("La carrera no debe quedar vacia");
       return;
@@ -193,6 +199,26 @@ const RegistroEgresado = () => {
      }
 
     console.log(datosEnviar);
+
+    axios
+    .get("http://localhost:3000/usuarios/egresados", {
+      params: { correo, telefono },
+    })
+    .then((response) => {
+      if (response.data.existeCorreo) {
+        console.log("El correo ya está registrado.");
+        return;
+      }
+    
+      if (response.data.existeTelefono) {
+        console.log("El teléfono ya está registrado.");
+        return;
+      }
+
+    })
+    .catch((error) => {
+      console.error("Error al validar el correo o teléfono:", error);
+    });
 
     axios.post('http://localhost:3000/usuarios/egresados', datosEnviar)
 

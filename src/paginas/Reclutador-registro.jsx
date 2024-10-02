@@ -153,6 +153,12 @@ const RegistroReclutador = () => {
       return;
     }
 
+    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
+    if (!regexContraseña.test(contraseña)) {
+      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      return;
+    }
+
     if (!nombreEmpresa) {
       console.log("El nombre de la empresa no debe quedar vacia");
       return;
@@ -189,7 +195,27 @@ const RegistroReclutador = () => {
       "giro": giroSeleccionado
       }
       }
-      
+
+    axios
+    .get("http://localhost:3000/usuarios/reclutadores", {
+      params: { correo, telefono },
+    })
+    .then((response) => {
+      if (response.data.existeCorreo) {
+        console.log("El correo ya está registrado.");
+        return;
+      }
+    
+      if (response.data.existeTelefono) {
+        console.log("El teléfono ya está registrado.");
+        return;
+      }
+
+    })
+    .catch((error) => {
+      console.error("Error al validar el correo o teléfono:", error);
+    });
+    
     axios.post('http://localhost:3000/usuarios/reclutadores', datosEnviar)
       .then((response) => {
         //Muestra los datos devueltos por el servidor y agrega el id al contexto
