@@ -41,6 +41,7 @@ const VisualizacionPerfil = () => {
 
     //Actualiza los datos del perfil dependiendo su rol
     useEffect(() => {
+        const urlApi = 'http://localhost:3000'
         if (datosUsuario.role === 'Reclutadores') {
             setDatosPerfil({
                 biografia: datosUsuario.biografia,
@@ -81,25 +82,25 @@ const VisualizacionPerfil = () => {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Reclutador',
-                foto: datosUsuario.imagen_usuario
+                foto: urlApi+datosUsuario.imagen_usuario
             });
         } else if (datosUsuario.role === 'Estudiantes') {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Estudiante',
-                foto: datosUsuario.imagen_usuario
+                foto: urlApi+datosUsuario.imagen_usuario
             });
         } else if (datosUsuario.role === 'Egresados') {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Egresado',
-                foto: datosUsuario.imagen_usuario
+                foto: urlApi+datosUsuario.imagen_usuario
             });
         } else {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Docente',
-                foto: datosUsuario.imagen_usuario
+                foto: urlApi+datosUsuario.imagen_usuario
             });
         }
         
@@ -115,20 +116,7 @@ const VisualizacionPerfil = () => {
         } catch (err) {
             console.error('Error al obtener los empleos:', err);
         }
-    };
-
-    //Manda a llamar la imagen del servidor
-
-    const getImagen = async (url) => {
-        try {
-            const response = await Axios.get(`http://localhost:3000/imagenes${url}`);
-            console.log("Imagen:", response.data);
-            return response.data;
-        } catch (err) {
-            console.error('Error al obtener la imagen:', err);
-        }
-    }
-
+    };  
 
     useEffect(() => {
         getPublicacionesUsu();

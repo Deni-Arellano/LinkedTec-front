@@ -215,7 +215,9 @@ const Registro = () => {
 
     console.log(datosEnviar);
 
-    axios.post('http://localhost:3000/usuarios/estudiantes', datosEnviar)
+
+
+    Axios.post('http://localhost:3000/api/estudiantes', datosEnviar)
     
     
 
