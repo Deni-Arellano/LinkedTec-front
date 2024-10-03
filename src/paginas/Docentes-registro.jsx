@@ -217,7 +217,7 @@ const RegistroDocentes = () => {
 
     console.log(datosEnviar);
 
-    Axios.post('http://localhost:3000/api/docentes', datosEnviar)
+    Axios.post('http://localhost:3000/usuarios/docentes', datosEnviar)
     .then((response) => {
       //Muestra los datos devueltos por el servidor y agrega el id al contexto
       console.log("Respuedsta del servidor:", response.data);

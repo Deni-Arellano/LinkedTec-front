@@ -7,8 +7,11 @@ import '../hojas-de-estilo/Estudiantes-registro.css';
 import Logo from '../imagenes/Logo24.png'; 
 import Textarea from '../componetes/Text-area.jsx';
 import { useNavigate } from 'react-router-dom';  
-import Axios from 'axios';
 import {usuarioContext} from '../App';
+
+import axios from 'axios';
+
+
 
 const Registro = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
@@ -147,30 +150,22 @@ const Registro = () => {
 
     
     if (contraseña.length >= 7 && contraseña.length <= 12) {
-      console.log("La contraseña debe contener entre 8 y caracteres")
-
+      console.log("La contraseña debe contener entre 8 y 12 caracteres")
+    }
     const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
 
     if (!regexContraseña.test(contraseña)) {
       console.log("La contraseña debe incluir letras, números y caracteres especiales.");
       return;
-      }
-
-
     } 
     if (contraseña !== confirmarContraseña) {
       console.log("Las contraseñas no coinciden");
       return; 
     }
-
-
     if (confirmarContraseña !== contraseña) {
       console.log("Las contraseñas no coinciden");
       return; 
     }
-
-    
-
     /*------------------No.control------------------------*/
     const regexNoControl = /^Z\d{8}$/;
     if (!regexNoControl.test(noControl)) {console.log("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.");
@@ -192,6 +187,8 @@ const Registro = () => {
       console.log("Error: Debes seleccionar un semestre.");
       return;
     }
+
+    
     
     
     const datosEnviar={
@@ -218,9 +215,7 @@ const Registro = () => {
 
     console.log(datosEnviar);
 
-
-
-    Axios.post('http://localhost:3000/api/estudiantes', datosEnviar)
+    axios.post('http://localhost:3000/usuarios/estudiantes', datosEnviar)
     
     
 
@@ -232,6 +227,16 @@ const Registro = () => {
       handleNext();
     })
     .catch((error) => {
+
+
+      if (error.message === 'Network Error') {
+
+        console.log("Error de red: No se pudo conectar al servidor. Verifica tu conexión.");
+      }
+
+      if (error.message ==='Network Error') {
+        console.log("Error: se intento  conectar a el servidor, pero no puede establecer la conexión. ");
+      }
       if (error.response) {
           console.log("Error de respuesta del servidor:", error.response.data);
           console.log("Código de estado:", error.response.status);
