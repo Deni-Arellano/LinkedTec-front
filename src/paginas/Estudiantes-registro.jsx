@@ -217,7 +217,7 @@ const Registro = () => {
 
 
 
-    Axios.post('http://localhost:3000/api/estudiantes', datosEnviar)
+    Axios.post('http://localhost:3000/usuarios/estudiantes', datosEnviar)
     
     
 
