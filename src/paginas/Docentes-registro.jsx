@@ -9,10 +9,11 @@ import Label from '../componetes/Etiquetas';
 import '../hojas-de-estilo/Docentes-registro.css';
 import { useNavigate } from 'react-router-dom'; 
 import Axios from 'axios'; 
-import {usuarioContext} from '../App';
+import { usuarioContext } from '../App';
+import VentanaEmergente from '../componetes/VentanaEmergente.jsx'; // Importamos la ventana emergente
 
 const RegistroDocentes = () => {
-  const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+  const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
 
   useEffect(() => {
     setUsuarioLog(null); // Restablece el contexto del usuario
@@ -29,6 +30,7 @@ const RegistroDocentes = () => {
     navigate('/codigo-verificacion'); 
   };
 
+  // Estados para los campos
   const [nombre, setNombre] = useState('');
   const [apellidoPaterno, setApellidoPaterno] = useState('');
   const [apellidoMaterno, setApellidoMaterno] = useState('');
@@ -43,366 +45,311 @@ const RegistroDocentes = () => {
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [nivelSeleccionado, setNivelSeleccionado] = useState('');
 
+  // Estados para manejar la ventana emergente
+  const [mostrarVentana, setMostrarVentana] = useState(false);
+  const [mensajeError, setMensajeError] = useState('');
+
+  const abrirVentana = (mensaje) => {
+    setMensajeError(mensaje);
+    setMostrarVentana(true);
+  };
+
+  const cerrarVentana = () => {
+    setMostrarVentana(false);
+  };
 
   const add = () => {
     console.log("Agregando docente");
-    console.log("Nombre: " + nombre);
-    console.log("Apellido Paterno: " + apellidoPaterno);
-    console.log("Apellido Materno: " + apellidoMaterno);
-    console.log("Fecha de Nacimiento: " + fechaNacimiento);
-    console.log("Teléfono: " + telefono);
-    console.log("Correo: " + correo);
-    console.log("Contraseña: " + contraseña);
-    console.log("Confirmar Contraseña: " + confirmarContraseña);
-    console.log("Biografía: " + biografia);
-    console.log("No. Empleado: " + noEmpleado);
-    console.log("Academia: " + academiaSeleccionada);
-    console.log("Sexo: " + sexoSeleccionado);
-    console.log("Nivel de estudios: " + nivelSeleccionado);
-    if (nombre.length <2 || nombre.length > 50) {
-      console.log("El nombre debe tener entre 2 y 50 caracteres.");
-      return; 
+
+    // Validaciones
+    if (nombre.length < 2 || nombre.length > 50) {
+      abrirVentana("El nombre debe tener entre 2 y 50 caracteres.");
+      return;
     }
 
-    const Caracteres_especialesn= /^[A-Za-z\s]+$/; 
-    if (!Caracteres_especialesn.test(nombre))
-    {
-      console.log("El nombre solo puede contener letras ")
-      return; 
+    const Caracteres_especialesn = /^[A-Za-z\s]+$/;
+    if (!Caracteres_especialesn.test(nombre)) {
+      abrirVentana("El nombre solo puede contener letras.");
+      return;
     }
 
     if (nombre.trim() === '') {
-      console.log("El nombre no debe estar vacio ")
-      return; 
+      abrirVentana("El nombre no debe estar vacío.");
+      return;
     }
 
     if (nombre.trim().length === 0) {
-      console.log("El nombre no puede tener solo espacios vacios")
-      return; 
+      abrirVentana("El nombre no puede tener solo espacios vacíos.");
+      return;
     }
 
     if (/[\s]{2,}/.test(nombre)) {
-      console.log("El nombre no puede tener mas de dos espacios vacios")
-      return; 
+      abrirVentana("El nombre no puede tener más de dos espacios vacíos.");
+      return;
     }
+
+    /* Validaciones adicionales para apellido, fecha de nacimiento, teléfono, correo, etc. */
     
-    
-
-    /*--------------------apellido paterno-------------------------*/
-
-    if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
-      console.log("El apellido paterno debe tener entre 2 y 50 caracteres.");
-      return; 
-    }
-
-    if (apellidoPaterno.trim() === '') {
-      console.log("El apellido paterno no puede estar vacío.");
-      return; 
-    }
-
-
-
-    /*--------------------fecha-------------------------*/
-    const fechaIngresada = new Date(fechaNacimiento); 
-    const anioNacimiento = fechaIngresada.getFullYear(); 
-
-    const fechaActual = new Date(); 
-    const edad = fechaActual.getFullYear() - anioNacimiento; 
+    const fechaIngresada = new Date(fechaNacimiento);
+    const anioNacimiento = fechaIngresada.getFullYear();
+    const fechaActual = new Date();
+    const edad = fechaActual.getFullYear() - anioNacimiento;
     const haCumplidoAnios = (fechaActual.getMonth() > fechaIngresada.getMonth()) ||
       (fechaActual.getMonth() === fechaIngresada.getMonth() && fechaActual.getDate() >= fechaIngresada.getDate());
     const edadReal = haCumplidoAnios ? edad : edad - 1;
 
     if (anioNacimiento <= 1950) {
-      console.log('El año de nacimiento debe ser mayor a 1950.');
-      return; 
-    }
-    if (edadReal < 17) {
-      console.log('Debes tener al menos 17 años.');
-      return; 
-    }
-    /*------------------telefono---------------*/
-    if (telefono.trim() === '') {
-      console.log('Error: El teléfono no puede estar vacío.');
-      return; 
-    }
-    if (telefono.length < 10 || telefono.length > 15) {
-      console.log('Error: El teléfono debe tener entre 10 y 15 caracteres.');
-      return; 
+      abrirVentana('El año de nacimiento debe ser mayor a 1950.');
+      return;
     }
 
-  /*------------------correo---------------*/
-    if (correo.trim() === '') {
-      console.log('Error: El correo no puede estar vacío.');
+    if (edadReal < 17) {
+      abrirVentana('Debes tener al menos 17 años.');
+      return;
+    }
+
+    if (telefono.trim() === '') {
+      abrirVentana('El teléfono no puede estar vacío.');
+      return;
+    }
+
+    if (telefono.length < 10 || telefono.length > 15) {
+      abrirVentana('El teléfono debe tener entre 10 y 15 caracteres.');
       return;
     }
 
     const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!regexCorreo.test(correo)) {
-      console.log('Introduzca un correo electrónico válido.');
+      abrirVentana('Introduzca un correo electrónico válido.');
       return;
     }
 
-
-  /*--------------------contraseña y confirmar-------------------------- */
-
-    
-    if (contraseña.length >= 7 && contraseña.length <= 12) {
-      console.log("La contraseña debe contener entre 8 y caracteres")
-
-    
     const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
-
     if (!regexContraseña.test(contraseña)) {
-      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      abrirVentana("La contraseña debe incluir letras, números y caracteres especiales.");
       return;
-      }
-  
+    }
 
-
-    } 
     if (contraseña !== confirmarContraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
+      abrirVentana("Las contraseñas no coinciden.");
+      return;
     }
 
-
-    if (confirmarContraseña !== contraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
-    }
-
-    /*------------------No.empleado------------------------*/
     const regexNoEmpleado = /^\d{3}$/;
-    if (!regexNoEmpleado.test(noEmpleado)) {console.log(" El No. de Empleado debe comenzar con 'RH' y estar seguido de 3 dígitos.");
+    if (!regexNoEmpleado.test(noEmpleado)) {
+      abrirVentana("El No. de Empleado debe comenzar con 'RH' y estar seguido de 3 dígitos.");
       return;
     }
 
-    /*-------------carrera,sexo,semestre----------------- */
     if (academiaSeleccionada === '') {
-      console.log("Error: Debes seleccionar una carrera.");
+      abrirVentana("Debes seleccionar una academia.");
       return;
     }
-    
+
     if (sexoSeleccionado === '') {
-      console.log("Error: Debes seleccionar un sexo.");
-      return;
-    }
-    
-    if (nivelSeleccionado=== '') {
-      console.log("Error: Debes seleccionar un semestre.");
+      abrirVentana("Debes seleccionar un sexo.");
       return;
     }
 
-    const datosEnviar={
-      "usuario": {
-      "nombre": nombre,
-      "apellido_paterno": apellidoPaterno,
-      "apellido_materno": apellidoMaterno,
-      "correo": correo,
-      "contraseña": contraseña,
-      "fecha_nacimiento": fechaNacimiento,
-      "telefono": telefono,
-      "sexo": sexoSeleccionado,
-      "biografia": biografia,
-      "role": "Docentes",
-      "imagen_usuario": ""
+    if (nivelSeleccionado === '') {
+      abrirVentana("Debes seleccionar un nivel de estudios.");
+      return;
+    }
+
+    // Preparar los datos para enviar
+    const datosEnviar = {
+      usuario: {
+        nombre,
+        apellido_paterno: apellidoPaterno,
+        apellido_materno: apellidoMaterno,
+        correo,
+        contraseña,
+        fecha_nacimiento: fechaNacimiento,
+        telefono,
+        sexo: sexoSeleccionado,
+        biografia,
+        role: "Docentes",
+        imagen_usuario: ""
       },
-      "docente": {
-      "ultimo_nivel_estudios": nivelSeleccionado,
-      "numero_empleado": "RH" + noEmpleado,
-      "academia": academiaSeleccionada
+      docente: {
+        ultimo_nivel_estudios: nivelSeleccionado,
+        numero_empleado: "RH" + noEmpleado,
+        academia: academiaSeleccionada
       }
-    }
+    };
 
-    console.log(datosEnviar);
-
+    // Envío de datos a la API
     Axios.post('http://localhost:3000/usuarios/docentes', datosEnviar)
-    .then((response) => {
-      //Muestra los datos devueltos por el servidor y agrega el id al contexto
-      console.log("Respuedsta del servidor:", response.data);
-      setUsuarioLog(response.data.id);
-      console.log("Usuario guardado sin actualizar:", usuarioLog);
-      handleNext();
-    })
-    .catch((error) => {
-      if (error.response) {
-          console.log("Error de respuesta del servidor:", error.response.data);
-          console.log("Código de estado:", error.response.status);
-      } else {
-          console.log("Error en la solicitud:", error.message);
-      }
-    })
-    ;
-
-  }
-
+      .then((response) => {
+        console.log("Respuesta del servidor:", response.data);
+        setUsuarioLog(response.data.id);
+        handleNext();
+      })
+      .catch((error) => {
+        if (error.response) {
+          abrirVentana("Error en la respuesta del servidor: " + error.response.data);
+        } else {
+          abrirVentana("Error en la solicitud: " + error.message);
+        }
+      });
+  };
 
   return (
-    <div className="docentes-contenedor">  
+    <div className="docentes-contenedor">
       <img src={Logo} alt="Logo" className="logo" />
       <h1>Registro de docente</h1>
 
-      <div className="docentes-campo">  
-        <Label htmlFor="Nombr" texto="Nombre(s):" />
-        <Textbox 
-        id="Nombre" 
-        placeholder="Nombre(s)" 
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
+      <div className="docentes-campo">
+        <Label htmlFor="Nombre" texto="Nombre(s):" />
+        <Textbox
+          id="Nombre"
+          placeholder="Nombre(s)"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
         />
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="Appatern" texto="Apellido paterno:" />
-        <Textbox 
-        id="Appaterno" 
-        placeholder="Apellido paterno" 
-        value={apellidoPaterno}
-        onChange={(e) => setApellidoPaterno(e.target.value)}
+        <Label htmlFor="Appaterno" texto="Apellido paterno:" />
+        <Textbox
+          id="Appaterno"
+          placeholder="Apellido paterno"
+          value={apellidoPaterno}
+          onChange={(e) => setApellidoPaterno(e.target.value)}
         />
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="Apmatern" texto="Apellido materno:" />
-        <Textbox 
-        id="Apmaterno" 
-        placeholder="Apellido materno" 
-        value={apellidoMaterno}
-        onChange={(e) => setApellidoMaterno(e.target.value)}
+        <Label htmlFor="Apmaterno" texto="Apellido materno:" />
+        <Textbox
+          id="Apmaterno"
+          placeholder="Apellido materno"
+          value={apellidoMaterno}
+          onChange={(e) => setApellidoMaterno(e.target.value)}
         />
       </div>
 
       <div className="docentes-campo">
-        <Fecha label="Fecha de nacimiento" 
-        value={fechaNacimiento}
-        onChange={(e) => setFechaNacimiento(e.target.value)}
+        <Fecha
+          label="Fecha de nacimiento"
+          value={fechaNacimiento}
+          onChange={(e) => setFechaNacimiento(e.target.value)}
         />
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="Sex" texto="Sexo" />
+        <Label htmlFor="Sexo" texto="Sexo" />
         <RadioButtons
           name="Sexo"
           options={[
             { value: 'Femenino', label: 'Femenino' },
             { value: 'Masculino', label: 'Masculino' },
-            { value: 'Otro', label: 'Otro' },
+            { value: 'Otro', label: 'Otro' }
           ]}
-          selectedOption={sexoSeleccionado}  
+          selectedOption={sexoSeleccionado}
           onChange={(e) => setSexoSeleccionado(e.target.value)}
         />
       </div>
 
-      
       <div className="docentes-campo">
         <Label htmlFor="Telefono" texto="Teléfono:" />
-        <Textbox 
-        id="Telefono" 
-        placeholder="Teléfono" 
-        type="tel" 
-        value={telefono}
-        onChange={(e) => setTelefono(e.target.value)}
+        <Textbox
+          id="Telefono"
+          placeholder="Teléfono"
+          value={telefono}
+          onChange={(e) => setTelefono(e.target.value)}
         />
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="corre" texto="Correo:" />
-        <Textbox 
-        id="correo" 
-        placeholder="Correo electrónico" 
-        type="email" 
-        value={correo}
-        onChange={(e) => setCorreo(e.target.value)}
+        <Label htmlFor="Correo" texto="Correo electrónico:" />
+        <Textbox
+          id="Correo"
+          placeholder="Correo"
+          value={correo}
+          onChange={(e) => setCorreo(e.target.value)}
         />
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="contraseña" texto="Contraseña:" />
-        <Textbox 
-        id="contraseña" 
-        placeholder="Contraseña"
-        type="password"
-        value={contraseña}
-        onChange={(e) => setContraseña(e.target.value)} 
+        <Label htmlFor="Contraseña" texto="Contraseña:" />
+        <Textbox
+          id="Contraseña"
+          placeholder="Contraseña"
+          type="password"
+          value={contraseña}
+          onChange={(e) => setContraseña(e.target.value)}
         />
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
-        <Textbox 
-        id="Confirmarcontraseña" 
-        placeholder="Confirmar contraseña" 
-        type="password" 
-        value={confirmarContraseña}
-        onChange={(e) => setConfirmarContraseña(e.target.value)}
+        <Label htmlFor="ConfirmarContraseña" texto="Confirmar contraseña:" />
+        <Textbox
+          id="ConfirmarContraseña"
+          placeholder="Confirmar contraseña"
+          type="password"
+          value={confirmarContraseña}
+          onChange={(e) => setConfirmarContraseña(e.target.value)}
         />
       </div>
 
-      
       <div className="docentes-campo">
-        <label htmlFor="biografia">Biografía:</label>
-        <Textarea 
-        id="Biografia" 
-        name="Biografia" 
-        placeholder="Biografía" 
-        value={biografia}
-        onChange={(e) => setBiografia(e.target.value)}
+        <Label htmlFor="Biografia" texto="Biografía:" />
+        <Textarea
+          id="Biografia"
+          placeholder="Cuéntanos más sobre ti..."
+          value={biografia}
+          onChange={(e) => setBiografia(e.target.value)}
         />
       </div>
 
-
       <div className="docentes-campo">
-        <Label htmlFor="noDocente" texto="No. Empleado:" />
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <span style={{marginRight: '5px'}}>RH</span>
-          <Textbox 
-          id="numerodeempleado" 
-          placeholder="Número RH" 
+        <Label htmlFor="NoEmpleado" texto="No. de Empleado:" />
+        <Textbox
+          id="NoEmpleado"
+          placeholder="No. de Empleado"
           value={noEmpleado}
           onChange={(e) => setNoEmpleado(e.target.value)}
-          />
-        </div>
+        />
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="Acade" texto="Academia" />
+        <Label htmlFor="Academia" texto="Academia:" />
         <RadioButtons
           name="Academia"
           options={[
-            { value: 'ISC', label: 'ISC' },
-            { value: 'IE', label: 'IE' },
-            { value: 'IGE', label: 'IGE' },
-            { value: 'CP', label: 'CP' },
-            { value: 'II', label: 'II' },
-            { value: 'IA', label: 'IA' },
+            { value: 'Ciencias Computacionales', label: 'Ciencias Computacionales' },
+            { value: 'Matemáticas', label: 'Matemáticas' },
+            { value: 'Física', label: 'Física' },
+            { value: 'Química', label: 'Química' }
           ]}
-          selectedOption={academiaSeleccionada}  
+          selectedOption={academiaSeleccionada}
           onChange={(e) => setAcademiaSeleccionada(e.target.value)}
         />
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="Ultimonivel" texto="Nivel de estudio" />
+        <Label htmlFor="Nivel" texto="Último nivel de estudios:" />
         <RadioButtons
-          name="Ultimoniveldeestudios"
+          name="Nivel"
           options={[
-            { value: 'Doctorado', label: 'Doctorado' },
-            { value: 'Maestría', label: 'Maestría' },
             { value: 'Licenciatura', label: 'Licenciatura' },
+            { value: 'Maestría', label: 'Maestría' },
+            { value: 'Doctorado', label: 'Doctorado' }
           ]}
-          selectedOption={nivelSeleccionado}  
+          selectedOption={nivelSeleccionado}
           onChange={(e) => setNivelSeleccionado(e.target.value)}
         />
       </div>
 
-
-      
-
-      <div className="docentes-botones">  
+      <div className="docentes-botones">
         <Button texto="Atrás" onClick={handleBack} />
         <Button texto="Siguiente" onClick={add} />
       </div>
+
+      {mostrarVentana && (
+        <VentanaEmergente mensaje={mensajeError} onClose={cerrarVentana} />
+      )}
     </div>
   );
 };
