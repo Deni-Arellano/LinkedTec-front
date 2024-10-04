@@ -9,7 +9,7 @@ import { BiImageAdd } from 'react-icons/bi';
 
 const CrearPubli = () => {
     const { usuarioLog } = useContext(usuarioContext);
-    //const usuarioLog=1;
+    //const usuarioLog=5;
     const [textoPubli, setTextoPubli] = useState('');
     
     const [image, setImage] = useState(null);

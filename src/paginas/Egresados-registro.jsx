@@ -200,8 +200,7 @@ const RegistroEgresado = () => {
 
     console.log(datosEnviar);
 
-    axios
-    .get("http://localhost:3000/usuarios/egresados", {
+    axios.get("http://localhost:3000/usuarios/egresados", {
       params: { correo, telefono },
     })
     .then((response) => {
