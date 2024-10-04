@@ -1,63 +1,50 @@
+/* VentanaEmergente.css */
 
-.tooltip-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .tooltip-content {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ddd;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    white-space: nowrap;
-  }
-  
-  .tooltip-content::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 8px;
-    border-style: solid;
-    border-color: transparent transparent #ddd transparent;
-  }
-  
-  .tooltip-content::after {
-    content: '';
-    position: absolute;
-    top: -7px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 7px;
-    border-style: solid;
-    border-color: transparent transparent #fff transparent;
-  }
-  
-  .icono {
-    color: #f0ad4e;
-    margin-right: 8px;
-  }
-  
-  .cerrar-boton {
-    background: none;
-    border: none;
-    color: #666;
-    cursor: pointer;
-    font-size: 12px;
-    margin-left: 8px;
-  }
-  
-  .cerrar-boton:hover {
-    color: #333;
-  }
-  
+.ventana-emergente-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.ventana-emergente {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.ventana-emergente-contenido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icono {
+  color: #f0ad4e;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.cerrar-boton {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.cerrar-boton:hover {
+  color: #333;
+}

@@ -7,18 +7,16 @@ import '../hojas-de-estilo/Estudiantes-registro.css';
 import Logo from '../imagenes/Logo24.png'; 
 import Textarea from '../componetes/Text-area.jsx';
 import { useNavigate } from 'react-router-dom';  
-import {usuarioContext} from '../App';
+import { usuarioContext } from '../App';
 import Axios from 'axios';
-
-
+import VentanaEmergente from '../componetes/VentanaEmergente'; 
 
 const Registro = () => {
-  const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+  const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
 
   useEffect(() => {
     setUsuarioLog(null); // Restablece el contexto del usuario 
   }, [setUsuarioLog]);
-
 
   const navigate = useNavigate(); 
   const handleBack = () => {
@@ -29,8 +27,8 @@ const Registro = () => {
   const handleNext = () => {
     console.log("Navegando a /codigo-verificacion");
     navigate('/codigo-verificacion'); 
-
   };
+
   const [nombre, setNombre] = useState('');
   const [apellidoPaterno, setApellidoPaterno] = useState('');
   const [apellidoMaterno, setApellidoMaterno] = useState('');
@@ -45,6 +43,9 @@ const Registro = () => {
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
 
+  // Estados para la ventana emergente
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const add = () => {
     console.log("Agregando estudiante");
@@ -61,197 +62,212 @@ const Registro = () => {
     console.log("Carrera: " + carreraSeleccionada);
     console.log("Sexo: " + sexoSeleccionado);
     console.log("Semestre: " + semestreSeleccionado);
-    
 
-
-    if (nombre.length <2 || nombre.length > 50) {
-      console.log("El nombre debe tener entre 2 y 50 caracteres.");
-      return; 
+    // Validación del Nombre
+    if (nombre.length < 2 || nombre.length > 50) {
+      setErrorMessage("El nombre debe tener entre 2 y 50 caracteres.");
+      setShowPopup(true);
+      return;
     }
 
-    const Caracteres_especialesn= /^[A-Za-z\s]+$/; 
-    if (!Caracteres_especialesn.test(nombre))
-    {
-      console.log("El nombre solo puede contener letras ")
-      return; 
+    const Caracteres_especialesn = /^[A-Za-z\s]+$/;
+    if (!Caracteres_especialesn.test(nombre)) {
+      setErrorMessage("El nombre solo puede contener letras.");
+      setShowPopup(true);
+      return;
     }
 
     if (nombre.trim() === '') {
-      console.log("El nombre no debe estar vacio ")
-      return; 
+      setErrorMessage("El nombre no debe estar vacío.");
+      setShowPopup(true);
+      return;
     }
 
     if (nombre.trim().length === 0) {
-      console.log("El nombre no puede tener solo espacios vacios")
-      return; 
+      setErrorMessage("El nombre no puede tener solo espacios vacíos.");
+      setShowPopup(true);
+      return;
     }
 
     if (/[\s]{2,}/.test(nombre)) {
-      console.log("El nombre no puede tener mas de dos espacios vacios")
-      return; 
+      setErrorMessage("El nombre no puede tener más de dos espacios vacíos.");
+      setShowPopup(true);
+      return;
     }
-    
-    
 
     /*--------------------apellido paterno-------------------------*/
 
     if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
-      console.log("El apellido paterno debe tener entre 2 y 50 caracteres.");
-      return; 
+      setErrorMessage("El apellido paterno debe tener entre 2 y 50 caracteres.");
+      setShowPopup(true);
+      return;
     }
     if (apellidoPaterno.trim() === '') {
-      console.log("El apellido paterno no puede estar vacío.");
-      return; 
+      setErrorMessage("El apellido paterno no puede estar vacío.");
+      setShowPopup(true);
+      return;
     }
 
-
     /*--------------------fecha-------------------------*/
-    const fechaIngresada = new Date(fechaNacimiento); 
-    const anioNacimiento = fechaIngresada.getFullYear(); 
+    const fechaIngresada = new Date(fechaNacimiento);
+    const anioNacimiento = fechaIngresada.getFullYear();
 
-    const fechaActual = new Date(); 
-    const edad = fechaActual.getFullYear() - anioNacimiento; 
-    const haCumplidoAnios = (fechaActual.getMonth() > fechaIngresada.getMonth()) ||
-      (fechaActual.getMonth() === fechaIngresada.getMonth() && fechaActual.getDate() >= fechaIngresada.getDate());
+    const fechaActual = new Date();
+    const edad = fechaActual.getFullYear() - anioNacimiento;
+    const haCumplidoAnios =
+      fechaActual.getMonth() > fechaIngresada.getMonth() ||
+      (fechaActual.getMonth() === fechaIngresada.getMonth() &&
+        fechaActual.getDate() >= fechaIngresada.getDate());
     const edadReal = haCumplidoAnios ? edad : edad - 1;
 
     if (anioNacimiento <= 1950) {
-      console.log('El año de nacimiento debe ser mayor a 1950.');
-      return; 
+      setErrorMessage("El año de nacimiento debe ser mayor a 1950.");
+      setShowPopup(true);
+      return;
     }
     if (edadReal < 17) {
-      console.log('Debes tener al menos 17 años.');
-      return; 
-    }
-    /*------------------telefono---------------*/
-    if (telefono.trim() === '') {
-      console.log('Error: El teléfono no puede estar vacío.');
-      return; 
-    }
-    if (telefono.length < 10 || telefono.length > 15) {
-      console.log('Error: El teléfono debe tener entre 10 y 15 caracteres.');
-      return; 
+      setErrorMessage("Debes tener al menos 17 años.");
+      setShowPopup(true);
+      return;
     }
 
-  /*------------------correo---------------*/
+    /*------------------teléfono---------------*/
+    if (telefono.trim() === '') {
+      setErrorMessage("Error: El teléfono no puede estar vacío.");
+      setShowPopup(true);
+      return;
+    }
+    if (telefono.length < 10 || telefono.length > 15) {
+      setErrorMessage("Error: El teléfono debe tener entre 10 y 15 caracteres.");
+      setShowPopup(true);
+      return;
+    }
+
+    /*------------------correo---------------*/
     if (correo.trim() === '') {
-      console.log('Error: El correo no puede estar vacío.');
+      setErrorMessage("Error: El correo no puede estar vacío.");
+      setShowPopup(true);
       return;
     }
     const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!regexCorreo.test(correo)) {
-      console.log('Introduzca un correo electrónico válido.');
+      setErrorMessage("Introduzca un correo electrónico válido.");
+      setShowPopup(true);
       return;
     }
 
-  /*--------------------contraseña y confirmar-------------------------- */
+    /*--------------------contraseña y confirmar-------------------------- */
 
-    
-    if (contraseña.length >= 7 && contraseña.length <= 12) {
-      console.log("La contraseña debe contener entre 8 y 12 caracteres")
+    if (contraseña.length < 8 || contraseña.length > 12) {
+      setErrorMessage("La contraseña debe contener entre 8 y 12 caracteres.");
+      setShowPopup(true);
+      return;
     }
     const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
 
     if (!regexContraseña.test(contraseña)) {
-      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      setErrorMessage("La contraseña debe incluir letras, números y caracteres especiales.");
+      setShowPopup(true);
       return;
-    } 
+    }
     if (contraseña !== confirmarContraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
+      setErrorMessage("Las contraseñas no coinciden.");
+      setShowPopup(true);
+      return;
     }
-    if (confirmarContraseña !== contraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
-    }
+
     /*------------------No.control------------------------*/
     const regexNoControl = /^Z\d{8}$/;
-    if (!regexNoControl.test(noControl)) {console.log("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.");
+    if (!regexNoControl.test(noControl)) {
+      setErrorMessage("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.");
+      setShowPopup(true);
       return;
     }
 
     /*-------------carrera,sexo,semestre----------------- */
     if (carreraSeleccionada === '') {
-      console.log("Error: Debes seleccionar una carrera.");
+      setErrorMessage("Error: Debes seleccionar una carrera.");
+      setShowPopup(true);
       return;
     }
-    
+
     if (sexoSeleccionado === '') {
-      console.log("Error: Debes seleccionar un sexo.");
+      setErrorMessage("Error: Debes seleccionar un sexo.");
+      setShowPopup(true);
       return;
     }
-    
+
     if (semestreSeleccionado === '') {
-      console.log("Error: Debes seleccionar un semestre.");
+      setErrorMessage("Error: Debes seleccionar un semestre.");
+      setShowPopup(true);
       return;
     }
 
-    
-    
-    
-    const datosEnviar={
-        'usuario': {
-          'nombre': nombre,
-          'apellido_paterno': apellidoPaterno,
-          'apellido_materno': apellidoMaterno,
-          'correo': correo,
-          'contraseña': contraseña,
-          'fecha_nacimiento': fechaNacimiento,
-          'telefono': telefono,
-          'sexo': sexoSeleccionado,
-          'biografia': biografia,
-          'role': 'Estudiantes',
-          "imagen_usuario": ''
-        },
-        'estudiante': {
-          'no_control': noControl,
-          'carrera': carreraSeleccionada,
-          'semestre': semestreSeleccionado
-        }
-
-    }
+    // Si todas las validaciones pasan, continúa con el envío de datos
+    const datosEnviar = {
+      usuario: {
+        nombre: nombre,
+        apellido_paterno: apellidoPaterno,
+        apellido_materno: apellidoMaterno,
+        correo: correo,
+        contraseña: contraseña,
+        fecha_nacimiento: fechaNacimiento,
+        telefono: telefono,
+        sexo: sexoSeleccionado,
+        biografia: biografia,
+        role: 'Estudiantes',
+        imagen_usuario: '',
+      },
+      estudiante: {
+        no_control: noControl,
+        carrera: carreraSeleccionada,
+        semestre: semestreSeleccionado,
+      },
+    };
 
     console.log(datosEnviar);
 
-
-
     Axios.post('http://localhost:3000/usuarios/estudiantes', datosEnviar)
+      .then((response) => {
+        // Muestra los datos devueltos por el servidor y agrega el id al contexto
+        console.log("Respuesta del servidor:", response.data);
+        setUsuarioLog(response.data.id); // Guarda el ID para usarlo como referencia en las demás páginas
+        console.log("Usuario guardado sin actualizar:", usuarioLog);
+        handleNext();
+      })
+      .catch((error) => {
+        if (error.message === 'Network Error') {
+          setErrorMessage("Error de red: No se pudo conectar al servidor. Verifica tu conexión.");
+          setShowPopup(true);
+          return;
+        }
 
-    .then((response) => {
-      //Muestra los datos devueltos por el servidor y agrega el id al contexto
-      console.log("Respuesta del servidor:", response.data);
-      setUsuarioLog(response.data.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
-      console.log("Usuario guardado sin actualizar:", usuarioLog);
-      handleNext();
-    })
-    .catch((error) => {
-
-
-      if (error.message === 'Network Error') {
-
-        console.log("Error de red: No se pudo conectar al servidor. Verifica tu conexión.");
-      }
-
-      if (error.message ==='Network Error') {
-        console.log("Error: se intento  conectar a el servidor, pero no puede establecer la conexión. ");
-      }
-      if (error.response) {
+        if (error.response) {
+          setErrorMessage(`Error de respuesta del servidor: ${error.response.data}`);
+          setShowPopup(true);
           console.log("Error de respuesta del servidor:", error.response.data);
           console.log("Código de estado:", error.response.status);
-          
-
-      } else {
+        } else {
+          setErrorMessage(`Error en la solicitud: ${error.message}`);
+          setShowPopup(true);
           console.log("Error en la solicitud:", error.message);
-      }
-    })
-    ;
-  }
+        }
+      });
+  };
 
   return (
     <div className="estudiantes-contenedor"> 
       <img src={Logo} alt="Logo" className="logo" /> 
       <h1>Registro de estudiante</h1>
+
+      {/* Ventana Emergente para Mostrar Errores */}
+      {showPopup && (
+        <VentanaEmergente
+          mensaje={errorMessage}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
 
       <div className="estudiantes-campo">  
         <label htmlFor="nombre">Nombre(s):</label>
@@ -259,17 +275,18 @@ const Registro = () => {
           id="Nombre" 
           placeholder="Nombre(s)"
           value={nombre} 
-          onChange={(e)=>{setNombre(e.target.value)}}/>
+          onChange={(e)=>{setNombre(e.target.value)}}
+        />
       </div>
 
       <div className="estudiantes-campo">
         <label htmlFor="apellidoPaterno">Apellido paterno:</label>
         <Textbox 
-        id="ApellidoPaterno" 
-        placeholder="Apellido paterno"
-        value={apellidoPaterno}
-        onChange={(e)=> setApellidoPaterno(e.target.value)}
-         />
+          id="ApellidoPaterno" 
+          placeholder="Apellido paterno"
+          value={apellidoPaterno}
+          onChange={(e)=> setApellidoPaterno(e.target.value)}
+        />
       </div>
 
       <div className="estudiantes-campo">
@@ -279,13 +296,15 @@ const Registro = () => {
           placeholder="Apellido materno"
           value={apellidoMaterno}
           onChange={(e)=> setApellidoMaterno(e.target.value)}
-          />
+        />
       </div>
 
       <div className="estudiantes-campo">
-        <Fecha label="Fecha de Nacimiento" 
+        <Fecha 
+          label="Fecha de Nacimiento" 
           value={fechaNacimiento}
-          onChange={(e)=> setFechaNacimiento(e.target.value)}/>
+          onChange={(e)=> setFechaNacimiento(e.target.value)}
+        />
       </div>
 
       <div className="estudiantes-campo">
@@ -310,7 +329,7 @@ const Registro = () => {
           type="tel" 
           value={telefono}
           onChange={(e)=> setTelefono(e.target.value)}
-          />
+        />
       </div>
 
       <div className="estudiantes-campo">
@@ -321,18 +340,18 @@ const Registro = () => {
           type="email" 
           value={correo}
           onChange={(e)=> setCorreo(e.target.value)}
-          />
+        />
       </div>
 
       <div className="estudiantes-campo">
         <label htmlFor="contraseña">Contraseña:</label>
         <Textbox 
-        id="Contraseña" 
-        placeholder="Contraseña" 
-        type="password"
-        value={contraseña}
-        onChange={(e)=> setContraseña(e.target.value)} 
-         />
+          id="Contraseña" 
+          placeholder="Contraseña" 
+          type="password"
+          value={contraseña}
+          onChange={(e)=> setContraseña(e.target.value)} 
+        />
       </div>
 
       <div className="estudiantes-campo">
@@ -343,7 +362,7 @@ const Registro = () => {
           type="password" 
           value={confirmarContraseña}
           onChange={(e)=> setConfirmarContraseña(e.target.value)}
-          />
+        />
       </div>
 
       <div className="estudiantes-campo">
@@ -354,7 +373,7 @@ const Registro = () => {
           placeholder="Biografía" 
           value={biografia}
           onChange={(e)=> setBiografia(e.target.value)}
-          />
+        />
       </div>
 
       <div className="estudiantes-campo">
@@ -364,7 +383,7 @@ const Registro = () => {
           placeholder="Número de control" 
           value={noControl}
           onChange={(e)=> setNoControl(e.target.value)}
-          />
+        />
       </div>
 
       <div className="estudiantes-campo">

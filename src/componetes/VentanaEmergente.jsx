@@ -1,4 +1,3 @@
-// src/componentes/VentanaEmergente.jsx
 import React from 'react';
 import '../hojas-de-estilo/VentanaEmergente.css';
 
@@ -8,11 +7,13 @@ const VentanaEmergente = ({ mostrar, mensaje, cerrarVentana }) => {
   }
 
   return (
-    <div className="tooltip-container">
-      <div className="tooltip-content">
-        <span className="icono">❗</span>
-        <span>{mensaje}</span>
-        <button className="cerrar-boton" onClick={cerrarVentana}>✖</button>
+    <div className="ventana-emergente-overlay">
+      <div className="ventana-emergente">
+        <div className="ventana-emergente-contenido">
+          <span className="icono">❗</span>
+          <span>{mensaje}</span>
+          <button className="cerrar-boton" onClick={cerrarVentana}>✖</button>
+        </div>
       </div>
     </div>
   );
