@@ -77,10 +77,20 @@ const RegistroReclutador = () => {
       console.log("El nombre no debe contener números ni caracteres especiales.");
       return;
     }
+
+    if (nombre.length >=50) {
+      console.log("El nombre no debe exceder los 50 caracteres")
+      return
+    }
     
     if ([apellidoPaterno].some(field => !field)) {
       console.log("El apellido paterno no debe quedar vacío.");
       return;
+    }
+
+    if (apellidoPaterno.length >=50) {
+      console.log("El Apellido paterno no debe exceder los 50 caracteres")
+      return
     }
     
     if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
@@ -91,6 +101,11 @@ const RegistroReclutador = () => {
     if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
       console.log("El apellido materno no debe contener números ni caracteres especiales.");
       return;
+    }
+
+    if (apellidoMaterno.length >=50) {
+      console.log("El Apellido materno no debe exceder los 50 caracteres")
+      return
     }
 
     if (!fechaNacimiento) {
@@ -125,6 +140,11 @@ const RegistroReclutador = () => {
       return;
     }
 
+    if (telefono.length < 10 || telefono.length > 15) {
+      console.log("El telefono debe tener entre minimo 10 y maximo 15 digitos")
+      return
+    }
+
     // Verificar que el telefono sea solo numeros
     if (!/^\d+$/.test(telefono)) {
       console.log("El teléfono debe contener solo dígitos.");
@@ -133,6 +153,11 @@ const RegistroReclutador = () => {
 
     if (!correo) {
       console.log("El correo no debe quedar vacio");
+      return;
+    }
+
+    if (correo.length > 40) {
+      console.log("El correo no debe tener mas de 50 caracteres");
       return;
     }
 
@@ -148,15 +173,19 @@ const RegistroReclutador = () => {
       return;
     }
 
-    if (contraseña.length < 8 || contraseña.length > 12) {
+    if (contraseña.length < 8 || contraseña.length > 20) {
       console.log("La contraseña debe tener entre 8 y 12 caracteres");
       return;
     }
 
-    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
+    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,20}$/;
     if (!regexContraseña.test(contraseña)) {
       console.log("La contraseña debe incluir letras, números y caracteres especiales.");
       return;
+    }
+
+    if (biografia.length >= 255) {
+      console.log("La biografia no debe exceder")
     }
 
     if (!nombreEmpresa) {
@@ -195,26 +224,6 @@ const RegistroReclutador = () => {
       "giro": giroSeleccionado
       }
       }
-
-    axios
-    .get("http://localhost:3000/usuarios/reclutadores", {
-      params: { correo, telefono },
-    })
-    .then((response) => {
-      if (response.data.existeCorreo) {
-        console.log("El correo ya está registrado.");
-        return;
-      }
-    
-      if (response.data.existeTelefono) {
-        console.log("El teléfono ya está registrado.");
-        return;
-      }
-
-    })
-    .catch((error) => {
-      console.error("Error al validar el correo o teléfono:", error);
-    });
     
     axios.post('http://localhost:3000/usuarios/reclutadores', datosEnviar)
       .then((response) => {
@@ -225,9 +234,19 @@ const RegistroReclutador = () => {
         handleNext();
       })
       .catch((error) => {
+
+        if (error.response.data.message==='El correo ya está en uso') {
+          console.log("CORREO YA EN USOOOOOOOO")
+        }
+        
+        
+
         if (error.response) {
             console.log("Error de respuesta del servidor:", error.response.data);
             console.log("Código de estado:", error.response.status);
+          
+        
+            
         } else {
             console.log("Error en la solicitud:", error.message);
         }
