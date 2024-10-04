@@ -119,6 +119,11 @@ const RegistroEgresado = () => {
       return;
     }
 
+    if (telefono.length < 10 || telefono.length > 15) {
+      console.log("El telefono debe tener entre minimo 10 y maximo 15 digitos")
+      return
+    }
+
     if (!/^\d+$/.test(telefono)) {
       console.log("El teléfono debe contener solo dígitos.");
       return;
@@ -126,6 +131,11 @@ const RegistroEgresado = () => {
 
     if (!correo) {
       console.log("El correo no debe quedar vacio");
+      return;
+    }
+
+    if (correo.length > 40) {
+      console.log("El correo no debe tener mas de 50 caracteres");
       return;
     }
 
@@ -140,12 +150,12 @@ const RegistroEgresado = () => {
       return;
     }
 
-    if (contraseña.length < 8 || contraseña.length > 12) {
+    if (contraseña.length < 8 || contraseña.length > 20) {
       console.log("La contraseña debe tener entre 8 y 12 caracteres");
       return;
     }
 
-    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
+    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,20}$/;
     if (!regexContraseña.test(contraseña)) {
       console.log("La contraseña debe incluir letras, números y caracteres especiales.");
       return;
@@ -200,25 +210,6 @@ const RegistroEgresado = () => {
 
     console.log(datosEnviar);
 
-    axios.get("http://localhost:3000/usuarios/egresados", {
-      params: { correo, telefono },
-    })
-    .then((response) => {
-      if (response.data.existeCorreo) {
-        console.log("El correo ya está registrado.");
-        return;
-      }
-    
-      if (response.data.existeTelefono) {
-        console.log("El teléfono ya está registrado.");
-        return;
-      }
-
-    })
-    .catch((error) => {
-      console.error("Error al validar el correo o teléfono:", error);
-    });
-
     axios.post('http://localhost:3000/usuarios/egresados', datosEnviar)
 
     .then((response) => {
@@ -230,6 +221,10 @@ const RegistroEgresado = () => {
     })
     .catch((error) => {
       if (error.response) {
+        if (error.response.data.message==='El correo ya está en uso') {
+          console.log("CORREO YA EN USOOOOOOOO")
+        }
+
           console.log("Error de respuesta del servidor:", error.response.data);
           console.log("Código de estado:", error.response.status);
       } else {
