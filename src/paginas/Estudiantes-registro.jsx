@@ -9,6 +9,9 @@ import Textarea from '../componetes/Text-area.jsx';
 import { useNavigate } from 'react-router-dom';  
 import {usuarioContext} from '../App';
 import Axios from 'axios';
+import Swal from 'sweetalert2';
+
+
 
 
 
@@ -145,6 +148,12 @@ const Registro = () => {
       return;
     }
 
+    if (correo.length  >40) {
+      console.log("El correo es demasiado largo")
+    }
+
+
+
   /*--------------------contraseña y confirmar-------------------------- */
 
     
@@ -215,7 +224,6 @@ const Registro = () => {
     console.log(datosEnviar);
 
 
-
     Axios.post('http://localhost:3000/usuarios/estudiantes', datosEnviar)
 
     .then((response) => {
@@ -239,11 +247,33 @@ const Registro = () => {
       if (error.response) {
           console.log("Error de respuesta del servidor:", error.response.data);
           console.log("Código de estado:", error.response.status);
+
+      if (error.response.data.error==='El correo ya está en uso.'){
+
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "El correo ya esta en uso",
+          footer:"Ingresa otro diferente"
+        });
+        return;
+      }
+
+      if (error.response.data.error==="El número de control no debe de repetirse."){
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Numero de Control ya en uso",
+          footer: "El número de control no debe de repetirse."
+        });
+        return;
+      }
           
 
       } else {
           console.log("Error en la solicitud:", error.message);
       }
+
     })
     ;
   }
