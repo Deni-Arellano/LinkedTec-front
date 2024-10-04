@@ -274,14 +274,6 @@ const Registro = () => {
           console.log("Error en la solicitud:", error.message);
       }
 
-
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Correo o numero de control repetido",
-        footer:JSON.parse(JSON.stringify(error)).message==="Request failed with status code 400"
-      });
-
     })
     ;
   }
