@@ -19,6 +19,7 @@ const VisualizacionPerfil = () => {
     const [datosEncabezado, setDatosEncabezado] = useState('')
     const [datosPublicaciones, setDatosPublicaciones] = useState([]);
     const [componentesPublicaciones, setComponentesPublicaciones] = useState([]);
+    const urlApi = 'http://localhost:3000'; //Completa la url para las imagenes
 
 
     //Obtener los datos del usuario logeado
@@ -41,7 +42,7 @@ const VisualizacionPerfil = () => {
 
     //Actualiza los datos del perfil dependiendo su rol
     useEffect(() => {
-        const urlApi = 'http://localhost:3000'
+        
         if (datosUsuario.role === 'Reclutadores') {
             setDatosPerfil({
                 biografia: datosUsuario.biografia,

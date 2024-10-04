@@ -38,8 +38,9 @@ const CrearPubli = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log('Imagen subida:', response.data);
-            return response.data.url; 
+            //console.log('Imagen subida:', response.data);
+            //console.log('URL de la imagen:', response.data.fileName);
+            return response.data.fileName; 
         } catch (error) {
             console.error('Error al subir la imagen:', error);
             throw error; 
@@ -75,7 +76,8 @@ const CrearPubli = () => {
             "disgusta": 0
         };
 
-        console.log('Datos a enviar:', datosEnviar);
+        //console.log('Datos a enviar:', datosEnviar);
+        console.log (datosEnviar.imagen, 'Linea imagen')
 
         Axios.post('http://localhost:3000/publicaciones', datosEnviar)
             .then((response) => {

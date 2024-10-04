@@ -8,8 +8,7 @@ import Logo from '../imagenes/Logo24.png';
 import Textarea from '../componetes/Text-area.jsx';
 import { useNavigate } from 'react-router-dom';  
 import {usuarioContext} from '../App';
-
-import axios from 'axios';
+import Axios from 'axios';
 
 
 
@@ -218,8 +217,6 @@ const Registro = () => {
 
 
     Axios.post('http://localhost:3000/usuarios/estudiantes', datosEnviar)
-    
-    
 
     .then((response) => {
       //Muestra los datos devueltos por el servidor y agrega el id al contexto

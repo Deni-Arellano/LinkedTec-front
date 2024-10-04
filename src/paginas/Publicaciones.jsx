@@ -8,6 +8,7 @@ import {usuarioContext} from '../App';
 
 const PubliUsuarios = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    
     console.log("Usuario en Publicaciones: ", usuarioLog)
 
 
