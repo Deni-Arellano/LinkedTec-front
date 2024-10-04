@@ -221,7 +221,7 @@ const RegistroDocentes = () => {
     .then((response) => {
       //Muestra los datos devueltos por el servidor y agrega el id al contexto
       console.log("Respuedsta del servidor:", response.data);
-      setUsuarioLog(response.data);
+      setUsuarioLog(response.data.id);
       console.log("Usuario guardado sin actualizar:", usuarioLog);
       handleNext();
     })
