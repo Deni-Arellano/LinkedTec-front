@@ -10,7 +10,7 @@ import '../hojas-de-estilo/Docentes-registro.css';
 import { useNavigate } from 'react-router-dom'; 
 import Axios from 'axios'; 
 import {usuarioContext} from '../App';
-
+import Swal from 'sweetalert2';
 const RegistroDocentes = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
 
@@ -232,6 +232,27 @@ const RegistroDocentes = () => {
       } else {
           console.log("Error en la solicitud:", error.message);
       }
+      if (error.response.data.error==='El correo ya está en uso.'){
+
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "El correo ya esta en uso",
+          footer:"Ingresa otro diferente"
+        });
+        return;
+      }
+
+      if (error.response.data.error==='El número de empleado ya está en uso.'){
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Numero de Control ya en uso",
+          footer: "El número de empleado no debe de repetirse."
+        });
+        return;
+      }
+          
     })
     ;
 
