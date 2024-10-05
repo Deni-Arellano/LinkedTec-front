@@ -45,6 +45,11 @@ const PaginaFormulario = () => {
             return; 
         }
 
+        if (tituloEmpleo.length > 50) {
+            console.log("El titulo de empleo no debe tener mas de 50 caracteres");
+            return; 
+        }
+
         if (!empresa) {
             console.log("Empresa no debe estar vacio");
             return; 
@@ -52,6 +57,11 @@ const PaginaFormulario = () => {
 
         if (!salario) {
             console.log("El Salario no debe estar vacio");
+            return; 
+        }
+
+        if (salario.length > 9) {
+            console.log("El salario no debe tener mas de 9 cifras");
             return; 
         }
 
@@ -65,8 +75,18 @@ const PaginaFormulario = () => {
             return; 
         }
 
+        if (descripcion.length > 5000) {
+            console.log("La descripcion no debe tener mas de 5000 caracteres");
+            return; 
+        }
+
         if (!Ubicacion) {
             console.log("La ubicacion no debe estar vacia");
+            return; 
+        }
+
+        if (Ubicacion.length > 100) {
+            console.log("La ubicacion no debe tener mas de 100 caracteres");
             return; 
         }
 
@@ -95,10 +115,26 @@ const PaginaFormulario = () => {
             
           })
           .catch((error) => {
+            if (error.response.status===400) {
+                console.log('Bad request, la solicitud es invalida o no puede ser procesada')
+            }
+
+            if (error.response.status===404) {
+                console.log('Not found, El recurso solicitado no existe')
+            }
+
+            if (error.response.status===500) {
+                console.log('Internal server error, error general del servidor en caso de que no retorne algun mensaje especifico')
+            }
+
+            if (error.response.status===422) {
+                console.log('Unprocessable entity, La solicitud esta bien formada pero contiene errores semanticos')
+            }
+
             if (error.response) {
+
                 console.log("Error de respuesta del servidor:", error.response.data);
                 console.log("Código de estado:", error.response.status);
-                
       
             } else {
                 console.log("Error en la solicitud:", error.message);
