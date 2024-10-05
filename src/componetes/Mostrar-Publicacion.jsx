@@ -55,11 +55,9 @@ const MostrarPubli = ({ datos, onEliminar }) => {
     };
 
     // Función que se ejecuta cuando se agrega un nuevo comentario
-    const agregarComentario = (nuevoComentario) => {
-        setComentariosPublicacion((prevComentarios) => [
-            ...prevComentarios,
-            nuevoComentario,
-        ]);
+    const agregarComentario = () => {
+        getComentariosPublicacion(datos.id_publicacion);
+        
     };
 
     useEffect(() => {
@@ -117,9 +115,11 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                         idUsuario={usuarioLog}
                         onComentarioAgregado={agregarComentario} // Aquí se pasa la función
                     />
+                    
                 )}
                 
                 {mostrarCrearComentario && comentariosPublicacion.length > 0 && comentariosPublicacion.map(comentario => (
+                    console.log("comentario:", comentario),
                     <div className="mostrar-comentario" key={comentario.id_comentario}>
                         <div className="mostrar-comentario-header">
                             <img
@@ -127,7 +127,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                                 alt="Profile"
                                 className="mostrar-imagen-perfil-comentario"
                             />
-                            <Texto className='textoComentario' texto={comentario.nombre} />
+                            <Texto className='textoComentario' texto={comentario.nombre+ ' ' + comentario.apellido_paterno + ' ' + comentario.apellido_materno} />
                         </div>
                         <div className="fecha-comentario">
                             <Texto tamano={11} texto={formatFecha(comentario.fecha)} />

@@ -14,7 +14,7 @@ import Comentario from '../componetes/Comentario';
 
 const VisualizacionPerfil = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
-    //const usuarioLog = 11;
+    //const usuarioLog = 5;
     const [datosUsuario, setDatosUsuario] = useState('');
     const [datosPerfil, setDatosPerfil] = useState('');
     const [datosEncabezado, setDatosEncabezado] = useState('')
@@ -98,10 +98,16 @@ const VisualizacionPerfil = () => {
                 role: 'Egresado',
                 foto: urlApi+datosUsuario.imagen_usuario
             });
-        } else {
+        }else if (datosUsuario.role === 'Docentes') {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Docente',
+                foto: urlApi+datosUsuario.imagen_usuario
+            });
+        } else {
+            setDatosEncabezado({
+                nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
+                role: 'Indefinido',
                 foto: urlApi+datosUsuario.imagen_usuario
             });
         }
