@@ -5,7 +5,8 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin-bottom: 10px;
-    width: 35%;
+    margin-top: 3%;
+    width: 100%;
     box-sizing: border-box;
     background-color: #f6faff;
 }

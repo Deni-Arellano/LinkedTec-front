@@ -13,8 +13,8 @@ import Comentario from '../componetes/Comentario';
 
 
 const VisualizacionPerfil = () => {
-    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
-    //const usuarioLog = 5;
+    //const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    const usuarioLog = 11;
     const [datosUsuario, setDatosUsuario] = useState('');
     const [datosPerfil, setDatosPerfil] = useState('');
     const [datosEncabezado, setDatosEncabezado] = useState('')
@@ -116,7 +116,7 @@ const VisualizacionPerfil = () => {
             try {
                 const response = await Axios.get(`http://localhost:3000/publicaciones/usuario/${usuarioLog}`);
                 setDatosPublicaciones(response.data);
-                
+    
                 if (response.data.length > 0 && response.data[0].imagen) {
                     const img = new Image();
                     img.src = 'http://localhost:3000/imagenes/' + response.data[0].imagen;
@@ -146,33 +146,36 @@ const VisualizacionPerfil = () => {
 
                 {/* Contenedor de publicaciones */}
                 <div className='conenedorPublicaciones-Usuario'>
-                    {firstImageLoaded ? (
-                        datosPublicaciones.length > 0 ? (
-                            datosPublicaciones.map(publicacion => (
-                                <MostrarPublicacion
-                                    key={publicacion.id_publicacion}
-                                    datos={{
-                                        descripcion: publicacion.descripcion,
-                                        imagen: 'http://localhost:3000/imagenes/' + publicacion.imagen,
-                                        fecha: publicacion.fecha,
-                                        meGusta: publicacion.me_gusta,
-                                        disgusta: publicacion.disgusta,
-                                        fotoPerfil: 'https://via.placeholder.com/100',
-                                        nombreUsuario: `${datosUsuario.nombre || ''} ${datosUsuario.apellido_paterno || ''} ${datosUsuario.apellido_materno || ''}`,
-                                        id_publicacion: publicacion.id_publicacion
-                                    }}
-                                    onEliminar={id => {
-                                        setDatosPublicaciones(prevPublicaciones => prevPublicaciones.filter(pub => pub.id_publicacion !== id));
-                                    }}
-                                />
-                            ))
-                        ) : (
-                            <p>No hay publicaciones disponibles.</p>
-                        )
+                    {datosPublicaciones.length > 0 ? (
+                        datosPublicaciones.map(publicacion => (
+                            <MostrarPublicacion
+                                key={publicacion.id_publicacion}
+                                datos={{
+                                    descripcion: publicacion.descripcion,
+                                    imagen: 'http://localhost:3000/imagenes/' + publicacion.imagen,
+                                    fecha: publicacion.fecha,
+                                    meGusta: publicacion.me_gusta,
+                                    disgusta: publicacion.disgusta,
+                                    fotoPerfil: 'https://via.placeholder.com/100',
+                                    nombreUsuario: `${datosUsuario.nombre || ''} ${datosUsuario.apellido_paterno || ''} ${datosUsuario.apellido_materno || ''}`,
+                                    id_publicacion: publicacion.id_publicacion
+                                }}
+                                onEliminar={id => {
+                                    setDatosPublicaciones(prevPublicaciones => prevPublicaciones.filter(pub => pub.id_publicacion !== id));
+                                }}
+                            />
+                        ))
+                    ) : firstImageLoaded ? (
+                        <p>No hay publicaciones disponibles.</p>
                     ) : (
-                        <p>Cargando publicaciones...</p> 
+                        <p>Cargando publicaciones...</p>
                     )}
                 </div>
+
+                <div className="conenedorPublicaciones-Usuario"> 
+                    <CrearComentario />
+                    <Comentario />
+                </div>   
             </div>
         </div>
     );
