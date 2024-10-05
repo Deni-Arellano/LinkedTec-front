@@ -178,7 +178,7 @@ const RegistroReclutador = () => {
       return;
     }
 
-    const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,20}$/;
+    const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,20}$/;
     if (!regexContraseña.test(contraseña)) {
       console.log("La contraseña debe incluir letras, números y caracteres especiales.");
       return;
