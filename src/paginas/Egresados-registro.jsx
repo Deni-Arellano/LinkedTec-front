@@ -73,6 +73,11 @@ const RegistroEgresado = () => {
       console.log("El nombre no debe contener números ni caracteres especiales.");
       return;
     }
+
+    if (nombre.length >=50) {
+      console.log("El nombre no debe exceder los 50 caracteres")
+      return
+    }
     
     if ([apellidoPaterno].some(field => !field)) {
       console.log("El apellido paterno no debe quedar vacío.");
@@ -83,10 +88,20 @@ const RegistroEgresado = () => {
       console.log("El apellido paterno no debe contener números ni caracteres especiales.");
       return;
     }
+
+    if (apellidoPaterno.length >=50) {
+      console.log("El Apellido paterno no debe exceder los 50 caracteres")
+      return
+    }
     
     if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
       console.log("El apellido materno no debe contener números ni caracteres especiales.");
       return;
+    }
+
+    if (apellidoMaterno.length >=50) {
+      console.log("El Apellido materno no debe exceder los 50 caracteres")
+      return
     }
 
     if (!fechaNacimiento) {
@@ -135,7 +150,7 @@ const RegistroEgresado = () => {
     }
 
     if (correo.length > 40) {
-      console.log("El correo no debe tener mas de 50 caracteres");
+      console.log("El correo no debe tener mas de 40 caracteres");
       return;
     }
 
@@ -171,6 +186,11 @@ const RegistroEgresado = () => {
       return;
     }
 
+    if (AñoGraduacion.length > 4) {
+      console.log("El Año de graduacion no debe tener mas de 4 caracteres");
+      return;
+    }
+
     if (AñoGraduacion <= 0) {
       console.log("El año de graduación debe ser mayor a 0?");
       return;
@@ -184,6 +204,11 @@ const RegistroEgresado = () => {
 
     if (!Puesto) {
       console.log("El puesto no debe quedar vacio");
+      return;
+    }
+
+    if (Puesto.length > 50) {
+      console.log("El puesto no debe tener mas de 50 caracteres");
       return;
     }
 
@@ -223,6 +248,22 @@ const RegistroEgresado = () => {
       if (error.response) {
         if (error.response.data.message==='El correo ya está en uso') {
           console.log("CORREO YA EN USOOOOOOOO")
+        }
+
+        if (error.response.status===400) {
+          console.log('Bad request, la solicitud es invalida o no puede ser procesada')
+        }
+
+        if (error.response.status===404) {
+            console.log('Not found, El recurso solicitado no existe')
+        }
+
+        if (error.response.status===500) {
+            console.log('Internal server error, error general del servidor en caso de que no retorne algun mensaje especifico')
+        }
+
+        if (error.response.status===422) {
+            console.log('Unprocessable entity, La solicitud esta bien formada pero contiene errores semanticos')
         }
 
           console.log("Error de respuesta del servidor:", error.response.data);

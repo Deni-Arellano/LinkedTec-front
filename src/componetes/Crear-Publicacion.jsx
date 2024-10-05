@@ -23,6 +23,15 @@ const CrearPubli = () => {
     const handleImage = (e) => {
         const file = e.target.files[0];
         console.log(e.target.files);
+
+        if (file && file.size > 10 * 1024 * 1024) { // Verificar que el tamaño no supere 10 MB
+            console.log("El tamaño máximo de la imagen es 10 MB."); // Mostrar mensaje de error
+            setImage(null);
+            setImagenSeleccionada(false);
+            fileInputRef.current.value = ''; // Limpiar la selección de imagen
+            return;
+        }
+
         setImage(e.target.files[0]);
         setImagenSeleccionada(!!file);// cambia de estado si se ha seleccionado una imagen
     };
@@ -48,11 +57,17 @@ const CrearPubli = () => {
     };
 
     const add = async () => {//Agrega la publicación
+        console.log('ID ES',usuarioLog)
+
         console.log('Texto:', textoPubli);
 
         if (textoPubli.trim() === '' && image === null) {
             console.log('La descripción no puede estar vacia.');
             return;
+        }
+
+        if (textoPubli.length > 255) {
+            console.log("La descripcion es demasiado larga, maximo 255 caracteres")
         }
         
         let url = '';
@@ -88,8 +103,30 @@ const CrearPubli = () => {
                 setImagenSeleccionada(false);
             })
             .catch((error) => {
+
+                if (error.response.data.error==='"imagen" is not allowed to be empty') {
+                    console.log("Debes subir al menos 1 imagen.")
+                }
+
+                if (error.response.status===400) {
+                    console.log('Bad request, la solicitud es invalida o no puede ser procesada')
+                }
+    
+                if (error.response.status===404) {
+                    console.log('Not found, El recurso solicitado no existe')
+                }
+    
+                if (error.response.status===500) {
+                    console.log('Internal server error, error general del servidor en caso de que no retorne algun mensaje especifico')
+                }
+    
+                if (error.response.status===422) {
+                    console.log('Unprocessable entity, La solicitud esta bien formada pero contiene errores semanticos')
+                }
+
                 if (error.response) {
                     console.log("Error de respuesta del servidor:", error.response.data);
+
                     console.log("Código de estado:", error.response.status);
                 } else {
                     console.log("Error en la solicitud:", error.message);

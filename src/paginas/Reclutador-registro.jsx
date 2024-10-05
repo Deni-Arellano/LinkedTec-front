@@ -239,7 +239,21 @@ const RegistroReclutador = () => {
           console.log("CORREO YA EN USOOOOOOOO")
         }
         
-        
+        if (error.response.status===400) {
+          console.log('Bad request, la solicitud es invalida o no puede ser procesada')
+        }
+
+        if (error.response.status===404) {
+            console.log('Not found, El recurso solicitado no existe')
+        }
+
+        if (error.response.status===500) {
+            console.log('Internal server error, error general del servidor en caso de que no retorne algun mensaje especifico')
+        }
+
+        if (error.response.status===422) {
+            console.log('Unprocessable entity, La solicitud esta bien formada pero contiene errores semanticos')
+        }
 
         if (error.response) {
             console.log("Error de respuesta del servidor:", error.response.data);
