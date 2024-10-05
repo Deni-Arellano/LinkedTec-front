@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Texto from './Etiquetas';
 import '../hojas-de-estilo/mostrar-publicacion.css';
 import { BsThreeDots } from "react-icons/bs";
@@ -7,45 +7,66 @@ import { AiFillDislike } from "react-icons/ai";
 import { MdAddComment } from "react-icons/md";
 import Axios from 'axios';
 import CrearComentario from './CrearComentario';
-import {usuarioContext} from '../App';
+import { usuarioContext } from '../App';
 
 
 const MostrarPubli = ({ datos, onEliminar }) => {
-    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
-    //const usuarioLog = 11;
+    const { usuarioLog } = useContext(usuarioContext);
+    //console.log("datos m,ostrar publio:", datos);
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const [mostrarCrearComentario, setMostrarCrearComentario] = useState(false);
+    const [comentariosPublicacion, setComentariosPublicacion] = useState([]);
 
     const handleOpciones = () => {
-        setMostrarOpciones(!mostrarOpciones);//Para cambiar de estado mostrar opciones
-
+        setMostrarOpciones(!mostrarOpciones);
     };
 
     const toggleCrearComentario = () => {
-        setMostrarCrearComentario(!mostrarCrearComentario); // Cambia el estado  para saber si se muestra o no el come
+        setMostrarCrearComentario(!mostrarCrearComentario);
     };
 
     const formatFecha = (fechaString) => {
         const fecha = new Date(fechaString);
-        return fecha.toLocaleDateString(); 
+        return fecha.toLocaleDateString();
     };
 
-    const eliminarPublicacion = async () => { //Elimina el empleo seleccionadop al dar en Eliminar
+    const eliminarPublicacion = async () => {
         try {
             console.log("Eliminando publicación con id:", datos.id_publicacion);
             const response = await Axios.delete(`http://localhost:3000/publicaciones/${datos.id_publicacion}`);
             console.log(response.data);
-            //MENSAJE DE ELIMINADO CON EXITO
             onEliminar(datos.id_publicacion);
             handleOpciones();
-            setMostrarCrearComentario(!mostrarCrearComentario);
+            setMostrarCrearComentario(false);
+            setMostrarOpciones(false);
         } catch (err) {
             console.error('Error al eliminar la publicación:', err);
         }
-    }
+    };
+
+    const getComentariosPublicacion = async (id_publicacion) => {
+        try {
+            const response = await Axios.get(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`);
+            console.log(response.data);
+            setComentariosPublicacion(response.data);
+        } catch (err) {
+            console.error('Error al obtener los comentarios:', err);
+        }
+    };
+
+    // Función que se ejecuta cuando se agrega un nuevo comentario
+    const agregarComentario = (nuevoComentario) => {
+        setComentariosPublicacion((prevComentarios) => [
+            ...prevComentarios,
+            nuevoComentario,
+        ]);
+    };
+
+    useEffect(() => {
+        getComentariosPublicacion(datos.id_publicacion);
+    }, [datos.id_publicacion]);
 
     return (
-        console.log("Datos de la publicacion", datos),
         <div className="Mostrar-publicacion">
             <div className="mostrar-publicacion-header">
                 <img 
@@ -87,21 +108,41 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 </button>
                 <button className="mostrar-publicacion-comentar" onClick={toggleCrearComentario}>
                     <MdAddComment size={30} />
-                    
                 </button>
-                
             </div>
             <div className="mostrar-publicacion-comentario">
                 {mostrarCrearComentario && (
-
-                <CrearComentario  
-                    id_publicacion={datos.id_publicacion} 
-                    idUsuario={usuarioLog} 
-                    />)}
-                </div> 
+                    <CrearComentario
+                        id_publicacion={datos.id_publicacion}
+                        idUsuario={usuarioLog}
+                        onComentarioAgregado={agregarComentario} // Aquí se pasa la función
+                    />
+                )}
+                
+                {mostrarCrearComentario && comentariosPublicacion.length > 0 && comentariosPublicacion.map(comentario => (
+                    <div className="mostrar-comentario" key={comentario.id_comentario}>
+                        <div className="mostrar-comentario-header">
+                            <img
+                                src={comentario.fotoPerfil || "https://via.placeholder.com/50"}
+                                alt="Profile"
+                                className="mostrar-imagen-perfil-comentario"
+                            />
+                            <Texto className='textoComentario' texto={comentario.nombre} />
+                        </div>
+                        <div className="fecha-comentario">
+                            <Texto tamano={11} texto={formatFecha(comentario.fecha)} />
+                        </div>
+                        <div className="comentario-contenido">
+                            <div className="comentario-texto">
+                                <div className="comentario-descripcion">
+                                    <Texto texto={comentario.texto } />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-        
-        
     );
 }
 

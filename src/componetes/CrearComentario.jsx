@@ -4,7 +4,7 @@ import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import Axios from 'axios';
 
-const CrearComentario = ({ id_publicacion, idUsuario }) => {
+const CrearComentario = ({ id_publicacion, idUsuario, onComentarioAgregado }) => {
     const [comentario, setComentario] = useState('');
     const [error, setError] = useState('');
 
@@ -25,6 +25,7 @@ const CrearComentario = ({ id_publicacion, idUsuario }) => {
         const response = await Axios.post(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`, datosEnviar)
         .then((response) => {
             //console.log('Datos del servidor:' ,response.data);
+            onComentarioAgregado(response.data)
             setComentario('');
         })
         .catch((error) => {

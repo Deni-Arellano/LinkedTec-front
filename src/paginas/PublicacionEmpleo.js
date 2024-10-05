@@ -24,6 +24,7 @@ const PublicacionEmpleo = () => {
     const { usuarioLog } = useContext(usuarioContext);
     const [datosEmpleos, setDatosEmpleos] = useState([]);
     const [componentesEmpleos, setComponentesEmpleos] = useState([]); 
+    //const usuarioLog = 2;
 
     
 

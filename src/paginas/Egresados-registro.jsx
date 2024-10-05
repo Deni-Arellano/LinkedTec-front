@@ -224,7 +224,7 @@ const RegistroEgresado = () => {
       "sexo": sexoSeleccionado,
       "biografia": biografia,
       "role": "Egresados", 
-      "imagen_usuario": ""
+      "imagen_usuario": "  "
       },
       "egresado": {
       "carrera": carreraSeleccionada,

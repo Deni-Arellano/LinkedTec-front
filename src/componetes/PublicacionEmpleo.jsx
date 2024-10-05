@@ -22,6 +22,7 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
             console.log(response.data);
             //MENSAJE DE ELIMINADO CON EXITO
             onEliminar(datos.id_empleo);
+            setMostrarOpciones(!mostrarOpciones);
         } catch (err) {
             console.error('Error al eliminar la publicación:', err);
         }

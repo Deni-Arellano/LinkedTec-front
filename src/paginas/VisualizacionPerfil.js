@@ -54,8 +54,8 @@ const VisualizacionPerfil = () => {
                 empresa: datosUsuario.nombre_empresa,
                 giro: datosUsuario.giro
             });
-            console.log("Datos del perfil");
-            console.log(datosPerfil);
+            //console.log("Datos del perfil");
+            //console.log(datosPerfil);
 
         } else if (datosUsuario.role === 'Estudiantes' || datosUsuario.role === 'Egresados') {
             setDatosPerfil({
@@ -130,6 +130,8 @@ const VisualizacionPerfil = () => {
         getPublicacionesUsu();
     }, [usuarioLog]);
 
+
+
     return (
         <div className="VisualizacionPerfil-container">
             <MenuNavegacion />
@@ -172,10 +174,7 @@ const VisualizacionPerfil = () => {
                     )}
                 </div>
 
-                <div className="conenedorPublicaciones-Usuario"> 
-                    <CrearComentario />
-                    <Comentario />
-                </div>   
+                
             </div>
         </div>
     );

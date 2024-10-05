@@ -101,9 +101,10 @@ const PaginaFormulario = () => {
     
         }
 
+        
         console.log(datosEnviar);
 
-        axios.post('http://localhost:3000/empleos', datosEnviar)
+        axios.post('http://localhost:3000/empleos/', datosEnviar)
         .then((response) => {
             //Muestra los datos devueltos por el servidor y agrega el id al contexto
             console.log("Respuesta del servidor:", response.data);

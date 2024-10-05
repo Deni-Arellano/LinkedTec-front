@@ -205,8 +205,8 @@ const RegistroDocentes = () => {
       "telefono": telefono,
       "sexo": sexoSeleccionado,
       "biografia": biografia,
-      "role": "Docentes",
-      "imagen_usuario": ""
+      "role": "Docentes", 
+      "imagen_usuario": "  "
       },
       "docente": {
       "ultimo_nivel_estudios": nivelSeleccionado,
