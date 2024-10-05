@@ -13,8 +13,8 @@ import Comentario from '../componetes/Comentario';
 
 
 const VisualizacionPerfil = () => {
-    //const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
-    const usuarioLog = 11;
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    //const usuarioLog = 11;
     const [datosUsuario, setDatosUsuario] = useState('');
     const [datosPerfil, setDatosPerfil] = useState('');
     const [datosEncabezado, setDatosEncabezado] = useState('')

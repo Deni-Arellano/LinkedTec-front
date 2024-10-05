@@ -11,8 +11,8 @@ import {usuarioContext} from '../App';
 
 
 const MostrarPubli = ({ datos, onEliminar }) => {
-    //const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
-    const usuarioLog = 11;
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    //const usuarioLog = 11;
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const [mostrarCrearComentario, setMostrarCrearComentario] = useState(false);
 
