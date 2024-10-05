@@ -215,7 +215,7 @@ const RegistroReclutador = () => {
       "sexo": sexoSeleccionado,
       "biografia": biografia ,
       "tipo_usuario": "Reclutadores",
-      "imagen_usuario":"  "
+      "imagen_usuario":""
       },
       "reclutador": {
       "nombre_empresa": nombreEmpresa,

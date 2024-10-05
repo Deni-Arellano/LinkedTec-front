@@ -18,7 +18,7 @@ export const usuarioContext = createContext(); //Contexto para poder pasar el us
 
 function App() {
   //const [usuarioLog, setUsuarioLog] = useState(null); //Estado para guardar el usuario
-  const [usuarioLog, setUsuarioLog] = useState('13'); 
+  const [usuarioLog, setUsuarioLog] = useState(''); 
   return (
     //Pasa a los componentes hijos el usuario
     <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
