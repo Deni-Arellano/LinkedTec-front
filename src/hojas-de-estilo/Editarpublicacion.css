@@ -5,9 +5,10 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin-bottom: 10px;
-    width: 35%;
+    width: 60%;
     box-sizing: border-box;
     background-color: #f6faff;
+    margin-left: 300px;
 }
 
 .editar-publicacion-header {
@@ -50,10 +51,11 @@ textarea, input[type="text"] {
 
 .editar-publicacion-imagen {
     width: 100%;
-    max-height: 300px;
+    height: auto;
     object-fit: cover;
     border-radius: 8px;
     margin-top: 10px;
+    
 }
 
 .editar-publicacion-botones {
@@ -92,4 +94,8 @@ textarea, input[type="text"] {
 
 .editar-publicacion-eliminar-boton:hover {
     background-color: #e60000;
+}
+
+#input-subir-nueva-imagen{
+    display: none;
 }

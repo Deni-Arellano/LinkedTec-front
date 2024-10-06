@@ -8,6 +8,8 @@ import { MdAddComment } from "react-icons/md";
 import Axios from 'axios';
 import CrearComentario from './CrearComentario';
 import { usuarioContext } from '../App';
+import { useNavigate } from 'react-router-dom';
+import '../hojas-de-estilo/Comentario.css';
 
 
 const MostrarPubli = ({ datos, onEliminar }) => {
@@ -16,6 +18,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const [mostrarCrearComentario, setMostrarCrearComentario] = useState(false);
     const [comentariosPublicacion, setComentariosPublicacion] = useState([]);
+    const navigate = useNavigate();
 
     const handleOpciones = () => {
         setMostrarOpciones(!mostrarOpciones);
@@ -44,6 +47,8 @@ const MostrarPubli = ({ datos, onEliminar }) => {
         }
     };
 
+    
+
     const getComentariosPublicacion = async (id_publicacion) => {
         try {
             const response = await Axios.get(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`);
@@ -60,9 +65,26 @@ const MostrarPubli = ({ datos, onEliminar }) => {
         
     };
 
+    const editarPublicacion = () => {
+        navigate('/EditarPublicacion', {
+            state: {
+                descripcion: datos.descripcion,
+                imagen: datos.imagen,
+                id_publicacion: datos.id_publicacion
+            }});
+    };
+
+
+
+
+
     useEffect(() => {
         getComentariosPublicacion(datos.id_publicacion);
     }, [datos.id_publicacion]);
+
+    
+
+
 
     return (
         <div className="Mostrar-publicacion">
@@ -77,7 +99,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} />
                 {mostrarOpciones && (
                     <div className="mostrar-publicacion-opciones-dropdown">
-                        <button className="mostrar-publicacion-opcion-boton">Editar</button>
+                        <button className="mostrar-publicacion-opcion-boton" onClick={editarPublicacion}>Editar</button>
                         <button className="mostrar-publicacion-opcion-boton" onClick={eliminarPublicacion}>Eliminar</button>
                     </div>
                 )}
@@ -92,7 +114,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     </div>
                 </div>
                 <img 
-                    src={datos.imagen || "https://via.placeholder.com/300"} 
+                    src={ "https://via.placeholder.com/300"} //datos.imagen ||
                     alt="Post" 
                     className="mostrar-publicacion-imagen" 
                 />
@@ -113,7 +135,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     <CrearComentario
                         id_publicacion={datos.id_publicacion}
                         idUsuario={usuarioLog}
-                        onComentarioAgregado={agregarComentario} // Aquí se pasa la función
+                        onComentarioAgregado={agregarComentario} 
                     />
                     
                 )}

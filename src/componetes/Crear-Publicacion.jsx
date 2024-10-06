@@ -41,8 +41,16 @@ const CrearPubli = () => {
             return;
         }
 
+        if (file && file.size > 10 * 1024 * 1024) { 
+            console.log("El tamaño máximo de la imagen es 10 MB."); 
+            setImage(null);
+            setImagenSeleccionada(false);
+            fileInputRef.current.value = ''; 
+            return;
+        }
+
         setImage(e.target.files[0]);
-        setImagenSeleccionada(!!file);// cambia de estado si se ha seleccionado una imagen
+        setImagenSeleccionada(!!file);
     };
 
     // Envia la imagen al servidor

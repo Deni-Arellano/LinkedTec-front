@@ -12,13 +12,15 @@ import PubliUsuarios from './paginas/Publicaciones';
 import VisualizacionPerfil from './paginas/VisualizacionPerfil';
 import PublicacionEmpleo from '../src/paginas/PublicacionEmpleo'
 import FormularioPublicacionEmpleo from '../src/paginas/FormularioPublicacionEmpleo'
+import EditarPublicacion from './paginas/PaginaEditarPublicacion'; 
 
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
-  //const [usuarioLog, setUsuarioLog] = useState(null); //Estado para guardar el usuario
-  const [usuarioLog, setUsuarioLog] = useState(''); 
+  const [usuarioLog, setUsuarioLog] = useState(null); 
+  //const [usuarioLog, setUsuarioLog] = useState(''); 
+  //const [usuarioLog, setUsuarioLog] = useState('11'); 
   return (
     //Pasa a los componentes hijos el usuario
     <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
@@ -36,6 +38,7 @@ function App() {
           <Route path="/Perfil" element={<VisualizacionPerfil />} /> 
           <Route path="/publicacion-empleo" element={<PublicacionEmpleo />} /> 
           <Route path="/FormularioPublicacionEmpleo" element={<FormularioPublicacionEmpleo />} />
+          <Route path="/EditarPublicacion" element={<EditarPublicacion />} />
           
         </Routes>
       </Router>
