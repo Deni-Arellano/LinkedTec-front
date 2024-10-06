@@ -1,64 +1,60 @@
 import React from "react";
-import '../hojas-de-estilo/CrearComentario.css'
+import '../hojas-de-estilo/CrearComentario.css';
 import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import Axios from 'axios';
 
 const CrearComentario = ({ id_publicacion, idUsuario, onComentarioAgregado }) => {
     const [comentario, setComentario] = useState('');
-    const [error, setError] = useState('');
 
     const add = async () => {
+        console.clear();
+
         if (!comentario.trim()) {
             console.log('El comentario no puede estar vacío.');
             return;
         }
+        if (comentario.length > 250) {
+            console.log('El comentario no puede exceder los 250 caracteres.');
+            return;
+        }
 
+        // Preparar datos para enviar
         const datosEnviar = {
             'texto': comentario,
             'id_usuario': idUsuario, 
             'fecha': new Date().toISOString()
         };
-
-
-        
-        const response = await Axios.post(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`, datosEnviar)
-        .then((response) => {
-            //console.log('Datos del servidor:' ,response.data);
-            onComentarioAgregado(response.data)
-            setComentario('');
-        })
-        .catch((error) => {
+        try {
+            const response = await Axios.post(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`, datosEnviar);
+            onComentarioAgregado(response.data);  
+            setComentario('');  
+            console.log('Comentario agregado con éxito.'); 
+        } catch (error) {
             if (error.response) {
-                console.log("Error de respuesta del servidor:", error.response.data);
-                console.log("Código de estado:", error.response.status);
-                
-      
+                console.log("Error del servidor:", error.response.data);
             } else {
                 console.log("Error en la solicitud:", error.message);
             }
-      
-      
-          })
-          ;
+        }
     };
-    
+
     return (
-        <div className="mostrar-crear-comentario">  
+        <div className="mostrar-crear-comentario">
             <textarea
                 className="texto-crear-comentario"
                 placeholder="Escribe un comentario..."
-                value={comentario} 
-                onChange={(e) => setComentario(e.target.value)} 
+                value={comentario}
+                onChange={(e) => setComentario(e.target.value)}
+                maxLength="250" 
             ></textarea>
-            {error && <p className="error">{error}</p>} 
-            <div className="boton-crear-comentario">
+            <div className="botones-comentario">
                 <button className="crear-comentario" onClick={add}>
-                    <IoSend />
+                    <IoSend /> Enviar
                 </button>
             </div>
         </div>
     );
-}
+};
 
 export default CrearComentario;
