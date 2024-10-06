@@ -43,8 +43,51 @@ const Registro = () => {
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
 
-  const add = () => {
+  const verificarUsuarioExistente = async () => {
+    try {
+      const response = await Axios.get('http://localhost:3000/usuarios');
+      const usuarios = response.data;
+      const correoExistente = usuarios.some((usuario) => usuario.correo === correo);
+      if (correoExistente) {
+        console.log('El correo ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Correo en uso",
+          text: "El correo ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+      const telefonoExistente = usuarios.some((usuario) => usuario.telefono === telefono);
+      if (telefonoExistente) {
+        console.log('El teléfono ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Teléfono en uso",
+          text: "El teléfono ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+      return true;
+
+    } catch (error) {
+      console.log("Error al verificar usuario existente:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error de verificación",
+        text: "Hubo un error al verificar el correo o el teléfono.",
+      });
+      return false;
+    }
+  };
+
+
+  const add = async() => {
     console.log("Agregando estudiante");
+        const usuarioValido = await verificarUsuarioExistente();
+        if (!usuarioValido) 
+        {
+            return; 
+        }
 
     // Validaciones
     if (nombre.length < 2 || nombre.length > 50) {
@@ -291,26 +334,6 @@ const Registro = () => {
 
       if (error.response) {
         console.log("Error de respuesta del servidor:", error.response.data);
-
-        if (error.response.data.error === 'El correo ya está en uso.') {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "El correo ya está en uso.",
-            footer: "Ingresa otro diferente."
-          });
-          return;
-        }
-
-        if (error.response.data.error === "El número de control no debe de repetirse.") {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Número de control ya en uso.",
-            footer: "El número de control no debe de repetirse."
-          });
-          return;
-        }
       }
     });
   }
