@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Axios from 'axios'; 
 import {usuarioContext} from '../App';
 import Swal from 'sweetalert2';
+
 const RegistroDocentes = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
 
@@ -43,69 +44,69 @@ const RegistroDocentes = () => {
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [nivelSeleccionado, setNivelSeleccionado] = useState('');
 
-
   const add = () => {
     console.log("Agregando docente");
-    console.log("Nombre: " + nombre);
-    console.log("Apellido Paterno: " + apellidoPaterno);
-    console.log("Apellido Materno: " + apellidoMaterno);
-    console.log("Fecha de Nacimiento: " + fechaNacimiento);
-    console.log("Teléfono: " + telefono);
-    console.log("Correo: " + correo);
-    console.log("Contraseña: " + contraseña);
-    console.log("Confirmar Contraseña: " + confirmarContraseña);
-    console.log("Biografía: " + biografia);
-    console.log("No. Empleado: " + noEmpleado);
-    console.log("Academia: " + academiaSeleccionada);
-    console.log("Sexo: " + sexoSeleccionado);
-    console.log("Nivel de estudios: " + nivelSeleccionado);
-    if (nombre.length <2 || nombre.length > 50) {
-      console.log("El nombre debe tener entre 2 y 50 caracteres.");
-      return; 
+
+    // Validaciones
+    if (nombre.length < 2 || nombre.length > 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre debe tener entre 2 y 50 caracteres.",
+      });
+      return;
     }
 
-    const Caracteres_especialesn= /^[A-Za-z\s]+$/; 
-    if (!Caracteres_especialesn.test(nombre))
-    {
-      console.log("El nombre solo puede contener letras ")
-      return; 
+    const Caracteres_especialesn = /^[A-Za-z\s]+$/; 
+    if (!Caracteres_especialesn.test(nombre)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre solo puede contener letras.",
+      });
+      return;
     }
 
     if (nombre.trim() === '') {
-      console.log("El nombre no debe estar vacio ")
-      return; 
-    }
-
-    if (nombre.trim().length === 0) {
-      console.log("El nombre no puede tener solo espacios vacios")
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no debe estar vacío.",
+      });
+      return;
     }
 
     if (/[\s]{2,}/.test(nombre)) {
-      console.log("El nombre no puede tener mas de dos espacios vacios")
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no puede tener más de un espacio vacío consecutivo.",
+      });
+      return;
     }
-    
-    
 
     /*--------------------apellido paterno-------------------------*/
-
     if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
-      console.log("El apellido paterno debe tener entre 2 y 50 caracteres.");
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno debe tener entre 2 y 50 caracteres.",
+      });
+      return;
     }
 
     if (apellidoPaterno.trim() === '') {
-      console.log("El apellido paterno no puede estar vacío.");
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno no puede estar vacío.",
+      });
+      return;
     }
-
-
 
     /*--------------------fecha-------------------------*/
     const fechaIngresada = new Date(fechaNacimiento); 
     const anioNacimiento = fechaIngresada.getFullYear(); 
-
     const fechaActual = new Date(); 
     const edad = fechaActual.getFullYear() - anioNacimiento; 
     const haCumplidoAnios = (fechaActual.getMonth() > fechaIngresada.getMonth()) ||
@@ -113,151 +114,197 @@ const RegistroDocentes = () => {
     const edadReal = haCumplidoAnios ? edad : edad - 1;
 
     if (anioNacimiento <= 1950) {
-      console.log('El año de nacimiento debe ser mayor a 1950.');
-      return; 
-    }
-    if (edadReal < 17) {
-      console.log('Debes tener al menos 17 años.');
-      return; 
-    }
-    /*------------------telefono---------------*/
-    if (telefono.trim() === '') {
-      console.log('Error: El teléfono no puede estar vacío.');
-      return; 
-    }
-    if (telefono.length < 10 || telefono.length > 15) {
-      console.log('Error: El teléfono debe tener entre 10 y 15 caracteres.');
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'El año de nacimiento debe ser mayor a 1950.',
+      });
+      return;
     }
 
-  /*------------------correo---------------*/
+    if (edadReal < 17) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'Debes tener al menos 17 años.',
+      });
+      return;
+    }
+
+    /*------------------telefono---------------*/
+    if (telefono.trim() === '') {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'El teléfono no puede estar vacío.',
+      });
+      return;
+    }
+
+    if (telefono.length < 10 || telefono.length > 15) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'El teléfono debe tener entre 10 y 15 caracteres.',
+      });
+      return;
+    }
+
+    /*------------------correo---------------*/
     if (correo.trim() === '') {
-      console.log('Error: El correo no puede estar vacío.');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'El correo no puede estar vacío.',
+      });
       return;
     }
 
     const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!regexCorreo.test(correo)) {
-      console.log('Introduzca un correo electrónico válido.');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'Introduzca un correo electrónico válido.',
+      });
       return;
     }
 
+    /*--------------------contraseña y confirmar-------------------------- */
+    if (contraseña.length < 8 || contraseña.length > 12) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe contener entre 8 y 12 caracteres.",
+      });
+      return;
+    }
 
-  /*--------------------contraseña y confirmar-------------------------- */
-
-    
-    if (contraseña.length >= 7 && contraseña.length <= 12) {
-      console.log("La contraseña debe contener entre 8 y caracteres")
-
-    
     const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
-
     if (!regexContraseña.test(contraseña)) {
-      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe incluir letras, números y caracteres especiales.",
+      });
       return;
-      }
-  
-
-
-    } 
-    if (contraseña !== confirmarContraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
     }
 
-
-    if (confirmarContraseña !== contraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
+    if (contraseña !== confirmarContraseña) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden.",
+      });
+      return;
     }
 
     /*------------------No.empleado------------------------*/
     const regexNoEmpleado = /^\d{3}$/;
-    if (!regexNoEmpleado.test(noEmpleado)) {console.log(" El No. de Empleado debe comenzar con 'RH' y estar seguido de 3 dígitos.");
+    if (!regexNoEmpleado.test(noEmpleado)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El No. de Empleado debe estar seguido de 3 dígitos.",
+      });
       return;
     }
 
     /*-------------carrera,sexo,semestre----------------- */
     if (academiaSeleccionada === '') {
-      console.log("Error: Debes seleccionar una carrera.");
-      return;
-    }
-    
-    if (sexoSeleccionado === '') {
-      console.log("Error: Debes seleccionar un sexo.");
-      return;
-    }
-    
-    if (nivelSeleccionado=== '') {
-      console.log("Error: Debes seleccionar un semestre.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes seleccionar una academia.",
+      });
       return;
     }
 
-    const datosEnviar={
+    if (sexoSeleccionado === '') {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes seleccionar un sexo.",
+      });
+      return;
+    }
+
+    if (nivelSeleccionado === '') {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes seleccionar un nivel de estudio.",
+      });
+      return;
+    }
+
+    // Datos a enviar
+    const datosEnviar = {
       "usuario": {
-      "nombre": nombre,
-      "apellido_paterno": apellidoPaterno,
-      "apellido_materno": apellidoMaterno,
-      "correo": correo,
-      "contraseña": contraseña,
-      "fecha_nacimiento": fechaNacimiento,
-      "telefono": telefono,
-      "sexo": sexoSeleccionado,
-      "biografia": biografia,
-      "role": "Docentes", 
-      "imagen_usuario": ""
+        "nombre": nombre,
+        "apellido_paterno": apellidoPaterno,
+        "apellido_materno": apellidoMaterno,
+        "correo": correo,
+        "contraseña": contraseña,
+        "fecha_nacimiento": fechaNacimiento,
+        "telefono": telefono,
+        "sexo": sexoSeleccionado,
+        "biografia": biografia,
+        "role": "Docentes", 
+        "imagen_usuario": ""
       },
       "docente": {
-      "ultimo_nivel_estudios": nivelSeleccionado,
-      "numero_empleado": "RH" + noEmpleado,
-      "academia": academiaSeleccionada
+        "ultimo_nivel_estudios": nivelSeleccionado,
+        "numero_empleado": "RH" + noEmpleado,
+        "academia": academiaSeleccionada
       }
-    }
+    };
 
     console.log(datosEnviar);
 
     Axios.post('http://localhost:3000/usuarios/docentes', datosEnviar)
     .then((response) => {
-      //Muestra los datos devueltos por el servidor y agrega el id al contexto
-      console.log("Respuedsta del servidor:", response.data);
+      console.log("Respuesta del servidor:", response.data);
       setUsuarioLog(response.data.id);
-      console.log("Usuario guardado sin actualizar:", usuarioLog);
+      Swal.fire({
+        icon: "success",
+        title: "Registro exitoso",
+        text: "El docente ha sido registrado con éxito.",
+      });
       handleNext();
     })
     .catch((error) => {
       if (error.response) {
-          console.log("Error de respuesta del servidor:", error.response.data);
-          console.log("Código de estado:", error.response.status);
+        console.log("Error de respuesta del servidor:", error.response.data);
+
+        if (error.response.data.error === 'El correo ya está en uso.') {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El correo ya está en uso.",
+            footer: "Ingresa otro diferente."
+          });
+          return;
+        }
+
+        if (error.response.data.error === 'El número de empleado ya está en uso.') {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Número de empleado ya en uso.",
+            footer: "El número de empleado no debe de repetirse."
+          });
+          return;
+        }
       } else {
-          console.log("Error en la solicitud:", error.message);
-      }
-      if (error.response.data.error==='El correo ya está en uso.'){
-
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "El correo ya esta en uso",
-          footer:"Ingresa otro diferente"
+          title: "Error en la solicitud",
+          text: error.message,
         });
-        return;
       }
-
-      if (error.response.data.error==='El número de empleado ya está en uso.'){
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Numero de Control ya en uso",
-          footer: "El número de empleado no debe de repetirse."
-        });
-        return;
-      }
-          
-    })
-    ;
-
+    });
   }
-
 
   return (
     <div className="docentes-contenedor">  
@@ -315,7 +362,6 @@ const RegistroDocentes = () => {
         />
       </div>
 
-      
       <div className="docentes-campo">
         <Label htmlFor="Telefono" texto="Teléfono:" />
         <Textbox 
@@ -360,7 +406,6 @@ const RegistroDocentes = () => {
         />
       </div>
 
-      
       <div className="docentes-campo">
         <label htmlFor="biografia">Biografía:</label>
         <Textarea 
@@ -371,7 +416,6 @@ const RegistroDocentes = () => {
         onChange={(e) => setBiografia(e.target.value)}
         />
       </div>
-
 
       <div className="docentes-campo">
         <Label htmlFor="noDocente" texto="No. Empleado:" />
@@ -416,9 +460,6 @@ const RegistroDocentes = () => {
           onChange={(e) => setNivelSeleccionado(e.target.value)}
         />
       </div>
-
-
-      
 
       <div className="docentes-botones">  
         <Button texto="Atrás" onClick={handleBack} />

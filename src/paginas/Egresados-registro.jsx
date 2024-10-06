@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import Label from '../componetes/Etiquetas';
 import axios from 'axios';
 import {usuarioContext} from '../App';
+import Swal from 'sweetalert2';
 
 const RegistroEgresado = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
@@ -44,236 +45,365 @@ const RegistroEgresado = () => {
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
 
-
   const add = () => {
     console.log('Agregando egresado');
-    console.log('Nombre: ' + nombre);
-    console.log('Apellido Paterno: ' + apellidoPaterno);
-    console.log('Apellido Materno: ' + apellidoMaterno);
-    console.log('Fecha de Nacimiento: ' + fechaNacimiento);
-    console.log('Teléfono: ' + telefono);
-    console.log('Correo: ' + correo);
-    console.log('Contraseña: ' + contraseña);
-    console.log('Confirmar Contraseña: ' + confirmarContraseña);
-    console.log('Biografía: ' + biografia);
-    console.log('Puesto: ' + Puesto);
-    console.log('Año de Graduación: ' + AñoGraduacion);
 
+    // Validaciones
     if (contraseña !== confirmarContraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden.",
+      });
+      return;
     }
 
-    if ([nombre].some(field => !field)) {
-      console.log("El nombre no debe quedar vacio");
+    if (!nombre) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no debe quedar vacío.",
+      });
       return;
     }
 
     if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
-      console.log("El nombre no debe contener números ni caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no debe contener números ni caracteres especiales.",
+      });
       return;
     }
 
-    if (nombre.length >=50) {
-      console.log("El nombre no debe exceder los 50 caracteres")
-      return
-    }
-    
-    if ([apellidoPaterno].some(field => !field)) {
-      console.log("El apellido paterno no debe quedar vacío.");
+    if (nombre.length >= 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no debe exceder los 50 caracteres.",
+      });
       return;
     }
-    
+
+    if (!apellidoPaterno) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno no debe quedar vacío.",
+      });
+      return;
+    }
+
     if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
-      console.log("El apellido paterno no debe contener números ni caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno no debe contener números ni caracteres especiales.",
+      });
       return;
     }
 
-    if (apellidoPaterno.length >=50) {
-      console.log("El Apellido paterno no debe exceder los 50 caracteres")
-      return
+    if (apellidoPaterno.length >= 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno no debe exceder los 50 caracteres.",
+      });
+      return;
     }
-    
+
     if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
-      console.log("El apellido materno no debe contener números ni caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido materno no debe contener números ni caracteres especiales.",
+      });
       return;
     }
 
-    if (apellidoMaterno.length >=50) {
-      console.log("El Apellido materno no debe exceder los 50 caracteres")
-      return
+    if (apellidoMaterno.length >= 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido materno no debe exceder los 50 caracteres.",
+      });
+      return;
     }
 
     if (!fechaNacimiento) {
-      console.log("La fecha de nacimiento no debe quedar vacía.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La fecha de nacimiento no debe quedar vacía.",
+      });
       return;
     }
 
     const obtenerAño = new Date(fechaNacimiento).getFullYear();
     if (obtenerAño <= 1950) {
-      console.log(obtenerAño)
-      console.log("El año de nacimiento debe ser mayor a 1950.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El año de nacimiento debe ser mayor a 1950.",
+      });
       return;
     }
 
     const añoActual = new Date().getFullYear();
     const edad = añoActual - obtenerAño;
     if (edad <= 17) {
-      console.log(edad)
-      console.log("Debes tener al menos 17 años.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes tener al menos 17 años.",
+      });
       return;
     }
 
     if (!sexoSeleccionado) {
-      console.log("Se debe ingresar el sexo.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Se debe ingresar el sexo.",
+      });
       return;
     }
 
-    if ([telefono].some(field => !field)) {
-      console.log("El telefono no debe quedar vacio");
+    if (!telefono) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El teléfono no debe quedar vacío.",
+      });
       return;
     }
 
     if (telefono.length < 10 || telefono.length > 15) {
-      console.log("El telefono debe tener entre minimo 10 y maximo 15 digitos")
-      return
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El teléfono debe tener entre 10 y 15 dígitos.",
+      });
+      return;
     }
 
     if (!/^\d+$/.test(telefono)) {
-      console.log("El teléfono debe contener solo dígitos.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El teléfono debe contener solo dígitos.",
+      });
       return;
     }
 
     if (!correo) {
-      console.log("El correo no debe quedar vacio");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El correo no debe quedar vacío.",
+      });
       return;
     }
 
     if (correo.length > 40) {
-      console.log("El correo no debe tener mas de 40 caracteres");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El correo no debe tener más de 40 caracteres.",
+      });
       return;
     }
 
     const obtenerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!obtenerEmail.test(correo)) {
-      console.log("El formato del correo no es válido");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El formato del correo no es válido.",
+      });
       return;
     }
 
     if (!contraseña) {
-      console.log("La contraseña no debe quedar vacia");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña no debe quedar vacía.",
+      });
       return;
     }
 
     if (contraseña.length < 8 || contraseña.length > 20) {
-      console.log("La contraseña debe tener entre 8 y 12 caracteres");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe tener entre 8 y 12 caracteres.",
+      });
       return;
     }
 
     const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,20}$/;
     if (!regexContraseña.test(contraseña)) {
-      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe incluir letras, números y caracteres especiales.",
+      });
       return;
     }
 
     if (!carreraSeleccionada) {
-      console.log("La carrera no debe quedar vacia");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La carrera no debe quedar vacía.",
+      });
       return;
     }
 
     if (!AñoGraduacion) {
-      console.log("El año de graduacion no debe quedar vacio");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El año de graduación no debe quedar vacío.",
+      });
       return;
     }
 
     if (AñoGraduacion.length > 4) {
-      console.log("El Año de graduacion no debe tener mas de 4 caracteres");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El año de graduación no debe tener más de 4 caracteres.",
+      });
       return;
     }
 
     if (AñoGraduacion <= 0) {
-      console.log("El año de graduación debe ser mayor a 0?");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El año de graduación debe ser mayor a 0.",
+      });
       return;
     }
 
-    // Verificar si es numero entero y de 4 dígitos
     if (!/^\d{4}$/.test(AñoGraduacion)) {
-      console.log("El año de graduación debe ser numero entero de 4 dígitos");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El año de graduación debe ser un número entero de 4 dígitos.",
+      });
       return;
     }
 
     if (!Puesto) {
-      console.log("El puesto no debe quedar vacio");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El puesto no debe quedar vacío.",
+      });
       return;
     }
 
     if (Puesto.length > 50) {
-      console.log("El puesto no debe tener mas de 50 caracteres");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El puesto no debe tener más de 50 caracteres.",
+      });
       return;
     }
 
+    // Datos a enviar
     const datosEnviar = {
       "usuario": {
-      "nombre": nombre,
-      "apellido_paterno": apellidoPaterno,
-      "apellido_materno": apellidoMaterno,
-      "correo": correo,
-      "contraseña": contraseña,
-      "fecha_nacimiento": fechaNacimiento,
-      "telefono": telefono,
-      "sexo": sexoSeleccionado,
-      "biografia": biografia,
-      "role": "Egresados", 
-      "imagen_usuario": ""
+        "nombre": nombre,
+        "apellido_paterno": apellidoPaterno,
+        "apellido_materno": apellidoMaterno,
+        "correo": correo,
+        "contraseña": contraseña,
+        "fecha_nacimiento": fechaNacimiento,
+        "telefono": telefono,
+        "sexo": sexoSeleccionado,
+        "biografia": biografia,
+        "role": "Egresados", 
+        "imagen_usuario": ""
       },
       "egresado": {
-      "carrera": carreraSeleccionada,
-      "año_graduacion": AñoGraduacion,
-      "puesto": Puesto
+        "carrera": carreraSeleccionada,
+        "año_graduacion": AñoGraduacion,
+        "puesto": Puesto
       }
-     }
+    };
 
     console.log(datosEnviar);
 
     axios.post('http://localhost:3000/usuarios/egresados', datosEnviar)
-
     .then((response) => {
-      //Muestra los datos devueltos por el servidor y agrega el id al contexto
       console.log("Respuesta del servidor:", response.data);
-      setUsuarioLog(response.data.usuario.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
-      console.log("Usuario guardado sin actualizar:", usuarioLog);
+      setUsuarioLog(response.data.usuario.id);
+      Swal.fire({
+        icon: "success",
+        title: "Registro exitoso",
+        text: "El egresado ha sido registrado con éxito.",
+      });
       handleNext();
     })
     .catch((error) => {
       if (error.response) {
-        if (error.response.data.message==='El correo ya está en uso') {
-          console.log("CORREO YA EN USOOOOOOOO")
+        if (error.response.data.message === 'El correo ya está en uso') {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El correo ya está en uso.",
+            footer: "Ingresa otro diferente."
+          });
         }
 
-        if (error.response.status===400) {
-          console.log('Bad request, la solicitud es invalida o no puede ser procesada')
+        if (error.response.status === 400) {
+          Swal.fire({
+            icon: "error",
+            title: "Bad request",
+            text: "La solicitud es inválida o no puede ser procesada.",
+          });
         }
 
-        if (error.response.status===404) {
-            console.log('Not found, El recurso solicitado no existe')
+        if (error.response.status === 404) {
+          Swal.fire({
+            icon: "error",
+            title: "Not found",
+            text: "El recurso solicitado no existe.",
+          });
         }
 
-        if (error.response.status===500) {
-            console.log('Internal server error, error general del servidor en caso de que no retorne algun mensaje especifico')
+        if (error.response.status === 500) {
+          Swal.fire({
+            icon: "error",
+            title: "Error del servidor",
+            text: "Error general del servidor.",
+          });
         }
 
-        if (error.response.status===422) {
-            console.log('Unprocessable entity, La solicitud esta bien formada pero contiene errores semanticos')
+        if (error.response.status === 422) {
+          Swal.fire({
+            icon: "error",
+            title: "Error semántico",
+            text: "La solicitud contiene errores semánticos.",
+          });
         }
 
-          console.log("Error de respuesta del servidor:", error.response.data);
-          console.log("Código de estado:", error.response.status);
+        console.log("Error de respuesta del servidor:", error.response.data);
+        console.log("Código de estado:", error.response.status);
       } else {
-          console.log("Error en la solicitud:", error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Error en la solicitud",
+          text: error.message,
+        });
       }
-    })
-    ;
-  }
+    });
+  };
 
   return (
     <div className="registro-egresado">
@@ -284,46 +414,42 @@ const RegistroEgresado = () => {
         <div className="egresado-campo">
           <Label htmlFor="Nombre" texto='Nombre(s):'/>
           <Textbox 
-          id="Nombre" 
-          placeholder="Nombre(s)" 
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          
+            id="Nombre" 
+            placeholder="Nombre(s)" 
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
           />
         </div>
+
         <div className="egresado-campo">
           <Label htmlFor="ApellidoPaterno" texto='Apellido paterno:'/>
           <Textbox 
-          id="ApellidoPaterno" 
-          placeholder="Apellido Paterno"
-          value={apellidoPaterno} 
-          onChange={(e) => setApellidoPaterno(e.target.value)}
-          
+            id="ApellidoPaterno" 
+            placeholder="Apellido Paterno"
+            value={apellidoPaterno} 
+            onChange={(e) => setApellidoPaterno(e.target.value)}
           />
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="ApellidoMaterno" texto='Apellido materno:'/>
           <Textbox 
-          id="ApellidoMaterno" 
-          placeholder="Apellido Materno" 
-          value={apellidoMaterno}
-          onChange={(e) => setApellidoMaterno(e.target.value)}
-          
+            id="ApellidoMaterno" 
+            placeholder="Apellido Materno" 
+            value={apellidoMaterno}
+            onChange={(e) => setApellidoMaterno(e.target.value)}
           />
         </div>
-
 
         <div className="egresado-campo">
           <Fecha label="Fecha de Nacimiento" 
-          value={fechaNacimiento}
-          onChange={(e) => setFechaNacimiento(e.target.value)}
-          
+            value={fechaNacimiento}
+            onChange={(e) => setFechaNacimiento(e.target.value)}
           />
         </div>
 
         <div className="egresado-campo">
-          <Label className="radio-buttons-label"texto='Sexo'/>
+          <Label className="radio-buttons-label" texto='Sexo'/>
           <RadioButtons
             name="Sexo"
             options={[
@@ -339,61 +465,54 @@ const RegistroEgresado = () => {
         <div className="egresado-campo">
           <Label htmlFor="Telefono" texto='Teléfono'/>
           <Textbox 
-          id="Telefono" 
-          placeholder="Teléfono" 
-          type="tel" 
-          value={telefono}
-          onChange={(e) => setTelefono(e.target.value)}
-          
+            id="Telefono" 
+            placeholder="Teléfono" 
+            type="tel" 
+            value={telefono}
+            onChange={(e) => setTelefono(e.target.value)}
           />
-
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="Correo" texto='Correo:'/>
           <Textbox 
-          id="Correo" 
-          placeholder="Correo electrónico" 
-          type="email" 
-          value={correo}
-          onChange={(e) => setCorreo(e.target.value)}
-          
+            id="Correo" 
+            placeholder="Correo electrónico" 
+            type="email" 
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
           />
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="Contraseña" texto='Contraseña:'/>
           <Textbox 
-          id="Contraseña" 
-          placeholder="Contraseña" 
-          type="password" 
-          value={contraseña}
-          onChange={(e) => setContraseña(e.target.value)}
-          
+            id="Contraseña" 
+            placeholder="Contraseña" 
+            type="password" 
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
           />
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="confirmarContraseña" texto='Confirmar contraseña:'/>
           <Textbox 
-          id="ConfirmarContraseña" 
-          placeholder="Confirmar contraseña" 
-          type="password" 
-          value={confirmarContraseña}
-          onChange={(e) => setConfirmarContraseña(e.target.value)}
-          
+            id="ConfirmarContraseña" 
+            placeholder="Confirmar contraseña" 
+            type="password" 
+            value={confirmarContraseña}
+            onChange={(e) => setConfirmarContraseña(e.target.value)}
           />
         </div>
-
 
         <div className="egresado-campo">
           <Label htmlFor="biografia" texto='Biografía:'/>
           <Textarea 
-          id="Biografia"  
-          placeholder="Biografía" 
-          value={biografia}
-          onChange={(e) => setBiografia(e.target.value)}
-          
+            id="Biografia"  
+            placeholder="Biografía" 
+            value={biografia}
+            onChange={(e) => setBiografia(e.target.value)}
           />
         </div>
 
@@ -412,28 +531,25 @@ const RegistroEgresado = () => {
             selectedOption={carreraSeleccionada}  
             onChange={(e) => setCarreraSeleccionada(e.target.value)}
           />
-          
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="AñoGraduacion" texto='Año de graduación:'/>
           <Textbox 
-          id="AñodeGraduacion"  
-          placeholder="Año de Graduación" 
-          value={AñoGraduacion}
-          onChange={(e) => setAñoGraduacion(e.target.value)}
-
+            id="AñodeGraduacion"  
+            placeholder="Año de Graduación" 
+            value={AñoGraduacion}
+            onChange={(e) => setAñoGraduacion(e.target.value)}
           />
         </div>
 
         <div className="egresado-campo">
           <Label htmlFor="Puesto" texto='Puesto:'/>
           <Textbox 
-          id="Puesto"  
-          placeholder="Puesto en la empresa"
-          value={Puesto}
-          onChange={(e) => setPuesto(e.target.value)}
-          
+            id="Puesto"  
+            placeholder="Puesto en la empresa"
+            value={Puesto}
+            onChange={(e) => setPuesto(e.target.value)}
           />
         </div>
 
