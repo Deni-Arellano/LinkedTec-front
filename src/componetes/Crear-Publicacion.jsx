@@ -24,6 +24,15 @@ const CrearPubli = () => {
         const file = e.target.files[0];
         console.log(e.target.files);
 
+        const validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
+        if (file && !validExtensions.includes(file.type)) { // Verifica el tipo MIME
+            console.log("Extensión de archivo no válida. Solo se permiten archivos .jpg, .jpeg y .png."); // Mensaje de error
+            setImage(null);
+            setImagenSeleccionada(false);
+            fileInputRef.current.value = ''; // Limpiar la selección de imagen
+            return;
+        }
+
         if (file && file.size > 10 * 1024 * 1024) { // Verificar que el tamaño no supere 10 MB
             console.log("El tamaño máximo de la imagen es 10 MB."); // Mostrar mensaje de error
             setImage(null);
