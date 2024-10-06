@@ -116,6 +116,13 @@ const CrearPubli = () => {
         add();
     };
 
+    const cancelar = () => {
+        setTextoPubli('');
+        setImage(null);
+        fileInputRef.current.value = '';
+        setImagenSeleccionada(false);
+    };
+
     return (
         <div className="caja-crear-publicacion">
             <form className="estilo-caja-crear-publicacion" onSubmit={publicar}>
@@ -144,6 +151,15 @@ const CrearPubli = () => {
                     </button>
                     <div className="botones-derecha-crear-publicacion">
                         <Boton texto='Publicar' className='boton-crear-publicacion' />
+                        <Boton 
+                            type='button' 
+                            texto='Cancelar' 
+                            className='boton-crear-publicacion' 
+                            onClick={(e) => { 
+                                e.preventDefault(); 
+                                cancelar(); 
+                            }} 
+                        />
                     </div>
                 </div>
             </form>
