@@ -7,8 +7,7 @@ import DatosUsu_EsDoEg from '../componetes/DatosUsu_EsDoEg';
 import {usuarioContext} from '../App';
 import Axios from 'axios';
 import MostrarPublicacion from '../componetes/Mostrar-Publicacion';
-import CrearComentario from '../componetes/CrearComentario';
-import Comentario from '../componetes/Comentario';
+import EditarPublicacion from '../componetes/Editarpublicacion';    
 
 
 
@@ -114,7 +113,7 @@ const VisualizacionPerfil = () => {
         
     }, [datosUsuario]);
 
-    const [firstImageLoaded, setFirstImageLoaded] = useState(false);
+    
 
     //Extrae todas las publicaciones que hizo el usuario
     useEffect(() => {
@@ -126,7 +125,7 @@ const VisualizacionPerfil = () => {
                 if (response.data.length > 0 && response.data[0].imagen) {
                     const img = new Image();
                     img.src = 'http://localhost:3000/imagenes/' + response.data[0].imagen;
-                    img.onload = () => setFirstImageLoaded(true); 
+                    
                 }
             } catch (err) {
                 console.error('Error al obtener las publicaciones:', err);
@@ -135,6 +134,41 @@ const VisualizacionPerfil = () => {
 
         getPublicacionesUsu();
     }, [usuarioLog]);
+
+    // Genera los componentes para cada publicacióion
+    useEffect(() => {
+        const generarComponentesPublicaciones = async () => {
+            const componentesPublicacionesPromises = datosPublicaciones.map(async (publicacion) => {
+                //console.log("Datos de la publicacionñññññ", publicacion);
+                return (
+                    <MostrarPublicacion
+                        key={publicacion.id_publicacion}
+                        datos={{
+                            descripcion: publicacion.descripcion,
+                            imagen:publicacion.imagen,  
+                            fecha: publicacion.fecha,
+                            meGusta: publicacion.me_gusta,
+                            disgusta: publicacion.disgusta,
+                            fotoPerfil: datosUsuario.imagen_usuario || 'https://via.placeholder.com/100', 
+                            nombreUsuario: `${datosUsuario.nombre || ''} ${datosUsuario.apellido_paterno || ''} ${datosUsuario.apellido_materno || ''}`,
+                            id_publicacion: publicacion.id_publicacion
+                        }}
+                        
+                        onEliminar={id => {
+                            setDatosPublicaciones(prevPublicaciones => prevPublicaciones.filter(publicacion => publicacion.id_publicacion !== id));
+                        }}
+                    />
+                );
+            });
+
+            const componentes = await Promise.all(componentesPublicacionesPromises);
+            setComponentesPublicaciones(componentes); 
+        };
+    
+       
+            generarComponentesPublicaciones();
+        
+    }, [datosPublicaciones, datosUsuario]);
 
 
 
@@ -154,31 +188,11 @@ const VisualizacionPerfil = () => {
 
                 {/* Contenedor de publicaciones */}
                 <div className='conenedorPublicaciones-Usuario'>
-                    {datosPublicaciones.length > 0 ? (
-                        datosPublicaciones.map(publicacion => (
-                            <MostrarPublicacion
-                                key={publicacion.id_publicacion}
-                                datos={{
-                                    descripcion: publicacion.descripcion,
-                                    imagen: 'http://localhost:3000/imagenes/' + publicacion.imagen,
-                                    fecha: publicacion.fecha,
-                                    meGusta: publicacion.me_gusta,
-                                    disgusta: publicacion.disgusta,
-                                    fotoPerfil: 'https://via.placeholder.com/100',
-                                    nombreUsuario: `${datosUsuario.nombre || ''} ${datosUsuario.apellido_paterno || ''} ${datosUsuario.apellido_materno || ''}`,
-                                    id_publicacion: publicacion.id_publicacion
-                                }}
-                                onEliminar={id => {
-                                    setDatosPublicaciones(prevPublicaciones => prevPublicaciones.filter(pub => pub.id_publicacion !== id));
-                                }}
-                            />
-                        ))
-                    ) : firstImageLoaded ? (
-                        <p>No hay publicaciones disponibles.</p>
-                    ) : (
-                        <p>Cargando publicaciones...</p>
-                    )}
+                {componentesPublicaciones} 
                 </div>
+
+                
+
 
                 
             </div>
