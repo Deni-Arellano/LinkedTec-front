@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import '../hojas-de-estilo/MenuNavegacion.css';
 import Searchbar from './Searchbar';
 import { VscAccount } from "react-icons/vsc";
@@ -6,10 +6,33 @@ import { AiFillAlert } from "react-icons/ai";
 import { BiChat } from "react-icons/bi";
 import logo from '../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
+import {usuarioContext} from '../App';
+import Axios from 'axios';
 
 const MenuNavegacion = () => {
     const [sidebarVisible] = useState(false);
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    const [datosUsuario, setDatosUsuario] = useState('');
+    
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Obtener los datos del usuario logeado
+        const getUsuario = async () => {
+            try {
+                const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+                console.log("Servidor dice", response.data);
+                setDatosUsuario(response.data);
+            } catch (err) {
+                console.error('Error al obtener el usuario:', err);
+            }
+        };
+
+       
+        if (usuarioLog) {
+            getUsuario();
+        }
+    }, [usuarioLog]); 
 
     return (
         <div className="MenuNavegacion-app">
@@ -43,7 +66,7 @@ const MenuNavegacion = () => {
             <aside className={`MenuNavegacion-sidebar ${sidebarVisible ? 'MenuNavegacion-visible' : ''}`}>
                 <div className="MenuNavegacion-perfil">
                     <img src="https://via.placeholder.com/100" alt="Perfil" className="MenuNavegacion-foto-perfil" />
-                    <p className="MenuNavegacion-usuario-publicacion-empleo">Guisselle Iñiguez</p>
+                    <p className="MenuNavegacion-usuario-publicacion-empleo">{datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno}</p>
                 </div>
 
                 <nav className="MenuNavegacion-menu">

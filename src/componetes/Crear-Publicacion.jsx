@@ -108,7 +108,7 @@ const CrearPubli = () => {
                 } else {
                     Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
                 }
-            });
+            });            
     };
 
     const publicar = (e) => {
@@ -122,6 +122,8 @@ const CrearPubli = () => {
         fileInputRef.current.value = '';
         setImagenSeleccionada(false);
     };
+
+
 
     return (
         <div className="caja-crear-publicacion">
