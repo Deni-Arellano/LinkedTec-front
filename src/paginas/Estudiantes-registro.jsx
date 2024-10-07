@@ -11,17 +11,12 @@ import {usuarioContext} from '../App';
 import Axios from 'axios';
 import Swal from 'sweetalert2';
 
-
-
-
-
 const Registro = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
 
   useEffect(() => {
     setUsuarioLog(null); // Restablece el contexto del usuario 
   }, [setUsuarioLog]);
-
 
   const navigate = useNavigate(); 
   const handleBack = () => {
@@ -32,8 +27,8 @@ const Registro = () => {
   const handleNext = () => {
     console.log("Navegando a /codigo-verificacion");
     navigate('/codigo-verificacion'); 
-
   };
+
   const [nombre, setNombre] = useState('');
   const [apellidoPaterno, setApellidoPaterno] = useState('');
   const [apellidoMaterno, setApellidoMaterno] = useState('');
@@ -48,70 +43,142 @@ const Registro = () => {
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
 
+  const verificarusuarioexistente = async () => {
+    try {
+      const response = await Axios.get('http://localhost:3000/usuarios');
+      const usuarios = response.data;
+      const correoExistente = usuarios.some((usuario) => usuario.correo === correo);
+      if (correoExistente) {
+        console.log('El correo ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Correo en uso",
+          text: "El correo ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+      const telefonoExistente = usuarios.some((usuario) => usuario.telefono === telefono);
+      if (telefonoExistente) {
+        console.log('El teléfono ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Teléfono en uso",
+          text: "El teléfono ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+      return true;
 
-  const add = () => {
+    } catch (error) {
+      console.log("Error al verificar usuario existente:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error de verificación",
+        text: "Hubo un error al verificar el correo o el teléfono.",
+      });
+      return false;
+    }
+  };
+  const verificarNumeroControlExistente = async () => {
+    try {
+      const response = await Axios.get('http://localhost:3000/usuarios/estudiantes');
+      const usuarios = response.data;
+      const controlExistente = usuarios.some((estudiantes) => estudiantes.no_control === noControl);
+      if (controlExistente) {
+        console.log('El número de control ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Número de control en uso",
+          text: "El número de control ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+  
+      return true;
+  
+    } catch (error) {
+      console.log("Error al verificar número de control existente:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error de verificación",
+        text: "Hubo un error al verificar el número de control.",
+      });
+      return false;
+    }
+  };
+  
+  const add = async() => {
     console.log("Agregando estudiante");
-    console.log("Nombre: " + nombre);
-    console.log("Apellido Paterno: " + apellidoPaterno);
-    console.log("Apellido Materno: " + apellidoMaterno);
-    console.log("Fecha de Nacimiento: " + fechaNacimiento);
-    console.log("Teléfono: " + telefono);
-    console.log("Correo: " + correo);
-    console.log("Contraseña: " + contraseña);
-    console.log("Confirmar Contraseña: " + confirmarContraseña);
-    console.log("Biografía: " + biografia);
-    console.log("No. Control: " + noControl);
-    console.log("Carrera: " + carreraSeleccionada);
-    console.log("Sexo: " + sexoSeleccionado);
-    console.log("Semestre: " + semestreSeleccionado);
-    
-
-
-    if (nombre.length <2 || nombre.length > 50) {
-      console.log("El nombre debe tener entre 2 y 50 caracteres.");
+    const usuarioValido = await verificarusuarioexistente();
+    if (!usuarioValido) 
+    {
       return; 
     }
-
-    const Caracteres_especialesn= /^[A-Za-z\s]+$/; 
-    if (!Caracteres_especialesn.test(nombre))
+    const nocontrolvalido = await verificarNumeroControlExistente();
+    if (!nocontrolvalido) 
     {
-      console.log("El nombre solo puede contener letras ")
       return; 
+    }
+    // Validaciones
+    if (nombre.length < 2 || nombre.length > 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre debe tener entre 2 y 50 caracteres.",
+      });
+      return;
+    }
+
+    const Caracteres_especialesn = /^[A-Za-z\s]+$/; 
+    if (!Caracteres_especialesn.test(nombre)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre solo puede contener letras.",
+      });
+      return;
     }
 
     if (nombre.trim() === '') {
-      console.log("El nombre no debe estar vacio ")
-      return; 
-    }
-
-    if (nombre.trim().length === 0) {
-      console.log("El nombre no puede tener solo espacios vacios")
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no debe estar vacío.",
+      });
+      return;
     }
 
     if (/[\s]{2,}/.test(nombre)) {
-      console.log("El nombre no puede tener mas de dos espacios vacios")
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no puede tener más de un espacio vacío consecutivo.",
+      });
+      return;
     }
-    
-    
 
     /*--------------------apellido paterno-------------------------*/
-
     if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
-      console.log("El apellido paterno debe tener entre 2 y 50 caracteres.");
-      return; 
-    }
-    if (apellidoPaterno.trim() === '') {
-      console.log("El apellido paterno no puede estar vacío.");
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno debe tener entre 2 y 50 caracteres.",
+      });
+      return;
     }
 
+    if (apellidoPaterno.trim() === '') {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno no puede estar vacío.",
+      });
+      return;
+    }
 
     /*--------------------fecha-------------------------*/
     const fechaIngresada = new Date(fechaNacimiento); 
     const anioNacimiento = fechaIngresada.getFullYear(); 
-
     const fechaActual = new Date(); 
     const edad = fechaActual.getFullYear() - anioNacimiento; 
     const haCumplidoAnios = (fechaActual.getMonth() > fechaIngresada.getMonth()) ||
@@ -119,163 +186,196 @@ const Registro = () => {
     const edadReal = haCumplidoAnios ? edad : edad - 1;
 
     if (anioNacimiento <= 1950) {
-      console.log('El año de nacimiento debe ser mayor a 1950.');
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'El año de nacimiento debe ser mayor a 1950.',
+      });
+      return;
     }
+
     if (edadReal < 17) {
-      console.log('Debes tener al menos 17 años.');
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'Debes tener al menos 17 años.',
+      });
+      return;
     }
+    if (fechaNacimiento.trim()==='')
+    {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'La fecha no puede estar vacía.',
+      });
+      return;
+    }
+
+
     /*------------------telefono---------------*/
     if (telefono.trim() === '') {
-      console.log('Error: El teléfono no puede estar vacío.');
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'El teléfono no puede estar vacío.',
+      });
+      return;
     }
+
     if (telefono.length < 10 || telefono.length > 15) {
-      console.log('Error: El teléfono debe tener entre 10 y 15 caracteres.');
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'El teléfono debe tener entre 10 y 15 caracteres.',
+      });
+      return;
     }
 
-  /*------------------correo---------------*/
+    /*------------------correo---------------*/
     if (correo.trim() === '') {
-      console.log('Error: El correo no puede estar vacío.');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'El correo no puede estar vacío.',
+      });
       return;
     }
+
     const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!regexCorreo.test(correo)) {
-      console.log('Introduzca un correo electrónico válido.');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'Introduzca un correo electrónico válido.',
+      });
       return;
     }
 
-    if (correo.length  >40) {
-      console.log("El correo es demasiado largo")
+    if (correo.length > 40) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El correo es demasiado largo",
+      });
+      return;
     }
 
-
-
-  /*--------------------contraseña y confirmar-------------------------- */
-
-    
-    if (contraseña.length >= 7 && contraseña.length <= 12) {
-      console.log("La contraseña debe contener entre 8 y 12 caracteres")
+    /*--------------------contraseña y confirmar-------------------------- */
+    if (contraseña.length < 8 || contraseña.length > 12) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe contener entre 8 y 12 caracteres",
+      });
+      return;
     }
+
     const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
-
     if (!regexContraseña.test(contraseña)) {
-      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe incluir letras, números y caracteres especiales.",
+      });
       return;
-    } 
+    }
+
     if (contraseña !== confirmarContraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden.",
+      });
+      return;
     }
-    if (confirmarContraseña !== contraseña) {
-      console.log("Las contraseñas no coinciden");
-      return; 
-    }
+
     /*------------------No.control------------------------*/
     const regexNoControl = /^Z\d{8}$/;
-    if (!regexNoControl.test(noControl)) {console.log("Error: El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.");
+    if (!regexNoControl.test(noControl)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.",
+      });
       return;
     }
 
     /*-------------carrera,sexo,semestre----------------- */
     if (carreraSeleccionada === '') {
-      console.log("Error: Debes seleccionar una carrera.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes seleccionar una carrera.",
+      });
       return;
     }
-    
+
     if (sexoSeleccionado === '') {
-      console.log("Error: Debes seleccionar un sexo.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes seleccionar un sexo.",
+      });
       return;
     }
-    
+
     if (semestreSeleccionado === '') {
-      console.log("Error: Debes seleccionar un semestre.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes seleccionar un semestre.",
+      });
       return;
     }
 
-    
-    
-    
-    const datosEnviar={
-        'usuario': {
-          'nombre': nombre,
-          'apellido_paterno': apellidoPaterno,
-          'apellido_materno': apellidoMaterno,
-          'correo': correo,
-          'contraseña': contraseña,
-          'fecha_nacimiento': fechaNacimiento,
-          'telefono': telefono,
-          'sexo': sexoSeleccionado,
-          'biografia': biografia,
-          'role': 'Estudiantes',
-          "imagen_usuario": ''
-        },
-        'estudiante': {
-          'no_control': noControl,
-          'carrera': carreraSeleccionada,
-          'semestre': semestreSeleccionado
-        }
-
-    }
-
-    console.log(datosEnviar);
-
+    // Datos a enviar
+    const datosEnviar = {
+      'usuario': {
+        'nombre': nombre,
+        'apellido_paterno': apellidoPaterno,
+        'apellido_materno': apellidoMaterno,
+        'correo': correo,
+        'contraseña': contraseña,
+        'fecha_nacimiento': fechaNacimiento,
+        'telefono': telefono,
+        'sexo': sexoSeleccionado,
+        'biografia': biografia,
+        'role': 'Estudiantes',
+        "imagen_usuario": ''
+      },
+      'estudiante': {
+        'no_control': noControl,
+        'carrera': carreraSeleccionada,
+        'semestre': semestreSeleccionado
+      }
+    };
 
     Axios.post('http://localhost:3000/usuarios/estudiantes', datosEnviar)
-
     .then((response) => {
-      //Muestra los datos devueltos por el servidor y agrega el id al contexto
       console.log("Respuesta del servidor:", response.data);
-      setUsuarioLog(response.data.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
-      console.log("Usuario guardado sin actualizar:", usuarioLog);
+      setUsuarioLog(response.data.id); 
+      Swal.fire({
+        icon: "success",
+        title: "Registro exitoso",
+        text: "El estudiante ha sido registrado con éxito.",
+      });
       handleNext();
     })
     .catch((error) => {
-
-
       if (error.message === 'Network Error') {
-
-        console.log("Error de red: No se pudo conectar al servidor. Verifica tu conexión.");
+        Swal.fire({
+          icon: "error",
+          title: "Error de red",
+          text: "No se pudo conectar al servidor. Verifica tu conexión.",
+        });
+        return;
       }
 
-      if (error.message ==='Network Error') {
-        console.log("Error: se intento  conectar a el servidor, pero no puede establecer la conexión. ");
-      }
       if (error.response) {
-          console.log("Error de respuesta del servidor:", error.response.data);
-          console.log("Código de estado:", error.response.status);
-
-      if (error.response.data.error==='El correo ya está en uso.'){
-
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "El correo ya esta en uso",
-          footer:"Ingresa otro diferente"
-        });
-        return;
+        console.log("Error de respuesta del servidor:", error.response.data);
       }
-
-      if (error.response.data.error==="El número de control no debe de repetirse."){
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Numero de Control ya en uso",
-          footer: "El número de control no debe de repetirse."
-        });
-        return;
-      }
-          
-
-      } else {
-          console.log("Error en la solicitud:", error.message);
-      }
-
-    })
-    ;
+    });
   }
 
   return (

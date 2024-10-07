@@ -9,7 +9,7 @@ import Logo from '../imagenes/Logo24.png';
 import Textarea from '../componetes/Text-area.jsx';
 import axios from 'axios';
 import {usuarioContext} from '../App';
-
+import Swal from 'sweetalert2';
 
 const RegistroReclutador = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
@@ -47,225 +47,332 @@ const RegistroReclutador = () => {
 
   const add = () => {
     console.log("Agregando reclutador");
-    console.log("Nombre: " + nombre);
-    console.log("Apellido Paterno: " + apellidoPaterno);
-    console.log("Apellido Materno: " + apellidoMaterno);
-    console.log("Fecha de Nacimiento: " + fechaNacimiento);
-    console.log("Teléfono: " + telefono);
-    console.log("Correo: " + correo);
-    console.log("Contraseña: " + contraseña);
-    console.log("Confirmar Contraseña: " + confirmarContraseña);
-    console.log("Biografía: " + biografia);
-    console.log("Nombre de la Empresa: " + nombreEmpresa);
-    console.log("Sede: " + sede);
-    console.log("Sexo: " + sexoSeleccionado);
-    console.log("Giro: " + giroSeleccionado);
 
     if (contraseña !== confirmarContraseña) {
-      console.log("Las contraseñas no coinciden");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden.",
+      });
       return; 
     }
 
-    // some(field => !field) verifica si el campo esta vacio
-    if ([nombre].some(field => !field)) {
-      console.log("El nombre no debe quedar vacio");
+    if (!nombre) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no debe quedar vacío.",
+      });
       return;
     }
 
-    // con esto solo se permiten letras (mayúsculas y minúsculas) y espacios en blanco.
     if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
-      console.log("El nombre no debe contener números ni caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no debe contener números ni caracteres especiales.",
+      });
       return;
     }
 
-    if (nombre.length >=50) {
-      console.log("El nombre no debe exceder los 50 caracteres")
-      return
-    }
-    
-    if ([apellidoPaterno].some(field => !field)) {
-      console.log("El apellido paterno no debe quedar vacío.");
+    if (nombre.length >= 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre no debe exceder los 50 caracteres.",
+      });
       return;
     }
 
-    if (apellidoPaterno.length >=50) {
-      console.log("El Apellido paterno no debe exceder los 50 caracteres")
-      return
+    if (!apellidoPaterno) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno no debe quedar vacío.",
+      });
+      return;
     }
-    
+
+    if (apellidoPaterno.length >= 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno no debe exceder los 50 caracteres.",
+      });
+      return;
+    }
+
     if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
-      console.log("El apellido paterno no debe contener números ni caracteres especiales.");
-      return;
-    }
-    
-    if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
-      console.log("El apellido materno no debe contener números ni caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno no debe contener números ni caracteres especiales.",
+      });
       return;
     }
 
-    if (apellidoMaterno.length >=50) {
-      console.log("El Apellido materno no debe exceder los 50 caracteres")
-      return
+    if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido materno no debe contener números ni caracteres especiales.",
+      });
+      return;
+    }
+
+    if (apellidoMaterno.length >= 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido materno no debe exceder los 50 caracteres.",
+      });
+      return;
     }
 
     if (!fechaNacimiento) {
-      console.log("La fecha de nacimiento no debe quedar vacía.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La fecha de nacimiento no debe quedar vacía.",
+      });
       return;
     }
 
-    // Verificar que el año de nacimiento sea mayor a 1950
     const obtenerAño = new Date(fechaNacimiento).getFullYear();
     if (obtenerAño <= 1950) {
-      console.log(obtenerAño)
-      console.log("El año de nacimiento debe ser mayor a 1950.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El año de nacimiento debe ser mayor a 1950.",
+      });
       return;
     }
 
-    // Verificar que tenga minimo 17 años
     const añoActual = new Date().getFullYear();
     const edad = añoActual - obtenerAño;
     if (edad <= 17) {
-      console.log(edad)
-      console.log("Debes tener al menos 17 años.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes tener al menos 17 años.",
+      });
       return;
     }
 
     if (!sexoSeleccionado) {
-      console.log("Se debe ingresar el sexo.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Se debe ingresar el sexo.",
+      });
       return;
     }
 
-    if ([telefono].some(field => !field)) {
-      console.log("El telefono no debe quedar vacio");
+    if (!telefono) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El teléfono no debe quedar vacío.",
+      });
       return;
     }
 
     if (telefono.length < 10 || telefono.length > 15) {
-      console.log("El telefono debe tener entre minimo 10 y maximo 15 digitos")
-      return
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El teléfono debe tener entre 10 y 15 dígitos.",
+      });
+      return;
     }
 
-    // Verificar que el telefono sea solo numeros
     if (!/^\d+$/.test(telefono)) {
-      console.log("El teléfono debe contener solo dígitos.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El teléfono debe contener solo dígitos.",
+      });
       return;
     }
 
     if (!correo) {
-      console.log("El correo no debe quedar vacio");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El correo no debe quedar vacío.",
+      });
       return;
     }
 
     if (correo.length > 40) {
-      console.log("El correo no debe tener mas de 50 caracteres");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El correo no debe tener más de 40 caracteres.",
+      });
       return;
     }
 
-    // verificar bien el formato del correo electronico
     const obtenerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!obtenerEmail.test(correo)) {
-      console.log("El formato del correo no es válido");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El formato del correo no es válido.",
+      });
       return;
     }
 
     if (!contraseña) {
-      console.log("La contraseña no debe quedar vacia");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña no debe quedar vacía.",
+      });
       return;
     }
 
     if (contraseña.length < 8 || contraseña.length > 20) {
-      console.log("La contraseña debe tener entre 8 y 12 caracteres");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe tener entre 8 y 12 caracteres.",
+      });
       return;
     }
 
     const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,20}$/;
     if (!regexContraseña.test(contraseña)) {
-      console.log("La contraseña debe incluir letras, números y caracteres especiales.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe incluir letras, números y caracteres especiales.",
+      });
       return;
     }
 
     if (biografia.length >= 255) {
-      console.log("La biografia no debe exceder")
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La biografía no debe exceder los 255 caracteres.",
+      });
+      return;
     }
 
     if (!nombreEmpresa) {
-      console.log("El nombre de la empresa no debe quedar vacia");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre de la empresa no debe quedar vacío.",
+      });
       return;
     }
 
     if (!sede) {
-      console.log("Sede no debe quedar vacio.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La sede no debe quedar vacía.",
+      });
       return;
     }
 
     if (!giroSeleccionado) {
-      console.log("Su giro no debe quedar vacio");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El giro no debe quedar vacío.",
+      });
       return;
     }
 
-    const datosEnviar={
+    const datosEnviar = {
       "usuario": {
-      "nombre": nombre,
-      "apellido_paterno": apellidoPaterno,
-      "apellido_materno": apellidoMaterno,
-      "correo": correo,
-      "contrasena":  contraseña,
-      "fecha_nacimiento": fechaNacimiento,
-      "telefono": telefono,
-      "sexo": sexoSeleccionado,
-      "biografia": biografia ,
-      "tipo_usuario": "Reclutadores",
-      "imagen_usuario":""
+        "nombre": nombre,
+        "apellido_paterno": apellidoPaterno,
+        "apellido_materno": apellidoMaterno,
+        "correo": correo,
+        "contrasena": contraseña,
+        "fecha_nacimiento": fechaNacimiento,
+        "telefono": telefono,
+        "sexo": sexoSeleccionado,
+        "biografia": biografia,
+        "tipo_usuario": "Reclutadores",
+        "imagen_usuario": ""
       },
       "reclutador": {
-      "nombre_empresa": nombreEmpresa,
-      "sector_comercial": giroSeleccionado,
-      "sede": sede,
-      "giro": giroSeleccionado
+        "nombre_empresa": nombreEmpresa,
+        "sector_comercial": giroSeleccionado,
+        "sede": sede,
+        "giro": giroSeleccionado
       }
-      }
-    
+    };
+
     axios.post('http://localhost:3000/usuarios/reclutadores', datosEnviar)
-      .then((response) => {
-        //Muestra los datos devueltos por el servidor y agrega el id al contexto
-        console.log("Respuesta del servidor:", response.data);
-        setUsuarioLog(response.data.usuario.id);//Guarda el ID para usarlo como referencia en las demás páginas (gets, puts, deletes)
-        console.log("Usuario guardado sin actualizar:", usuarioLog);
-        handleNext();
-      })
-      .catch((error) => {
-
-        if (error.response.data.message==='El correo ya está en uso') {
-          console.log("CORREO YA EN USOOOOOOOO")
-        }
-        
-        if (error.response.status===400) {
-          console.log('Bad request, la solicitud es invalida o no puede ser procesada')
-        }
-
-        if (error.response.status===404) {
-            console.log('Not found, El recurso solicitado no existe')
-        }
-
-        if (error.response.status===500) {
-            console.log('Internal server error, error general del servidor en caso de que no retorne algun mensaje especifico')
+    .then((response) => {
+      console.log("Respuesta del servidor:", response.data);
+      setUsuarioLog(response.data.usuario.id);
+      Swal.fire({
+        icon: "success",
+        title: "Registro exitoso",
+        text: "El reclutador ha sido registrado con éxito.",
+      });
+      handleNext();
+    })
+    .catch((error) => {
+      if (error.response) {
+        if (error.response.data.message === 'El correo ya está en uso') {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El correo ya está en uso.",
+            footer: "Ingresa otro diferente."
+          });
         }
 
-        if (error.response.status===422) {
-            console.log('Unprocessable entity, La solicitud esta bien formada pero contiene errores semanticos')
+        if (error.response.status === 400) {
+          Swal.fire({
+            icon: "error",
+            title: "Bad request",
+            text: "La solicitud es inválida o no puede ser procesada.",
+          });
         }
 
-        if (error.response) {
-            console.log("Error de respuesta del servidor:", error.response.data);
-            console.log("Código de estado:", error.response.status);
-          
-        
-            
-        } else {
-            console.log("Error en la solicitud:", error.message);
+        if (error.response.status === 404) {
+          Swal.fire({
+            icon: "error",
+            title: "Not found",
+            text: "El recurso solicitado no existe.",
+          });
         }
-      })
-      ;
+
+        if (error.response.status === 500) {
+          Swal.fire({
+            icon: "error",
+            title: "Error del servidor",
+            text: "Error general del servidor.",
+          });
+        }
+
+        if (error.response.status === 422) {
+          Swal.fire({
+            icon: "error",
+            title: "Error semántico",
+            text: "La solicitud contiene errores semánticos.",
+          });
+        }
+
+        console.log("Error de respuesta del servidor:", error.response.data);
+        console.log("Código de estado:", error.response.status);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error en la solicitud",
+          text: error.message,
+        });
+      }
+    });
   };
 
   return (
@@ -276,40 +383,37 @@ const RegistroReclutador = () => {
       <div className="reclutador-campo">
         <label htmlFor="nombre">Nombre(s):</label>
         <Textbox 
-        id="Nombre" 
-        placeholder="Nombre(s)" 
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-        
+          id="Nombre" 
+          placeholder="Nombre(s)" 
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
         />
       </div>
 
       <div className="reclutador-campo">
         <label htmlFor="apellidoPaterno">Apellido paterno:</label>
         <Textbox 
-        id="ApellidoPat" 
-        placeholder="Apellido paterno" 
-        value={apellidoPaterno}
-        onChange={(e) => setApellidoPaterno(e.target.value)}
-        
+          id="ApellidoPat" 
+          placeholder="Apellido paterno" 
+          value={apellidoPaterno}
+          onChange={(e) => setApellidoPaterno(e.target.value)}
         />
       </div>
 
       <div className="reclutador-campo">
         <label htmlFor="apellidoMaterno">Apellido materno:</label>
         <Textbox 
-        id="ApellidoMat" 
-        placeholder="Apellido materno" 
-        value={apellidoMaterno}
-        onChange={(e) => setApellidoMaterno(e.target.value)}
-
+          id="ApellidoMat" 
+          placeholder="Apellido materno" 
+          value={apellidoMaterno}
+          onChange={(e) => setApellidoMaterno(e.target.value)}
         />
       </div>
 
       <div className="reclutador-campo">
         <Fecha label="Fecha de Nacimiento" 
-        value={fechaNacimiento}
-        onChange={(e) => setFechaNacimiento(e.target.value)}
+          value={fechaNacimiento}
+          onChange={(e) => setFechaNacimiento(e.target.value)}
         />
       </div>
 
@@ -325,58 +429,52 @@ const RegistroReclutador = () => {
           selectedOption={sexoSeleccionado}  
           onChange={(e) => setSexoSeleccionado(e.target.value)}
         />
-  
       </div>
 
       <div className="reclutador-campo">
         <label htmlFor="telefono">Teléfono:</label>
         <Textbox 
-        id="Telefono" 
-        placeholder="Teléfono" 
-        type="tel" 
-        value={telefono}
-        onChange={(e) => setTelefono(e.target.value)}
-        
+          id="Telefono" 
+          placeholder="Teléfono" 
+          type="tel" 
+          value={telefono}
+          onChange={(e) => setTelefono(e.target.value)}
         />
       </div>
 
       <div className="reclutador-campo">
         <label htmlFor="correo">Correo:</label>
         <Textbox 
-        id="Correo" 
-        placeholder="Correo electrónico" 
-        type="email" 
-        value={correo}
-        onChange={(e) => setCorreo(e.target.value)}
+          id="Correo" 
+          placeholder="Correo electrónico" 
+          type="email" 
+          value={correo}
+          onChange={(e) => setCorreo(e.target.value)}
         />
-
       </div>
 
       <div className="reclutador-campo">
         <label htmlFor="contraseña">Contraseña:</label>
         <Textbox 
-        id="Contraseña" 
-        placeholder="Contraseña" 
-        type="password"
-        value={contraseña}
-        onChange={(e) => setContraseña(e.target.value)} 
-        
+          id="Contraseña" 
+          placeholder="Contraseña" 
+          type="password"
+          value={contraseña}
+          onChange={(e) => setContraseña(e.target.value)}
         />
       </div>
 
       <div className="reclutador-campo">
         <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
         <Textbox 
-        id="ConfirmarContraseña" 
-        placeholder="Confirmar contraseña" 
-        type="password" 
-        value={confirmarContraseña}
-        onChange={(e) => setConfirmarContraseña(e.target.value)}
-        
+          id="ConfirmarContraseña" 
+          placeholder="Confirmar contraseña" 
+          type="password" 
+          value={confirmarContraseña}
+          onChange={(e) => setConfirmarContraseña(e.target.value)}
         />
       </div>
 
-      
       <div className="reclutador-campo">
         <label htmlFor="biografia">Biografía:</label>
         <Textarea 
@@ -384,31 +482,28 @@ const RegistroReclutador = () => {
           name="Biografia" 
           placeholder="Biografía" 
           value={biografia}
-          onChange={(e)=> setBiografia(e.target.value)}
-          />
+          onChange={(e) => setBiografia(e.target.value)}
+        />
       </div>
 
       <div className="reclutador-campo">
         <label htmlFor="nombreEmpresa">Nombre de la empresa:</label>
         <Textbox 
-        id="NombredelaEmpresa" 
-        placeholder="Nombre de la Empresa"
-        value={nombreEmpresa}
-        onChange={(e) => setNombreEmpresa(e.target.value)} 
-        
+          id="NombredelaEmpresa" 
+          placeholder="Nombre de la Empresa"
+          value={nombreEmpresa}
+          onChange={(e) => setNombreEmpresa(e.target.value)} 
         />
       </div>
 
       <div className="reclutador-campo">
         <label htmlFor="sede">Sede:</label>
         <Textbox 
-        id="Sede" 
-        placeholder="Sede" 
-        value={sede}
-        onChange={(e) => setSede(e.target.value)}
-        
+          id="Sede" 
+          placeholder="Sede" 
+          value={sede}
+          onChange={(e) => setSede(e.target.value)}
         />
-
       </div>
 
       <div className="reclutador-campo">

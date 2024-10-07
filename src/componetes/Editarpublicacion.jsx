@@ -4,6 +4,7 @@ import '../hojas-de-estilo/Editarpublicacion.css';
 import { AiFillDelete } from "react-icons/ai";  
 import Axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
+import Swal from 'sweetalert2';  // Importar SweetAlert2
 
 
 
@@ -13,13 +14,8 @@ const EditarPublicacion = () => {
     const fileInputRef = useRef(null);
     const [descripcion, setDescripcion] = useState(datos.descripcion || '');
     const [image, setImage] = useState(null); 
-    const [datosEnviar, setDatosEnviar] = useState({});
     const [file, setFile] = useState(null);
 
-    console.log("Datos de la publicación a editar:", datos);
-
-    
-    
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -27,11 +23,10 @@ const EditarPublicacion = () => {
     };
 
     const handleBack = () => {
-        console.log("Navegando a /Perfil");
         navigate('/Perfil');
     };
 
-    const handleImageChange = (event) => {//Para que se cambie la imagen de previsualizacion
+    const handleImageChange = (event) => {
         setFile(event.target.files[0]);
         const file = event.target.files[0];
         if (file) {
@@ -45,61 +40,66 @@ const EditarPublicacion = () => {
         }
     };
 
-    const eliminarPublicacion = async () => {//Opcion de eliminar la publicacion que está siendo editada
+    const eliminarPublicacion = async () => {
         try {
-            console.log("Eliminando publicación con id:", datos.id_publicacion);
-            const response = await Axios.delete(`http://localhost:3000/publicaciones/${datos.id_publicacion}`);
-            console.log(response.data);
-            handleBack();
+            const resultado = await Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción eliminará la publicación permanentemente.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+            });
+
+            if (resultado.isConfirmed) {
+                await Axios.delete(`http://localhost:3000/publicaciones/${datos.id_publicacion}`);
+                Swal.fire(
+                    'Eliminado',
+                    'La publicación ha sido eliminada.',
+                    'success'
+                );
+                handleBack();
+            }
         } catch (err) {
-            console.error('Error al eliminar la publicación:', err);
+            Swal.fire('Error', 'Error al eliminar la publicación.', 'error');
         }
     };
 
     const editarPublicacion = async (event) => {
-        console.log("Editando publicación con id:", datos.id_publicacion);
-        let imagen= null;
-        if (file) { 
+        let imagen = null;
+        if (file) {
             imagen = await agregarImagen();
         } else {
-            console.log("No se ha seleccionado ninguna imagen.");
-            imagen=datos.imagen;
+            imagen = datos.imagen;
         }
 
-        console.log("Continuamos editando la publicacion");
         const datosEnviar = {
             "descripcion": descripcion,
-            "imagen": imagen || datos.imagen 
+            "imagen": imagen || datos.imagen
         };
 
-        console.log("Datos a enviar:", datosEnviar);
-        console.log(datos.id_publicacion);
-
-        Axios.patch(`http://localhost:3000/publicaciones/${datos.id_publicacion}`, datosEnviar)
-            .then((response) => {
-                console.log("Respuesta del servidor:", response.data);
-                handleBack();
-            })
-            .catch((error) => {
-                if (error.response) {
-                    console.log("Error de respuesta del servidor:", error.response.data);
-                    console.log("Código de estado:", error.response.status);
-                } else {
-                    console.log("Error en la solicitud:", error.message);
-                }
-            });
+        try {
+            await Axios.patch(`http://localhost:3000/publicaciones/${datos.id_publicacion}`, datosEnviar);
+            Swal.fire('Guardado', 'La publicación ha sido actualizada.', 'success');
+            handleBack();
+        } catch (error) {
+            if (error.response) {
+                Swal.fire('Error', `Error de respuesta del servidor: ${error.response.data}`, 'error');
+            } else {
+                Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
+            }
+        }
     };
 
-    // Envia la imagen al servidor
-    const agregarImagen = async (event) => {
+    const agregarImagen = async () => {
         if (!file) {
-            console.log("No se ha seleccionado ninguna imagen.");
+            Swal.fire('Advertencia', 'No se ha seleccionado ninguna imagen.', 'warning');
             return;
         }
 
         const formData = new FormData();
-        formData.append('image', file); 
-        //console.log('Imagen seleccionada:', file);
+        formData.append('image', file);
 
         try {
             const response = await Axios.post('http://localhost:3000/imagenes/upload', formData, {
@@ -107,13 +107,12 @@ const EditarPublicacion = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log('Imagen subida:', response.data);
-            console.log('URL de la imagen:', response.data.fileName);
             return response.data.fileName; 
         } catch (error) {
-            console.error('Error al subir la imagen:', error);
+            Swal.fire('Error', 'Error al subir la imagen.', 'error');
         }
     };
+
     return (
         <div className="Editar-publicacion">
             <div className="editar-publicacion-header">

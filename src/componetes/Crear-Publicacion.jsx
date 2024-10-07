@@ -6,46 +6,36 @@ import '../hojas-de-estilo/Crear-publicacion.css';
 import Axios from "axios";
 import { usuarioContext } from '../App';
 import { BiImageAdd } from 'react-icons/bi';
+import Swal from 'sweetalert2';
 
 const CrearPubli = () => {
     const { usuarioLog } = useContext(usuarioContext);
-    //const usuarioLog=5;
     const [textoPubli, setTextoPubli] = useState('');
-    
     const [image, setImage] = useState(null);
     const fileInputRef = useRef(null);
-    const [imagenSeleccionada, setImagenSeleccionada] = useState(false);//Para indicar si se ha subido una imagen o no
-    
+    const [imagenSeleccionada, setImagenSeleccionada] = useState(false);
+
     const manejarCambioTexto = (e) => {
         setTextoPubli(e.target.value);
     };
 
     const handleImage = (e) => {
         const file = e.target.files[0];
-        console.log(e.target.files);
-
         const validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
-        if (file && !validExtensions.includes(file.type)) { // Verifica el tipo MIME
-            console.log("Extensión de archivo no válida. Solo se permiten archivos .jpg, .jpeg y .png."); // Mensaje de error
+
+        if (file && !validExtensions.includes(file.type)) {
+            Swal.fire('Error', 'Extensión de archivo no válida. Solo se permiten archivos .jpg, .jpeg y .png.', 'error');
             setImage(null);
             setImagenSeleccionada(false);
-            fileInputRef.current.value = ''; // Limpiar la selección de imagen
+            fileInputRef.current.value = '';
             return;
         }
 
-        if (file && file.size > 10 * 1024 * 1024) { // Verificar que el tamaño no supere 10 MB
-            console.log("El tamaño máximo de la imagen es 10 MB."); // Mostrar mensaje de error
+        if (file && file.size > 10 * 1024 * 1024) {
+            Swal.fire('Error', 'El tamaño máximo de la imagen es 10 MB.', 'error');
             setImage(null);
             setImagenSeleccionada(false);
-            fileInputRef.current.value = ''; // Limpiar la selección de imagen
-            return;
-        }
-
-        if (file && file.size > 10 * 1024 * 1024) { 
-            console.log("El tamaño máximo de la imagen es 10 MB."); 
-            setImage(null);
-            setImagenSeleccionada(false);
-            fileInputRef.current.value = ''; 
+            fileInputRef.current.value = '';
             return;
         }
 
@@ -53,7 +43,6 @@ const CrearPubli = () => {
         setImagenSeleccionada(!!file);
     };
 
-    // Envia la imagen al servidor
     const agregarImagen = async () => {
         const formData = new FormData();
         formData.append('image', image);
@@ -64,37 +53,30 @@ const CrearPubli = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            //console.log('Imagen subida:', response.data);
-            //console.log('URL de la imagen:', response.data.fileName);
             return response.data.fileName; 
         } catch (error) {
-            console.error('Error al subir la imagen:', error);
+            Swal.fire('Error', 'Error al subir la imagen.', 'error');
             throw error; 
         }
     };
 
-    const add = async () => {//Agrega la publicación
-        console.log('ID ES',usuarioLog)
-
-        console.log('Texto:', textoPubli);
-
+    const add = async () => {
         if (textoPubli.trim() === '' && image === null) {
-            console.log('La descripción no puede estar vacia.');
+            Swal.fire('Error', 'La descripción no puede estar vacía.', 'error');
             return;
         }
 
         if (textoPubli.length > 255) {
-            console.log("La descripcion es demasiado larga, maximo 255 caracteres")
+            Swal.fire('Error', 'La descripción es demasiado larga, máximo 255 caracteres.', 'error');
+            return;
         }
-        
+
         let url = '';
 
         if (image) {
             try {
                 url = await agregarImagen(); 
-                console.log('URL de la imagen:', url);
             } catch (error) {
-                console.error('Error al subir la imagen:', error);
                 return; 
             }
         }
@@ -108,45 +90,23 @@ const CrearPubli = () => {
             "disgusta": 0
         };
 
-        //console.log('Datos a enviar:', datosEnviar);
-        console.log (datosEnviar.imagen, 'Linea imagen')
-
         Axios.post('http://localhost:3000/publicaciones', datosEnviar)
             .then((response) => {
-                console.log("Respuesta del servidor:", response.data);
+                Swal.fire('Éxito', 'Publicación creada con éxito.', 'success');
                 setTextoPubli('');
                 setImage(null);
-                fileInputRef.current.value = ''
+                fileInputRef.current.value = '';
                 setImagenSeleccionada(false);
             })
             .catch((error) => {
-
-                if (error.response.data.error==='"imagen" is not allowed to be empty') {
-                    console.log("Debes subir al menos 1 imagen.")
-                }
-
-                if (error.response.status===400) {
-                    console.log('Bad request, la solicitud es invalida o no puede ser procesada')
-                }
-    
-                if (error.response.status===404) {
-                    console.log('Not found, El recurso solicitado no existe')
-                }
-    
-                if (error.response.status===500) {
-                    console.log('Internal server error, error general del servidor en caso de que no retorne algun mensaje especifico')
-                }
-    
-                if (error.response.status===422) {
-                    console.log('Unprocessable entity, La solicitud esta bien formada pero contiene errores semanticos')
-                }
-
                 if (error.response) {
-                    console.log("Error de respuesta del servidor:", error.response.data);
-
-                    console.log("Código de estado:", error.response.status);
+                    if (error.response.data.error === '"imagen" is not allowed to be empty') {
+                        Swal.fire('Error', 'Debes subir al menos una imagen.', 'error');
+                    } else {
+                        Swal.fire('Error', `Error en la solicitud: ${error.response.data}`, 'error');
+                    }
                 } else {
-                    console.log("Error en la solicitud:", error.message);
+                    Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
                 }
             });            
     };
@@ -173,14 +133,15 @@ const CrearPubli = () => {
                     className='estilo-caja-texto' 
                     placeholder={'Ingresar texto...'} 
                     value={textoPubli} 
-                    onChange={manejarCambioTexto} />
+                    onChange={manejarCambioTexto} 
+                />
                 <input 
-                type="file" 
-                name='imagenPublicacion' 
-                className="input-imagen-crear-publicacion" 
-                onChange={handleImage}
-                ref={fileInputRef} />
-
+                    type="file" 
+                    name='imagenPublicacion' 
+                    className="input-imagen-crear-publicacion" 
+                    onChange={handleImage}
+                    ref={fileInputRef} 
+                />
                 
                 <div className="boton-contenedor-crear-publicacion">
                     <button
@@ -191,9 +152,16 @@ const CrearPubli = () => {
                         <BiImageAdd size={30} />
                     </button>
                     <div className="botones-derecha-crear-publicacion">
-                        <Boton  texto='Publicar' className='boton-crear-publicacion' />
-                        <Boton  type='button' texto='Cancelar' className='boton-crear-publicacion' onClick={(e) => { e.preventDefault(); cancelar(); 
-    }}   />
+                        <Boton texto='Publicar' className='boton-crear-publicacion' />
+                        <Boton 
+                            type='button' 
+                            texto='Cancelar' 
+                            className='boton-crear-publicacion' 
+                            onClick={(e) => { 
+                                e.preventDefault(); 
+                                cancelar(); 
+                            }} 
+                        />
                     </div>
                 </div>
             </form>
