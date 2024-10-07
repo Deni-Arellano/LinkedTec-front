@@ -202,6 +202,18 @@ const RegistroDocentes = () => {
       });
       return;
     }
+    if (fechaNacimiento.trim()==='')
+      {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: 'La fecha no puede estar vacía.',
+        });
+        return;
+      }
+
+    
+
 
     /*------------------telefono---------------*/
     if (telefono.trim() === '') {
