@@ -241,12 +241,13 @@ const RegistroReclutador = () => {
       return;
     }
 
-    const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,20}$/;
+    const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,20}$/;
     if (!regexContraseña.test(contraseña)) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "La contraseña debe incluir letras, números y caracteres especiales.",
+        text: "La contraseña no cumple con los requisitos.",
+        footer: "La contraseña debe incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (@, $, !, %, *, ?, &).",
       });
       return;
     }

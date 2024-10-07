@@ -101,12 +101,11 @@ textarea, input[type="text"] {
 }
 
 .editar-publicacion-container {
-    display: flex;           
-    justify-content: center;     
-    align-items: center;       
+    display: flex-start;                    
     height: calc(100vh - 100px);  
-    padding: 20px;          
-    margin-left: 220px;    
+    padding: 30px;          
+    margin-left: 13%;  
+    margin-right: 6%;  
     box-sizing: border-box;   
     background-color: #f4f4f4; 
 }
