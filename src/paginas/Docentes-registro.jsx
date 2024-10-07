@@ -80,11 +80,11 @@ const RegistroDocentes = () => {
     }
   };
 
-  const verificarDocenteExistente = async (numeroEmpleado) => {
+  const verificarDocenteExistente = async () => {
     try {
       const response = await Axios.get('http://localhost:3000/usuarios/docentes');
       const docentes = response.data;
-      const empleadoExistente = docentes.some((docente) => docente.numeroEmpleado === numeroEmpleado);
+      const empleadoExistente = docentes.some((docente) => docente.numeroEmpleado === noEmpleado);
       if (empleadoExistente) {
         console.log('El número de empleado ya está en uso.');
         Swal.fire({
