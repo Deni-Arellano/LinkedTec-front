@@ -242,12 +242,12 @@ const RegistroEgresado = () => {
       return;
     }
 
-    const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,20}$/;
+    const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,20}$/;
     if (!regexContraseña.test(contraseña)) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "La contraseña debe incluir letras, números y caracteres especiales.",
+        text: "La contraseña debe incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (@, $, !, %, *, ?, &).",
       });
       return;
     }
@@ -302,6 +302,15 @@ const RegistroEgresado = () => {
         icon: "error",
         title: "Oops...",
         text: "El puesto no debe quedar vacío.",
+      });
+      return;
+    }
+
+    if (!biografia) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La biografia no debe quedar vacia.",
       });
       return;
     }
@@ -361,11 +370,12 @@ const RegistroEgresado = () => {
           });
         }
 
-        if (error.response.status === 400) {
+        if (error.response.data.message[0] === 'La contraseña debe contener al menos una letra mayúscula, una minúscula, un número y un carácter especial.') {
           Swal.fire({
             icon: "error",
-            title: "Bad request",
-            text: "La solicitud es inválida o no puede ser procesada.",
+            title: "Oops...",
+            text: "La contraseña no cumple con los requisitos.",
+            footer: "La contraseña debe incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (@, $, !, %, *, ?, &).."
           });
         }
 
