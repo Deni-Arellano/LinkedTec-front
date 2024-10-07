@@ -32,7 +32,8 @@
     margin-bottom: 10px;
 }
 
-textarea, input[type="text"] {
+.edit-publication-form textarea, 
+.edit-publication-form input[type="text"] {
     width: 100%;
     padding: 8px;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -42,6 +43,7 @@ textarea, input[type="text"] {
     font-family: sans-serif;
     font-size: 14px;
 }
+
 
 .editar-publicacion-textarea {
     height: 100px;
