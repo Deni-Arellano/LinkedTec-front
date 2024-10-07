@@ -43,9 +43,81 @@ const RegistroDocentes = () => {
   const [academiaSeleccionada, setAcademiaSeleccionada] = useState('');
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [nivelSeleccionado, setNivelSeleccionado] = useState('');
+  const verificarUsuarioExistente = async () => {
+    try {
+      const response = await Axios.get('http://localhost:3000/usuarios');
+      const usuarios = response.data;
+      const correoExistente = usuarios.some((usuario) => usuario.correo === correo);
+      if (correoExistente) {
+        console.log('El correo ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Correo en uso",
+          text: "El correo ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+      const telefonoExistente = usuarios.some((usuario) => usuario.telefono === telefono);
+      if (telefonoExistente) {
+        console.log('El teléfono ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Teléfono en uso",
+          text: "El teléfono ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+      return true;
 
-  const add = () => {
+    } catch (error) {
+      console.log("Error al verificar usuario existente:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error de verificación",
+        text: "Hubo un error al verificar el correo o el teléfono.",
+      });
+      return false;
+    }
+  };
+
+  const verificarDocenteExistente = async (numeroEmpleado) => {
+    try {
+      const response = await Axios.get('http://localhost:3000/usuarios/docentes');
+      const docentes = response.data;
+      const empleadoExistente = docentes.some((docente) => docente.numeroEmpleado === numeroEmpleado);
+      if (empleadoExistente) {
+        console.log('El número de empleado ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Número de empleado en uso",
+          text: "El número de empleado ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+      return true;
+    } catch (error) {
+      console.log("Error al verificar número de empleado existente:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error de verificación",
+        text: "Hubo un error al verificar el número de empleado.",
+      });
+      return false;
+    }
+  };
+
+  const add = async() => {
     console.log("Agregando docente");
+    const usuarioValido = await verificarUsuarioExistente();
+    if (!usuarioValido) 
+    {
+      return; 
+    }
+    const empleadoExistente = await verificarDocenteExistente();
+      if (!empleadoExistente) 
+        {
+            return; 
+        }
 
     // Validaciones
     if (nombre.length < 2 || nombre.length > 50) {

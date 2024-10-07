@@ -43,7 +43,7 @@ const Registro = () => {
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
 
-  const verificarUsuarioExistente = async () => {
+  const verificarusuarioexistente = async () => {
     try {
       const response = await Axios.get('http://localhost:3000/usuarios');
       const usuarios = response.data;
@@ -79,16 +79,46 @@ const Registro = () => {
       return false;
     }
   };
-
-
+  const verificarNumeroControlExistente = async () => {
+    try {
+      const response = await Axios.get('http://localhost:3000/usuarios/estudiantes');
+      const usuarios = response.data;
+      const controlExistente = usuarios.some((estudiantes) => estudiantes.no_control === noControl);
+      if (controlExistente) {
+        console.log('El número de control ya está en uso.');
+        Swal.fire({
+          icon: "error",
+          title: "Número de control en uso",
+          text: "El número de control ya está registrado. Por favor, usa otro.",
+        });
+        return false;
+      }
+  
+      return true;
+  
+    } catch (error) {
+      console.log("Error al verificar número de control existente:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error de verificación",
+        text: "Hubo un error al verificar el número de control.",
+      });
+      return false;
+    }
+  };
+  
   const add = async() => {
     console.log("Agregando estudiante");
-        const usuarioValido = await verificarUsuarioExistente();
-        if (!usuarioValido) 
-        {
-            return; 
-        }
-
+    const usuarioValido = await verificarusuarioexistente();
+    if (!usuarioValido) 
+    {
+      return; 
+    }
+    const nocontrolvalido = await verificarNumeroControlExistente();
+    if (!nocontrolvalido) 
+    {
+      return; 
+    }
     // Validaciones
     if (nombre.length < 2 || nombre.length > 50) {
       Swal.fire({
@@ -172,6 +202,16 @@ const Registro = () => {
       });
       return;
     }
+    if (fechaNacimiento.trim()==='')
+    {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'La fecha no puede estar vacía.',
+      });
+      return;
+    }
+
 
     /*------------------telefono---------------*/
     if (telefono.trim() === '') {
