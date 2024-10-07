@@ -67,18 +67,57 @@ const EditarPublicacion = () => {
     };
 
     const editarPublicacion = async (event) => {
+        event.preventDefault();
+    
+
+        if (!descripcion.trim() && !file) {
+            Swal.fire({
+              icon: "error",
+              title: "Error en la publicación",
+              text: "Debes incluir al menos texto, una imagen o ambos.",
+            });
+            return;
+        }
+    
+        if (descripcion.length > 1000) {
+            Swal.fire({
+              icon: "error",
+              title: "Texto demasiado largo",
+              text: "La descripción no puede exceder los 1000 caracteres.",
+            });
+            return;
+        }
+    
+
+        if (file && file.size > 10 * 1024 * 1024) { 
+            Swal.fire({
+              icon: "error",
+              title: "Archivo demasiado grande",
+              text: "El archivo adjunto no debe superar los 10 MB.",
+            });
+            return;
+        }
+        if (file && !['image/png', 'image/jpeg'].includes(file.type)) {
+            Swal.fire({
+              icon: "error",
+              title: "Formato de archivo inválido",
+              text: "Solo se permiten archivos PNG o JPG.",
+            });
+            return;
+        }
+
         let imagen = null;
         if (file) {
             imagen = await agregarImagen();
         } else {
             imagen = datos.imagen;
         }
-
+    
         const datosEnviar = {
             "descripcion": descripcion,
             "imagen": imagen || datos.imagen
         };
-
+    
         try {
             await Axios.patch(`http://localhost:3000/publicaciones/${datos.id_publicacion}`, datosEnviar);
             Swal.fire('Guardado', 'La publicación ha sido actualizada.', 'success');
@@ -91,6 +130,7 @@ const EditarPublicacion = () => {
             }
         }
     };
+    
 
     const agregarImagen = async () => {
         if (!file) {

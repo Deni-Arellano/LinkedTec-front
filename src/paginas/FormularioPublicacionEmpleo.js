@@ -131,6 +131,9 @@ const PaginaFormulario = () => {
             if (error.response.status===422) {
                 console.log('Unprocessable entity, La solicitud esta bien formada pero contiene errores semanticos')
             }
+            if (error.response.status===403) {
+                console.log('Solo los reclutadores pueden subir empleos')
+            }
 
             if (error.response) {
 
