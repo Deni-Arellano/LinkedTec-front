@@ -99,3 +99,16 @@ textarea, input[type="text"] {
 #input-subir-nueva-imagen{
     display: none;
 }
+
+.editar-publicacion-container{
+        width: 100%; 
+        
+        margin-bottom: 20px; 
+        margin-left: 8%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        
+        
+        border: 1px solid #ddd;
+        border-radius: 5px; 
+    }

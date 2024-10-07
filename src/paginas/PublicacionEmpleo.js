@@ -6,18 +6,8 @@ import PublicacionEmpleoNuevo from '../componetes/PublicacionEmpleo';
 import '../hojas-de-estilo/PublicacionEmpleo.css'; 
 import { usuarioContext } from '../App';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
-
-const datosFicticios = {
-    tituloEmpleo: 'Desarrollador Frontend',
-    empresa: 'Tech Inc.',
-    salario: '$50,000 - $70,000',
-    descripcion: 'Buscamos un desarrollador frontend con experiencia en React y habilidades sólidas en HTML, CSS y JavaScript.',
-    ubicacion: 'Ciudad de México',
-    nivelIngles: 'Avanzado',
-    fotoPerfil: 'https://via.placeholder.com/100', 
-    nombreUsuario: 'Juan Pérez' 
-};
 
 const PublicacionEmpleo = () => {
     const navigate = useNavigate();
@@ -32,7 +22,7 @@ const PublicacionEmpleo = () => {
     const getEmpleos = async () => {
         try {
             const response = await axios.get('http://localhost:3000/empleos/');
-            console.log("Datos de empleos:", response.data);
+            //console.log("Datos de empleos:", response.data);
             setDatosEmpleos(response.data);
         } catch (err) {
             console.error('Error al obtener los empleos:', err);
@@ -43,8 +33,8 @@ const PublicacionEmpleo = () => {
     const getUsuarios = async (id) => {
         try {
             const response = await axios.get(`http://localhost:3000/usuarios/${id}`);
-            //console.log("Datos del usuario:", response.data);
-            return [response.data.nombre, response.data.apellido_paterno, response.data.apellido_materno, response.data.imagen_usuario];
+            //console.log("Datos del usuarioen el get:", response.data);
+            return [response.data.nombre, response.data.apellido_paterno, response.data.apellido_materno, response.data.imagen_usuario, response.data.role];
         } catch (err) {
             console.error('Error al obtener el usuario:', err);
             return [];
@@ -62,7 +52,7 @@ const PublicacionEmpleo = () => {
         const generarComponentesEmpleos = async () => {
             const componentesEmpleosPromises = datosEmpleos.map(async (empleo) => {
                 const datosUsuario = await getUsuarios(empleo.id_usuario); 
-                
+               
 
                 return (
                     <PublicacionEmpleoNuevo
@@ -95,11 +85,27 @@ const PublicacionEmpleo = () => {
         
     }, [datosEmpleos]); 
 
+    const manejarPublicarEmpleo = async() => {//si es reclutador deja avanzar al formulario de publicar empleo
+        const datosUsuario = await getUsuarios(usuarioLog); 
+        if (datosUsuario[4] === 'Reclutadores') { //
+            //console.log(datosUsuario[4]);
+            navigate('/FormularioPublicacionEmpleo');
+        } else {
+            
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "No puedes crear un empleo porque no eres reclutador.",
+              });
+        }
+    };
+
     return (
         <>
             <MenuNavegacion /> 
             <div className="PublicacionEmpleoNuevo-boton-flotante">
-                <BotonPublicar onClick={() => navigate('/FormularioPublicacionEmpleo')} />
+                <BotonPublicar onClick={manejarPublicarEmpleo}
+                        />
             </div>
         
             <div className="PublicacionEmpleo-empleos-contenedor">

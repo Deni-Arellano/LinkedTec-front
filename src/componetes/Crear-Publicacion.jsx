@@ -15,7 +15,7 @@ const CrearPubli = () => {
     const [image, setImage] = useState(null);
     const fileInputRef = useRef(null);
     const [imagenSeleccionada, setImagenSeleccionada] = useState(false);//Para indicar si se ha subido una imagen o no
-
+    
     const manejarCambioTexto = (e) => {
         setTextoPubli(e.target.value);
     };
@@ -148,9 +148,7 @@ const CrearPubli = () => {
                 } else {
                     console.log("Error en la solicitud:", error.message);
                 }
-            });
-
-            
+            });            
     };
 
     const publicar = (e) => {
@@ -164,6 +162,8 @@ const CrearPubli = () => {
         fileInputRef.current.value = '';
         setImagenSeleccionada(false);
     };
+
+
 
     return (
         <div className="caja-crear-publicacion">
