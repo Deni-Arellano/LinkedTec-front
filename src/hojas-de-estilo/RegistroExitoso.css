@@ -1,0 +1,81 @@
+/* Acomodo principal del contenido */
+.RegistroExitoso-container {
+  display: flex;
+  flex-direction: column; /* Acomodo los elementos en columna */
+  align-items: center; /* Centro horizontalmente los elementos */
+  justify-content: center; /* Centro verticalmente los elementos */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  text-align: center; /* Centro el texto */
+  background-color: #f0f4f8;
+  max-width: 100%; /* Limito el ancho máximo */
+  padding: 20px; /* Agrego padding para darle espacio en pantallas pequeñas */
+}
+
+/* Título principal */
+.RegistroExitoso-h2 {
+  font-size: 36px; /* Ajusto el tamaño del título */
+  color: #333;
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+/* Texto descriptivo */
+.RegistroExitoso-p {
+  font-size: 18px; /* Ajusto el tamaño del texto */
+  color: #555;
+  margin-bottom: 40px; /* Espacio debajo del texto */
+}
+
+/* Estilos del botón */
+.RegistroExitoso-boton-exito {
+  font-size: 14px; /* Ajusto el tamaño del texto del botón */
+  padding: 6px 12px; /* Defino el espacio interno del botón */
+  background-color: #798eb2;
+  color: white;
+  border: none;
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Aplico el cursor de pointer */
+}
+
+/* Efecto hover del botón */
+.RegistroExitoso-boton-exito:hover {
+  background-color: #218838; /* Cambio el color cuando paso el cursor */
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .RegistroExitoso-h2 {
+    font-size: 28px; /* Hago más pequeño el título */
+  }
+
+  .RegistroExitoso-p {
+    font-size: 16px; /* Ajusto el tamaño del texto */
+  }
+
+  .RegistroExitoso-boton-exito {
+    font-size: 12px; /* Reduzco el tamaño del texto del botón */
+    padding: 5px 10px; /* Ajusto el padding del botón */
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .RegistroExitoso-h2 {
+    font-size: 24px; /* Hago más pequeño el título en pantallas chicas */
+  }
+
+  .RegistroExitoso-p {
+    font-size: 14px; /* Ajusto el tamaño del texto para pantallas chicas */
+  }
+
+  .RegistroExitoso-boton-exito {
+    font-size: 10px; /* Reduzco más el texto del botón */
+    padding: 4px 8px; /* Ajusto el padding en pantallas pequeñas */
+  }
+}
+
+/* Ajuste específico para el botón dentro de root */
+#root > div > button {
+  width: 150px; /* Limito el ancho del botón */
+  max-width: 150px; /* Aseguro que no crezca más allá de 150px */
+  padding: 6px 12px; /* Mantengo el padding actual */
+}

@@ -1,0 +1,40 @@
+.nombre-usuario {
+    display: flex;
+    width: 150%;
+    max-width: 800px;
+    margin: 5vh ; /* Alinea el cuadro automáticamente */
+    margin-top: -10px;
+
+
+
+}
+
+.pede-container{
+    width: 60%;
+    max-width: 800px;
+}
+
+.foto-perfil {
+    margin-bottom: 2%;
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    margin-right: 3%; 
+    min-width: 100px;
+}
+
+.info-usuario {
+    width: auto;
+}
+
+.info-usuario h2 {
+    font-size: 36px;
+    margin: 0;
+    color: #012a6f;
+}
+
+.carrera {
+    font-size: 20px;
+    color: #555;
+    margin: 1%;
+}

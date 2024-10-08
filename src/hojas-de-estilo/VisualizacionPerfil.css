@@ -1,0 +1,148 @@
+/* Ajuste general del contenedor */
+.VisualizacionPerfil-container {
+    display: flex;
+    flex-direction: row; /* Distribuye el menú y el contenido */
+    justify-content: space-between; /* Distribuye el menú y el contenido */
+    width: 100%;
+    height: 100vh;
+    background-color: #f0f4f8;
+}
+
+/* Ajuste del contenido del perfil */
+.VisualizacionPerfil-perfil-contenido {
+    display: flex;
+    flex-direction: column; /* Mantiene los elementos apilados */
+    align-items: flex-start; /* Alinea todos los elementos a la izquierda */
+    width: 100%; /* Ocupa todo el ancho */
+    padding: 20px; /* Espacio alrededor del contenido */
+}
+
+/* Contenedor para la sección de Foto y Nombre */
+.VisualizacionPerfil-pede-container {
+    display: flex; /* Utiliza flexbox para alinear la foto y el nombre */
+    align-items: center; /* Centra verticalmente la foto y el nombre */
+    margin-bottom: 20px; /* Espacio inferior para separar del cuadro */
+    width: 80%; /* Ancho ajustable (puedes cambiar este valor) */
+    max-width: 800px; /* Ancho máximo para pantallas grandes */
+    margin-left: 20%; /* Ajusta este valor para mover hacia la izquierda o derecha */
+    margin-right: auto; /* Permite centrar el contenedor */
+}
+
+/* Nombre y foto del usuario */
+.VisualizacionPerfil-nombre-usuario {
+    display: flex;
+    align-items: center; /* Alinea verticalmente la foto y el nombre */
+    justify-content: flex-start; /* Alinea a la izquierda */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+/* Ajuste de la imagen de perfil */
+.VisualizacionPerfil-foto-perfil {
+    width: 10vw; /* Tamaño proporcional */
+    height: 10vw; /* Mantiene la relación de aspecto */
+    border-radius: 50%; /* Imagen redonda */
+    margin-right: 10px; /* Espacio entre imagen y nombre */
+    max-width: 150px; /* No permito que crezca más de 150px */
+    max-height: 150px; /* No permito que crezca más de 150px */
+}
+
+/* Información del usuario (nombre, carrera, foto) */
+.VisualizacionPerfil-info-usuario h2 {
+    font-size: 2.5vw; /* Ajuste proporcional */
+    margin: 0;
+    color: #012a6f;
+    text-align: left; /* Alineo el texto a la izquierda */
+}
+
+.VisualizacionPerfil-carrera {
+    font-size: 20px; /* Ajuste para el tamaño */
+    color: #555;
+    text-align: left; /* Alineo a la izquierda */
+}
+
+/* Cuadro de información con la especificidad */
+#root > div > div.VisualizacionPerfil-perfil-contenido > div.perfil-cuadro {
+    background-color: #fff;
+    border: 2px solid #08016f; /* Asegura que el borde sea visible y con color */
+    padding: 30px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para darle profundidad */
+    width: 80%; /* Ancho ajustable para el cuadro */
+    max-width: 800px; /* Ancho máximo */
+    margin: 0 auto; /* Centrado automático */
+    text-align: left;
+}
+
+/* Ajuste de los elementos dentro del cuadro */
+.VisualizacionPerfil-perfil-cuadro p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.VisualizacionPerfil-perfil-cuadro strong {
+    color: #012a6f;
+}
+
+/* Ajuste de la biografía */
+.VisualizacionPerfil-perfil-cuadro .VisualizacionPerfil-biografia {
+    min-height: 100px; /* Altura mínima */
+    padding: 10px 0; /* Espacio interno */
+    color: #555;
+    white-space: pre-wrap;
+    word-wrap: break-word; /* Rompe palabras largas */
+    border-top: 1px solid #ddd; /* Línea superior sutil */
+    margin-top: 10px;
+}
+
+/* Iconos */
+.VisualizacionPerfil-icono {
+    margin-right: 10px; /* Espacio a la derecha del ícono */
+    color: #012a6f;
+}
+
+/* Ajustes generales para el contenedor de los componentes PEDE y Reclutador */
+.VisualizacionPerfil-contenedor-perfil-cuadro {
+    display: flex;
+    flex-direction: column; /* Los componentes irán uno debajo del otro */
+    align-items: flex-start; /* Alinea ambos componentes a la izquierda */
+    width: 100%; /* Ocupa todo el ancho */
+    max-width: 800px; /* Máximo ancho relativo a la ventana */
+    margin: 0 auto; /* Lo centro automáticamente */
+    padding: 20px;
+}
+
+/* Ajuste del cuadro en la sección PEDE */
+#root > div > div.VisualizacionPerfil-perfil-contenido > div.VisualizacionPerfil-pede-container > div {
+    margin-top: 15vh; /* Espacio ajustable y responsivo */
+}
+
+/* Ajuste del cuadro superior */
+#root > div > div.VisualizacionPerfil-perfil-contenido > div.perfil-cuadro {
+    margin-top: -50px; /* Reduce este valor para acercarlo más al div superior */
+}
+
+
+.conenedorPublicaciones-Usuario {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+    padding: 20px; 
+    margin: 20px auto; 
+    max-width: 800px; 
+    background-color: #fff; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+}
+
+/* Ajuste para cada publicación */
+.conenedorPublicaciones-Usuario .publicacion {
+    width: 100%; 
+    padding: 15px; 
+    margin-bottom: 20px; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd;
+    border-radius: 5px; 
+}

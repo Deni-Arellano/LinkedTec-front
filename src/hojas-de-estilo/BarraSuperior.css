@@ -1,0 +1,49 @@
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #798eb2;
+    color: white;
+    border-bottom: 1px solid #ccc;  /* Línea de separación debajo de toda la barra superior */
+}
+
+.barra-superior-logo {
+    flex: 1;
+    margin-left: 40px; /* Movemos el título más a la derecha */
+}
+
+.barra-superior-busqueda {
+    flex: 3; /* Aumentamos el tamaño del área de búsqueda */
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #ccc;  /* Línea separadora a la derecha de la barra de búsqueda */
+    border-left: 1px solid #ccc;  /* Línea separadora a la izquierda de la barra de búsqueda */
+}
+
+.barra-superior-buscador {
+    width: 100%;
+    max-width: 700px; /* Barra de búsqueda más larga */
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Añadimos un pequeño sombreado */
+}
+
+.barra-superior-iconos {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centramos los iconos en su propia sección */
+    gap: 20px;
+}
+
+.barra-superior-icono {
+    font-size: 22px;
+    cursor: pointer;
+    color: white;
+    padding-right: 10px; /* Disminuimos el espacio derecho */
+}
+
+.barra-superior-icono:hover {
+    color: #ffd700; /* Cambia de color al pasar el mouse (dorado) */
+}

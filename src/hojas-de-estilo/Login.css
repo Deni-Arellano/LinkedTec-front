@@ -1,0 +1,86 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.login-box {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  border: 3px solid #012a6f;
+}
+
+.logo-login {
+  width: 180px;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.Login-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+/* Estilo específico para el botón de login con color del botón de verificación */
+.btn-login {
+  background-color: #798eb2; /* Mismo color de fondo que los botones de verificación */
+  color: white;              /* Texto en blanco */
+  border: none;              /* Sin borde */
+  padding: 10px 0;           /* Espaciado interno más pequeño */
+  margin-top: 20px;          /* Espaciado superior */
+  font-size: 16px;           /* Tamaño de fuente más pequeño */
+  border-radius: 8px;        /* Bordes redondeados */
+  cursor: pointer;           /* Cambia el cursor al pasar el ratón */
+  width: 100%;               /* Ancho completo del botón */
+  max-width: 250px;          /* Máximo ancho reducido */
+}
+
+/* Efecto hover para el botón de login */
+.btn-login:hover {
+  background-color: #627399; /* Color más oscuro al pasar el ratón, similar a los botones de verificación */
+}
+
+/* Estilos adicionales para enlaces de login */
+.login-links {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+}
+
+.login-link {
+  color: #2f6db7;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilos de los inputs */
+.login-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 2px solid #000000; /* Borde negro */
+  border-radius: 15px;       /* Bordes redondeados */
+  outline: none;             /* Sin borde al enfocar */
+}

@@ -1,0 +1,140 @@
+/* Barra superior */
+.MenuNavegacion-barrasuperiordeMenuNavegacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    background-color: white;
+    border-bottom: 2px solid #012a6f;
+    height: 58px;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* Logo */
+.MenuNavegacion-logo {
+    height: 65px;
+    width: auto;
+}
+
+/* Barra de búsqueda */
+.MenuNavegacion-search {
+    flex-grow: 1;
+    max-width: 900px;
+    margin-left: 20vw;
+}
+
+/* Iconos en la barra superior */
+.MenuNavegacion-icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.MenuNavegacion-opcion-boton:hover {
+    background-color: #012a6f;
+}
+
+/* Botones de los íconos */
+.MenuNavegacion-icon-button {
+    background: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Cambiar el color cuando el cursor esté sobre los botones */
+.MenuNavegacion-icon-button:hover {
+    background-color: lightblue;
+}
+
+.MenuNavegacion-icon-button:focus {
+    outline: none;
+    background-color: #012a6f;
+}
+
+/* Tamaño de los iconos */
+.MenuNavegacion-icon {
+    font-size: 40px;
+    color: #012a6f;
+}
+
+/* Menú lateral */
+.MenuNavegacion-sidebar {
+    position: fixed;
+    top: 58px;
+    left: 0;
+    height: calc(100% - 58px);
+    width: 220px;
+    background-color: #f0f0f0;
+    border-right: 2px solid #012a6f;
+    padding: 20px;
+    z-index: 900;
+}
+
+.MenuNavegacion-sidebar.MenuNavegacion-visible {
+    transform: translateX(0);
+}
+
+/* Imagen de perfil */
+.MenuNavegacion-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.MenuNavegacion-foto-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #012a6f;
+}
+
+/* Botones del menú lateral */
+.MenuNavegacion-menu-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #012a6f;
+    border: 2px solid #012a6f;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.MenuNavegacion-menu-button:hover {
+    background-color: white;
+    color: #012a6f;
+}
+
+/* Contenido principal */
+.MenuNavegacion-content {
+    margin-left: 220px;
+    padding: 20px;
+    padding-top: 60px;
+    overflow-y: auto;
+}
+
+/* Evitar el deslizamiento horizontal */
+body {
+    overflow-x: hidden;
+}
+
+/* Asegurar que el contenedor esté centrado */
+.MenuNavegacion-contenedor-perfil-cuadro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    width: 100%;
+}

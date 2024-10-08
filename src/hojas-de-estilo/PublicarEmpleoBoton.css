@@ -1,0 +1,40 @@
+.PublicarEmpleo-button {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el icono y el texto */
+  justify-content: center;
+  width: 200px;
+  height: 60px;
+  background-color: #4CAF50;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px;
+  font-family: 'Sans Serif', Arial, sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  padding: 0 15px;
+}
+
+.PublicarEmpleo-button:hover {
+  transform: scale(1.05);
+}
+
+.PublicarEmpleo-content {
+  display: flex; /* Mantiene el icono y el texto en una línea */
+  align-items: center; /* Alinea verticalmente el icono y el texto */
+}
+
+.PublicarEmpleo-icon {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.PublicarEmpleo-text {
+  font-size: 16px;
+  text-align: center; /* Centra el texto */
+}
+
+.PublicarEmpleo-button:focus {
+  outline: none;
+}
