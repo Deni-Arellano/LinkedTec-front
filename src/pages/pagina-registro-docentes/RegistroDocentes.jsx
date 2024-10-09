@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './RegistroDocentes.css';
 import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx'; 
-import Textarea from '../../components/componente-caja-de-texto/CajaDeTextoGrande.jsx'; 
+import Textarea from '../../componetes/Text-area.jsx'; 
 import Button from '../../components/boton/Boton.jsx'; 
 import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx'; 
 import Fecha from '../../components/fecha/Fecha.jsx';
 import Logo from '../../assets/Logo24.png'; 
-import Label from '../components/componente-label/Etiquetas.jsx';
+import Label from '../../components/componente-label/Etiquetas.jsx';
 import { useNavigate } from 'react-router-dom'; 
 import Axios from 'axios'; 
 import {usuarioContext} from '../../App';

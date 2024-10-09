@@ -1,8 +1,8 @@
 import React, { useState, useContext, useRef } from "react";
 
-import Boton from '../components/boton/Boton.jsx';
-import Cajatexto from './Caja-de-texto.jsx';
-import Texto from './Etiquetas';
+import Boton from '../../components/boton/Boton.jsx';
+import Cajatexto from '../componente-caja-de-texto/CajaDeTexto.jsx';
+import Texto from '../componente-label/Etiquetas.jsx';
 import './CrearPublicacion.css';
 
 import Axios from "axios";

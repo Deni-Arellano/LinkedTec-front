@@ -1,13 +1,13 @@
 import React, { useContext, useState,useEffect } from 'react';
-import './Perfil.css';
-import MenuNavegacion from '../../components/menu-navegacion/MenuNavegacion'; 
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
 import FotoNombre from '../../components/presentacion-usuario/PresentacionUsuario';
 import DatosUsu_Rec from '../../components/cuadro-informacion-reclutador/DatosUsuarioReclutador';
 import DatosUsu_EsDoEg from '../../components/cuadro-informacion-usuario/DatosUsuario';
 import {usuarioContext} from '../../App';
 import Axios from 'axios';
-import MostrarPublicacion from '../components/componente-mostrar-publicacion/MostrarPublicacion'; 
- 
+import MostrarPublicacion from '../../components/componente-mostrar-publicacion/MostrarPublicacion'; 
+import './perfil.css';
+
 const VisualizacionPerfil = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
     //const usuarioLog = 5;

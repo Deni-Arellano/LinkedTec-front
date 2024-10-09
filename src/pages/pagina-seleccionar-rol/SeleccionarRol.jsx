@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import Button from '../../components/boton/Boton.jsx';
-import VentanaEmergente from '../componetes/VentanaEmergente.jsx'; // Importar el componente
+import VentanaEmergente from '../../components/ventana-emergente/VentanaEmergente.jsx'; // Importar el componente
 import './SeleccionarRol.css';
 import logo from '../../assets/Logo24.png';
-import {usuarioContext} from '../App'; 
+import {usuarioContext} from '../../App'; 
 
 
 const Pagina = () => {

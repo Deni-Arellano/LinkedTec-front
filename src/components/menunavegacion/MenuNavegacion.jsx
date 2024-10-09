@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
-import '../components/menunavegacion/MenuNavegacion.css';
-import Searchbar from '../components/componente-searchbar/SearchBar';
+import './MenuNavegacion.css';
+import Searchbar from '../../components/componente-searchbar/SearchBar';
 import { VscAccount } from "react-icons/vsc";
 import { AiFillAlert } from "react-icons/ai";
 import { BiChat } from "react-icons/bi";
-import logo from '../../imagenes/logo24.png';
+import logo from '../../assets/Logo24.png';
 import { useNavigate } from 'react-router-dom';
 import {usuarioContext} from '../../App';
 import Axios from 'axios';

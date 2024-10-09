@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import Texto from '../../componetes/Etiquetas';
-import '../components/editarpublicacion/EditarPublicacion.css';
+import Texto from '../componente-label/Etiquetas';
+import './Editarpublicacion.css';
 import { AiFillDelete } from "react-icons/ai";  
 import Axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";

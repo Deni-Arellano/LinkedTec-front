@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
-import Textarea from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Textarea from '../../componetes/Text-area.jsx';
 import Button from '../../components/boton/Boton.jsx';
 import Fecha from '../../components/fecha/Fecha.jsx';
 import './RegistroEgresados.css';
 import Logo from '../../assets/Logo24.png';
-import Label from '../components/componente-label/Etiquetas.jsx';
+import Label from '../../components/componente-label/Etiquetas.jsx';
 import axios from 'axios';
 import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import Swal from 'sweetalert2';

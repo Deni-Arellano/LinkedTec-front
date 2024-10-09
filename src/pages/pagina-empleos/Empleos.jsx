@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
-import BotonPublicar from '../../components/componente-boton-publicar/BotonPublicar'; 
+import BotonPublicar from '../../components/boton-publicar-empleo/BotonPublicarEmpleo'; 
 import PublicacionEmpleoNuevo from '../../components/publicacion-empleo/PublicacionEmpleo'; 
-import './Empleos.css'; 
+import './empleos.css'; 
 import { usuarioContext } from '../../App';
 import axios from 'axios';
 import Swal from 'sweetalert2';
