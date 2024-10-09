@@ -1,12 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
+<<<<<<< HEAD:src/componetes/MenuNavegacion.jsx
 import '../hojas-de-estilo/MenuNavegacion.css';
 import Searchbar from '../components/componente-searchbar/Searchbar';
+=======
+import '../components/menunavegacion/MenuNavegacion.css';
+import Searchbar from '../../componetes/Searchbar';
+>>>>>>> 165a9930ab7e94dcd6dbd2ecb624ffffc9b7053e:src/components/menunavegacion/MenuNavegacion.jsx
 import { VscAccount } from "react-icons/vsc";
 import { AiFillAlert } from "react-icons/ai";
 import { BiChat } from "react-icons/bi";
 import logo from '../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
-import {usuarioContext} from '../App';
+import {usuarioContext} from '../../App';
 import Axios from 'axios';
 
 const MenuNavegacion = () => {
