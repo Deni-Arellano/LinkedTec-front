@@ -1,11 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-<<<<<<< HEAD:src/componetes/MenuNavegacion.jsx
-import '../hojas-de-estilo/MenuNavegacion.css';
-import Searchbar from '../components/componente-searchbar/Searchbar';
-=======
 import '../components/menunavegacion/MenuNavegacion.css';
 import Searchbar from '../../componetes/Searchbar';
->>>>>>> 165a9930ab7e94dcd6dbd2ecb624ffffc9b7053e:src/components/menunavegacion/MenuNavegacion.jsx
 import { VscAccount } from "react-icons/vsc";
 import { AiFillAlert } from "react-icons/ai";
 import { BiChat } from "react-icons/bi";
@@ -62,7 +57,7 @@ const MenuNavegacion = () => {
                     <button className="MenuNavegacion-icon-button">
                         <AiFillAlert className="MenuNavegacion-icon" />
                     </button>
-                    <button className="MenuNavegacion-icon-button" onClick={() => navigate('/perfil')}>
+                    <button className="MenuNavegacion-icon-button" onClick={() => navigate('/Perfil')}>
                         <VscAccount className="MenuNavegacion-icon" />
                     </button>
                 </div>
@@ -76,8 +71,8 @@ const MenuNavegacion = () => {
 
                 <nav className="MenuNavegacion-menu">
                     <button className="MenuNavegacion-menu-button">Noticias</button>
-                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/empleos')}>Empleos</button>
-                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicaciones')}>Publicaciones</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicacion-empleo')}>Empleos</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publi-usuarios')}>Publicaciones</button>
                     <button className="MenuNavegacion-menu-button">Foro</button>
                 </nav>
             </aside>

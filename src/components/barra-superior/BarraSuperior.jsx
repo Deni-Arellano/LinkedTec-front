@@ -3,7 +3,7 @@ import { BiChat } from 'react-icons/bi';
 import { AiFillAlert } from 'react-icons/ai';
 import { VscAccount } from 'react-icons/vsc';
 import Searchbar from '../../componetes/Searchbar';  // Asegúrate de que la ruta sea correcta
-import logo from '../imagenes/Logo24.png';  // Ruta correcta para el logo
+import logo from '../../assets/Logo24.png';  // Ruta correcta para el logo
 
 const BarraSuperior = () => {
     return (
