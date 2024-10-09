@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MenuNavegacion from '../../componetes/MenuNavegacion'; 
 import BotonPublicar from '../../componetes/BotonPublicarEmpleo'; 
 import PublicacionEmpleoNuevo from '../../componetes/PublicacionEmpleo'; 
-import './empleos.css'; 
+import './Empleos.css'; 
 import { usuarioContext } from '../../App';
 import axios from 'axios';
 import Swal from 'sweetalert2';

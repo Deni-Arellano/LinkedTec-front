@@ -1,5 +1,5 @@
 import React, { useContext, useState,useEffect } from 'react';
-import './perfil.css';
+import './Perfil.css';
 import MenuNavegacion from '../../componetes/MenuNavegacion'; 
 import FotoNombre from '../../componetes/PerfilUsu_FotoNomb'; 
 import DatosUsu_Rec from '../../componetes/DatosUsu_Rec';

@@ -6,7 +6,7 @@ import RadioButtons from '../../componetes/Radio_buton.jsx';
 import Fecha from '../../componetes/Fecha.jsx';
 import Logo from '../../imagenes/Logo24.png'; 
 import Label from '../../componetes/Etiquetas';
-import './registro-docentes.css';
+import './RegistroDocentes.css';
 import { useNavigate } from 'react-router-dom'; 
 import Axios from 'axios'; 
 import {usuarioContext} from '../../App';

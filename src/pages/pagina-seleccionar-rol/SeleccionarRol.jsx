@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import RadioButtons from '../../componetes/Radio_buton.jsx'; 
 import Button from '../../componetes/Button.jsx';
 import VentanaEmergente from '../../componetes/VentanaEmergente.jsx'; // Importar el componente
-import './seleccionar-rol.css';
+import './SeleccionarRol.css';
 import logo from '../../imagenes/Logo24.png';
 import {usuarioContext} from '../../App'; 
 

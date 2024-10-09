@@ -4,7 +4,7 @@ import Textbox from '../../componetes/Caja-de-texto.jsx';
 import Button from '../../componetes/Button.jsx'; 
 import RadioButtons from '../../componetes/Radio_buton.jsx'; 
 import Fecha from '../../componetes/Fecha.jsx'; 
-import './registro-reclutadores.css'; 
+import './RegistroReclutadores.css'; 
 import Logo from '../../imagenes/Logo24.png'; 
 import Textarea from '../../componetes/Text-area.jsx';
 import axios from 'axios';

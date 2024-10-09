@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
-import './codigo-verificacion.css';
+import './CodigoVerificacion.css';
 import Button from '../../componetes/Button';
 import { usuarioContext } from '../../App';
 

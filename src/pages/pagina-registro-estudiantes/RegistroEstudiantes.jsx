@@ -3,7 +3,7 @@ import Textbox from '../../componetes/Caja-de-texto';
 import Button from '../../componetes/Button';
 import RadioButtons from '../../componetes/Radio_buton.jsx';
 import Fecha from '../../componetes/Fecha';
-import './registro-estudiantes.css'; 
+import './RegistroEstudiantes.css'; 
 import Logo from '../../imagenes/Logo24.png'; 
 import Textarea from '../../componetes/Text-area.jsx';
 import { useNavigate } from 'react-router-dom';  

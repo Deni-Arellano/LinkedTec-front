@@ -4,7 +4,7 @@ import Textarea from '../../componetes/Text-area.jsx';
 import Button from '../../componetes/Button.jsx';
 import RadioButtons from '../../componetes/Radio_buton.jsx';
 import Fecha from '../../componetes/Fecha.jsx';
-import './registro-egresados.css';
+import './RegistroEgresados.css';
 import Logo from '../../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
 import Label from '../../componetes/Etiquetas.jsx';

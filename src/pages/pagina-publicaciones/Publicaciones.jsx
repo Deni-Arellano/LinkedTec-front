@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import MenuNavegacion from "../../componetes/MenuNavegacion";
 import Crearpubli from "../../componetes/Crear-Publicacion";
-import './publicaciones.css';
+import './Publicaciones.css';
 import Axios from 'axios';
 import {usuarioContext} from '../../App';
 

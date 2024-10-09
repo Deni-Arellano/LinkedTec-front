@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../componetes/Button'; // Asegúrate de que la ruta esté correcta
-import './registro-exitoso.css';  // Asegúrate de que el archivo de estilos esté en la ruta correcta
+import './RegistroExitoso.css';  // Asegúrate de que el archivo de estilos esté en la ruta correcta
 import { useNavigate } from 'react-router-dom';
 
 const RegistroExitoso = () => {

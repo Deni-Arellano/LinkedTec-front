@@ -3,7 +3,7 @@ import MenuNavegacion from '../../componetes/MenuNavegacion';
 import Etiquetas from '../../componetes/Etiquetas'; 
 import CajaDeTexto from '../../componetes/Caja-de-texto';
 import Button from '../../componetes/Button'; 
-import './registro-empleo.css'; 
+import './RegistroEmpleo.css'; 
 import { usuarioContext } from '../../App';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
