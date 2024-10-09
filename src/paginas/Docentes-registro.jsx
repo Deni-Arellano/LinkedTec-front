@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Textbox from '../componetes/Caja-de-texto.jsx'; 
+import Textbox from '../components/componente-caja-de-texto/CajaDeTexto.jsx'; 
 import Textarea from '../componetes/Text-area.jsx'; 
 import Button from '../componetes/Button'; 
 import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import Fecha from '../componetes/Fecha.jsx';
 import Logo from '../imagenes/Logo24.png'; 
-import Label from '../componetes/Etiquetas';
+import Label from '../components/componente-label/Etiquetas.jsx';
 import '../hojas-de-estilo/Docentes-registro.css';
 import { useNavigate } from 'react-router-dom'; 
 import Axios from 'axios'; 

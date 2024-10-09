@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/Searchbar.css';
+import './Searchbar.css';
 import { HiOutlineSearch } from "react-icons/hi";
 
 function SearchBar() {

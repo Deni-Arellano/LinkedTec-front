@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import Texto from './Etiquetas';
+import Texto from '../components/componente-label/Etiquetas';
 import '../hojas-de-estilo/Editarpublicacion.css';
 import { AiFillDelete } from "react-icons/ai";  
 import Axios from 'axios';

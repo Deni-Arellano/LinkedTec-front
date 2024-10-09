@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
-import Etiquetas from '../componetes/Etiquetas'; 
-import CajaDeTexto from '../componetes/Caja-de-texto';
+import Etiquetas from '../components/componente-label/Etiquetas'; 
+import CajaDeTexto from '../components/componente-caja-de-texto/CajaDeTexto.jsx';
 import Button from '../componetes/Button'; 
 import '../hojas-de-estilo/PaginaEmpleo.css'; 
 import { usuarioContext } from '../App';

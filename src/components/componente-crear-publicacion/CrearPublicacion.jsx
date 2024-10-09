@@ -1,10 +1,10 @@
 import React, { useState, useContext, useRef } from "react";
-import Boton from './Button';
-import Cajatexto from './Caja-de-texto.jsx';
-import Texto from './Etiquetas';
-import '../hojas-de-estilo/Crear-publicacion.css';
+import Boton from '../../componetes/Button.jsx';
+import Cajatexto from '../componente-caja-de-texto/CajaDeTexto.jsx';
+import Texto from '../componente-label/Etiquetas.jsx';
+import './CrearPublicacion.css';
 import Axios from "axios";
-import { usuarioContext } from '../App';
+import { usuarioContext } from '../../App.js';
 import { BiImageAdd } from 'react-icons/bi';
 import Swal from 'sweetalert2';
 

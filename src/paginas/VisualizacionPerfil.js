@@ -6,7 +6,7 @@ import DatosUsu_Rec from '../componetes/DatosUsu_Rec';
 import DatosUsu_EsDoEg from '../componetes/DatosUsu_EsDoEg';
 import {usuarioContext} from '../App';
 import Axios from 'axios';
-import MostrarPublicacion from '../componetes/Mostrar-Publicacion';
+import MostrarPublicacion from '../components/componente-mostrar-publicacion/MostrarPublicacion';
 import EditarPublicacion from '../componetes/Editarpublicacion';    
 
 

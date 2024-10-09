@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import Texto from './Etiquetas';
-import '../hojas-de-estilo/mostrar-publicacion.css';
+import Texto from '../componente-label/Etiquetas.jsx';
+import './MostrarPublicacion.css';
 import { BsThreeDots } from "react-icons/bs";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { MdAddComment } from "react-icons/md";
 import Axios from 'axios';
-import CrearComentario from './CrearComentario';
-import { usuarioContext } from '../App';
+import CrearComentario from '../../componetes/CrearComentario.jsx';
+import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
-import '../hojas-de-estilo/Comentario.css';
+import '../componente-mostrar-comentario/MostrarComentario.css';
 
 
 const MostrarPubli = ({ datos, onEliminar }) => {

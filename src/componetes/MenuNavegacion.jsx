@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import '../hojas-de-estilo/MenuNavegacion.css';
-import Searchbar from './Searchbar';
+import Searchbar from '../components/componente-searchbar/Searchbar';
 import { VscAccount } from "react-icons/vsc";
 import { AiFillAlert } from "react-icons/ai";
 import { BiChat } from "react-icons/bi";

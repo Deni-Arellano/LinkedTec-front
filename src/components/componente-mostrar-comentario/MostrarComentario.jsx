@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Texto from './Etiquetas';
-import '../hojas-de-estilo/Comentario.css'
+import './mostrarcomentario.css'
 import { BsThreeDots } from "react-icons/bs";
 
 const Comentar = ({comentario}) => {
