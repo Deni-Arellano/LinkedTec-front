@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
-import RadioButtons from '../componetes/Radio_buton.jsx'; 
-import Button from '../componetes/Button.jsx';
-import VentanaEmergente from '../componetes/VentanaEmergente.jsx'; // Importar el componente
-import '../hojas-de-estilo/Rol.css';
-import logo from '../imagenes/Logo24.png';
-import {usuarioContext} from '../App'; 
+import RadioButtons from '../../componetes/Radio_buton.jsx'; 
+import Button from '../../componetes/Button.jsx';
+import VentanaEmergente from '../../componetes/VentanaEmergente.jsx'; // Importar el componente
+import './seleccionar-rol.css';
+import logo from '../../imagenes/Logo24.png';
+import {usuarioContext} from '../../App'; 
 
 const Pagina = () => {
 
@@ -17,7 +17,7 @@ const Pagina = () => {
 
 
   const handleBack = () => {
-    console.log("Navegando a /Rol");
+    console.log("Navegando a /login");
     navigate('/'); 
   };
   
@@ -36,10 +36,10 @@ const Pagina = () => {
     if (rolSeleccionado) {
       switch (rolSeleccionado) {
         case 'Docente': 
-          navigate('/registro-docentes'); 
+          navigate('/registro-docente'); 
           break;
         case 'Estudiante':
-          navigate('/registro-estudiantes'); 
+          navigate('/registro-estudiante'); 
           break;
         case 'Reclutador':
           navigate('/registro-reclutador'); 

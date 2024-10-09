@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import MenuNavegacion from '../componetes/MenuNavegacion'; 
-import Etiquetas from '../componetes/Etiquetas'; 
-import CajaDeTexto from '../componetes/Caja-de-texto';
-import Button from '../componetes/Button'; 
-import '../hojas-de-estilo/PaginaEmpleo.css'; 
-import { usuarioContext } from '../App';
+import MenuNavegacion from '../../componetes/MenuNavegacion'; 
+import Etiquetas from '../../componetes/Etiquetas'; 
+import CajaDeTexto from '../../componetes/Caja-de-texto';
+import Button from '../../componetes/Button'; 
+import './registro-empleo.css'; 
+import { usuarioContext } from '../../App';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -23,7 +23,7 @@ const PaginaFormulario = () => {
     const navigate = useNavigate();
 
     const handleBack = () => {
-        navigate('/publicacion-empleo');
+        navigate('/empleos');
     };
 
     const add = () => {

@@ -1,25 +1,24 @@
 import React, {useState, createContext} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Pagina from '../src/paginas/Rol'; 
-import RegistroDocentes from '../src/paginas/Docentes-registro'; 
-import Registro from '../src/paginas/Estudiantes-registro';
-import RegistroReclutador from './paginas/Reclutador-registro';
-import RegistroEgresado from '../src/paginas/Egresados-registro';
-import CodigoVerificacion from './paginas/CodigoVerificacion';
-import Login from '../src/paginas/Login'
-import RegistroExitoso from './paginas/RegistroExitoso';
-import PubliUsuarios from './paginas/Publicaciones';
-import VisualizacionPerfil from './paginas/VisualizacionPerfil';
-import PublicacionEmpleo from '../src/paginas/PublicacionEmpleo'
-import FormularioPublicacionEmpleo from '../src/paginas/FormularioPublicacionEmpleo'
-import EditarPublicacion from './paginas/PaginaEditarPublicacion'; 
 
+import CodigoVerificacion from './pages/pagina-codigo-verificacion/CodigoVerificacion';
+import EditarPublicacion from './pages/pagina-editar-publicacion/EditarPublicacion'; 
+import Empleos from './pages/pagina-empleos/Empleos'
+import Login from './pages/pagina-login/Login';
+import Publicaciones from './pages/pagina-publicaciones/Publicaciones';
+import RegistroEmpleo from './pages/pagina-registro-empleo/RegistroEmpleo';
+import RegistroDocentes from './pages/pagina-registro-docentes/RegistroDocentes'; 
+import RegistroEgresados from './pages/pagina-registro-egresados/RegistroEgresados';
+import RegistroEstudiantes from './pages/pagina-registro-estudiantes/RegistroEstudiantes';
+import RegistroExitoso from './pages/pagina-registro-exitoso/RegistroExitoso';
+import RegistroReclutadores from './pages/pagina-registro-reclutadores/RegistroReclutadores';
+import Roles from './pages/pagina-seleccionar-rol/SeleccionarRol';
+import Perfil from './pages/pagina-Perfil/Perfil';
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(null); 
-  //const [usuarioLog, setUsuarioLog] = useState(''); 
+  const [usuarioLog, setUsuarioLog] = useState(null);  
   //const [usuarioLog, setUsuarioLog] = useState('11'); 
   return (
     //Pasa a los componentes hijos el usuario
@@ -27,18 +26,18 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} /> 
-          <Route path="/Rol" element={<Pagina />} /> 
-          <Route path="/registro-estudiantes" element={<Registro />} /> 
-          <Route path="/registro-docentes" element={<RegistroDocentes />} /> 
-          <Route path="/registro-reclutador" element={<RegistroReclutador />} /> 
-          <Route path="/registro-egresado" element={<RegistroEgresado />} /> 
+          <Route path="/rol" element={<Roles />} /> 
+          <Route path="/registro-estudiante" element={<RegistroEstudiantes />} /> 
+          <Route path="/registro-docente" element={<RegistroDocentes />} /> 
+          <Route path="/registro-reclutador" element={<RegistroReclutadores />} /> 
+          <Route path="/registro-egresado" element={<RegistroEgresados />} /> 
           <Route path="/codigo-verificacion" element={<CodigoVerificacion />} /> 
           <Route path="/registro-exitoso" element={<RegistroExitoso />} /> 
-          <Route path="/publi-usuarios" element={<PubliUsuarios />} /> 
-          <Route path="/Perfil" element={<VisualizacionPerfil />} /> 
-          <Route path="/publicacion-empleo" element={<PublicacionEmpleo />} /> 
-          <Route path="/FormularioPublicacionEmpleo" element={<FormularioPublicacionEmpleo />} />
-          <Route path="/EditarPublicacion" element={<EditarPublicacion />} />
+          <Route path="/publicaciones" element={<Publicaciones />} /> 
+          <Route path="/perfil" element={<Perfil />} /> 
+          <Route path="/empleos" element={<Empleos />} /> 
+          <Route path="/registro-empleo" element={<RegistroEmpleo />} />
+          <Route path="/editar-publicacion" element={<EditarPublicacion />} />
           
         </Routes>
       </Router>

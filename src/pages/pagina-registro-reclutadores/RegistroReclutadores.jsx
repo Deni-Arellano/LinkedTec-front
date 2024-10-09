@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  
-import Textbox from '../componetes/Caja-de-texto.jsx'; 
-import Button from '../componetes/Button.jsx'; 
-import RadioButtons from '../componetes/Radio_buton.jsx'; 
-import Fecha from '../componetes/Fecha.jsx'; 
-import '../hojas-de-estilo/DatosUsu_EsDoEg.css'; 
-import Logo from '../imagenes/Logo24.png'; 
-import Textarea from '../componetes/Text-area.jsx';
+import Textbox from '../../componetes/Caja-de-texto.jsx'; 
+import Button from '../../componetes/Button.jsx'; 
+import RadioButtons from '../../componetes/Radio_buton.jsx'; 
+import Fecha from '../../componetes/Fecha.jsx'; 
+import './registro-reclutadores.css'; 
+import Logo from '../../imagenes/Logo24.png'; 
+import Textarea from '../../componetes/Text-area.jsx';
 import axios from 'axios';
-import {usuarioContext} from '../App';
+import {usuarioContext} from '../../App';
 import Swal from 'sweetalert2';
 
 const RegistroReclutador = () => {
@@ -22,7 +22,7 @@ const RegistroReclutador = () => {
 
   const handleBack = () => {
     console.log("Navegando a /Rol");
-    navigate('/Rol'); 
+    navigate('/rol'); 
   };
   
 

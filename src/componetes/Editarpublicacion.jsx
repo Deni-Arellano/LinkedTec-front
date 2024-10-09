@@ -23,7 +23,7 @@ const EditarPublicacion = () => {
     };
 
     const handleBack = () => {
-        navigate('/Perfil');
+        navigate('/perfil');
     };
 
     const handleImageChange = (event) => {

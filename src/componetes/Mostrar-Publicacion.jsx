@@ -66,7 +66,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
     };
 
     const editarPublicacion = () => {
-        navigate('/EditarPublicacion', {
+        navigate('/editar-publicacion', {
             state: {
                 descripcion: datos.descripcion,
                 imagen: datos.imagen,

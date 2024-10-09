@@ -1,16 +1,13 @@
 import React, { useContext, useState,useEffect } from 'react';
-import '../hojas-de-estilo/VisualizacionPerfil.css';
-import MenuNavegacion from '../componetes/MenuNavegacion'; 
-import FotoNombre from '../componetes/PerfilUsu_FotoNomb'; 
-import DatosUsu_Rec from '../componetes/DatosUsu_Rec';
-import DatosUsu_EsDoEg from '../componetes/DatosUsu_EsDoEg';
-import {usuarioContext} from '../App';
+import './perfil.css';
+import MenuNavegacion from '../../componetes/MenuNavegacion'; 
+import FotoNombre from '../../componetes/PerfilUsu_FotoNomb'; 
+import DatosUsu_Rec from '../../componetes/DatosUsu_Rec';
+import DatosUsu_EsDoEg from '../../componetes/DatosUsu_EsDoEg';
+import {usuarioContext} from '../../App';
 import Axios from 'axios';
-import MostrarPublicacion from '../componetes/Mostrar-Publicacion';
-import EditarPublicacion from '../componetes/Editarpublicacion';    
-
-
-
+import MostrarPublicacion from '../../componetes/Mostrar-Publicacion';
+ 
 const VisualizacionPerfil = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
     //const usuarioLog = 5;

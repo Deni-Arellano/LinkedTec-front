@@ -1,10 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import MenuNavegacion from "../componetes/MenuNavegacion";
-import Crearpubli from "../componetes/Crear-Publicacion";
-import '../hojas-de-estilo/Publicaciones.css';
+import MenuNavegacion from "../../componetes/MenuNavegacion";
+import Crearpubli from "../../componetes/Crear-Publicacion";
+import './publicaciones.css';
 import Axios from 'axios';
-
-import {usuarioContext} from '../App';
+import {usuarioContext} from '../../App';
 
 
 const PubliUsuarios = () => {

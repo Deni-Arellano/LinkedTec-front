@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import MenuNavegacion from '../componetes/MenuNavegacion'; 
-import BotonPublicar from '../componetes/BotonPublicarEmpleo'; 
-import PublicacionEmpleoNuevo from '../componetes/PublicacionEmpleo'; 
-import '../hojas-de-estilo/PublicacionEmpleo.css'; 
-import { usuarioContext } from '../App';
+import MenuNavegacion from '../../componetes/MenuNavegacion'; 
+import BotonPublicar from '../../componetes/BotonPublicarEmpleo'; 
+import PublicacionEmpleoNuevo from '../../componetes/PublicacionEmpleo'; 
+import './empleos.css'; 
+import { usuarioContext } from '../../App';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -89,7 +89,7 @@ const PublicacionEmpleo = () => {
         const datosUsuario = await getUsuarios(usuarioLog); 
         if (datosUsuario[4] === 'Reclutadores') { //
             //console.log(datosUsuario[4]);
-            navigate('/FormularioPublicacionEmpleo');
+            navigate('/registro-empleo');
         } else {
             
             Swal.fire({

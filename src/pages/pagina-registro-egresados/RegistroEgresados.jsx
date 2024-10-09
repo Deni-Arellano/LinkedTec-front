@@ -1,15 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Textbox from '../componetes/Caja-de-texto.jsx';
-import Textarea from '../componetes/Text-area.jsx';
-import Button from '../componetes/Button';
-import RadioButtons from '../componetes/Radio_buton.jsx';
-import Fecha from '../componetes/Fecha.jsx';
-import '../hojas-de-estilo/Egresados-registro.css';
-import Logo from '../imagenes/Logo24.png';
+import Textbox from '../../componetes/Caja-de-texto.jsx';
+import Textarea from '../../componetes/Text-area.jsx';
+import Button from '../../componetes/Button.jsx';
+import RadioButtons from '../../componetes/Radio_buton.jsx';
+import Fecha from '../../componetes/Fecha.jsx';
+import './registro-egresados.css';
+import Logo from '../../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
-import Label from '../componetes/Etiquetas';
+import Label from '../../componetes/Etiquetas.jsx';
 import axios from 'axios';
-import {usuarioContext} from '../App';
+import {usuarioContext} from '../../App.js';
 import Swal from 'sweetalert2';
 
 const RegistroEgresado = () => {
@@ -23,7 +23,7 @@ const RegistroEgresado = () => {
 
   const handleBack = () => {
     console.log('Navegando a /Rol');
-    navigate('/Rol');
+    navigate('/rol');
   };
 
   const handleNext = () => {

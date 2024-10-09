@@ -57,7 +57,7 @@ const MenuNavegacion = () => {
                     <button className="MenuNavegacion-icon-button">
                         <AiFillAlert className="MenuNavegacion-icon" />
                     </button>
-                    <button className="MenuNavegacion-icon-button" onClick={() => navigate('/Perfil')}>
+                    <button className="MenuNavegacion-icon-button" onClick={() => navigate('/perfil')}>
                         <VscAccount className="MenuNavegacion-icon" />
                     </button>
                 </div>
@@ -71,8 +71,8 @@ const MenuNavegacion = () => {
 
                 <nav className="MenuNavegacion-menu">
                     <button className="MenuNavegacion-menu-button">Noticias</button>
-                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicacion-empleo')}>Empleos</button>
-                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publi-usuarios')}>Publicaciones</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/empleos')}>Empleos</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicaciones')}>Publicaciones</button>
                     <button className="MenuNavegacion-menu-button">Foro</button>
                 </nav>
             </aside>
