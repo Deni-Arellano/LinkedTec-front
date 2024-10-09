@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Texto from './Etiquetas';
+import Texto from '../../componetes/Etiquetas';
 import '../hojas-de-estilo/Comentario.css'
 import { BsThreeDots } from "react-icons/bs";
 

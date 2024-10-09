@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
-import Boton from '../components/ejemplo/Boton/Button.jsx';
+import Boton from '../components/boton/Boton.jsx';
 import Cajatexto from './Caja-de-texto.jsx';
 import Texto from './Etiquetas';
 import '../hojas-de-estilo/Crear-publicacion.css';

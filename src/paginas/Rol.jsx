@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
 import RadioButtons from '../componetes/Radio_buton.jsx'; 
-import Button from '../components/ejemplo/Boton/Button.jsx';
+import Button from '../components/boton/Boton.jsx';
 import VentanaEmergente from '../componetes/VentanaEmergente.jsx'; // Importar el componente
 import '../hojas-de-estilo/Rol.css';
 import logo from '../imagenes/Logo24.png';
