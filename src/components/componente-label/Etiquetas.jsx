@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/Etiquetas.css';
+import './Etiquetas.css';
 
 const Etiquetas = ({ tamano, texto, id }) => {
     return (

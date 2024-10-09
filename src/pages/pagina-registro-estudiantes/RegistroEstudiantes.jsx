@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+<<<<<<< HEAD:src/pages/pagina-registro-estudiantes/RegistroEstudiantes.jsx
 import Textbox from '../../componetes/Caja-de-texto'; 
 import Button from '../../componetes/Button';
 import RadioButtons from '../../componetes/Radio_buton.jsx';
@@ -6,6 +7,15 @@ import Fecha from '../../componetes/Fecha';
 import './RegistroEstudiantes.css'; 
 import Logo from '../../imagenes/Logo24.png'; 
 import Textarea from '../../componetes/Text-area.jsx';
+=======
+import Textbox from '../components/componente-caja-de-texto/CajaDeTexto.jsx'; 
+import Button from '../componetes/Button';
+import RadioButtons from '../componetes/Radio_buton.jsx';
+import Fecha from '../componetes/Fecha';
+import '../hojas-de-estilo/Estudiantes-registro.css'; 
+import Logo from '../imagenes/Logo24.png'; 
+import Textarea from '../componetes/Text-area.jsx';
+>>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/Estudiantes-registro.jsx
 import { useNavigate } from 'react-router-dom';  
 import {usuarioContext} from '../../App';
 import Axios from 'axios';

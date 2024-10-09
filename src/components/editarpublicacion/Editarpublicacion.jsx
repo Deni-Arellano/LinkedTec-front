@@ -1,6 +1,11 @@
 import React, { useState, useRef } from "react";
-import Texto from './Etiquetas';
+<<<<<<< HEAD:src/componetes/Editarpublicacion.jsx
+import Texto from '../components/componente-label/Etiquetas';
 import '../hojas-de-estilo/Editarpublicacion.css';
+=======
+import Texto from '../../componetes/Etiquetas';
+import '../components/editarpublicacion/EditarPublicacion.css';
+>>>>>>> 165a9930ab7e94dcd6dbd2ecb624ffffc9b7053e:src/components/editarpublicacion/Editarpublicacion.jsx
 import { AiFillDelete } from "react-icons/ai";  
 import Axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";

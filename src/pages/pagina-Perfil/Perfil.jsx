@@ -6,8 +6,21 @@ import DatosUsu_Rec from '../../componetes/DatosUsu_Rec';
 import DatosUsu_EsDoEg from '../../componetes/DatosUsu_EsDoEg';
 import {usuarioContext} from '../../App';
 import Axios from 'axios';
+<<<<<<< HEAD:src/pages/pagina-Perfil/Perfil.jsx
 import MostrarPublicacion from '../../componetes/Mostrar-Publicacion';
  
+=======
+<<<<<<< HEAD
+import MostrarPublicacion from '../components/componente-mostrar-publicacion/MostrarPublicacion';
+import EditarPublicacion from '../componetes/Editarpublicacion';    
+=======
+import MostrarPublicacion from '../componetes/Mostrar-Publicacion';
+import EditarPublicacion from '../components/editarpublicacion/Editarpublicacion';    
+>>>>>>> 165a9930ab7e94dcd6dbd2ecb624ffffc9b7053e
+
+
+
+>>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/VisualizacionPerfil.js
 const VisualizacionPerfil = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
     //const usuarioLog = 5;

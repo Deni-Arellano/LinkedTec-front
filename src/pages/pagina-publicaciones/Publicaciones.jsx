@@ -1,7 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
+<<<<<<< HEAD:src/pages/pagina-publicaciones/Publicaciones.jsx
 import MenuNavegacion from "../../componetes/MenuNavegacion";
 import Crearpubli from "../../componetes/Crear-Publicacion";
 import './Publicaciones.css';
+=======
+import MenuNavegacion from "../componetes/MenuNavegacion";
+import Crearpubli from "../components/componente-crear-publicacion/CrearPublicacion";
+import '../hojas-de-estilo/Publicaciones.css';
+>>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/Publicaciones.jsx
 import Axios from 'axios';
 import {usuarioContext} from '../../App';
 

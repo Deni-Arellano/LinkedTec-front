@@ -1,10 +1,19 @@
 import React, { useContext, useState } from 'react';
+<<<<<<< HEAD:src/pages/pagina-registro-empleo/RegistroEmpleo.jsx
 import MenuNavegacion from '../../componetes/MenuNavegacion'; 
 import Etiquetas from '../../componetes/Etiquetas'; 
 import CajaDeTexto from '../../componetes/Caja-de-texto';
 import Button from '../../componetes/Button'; 
 import './RegistroEmpleo.css'; 
 import { usuarioContext } from '../../App';
+=======
+import MenuNavegacion from '../componetes/MenuNavegacion'; 
+import Etiquetas from '../components/componente-label/Etiquetas'; 
+import CajaDeTexto from '../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Button from '../componetes/Button'; 
+import '../hojas-de-estilo/PaginaEmpleo.css'; 
+import { usuarioContext } from '../App';
+>>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/FormularioPublicacionEmpleo.js
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';

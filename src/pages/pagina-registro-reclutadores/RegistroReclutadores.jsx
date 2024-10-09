@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  
+<<<<<<< HEAD:src/pages/pagina-registro-reclutadores/RegistroReclutadores.jsx
 import Textbox from '../../componetes/Caja-de-texto.jsx'; 
 import Button from '../../componetes/Button.jsx'; 
 import RadioButtons from '../../componetes/Radio_buton.jsx'; 
@@ -7,6 +8,15 @@ import Fecha from '../../componetes/Fecha.jsx';
 import './RegistroReclutadores.css'; 
 import Logo from '../../imagenes/Logo24.png'; 
 import Textarea from '../../componetes/Text-area.jsx';
+=======
+import Textbox from '../components/componente-caja-de-texto/CajaDeTexto.jsx'; 
+import Button from '../componetes/Button.jsx'; 
+import RadioButtons from '../componetes/Radio_buton.jsx'; 
+import Fecha from '../componetes/Fecha.jsx'; 
+import '../hojas-de-estilo/DatosUsu_EsDoEg.css'; 
+import Logo from '../imagenes/Logo24.png'; 
+import Textarea from '../componetes/Text-area.jsx';
+>>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/Reclutador-registro.jsx
 import axios from 'axios';
 import {usuarioContext} from '../../App';
 import Swal from 'sweetalert2';
