@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Textbox from '../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Textbox from '../componetes/Caja-de-texto.jsx';
 import Textarea from '../componetes/Text-area.jsx';
 import Button from '../componetes/Button';
 import RadioButtons from '../componetes/Radio_buton.jsx';
@@ -7,7 +7,7 @@ import Fecha from '../componetes/Fecha.jsx';
 import '../hojas-de-estilo/Egresados-registro.css';
 import Logo from '../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
-import Label from '../components/componente-label/Etiquetas.jsx';
+import Label from '../componetes/Etiquetas';
 import axios from 'axios';
 import {usuarioContext} from '../App';
 import Swal from 'sweetalert2';
@@ -45,10 +45,23 @@ const RegistroEgresado = () => {
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
 
+  const validatePassword = () => {
+    
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(contraseña)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La contraseña debe contener al menos una letra mayúscula, una minúscula, un número y un carácter especial.",
+      });
+      return;
+    }
+  };
+  
+
   const add = () => {
     console.log('Agregando egresado');
 
-    // Validaciones
     if (contraseña !== confirmarContraseña) {
       Swal.fire({
         icon: "error",
@@ -57,6 +70,7 @@ const RegistroEgresado = () => {
       });
       return;
     }
+    validatePassword();
 
     if (!nombre) {
       Swal.fire({
@@ -242,15 +256,6 @@ const RegistroEgresado = () => {
       return;
     }
 
-    const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,20}$/;
-    if (!regexContraseña.test(contraseña)) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "La contraseña debe incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (@, $, !, %, *, ?, &).",
-      });
-      return;
-    }
 
     if (!carreraSeleccionada) {
       Swal.fire({
@@ -369,16 +374,6 @@ const RegistroEgresado = () => {
             footer: "Ingresa otro diferente."
           });
         }
-
-        if (error.response.data.message[0] === 'La contraseña debe contener al menos una letra mayúscula, una minúscula, un número y un carácter especial.') {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "La contraseña no cumple con los requisitos.",
-            footer: "La contraseña debe incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (@, $, !, %, *, ?, &).."
-          });
-        }
-
         if (error.response.status === 404) {
           Swal.fire({
             icon: "error",
