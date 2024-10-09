@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-<<<<<<<< HEAD:src/components/comentario/Comentario.jsx
-import Texto from '../../componetes/Etiquetas';
-import '../hojas-de-estilo/Comentario.css'
-========
-import Texto from './Etiquetas';
-import './mostrarcomentario.css'
->>>>>>>> 8cb730ed57b0b12203837d233e53fc9c88d57a1d:src/components/componente-mostrar-comentario/MostrarComentario.jsx
+import Texto from '../componente-label/Etiquetas';
+import './Comentario.css'
 import { BsThreeDots } from "react-icons/bs";
 
 const Comentar = ({comentario}) => {

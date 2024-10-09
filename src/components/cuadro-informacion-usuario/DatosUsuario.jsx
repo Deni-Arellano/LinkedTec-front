@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/DatosUsu_EsDoEg.css';
+import './DatosUsuario.css';
 import { FaEnvelope, FaPhone, FaBirthdayCake, FaBriefcase, FaVenusMars } from 'react-icons/fa';  // Añadimos el icono de sexo
 
 const DatosUsu_EsDoRec = ({datos}) => {

@@ -1,14 +1,8 @@
 import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD:src/paginas/CodigoVerificacion.js
-import '../hojas-de-estilo/CodigoVerificacion.css';
-import Button from '../components/boton/Boton';
-import { usuarioContext } from '../App';
-=======
 import './CodigoVerificacion.css';
-import Button from '../../componetes/Button';
+import Button from '../../components/componente-button/Button';
 import { usuarioContext } from '../../App';
->>>>>>> 8cb730ed57b0b12203837d233e53fc9c88d57a1d:src/pages/pagina-codigo-verificacion/CodigoVerificacion.jsx
 
 
 const CodigoVerificacion = () => {

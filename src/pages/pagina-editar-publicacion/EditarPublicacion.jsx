@@ -1,6 +1,6 @@
 import React from 'react';
-import MenuNavegacion from '../../componetes/MenuNavegacion.jsx'; 
-import EditarPublicacion from '../../componetes/Editarpublicacion.jsx'; 
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion.jsx';
+import EditarPublicacion from '../../components/editar-publicacion/EditarPublicacion.jsx'; 
 import './EditarPublicacion.css';
 
 const PaginaEditarPublicacion = () => {

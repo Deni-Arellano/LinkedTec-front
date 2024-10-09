@@ -1,11 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD:src/paginas/RegistroExitoso.js
-import Button from '../components/boton/Boton'; // Asegúrate de que la ruta esté correcta
-import '../hojas-de-estilo/RegistroExitoso.css';  // Asegúrate de que el archivo de estilos esté en la ruta correcta
-=======
-import Button from '../../componetes/Button'; // Asegúrate de que la ruta esté correcta
+import Button from '../../components/boton/Boton'; // Asegúrate de que la ruta esté correcta
 import './RegistroExitoso.css';  // Asegúrate de que el archivo de estilos esté en la ruta correcta
->>>>>>> 8cb730ed57b0b12203837d233e53fc9c88d57a1d:src/pages/pagina-registro-exitoso/RegistroExitoso.jsx
+
 import { useNavigate } from 'react-router-dom';
 
 const RegistroExitoso = () => {

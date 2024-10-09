@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/PEDE.css';  // Recuerda ajustar la ruta si es necesario
+import './PresentacionUsuario.css';  // Recuerda ajustar la ruta si es necesario
 
 const FotoNombre = ({datos}) => {
     return (

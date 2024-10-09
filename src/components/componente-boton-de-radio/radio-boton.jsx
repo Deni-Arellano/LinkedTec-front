@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/Radio-button.css'; 
+import './radio-boton.css'; 
 
 const RadioButtons = ({ label, name, options, selectedOption, onChange }) => {
   return (

@@ -1,36 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
-<<<<<<< HEAD:src/pages/pagina-registro-egresados/RegistroEgresados.jsx
-<<<<<<< HEAD:src/pages/pagina-registro-egresados/RegistroEgresados.jsx
-import Textbox from '../../componetes/Caja-de-texto.jsx';
-import Textarea from '../../componetes/Text-area.jsx';
-import Button from '../../componetes/Button.jsx';
-import RadioButtons from '../../componetes/Radio_buton.jsx';
-import Fecha from '../../componetes/Fecha.jsx';
+import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Textarea from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Button from '../../components/boton/Boton.jsx';
+import Fecha from '../../components/fecha/Fecha.jsx';
 import './RegistroEgresados.css';
-import Logo from '../../imagenes/Logo24.png';
-import { useNavigate } from 'react-router-dom';
-import Label from '../../componetes/Etiquetas.jsx';
-=======
-import Textbox from '../components/componente-caja-de-texto/CajaDeTexto.jsx';
-=======
-import Textbox from '../componetes/Caja-de-texto.jsx';
->>>>>>> 6bb1e5028eaf1f2ecc61131a94046924f9c9e6b1:src/paginas/Egresados-registro.jsx
-import Textarea from '../componetes/Text-area.jsx';
-import Button from '../components/boton/Boton.jsx';
-import RadioButtons from '../componetes/Radio_buton.jsx';
-import Fecha from '../components/fecha/Fecha.jsx';
-import '../hojas-de-estilo/Egresados-registro.css';
-import Logo from '../imagenes/Logo24.png';
-import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD:src/pages/pagina-registro-egresados/RegistroEgresados.jsx
+import Logo from '../../assets/Logo24.png';
 import Label from '../components/componente-label/Etiquetas.jsx';
->>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/Egresados-registro.jsx
-=======
-import Label from '../componetes/Etiquetas';
->>>>>>> 6bb1e5028eaf1f2ecc61131a94046924f9c9e6b1:src/paginas/Egresados-registro.jsx
 import axios from 'axios';
-import {usuarioContext} from '../../App.js';
+import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import {usuarioContext} from '../../App.js';
 
 const RegistroEgresado = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);

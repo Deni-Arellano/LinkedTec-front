@@ -1,26 +1,13 @@
 import React, { useContext, useState,useEffect } from 'react';
 import './Perfil.css';
-import MenuNavegacion from '../../componetes/MenuNavegacion'; 
-import FotoNombre from '../../componetes/PerfilUsu_FotoNomb'; 
-import DatosUsu_Rec from '../../componetes/DatosUsu_Rec';
-import DatosUsu_EsDoEg from '../../componetes/DatosUsu_EsDoEg';
+import MenuNavegacion from '../../components/menu-navegacion/MenuNavegacion'; 
+import FotoNombre from '../../components/presentacion-usuario/PresentacionUsuario';
+import DatosUsu_Rec from '../../components/cuadro-informacion-reclutador/DatosUsuarioReclutador';
+import DatosUsu_EsDoEg from '../../components/cuadro-informacion-usuario/DatosUsuario';
 import {usuarioContext} from '../../App';
 import Axios from 'axios';
-<<<<<<< HEAD:src/pages/pagina-Perfil/Perfil.jsx
-import MostrarPublicacion from '../../componetes/Mostrar-Publicacion';
+import MostrarPublicacion from '../components/componente-mostrar-publicacion/MostrarPublicacion'; 
  
-=======
-<<<<<<< HEAD
-import MostrarPublicacion from '../components/componente-mostrar-publicacion/MostrarPublicacion';
-import EditarPublicacion from '../componetes/Editarpublicacion';    
-=======
-import MostrarPublicacion from '../componetes/Mostrar-Publicacion';
-import EditarPublicacion from '../components/editarpublicacion/Editarpublicacion';    
->>>>>>> 165a9930ab7e94dcd6dbd2ecb624ffffc9b7053e
-
-
-
->>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/VisualizacionPerfil.js
 const VisualizacionPerfil = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
     //const usuarioLog = 5;

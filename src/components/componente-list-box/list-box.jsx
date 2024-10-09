@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/list-box.css'; 
+import './list-box.css'; 
 
 const Listbox = () => {
   return (

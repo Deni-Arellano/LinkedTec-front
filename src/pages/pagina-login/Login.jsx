@@ -1,8 +1,8 @@
 import React, {useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom'; // Importamos Link de react-router-dom
-import Cajadetexto from '../../componetes/Caja-de-texto'; // Asegúrate de que sea el Cajadetexto correcto
+import Cajadetexto from '../../components/componente-caja-de-texto/CajaDeTexto'; // Asegúrate de que sea el Cajadetexto correcto
 import './Login.css';  // Importa tu hoja de estilo
-import logo from '../../imagenes/Logo24.png';  // Importa tu logo
+import logo from '../../assets/Logo24.png';  // Importa tu logo
 import { useNavigate } from 'react-router-dom';  
 import {usuarioContext} from '../../App'; 
 

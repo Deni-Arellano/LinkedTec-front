@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/Fecha.css';  
+import './Fecha.css';  
 
 const Fecha = ({ value, onChange }) => {
     return (

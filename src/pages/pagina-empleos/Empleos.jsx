@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import MenuNavegacion from '../../componetes/MenuNavegacion'; 
-import BotonPublicar from '../../componetes/BotonPublicarEmpleo'; 
-import PublicacionEmpleoNuevo from '../../componetes/PublicacionEmpleo'; 
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
+import BotonPublicar from '../../components/componente-boton-publicar/BotonPublicar'; 
+import PublicacionEmpleoNuevo from '../../components/publicacion-empleo/PublicacionEmpleo'; 
 import './Empleos.css'; 
 import { usuarioContext } from '../../App';
 import axios from 'axios';

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../hojas-de-estilo/DatosUsu_EsDoEg.css';  // Asegúrate de que el CSS esté enlazado correctamente
+import './DatosUsuarioReclutador.css';  // Asegúrate de que el CSS esté enlazado correctamente
 import { FaEnvelope, FaPhone, FaBirthdayCake, FaVenusMars, FaBuilding, FaIndustry, FaBriefcase } from 'react-icons/fa';  // Solo íconos necesarios
 
 const DatosUsu_Rec = ({datos}) => {

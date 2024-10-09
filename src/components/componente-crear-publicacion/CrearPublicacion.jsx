@@ -1,15 +1,10 @@
 import React, { useState, useContext, useRef } from "react";
-<<<<<<< HEAD:src/componetes/Crear-Publicacion.jsx
+
 import Boton from '../components/boton/Boton.jsx';
 import Cajatexto from './Caja-de-texto.jsx';
 import Texto from './Etiquetas';
-import '../hojas-de-estilo/Crear-publicacion.css';
-=======
-import Boton from '../../componetes/Button.jsx';
-import Cajatexto from '../componente-caja-de-texto/CajaDeTexto.jsx';
-import Texto from '../componente-label/Etiquetas.jsx';
 import './CrearPublicacion.css';
->>>>>>> 8cb730ed57b0b12203837d233e53fc9c88d57a1d:src/components/componente-crear-publicacion/CrearPublicacion.jsx
+
 import Axios from "axios";
 import { usuarioContext } from '../../App.js';
 import { BiImageAdd } from 'react-icons/bi';

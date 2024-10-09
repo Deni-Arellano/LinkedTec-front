@@ -1,20 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
-<<<<<<< HEAD:src/paginas/Rol.jsx
-import RadioButtons from '../componetes/Radio_buton.jsx'; 
-import Button from '../components/boton/Boton.jsx';
+
+import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
+import Button from '../../components/boton/Boton.jsx';
 import VentanaEmergente from '../componetes/VentanaEmergente.jsx'; // Importar el componente
-import '../hojas-de-estilo/Rol.css';
-import logo from '../imagenes/Logo24.png';
-import {usuarioContext} from '../App'; 
-=======
-import RadioButtons from '../../componetes/Radio_buton.jsx'; 
-import Button from '../../componetes/Button.jsx';
-import VentanaEmergente from '../../componetes/VentanaEmergente.jsx'; // Importar el componente
 import './SeleccionarRol.css';
-import logo from '../../imagenes/Logo24.png';
-import {usuarioContext} from '../../App'; 
->>>>>>> 8cb730ed57b0b12203837d233e53fc9c88d57a1d:src/pages/pagina-seleccionar-rol/SeleccionarRol.jsx
+import logo from '../../assets/Logo24.png';
+import {usuarioContext} from '../App'; 
+
 
 const Pagina = () => {
 

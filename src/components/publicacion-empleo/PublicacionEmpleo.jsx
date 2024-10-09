@@ -1,7 +1,7 @@
 
 import React, { useContext, useState } from 'react';
 import { BsThreeDots } from "react-icons/bs";
-import Etiquetas from '../../componetes/Etiquetas';
+import Etiquetas from '../componente-label/Etiquetas';
 import '../components/publicacionempleo/PublicacionEmpleo.css';
 import { usuarioContext } from '../../App';
 import Axios from 'axios';

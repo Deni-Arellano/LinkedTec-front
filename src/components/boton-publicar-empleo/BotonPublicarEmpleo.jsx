@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/botonpublicarempleo/BotonPublicarEmpleo.css';
+import '../boton-publicar-empleo/BotonPublicarEmpleo.css';
 
 const PublicarEmpleoBoton = ({ onClick, style }) => {
   return (

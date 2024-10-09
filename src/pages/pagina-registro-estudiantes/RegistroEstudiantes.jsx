@@ -1,30 +1,16 @@
-import React, { useContext, useState, useEffect } from 'react';
-<<<<<<< HEAD:src/paginas/Estudiantes-registro.jsx
-import Textbox from '../componetes/Caja-de-texto'; 
-import Button from '../components/boton/Boton.jsx';
-=======
-<<<<<<< HEAD:src/pages/pagina-registro-estudiantes/RegistroEstudiantes.jsx
-import Textbox from '../../componetes/Caja-de-texto'; 
-import Button from '../../componetes/Button';
-import RadioButtons from '../../componetes/Radio_buton.jsx';
-import Fecha from '../../componetes/Fecha';
-import './RegistroEstudiantes.css'; 
-import Logo from '../../imagenes/Logo24.png'; 
-import Textarea from '../../componetes/Text-area.jsx';
-=======
-import Textbox from '../components/componente-caja-de-texto/CajaDeTexto.jsx'; 
-import Button from '../componetes/Button';
->>>>>>> 8cb730ed57b0b12203837d233e53fc9c88d57a1d:src/pages/pagina-registro-estudiantes/RegistroEstudiantes.jsx
-import RadioButtons from '../componetes/Radio_buton.jsx';
-import Fecha from '../components/fecha/Fecha.jsx';
-import '../hojas-de-estilo/Estudiantes-registro.css'; 
-import Logo from '../imagenes/Logo24.png'; 
-import Textarea from '../componetes/Text-area.jsx';
->>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/Estudiantes-registro.jsx
-import { useNavigate } from 'react-router-dom';  
-import {usuarioContext} from '../../App';
+import React, { useState, useContext, useEffect } from 'react';
+import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Textarea from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Button from '../../components/boton/Boton.jsx';
+import Fecha from '../../components/fecha/Fecha.jsx';
+import './RegistroEstudiantes.css';
+import Logo from '../../assets/Logo24.png';
+import Label from '../components/componente-label/Etiquetas.jsx';
 import Axios from 'axios';
+import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import {usuarioContext} from '../../App.js';
 
 const Registro = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);

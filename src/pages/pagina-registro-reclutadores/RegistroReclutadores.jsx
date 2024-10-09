@@ -1,31 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';  
-<<<<<<< HEAD:src/paginas/Reclutador-registro.jsx
-import Textbox from '../componetes/Caja-de-texto.jsx'; 
-import Button from '../components/boton/Boton.jsx'; 
-=======
-<<<<<<< HEAD:src/pages/pagina-registro-reclutadores/RegistroReclutadores.jsx
-import Textbox from '../../componetes/Caja-de-texto.jsx'; 
-import Button from '../../componetes/Button.jsx'; 
-import RadioButtons from '../../componetes/Radio_buton.jsx'; 
-import Fecha from '../../componetes/Fecha.jsx'; 
-import './RegistroReclutadores.css'; 
-import Logo from '../../imagenes/Logo24.png'; 
-import Textarea from '../../componetes/Text-area.jsx';
-=======
-import Textbox from '../components/componente-caja-de-texto/CajaDeTexto.jsx'; 
-import Button from '../componetes/Button.jsx'; 
->>>>>>> 8cb730ed57b0b12203837d233e53fc9c88d57a1d:src/pages/pagina-registro-reclutadores/RegistroReclutadores.jsx
-import RadioButtons from '../componetes/Radio_buton.jsx'; 
-import Fecha from '../components/fecha/Fecha.jsx'; 
-import '../hojas-de-estilo/DatosUsu_EsDoEg.css'; 
-import Logo from '../imagenes/Logo24.png'; 
-import Textarea from '../componetes/Text-area.jsx';
->>>>>>> d00d320ff3926711781a1bc2238381bc40e7b00f:src/paginas/Reclutador-registro.jsx
+import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Textarea from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
+import Button from '../../components/boton/Boton.jsx';
+import Fecha from '../../components/fecha/Fecha.jsx';
+import './RegistroReclutadores.css';
+import Logo from '../../assets/Logo24.png';
+import Label from '../components/componente-label/Etiquetas.jsx';
 import axios from 'axios';
-import {usuarioContext} from '../../App';
+import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import Swal from 'sweetalert2';
-
+import { useNavigate } from 'react-router-dom';
+import {usuarioContext} from '../../App.js';
 const RegistroReclutador = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
 
