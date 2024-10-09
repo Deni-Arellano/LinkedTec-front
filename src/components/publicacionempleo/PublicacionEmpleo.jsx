@@ -1,9 +1,9 @@
 
 import React, { useContext, useState } from 'react';
 import { BsThreeDots } from "react-icons/bs";
-import Etiquetas from '../componetes/Etiquetas';
-import '../hojas-de-estilo/PublicacionEmpleo.css';
-import { usuarioContext } from '../App';
+import Etiquetas from '../../componetes/Etiquetas';
+import '../components/publicacionempleo/PublicacionEmpleo.css';
+import { usuarioContext } from '../../App';
 import Axios from 'axios';
 
 const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {

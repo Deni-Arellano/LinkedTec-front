@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-import '../hojas-de-estilo/MenuNavegacion.css';
-import Searchbar from './Searchbar';
+import '../components/menunavegacion/MenuNavegacion.css';
+import Searchbar from '../../componetes/Searchbar';
 import { VscAccount } from "react-icons/vsc";
 import { AiFillAlert } from "react-icons/ai";
 import { BiChat } from "react-icons/bi";
 import logo from '../imagenes/Logo24.png';
 import { useNavigate } from 'react-router-dom';
-import {usuarioContext} from '../App';
+import {usuarioContext} from '../../App';
 import Axios from 'axios';
 
 const MenuNavegacion = () => {

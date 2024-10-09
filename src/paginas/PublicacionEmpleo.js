@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
-import BotonPublicar from '../componetes/BotonPublicarEmpleo'; 
+import BotonPublicar from '../components/botonpublicarempleo/BotonPublicarEmpleo'; 
 import PublicacionEmpleoNuevo from '../componetes/PublicacionEmpleo'; 
 import '../hojas-de-estilo/PublicacionEmpleo.css'; 
 import { usuarioContext } from '../App';
