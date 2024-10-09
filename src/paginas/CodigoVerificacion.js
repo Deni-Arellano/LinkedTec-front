@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../hojas-de-estilo/CodigoVerificacion.css';
-import Button from '../componetes/Button';
+import Button from '../components/ejemplo/Boton/Button';
 import { usuarioContext } from '../App';
 
 

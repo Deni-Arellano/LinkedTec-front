@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import MenuNavegacion from '../componetes/MenuNavegacion'; 
 import Etiquetas from '../componetes/Etiquetas'; 
 import CajaDeTexto from '../componetes/Caja-de-texto';
-import Button from '../componetes/Button'; 
+import Button from '../components/ejemplo/Boton/Button'; 
 import '../hojas-de-estilo/PaginaEmpleo.css'; 
 import { usuarioContext } from '../App';
 import axios from 'axios';

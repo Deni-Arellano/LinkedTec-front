@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Textbox from '../componetes/Caja-de-texto'; 
-import Button from '../componetes/Button';
+import Button from '../components/ejemplo/Boton/Button.jsx';
 import RadioButtons from '../componetes/Radio_buton.jsx';
 import Fecha from '../componetes/Fecha';
 import '../hojas-de-estilo/Estudiantes-registro.css'; 

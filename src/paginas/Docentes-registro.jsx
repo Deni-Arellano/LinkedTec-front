@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
 import Textarea from '../componetes/Text-area.jsx'; 
-import Button from '../componetes/Button'; 
+import Button from '../components/ejemplo/Boton/Button.jsx'; 
 import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import Fecha from '../componetes/Fecha.jsx';
 import Logo from '../imagenes/Logo24.png'; 

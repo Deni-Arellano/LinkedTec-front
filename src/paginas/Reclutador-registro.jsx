@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  
 import Textbox from '../componetes/Caja-de-texto.jsx'; 
-import Button from '../componetes/Button.jsx'; 
+import Button from '../components/ejemplo/Boton/Button.jsx'; 
 import RadioButtons from '../componetes/Radio_buton.jsx'; 
 import Fecha from '../componetes/Fecha.jsx'; 
 import '../hojas-de-estilo/DatosUsu_EsDoEg.css'; 

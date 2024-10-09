@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../componetes/Button'; // Asegúrate de que la ruta esté correcta
+import Button from '../components/ejemplo/Boton/Button'; // Asegúrate de que la ruta esté correcta
 import '../hojas-de-estilo/RegistroExitoso.css';  // Asegúrate de que el archivo de estilos esté en la ruta correcta
 import { useNavigate } from 'react-router-dom';
 
