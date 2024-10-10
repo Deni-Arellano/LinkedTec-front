@@ -1,11 +1,8 @@
 import React, { useContext, useState } from 'react';
-
-
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
 import Etiquetas from '../../components/componente-label/Etiquetas'; 
 import CajaDeTexto from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
 import Button from '../../components/boton/Boton'; 
-
 import { usuarioContext } from '../../App';
 import './RegistroEmpleo.css';
 

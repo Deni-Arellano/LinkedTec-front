@@ -16,6 +16,7 @@ import RegistroExitoso from './pages/pagina-registro-exitoso/RegistroExitoso';
 import RegistroReclutadores from './pages/pagina-registro-reclutadores/RegistroReclutadores';
 import Roles from './pages/pagina-seleccionar-rol/SeleccionarRol';
 import Perfil from './pages/pagina-Perfil/Perfil';
+import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo';
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/empleos" element={<Empleos />} /> 
           <Route path="/registro-empleo" element={<RegistroEmpleo />} />
           <Route path="/editar-publicacion" element={<EditarPublicacion />} />
+          <Route path="/editar-publicacion-empleo/:idEmpleo" element={<EditarPublicacionEmpleo />} />
           
         </Routes>
       </Router>
