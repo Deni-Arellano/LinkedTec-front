@@ -23,12 +23,13 @@ const EditarPublicacionEmpleo = () => {
         axios.get(`http://localhost:3000/empleos/${idEmpleo}`)
             .then(response => {
                 const empleo = response.data;
-                settituloEmpleo(empleo.titulo);
+                // Verificamos que las claves sean correctas
+                settituloEmpleo(empleo.tituloEmpleo || empleo.titulo);
                 setempresa(empleo.empresa);
                 setSalario(empleo.salario);
                 setDescripcion(empleo.descripcion);
                 setUbicacion(empleo.ubicacion);
-                setNivelIngles(empleo.nivel_de_ingles || 'Avanzado'); 
+                setNivelIngles(empleo.nivelIngles || 'Avanzado'); 
             })
             .catch(error => {
                 console.error('Error al cargar los datos del empleo:', error);
@@ -43,12 +44,12 @@ const EditarPublicacionEmpleo = () => {
         }
 
         const datosActualizados = {
-            "titulo": tituloEmpleo,
+            "tituloEmpleo": tituloEmpleo,
             "empresa": empresa,
             "salario": salario,
             "descripcion": descripcion,
             "ubicacion": ubicacion,
-            "nivel_de_ingles": nivelIngles
+            "nivelIngles": nivelIngles
         };
 
         axios.patch(`http://localhost:3000/empleos/${idEmpleo}`, datosActualizados)
