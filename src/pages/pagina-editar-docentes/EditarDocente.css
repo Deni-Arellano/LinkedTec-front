@@ -1,0 +1,88 @@
+.editar-docentes-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: white;
+    max-width: 650px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255,255, 0.6);
+}
+
+  .editar-docentes-contenedor-apellidos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.editar-docentes-campo-nombre {
+    width: 100%;
+    margin-bottom: 3vh;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-fecha {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.logo {
+    width: 25%;
+}
+
+.editar-titulo-docente {
+    font-size: 300%;
+    color: #093e61;
+}
+
+.editar-docentes-fecha-sexo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.editar-docentes-password-editarpassword {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.editar-docentes-telefono-numEmpleado {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.editar-docentes-academia-nivelestudio {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
