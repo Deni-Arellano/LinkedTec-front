@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './MenuNavegacion.css';
-import Searchbar from '../../components/componente-searchbar/SearchBar';
+import Searchbar from '../../components/componente-searchbar/Searchbar';
 import { VscAccount } from "react-icons/vsc";
 import { AiFillAlert } from "react-icons/ai";
 import { BiChat } from "react-icons/bi";
@@ -71,8 +71,8 @@ const MenuNavegacion = () => {
 
                 <nav className="MenuNavegacion-menu">
                     <button className="MenuNavegacion-menu-button">Noticias</button>
-                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicacion-empleo')}>Empleos</button>
-                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publi-usuarios')}>Publicaciones</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/empleos')}>Empleos</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicaciones')}>Publicaciones</button>
                     <button className="MenuNavegacion-menu-button">Foro</button>
                 </nav>
             </aside>
