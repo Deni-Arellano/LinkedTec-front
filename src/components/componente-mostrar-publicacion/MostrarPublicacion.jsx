@@ -6,7 +6,7 @@ import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { MdAddComment } from "react-icons/md";
 import Axios from 'axios';
-import CrearComentario from '../../componetes/CrearComentario.jsx';
+import CrearComentario from '../../components/comentario/Comentario.jsx';
 import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
 import '../componente-mostrar-comentario/MostrarComentario.css';
