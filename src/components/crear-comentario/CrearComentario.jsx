@@ -1,5 +1,5 @@
 import React from "react";
-import '../hojas-de-estilo/CrearComentario.css';
+import './CrearComentario.css';
 import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import Axios from 'axios';
