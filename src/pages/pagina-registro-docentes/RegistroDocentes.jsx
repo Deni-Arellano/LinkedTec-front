@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './RegistroDocentes.css';
 import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx'; 
-import Textarea from '../../componetes/Text-area.jsx'; 
+import Textarea from '../../components/componente-text-area/text-area.jsx'; 
 import Button from '../../components/boton/Boton.jsx'; 
 import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx'; 
 import Fecha from '../../components/fecha/Fecha.jsx';
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Axios from 'axios'; 
 import {usuarioContext} from '../../App';
 import Swal from 'sweetalert2';
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa';  
 const RegistroDocentes = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
 
@@ -43,10 +43,16 @@ const RegistroDocentes = () => {
   const [academiaSeleccionada, setAcademiaSeleccionada] = useState('');
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [nivelSeleccionado, setNivelSeleccionado] = useState('');
+
+
   const verificarUsuarioExistente = async () => {
     try {
       const response = await Axios.get('http://localhost:3000/usuarios');
       const usuarios = response.data;
+      if (usuarios.length === 0) {
+        console.log('No hay usuarios registrados. Se permite el registro.');
+        return true; 
+      }
       const correoExistente = usuarios.some((usuario) => usuario.correo === correo);
       if (correoExistente) {
         console.log('El correo ya está en uso.');
@@ -68,7 +74,7 @@ const RegistroDocentes = () => {
         return false;
       }
       return true;
-
+  
     } catch (error) {
       console.log("Error al verificar usuario existente:", error.message);
       Swal.fire({
@@ -79,11 +85,16 @@ const RegistroDocentes = () => {
       return false;
     }
   };
-
+  
   const verificarDocenteExistente = async () => {
     try {
       const response = await Axios.get('http://localhost:3000/usuarios/docentes');
       const docentes = response.data;
+      if (docentes.error === "Usuario no encontrado.") {
+        console.log('No hay docentes registrados. Se permite el registro.');
+        return true; 
+      }
+
       const empleadoExistente = docentes.some((docente) => docente.numeroEmpleado === noEmpleado);
       if (empleadoExistente) {
         console.log('El número de empleado ya está en uso.');
@@ -95,17 +106,24 @@ const RegistroDocentes = () => {
         return false;
       }
       return true;
+
     } catch (error) {
-      console.log("Error al verificar número de empleado existente:", error.message);
-      Swal.fire({
-        icon: "error",
-        title: "Error de verificación",
-        text: "Hubo un error al verificar el número de empleado.",
-      });
-      return false;
+      if (error.response && error.response.status === 404) {
+        console.log('No hay docentes registrados. Se permite el registro.');
+        return true;
+      } 
+      else {
+        console.log("Error al verificar número de empleado existente:", error.message);
+  
+        Swal.fire({
+          icon: "error",
+          title: "Error de verificación",
+          text: "Hubo un error al verificar el número de empleado.",
+        });
+        return false;
+      }
     }
   };
-
   const add = async() => {
     console.log("Agregando docente");
     const usuarioValido = await verificarUsuarioExistente();
@@ -120,24 +138,6 @@ const RegistroDocentes = () => {
         }
 
     // Validaciones
-    if (nombre.length < 2 || nombre.length > 50) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "El nombre debe tener entre 2 y 50 caracteres.",
-      });
-      return;
-    }
-
-    const Caracteres_especialesn = /^[A-Za-z\s]+$/; 
-    if (!Caracteres_especialesn.test(nombre)) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "El nombre solo puede contener letras.",
-      });
-      return;
-    }
 
     if (nombre.trim() === '') {
       Swal.fire({
@@ -147,6 +147,24 @@ const RegistroDocentes = () => {
       });
       return;
     }
+    if (nombre.length < 2 || nombre.length > 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre debe tener entre 2 y 50 caracteres.",
+      });
+      return;
+    }
+    const Caracteres_especialesn = /^[A-Za-z.\s]+$/;
+    if (!Caracteres_especialesn.test(nombre)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El nombre solo puede contener letras, espacios y puntos.",
+      });
+      return;
+    }
+    
 
     if (/[\s]{2,}/.test(nombre)) {
       Swal.fire({
@@ -158,14 +176,6 @@ const RegistroDocentes = () => {
     }
 
     /*--------------------apellido paterno-------------------------*/
-    if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "El apellido paterno debe tener entre 2 y 50 caracteres.",
-      });
-      return;
-    }
 
     if (apellidoPaterno.trim() === '') {
       Swal.fire({
@@ -175,6 +185,27 @@ const RegistroDocentes = () => {
       });
       return;
     }
+
+    if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno debe tener entre 2 y 50 caracteres.",
+      });
+      return;
+    }
+
+    
+    const Caracteres_especialesap = /^[A-Za-z\s]+$/; 
+    if (!Caracteres_especialesap.test(apellidoPaterno)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El apellido paterno solo puede contener letras.",
+      });
+      return;
+    }
+
 
     /*--------------------fecha-------------------------*/
     const fechaIngresada = new Date(fechaNacimiento); 
@@ -289,10 +320,12 @@ const RegistroDocentes = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "El No. de Empleado debe estar seguido de 3 dígitos.",
+        text: "El No.de Empleado debe estar seguido de 3 numeros.",
+        footer:"Ejemplo(123)"
       });
       return;
     }
+
 
     /*-------------carrera,sexo,semestre----------------- */
     if (academiaSeleccionada === '') {
@@ -389,6 +422,8 @@ const RegistroDocentes = () => {
       }
     });
   }
+  const [mostrarContraseña, setMostrarContraseña] = useState(false);
+  const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);  
 
   return (
     <div className="docentes-contenedor">  
@@ -470,24 +505,41 @@ const RegistroDocentes = () => {
 
       <div className="docentes-campo">
         <Label htmlFor="contraseña" texto="Contraseña:" />
-        <Textbox 
-        id="contraseña" 
-        placeholder="Contraseña"
-        type="password"
-        value={contraseña}
-        onChange={(e) => setContraseña(e.target.value)} 
-        />
+        <div className="docentes-input-container">
+          <Textbox 
+            id="contraseña" 
+            placeholder="Contraseña"
+            type={mostrarContraseña ? "text" : "password"}  
+            value={contraseña}
+            className="docentes-textbox"  
+            onChange={(e) => setContraseña(e.target.value)} 
+          />
+          <span 
+            className="docentes-eye-icon" 
+            onClick={() => setMostrarContraseña(!mostrarContraseña)}
+          >
+            {mostrarContraseña ? <FaEyeSlash /> : <FaEye />} 
+          </span>
+        </div>
       </div>
-
       <div className="docentes-campo">
         <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
-        <Textbox 
-        id="Confirmarcontraseña" 
-        placeholder="Confirmar contraseña" 
-        type="password" 
-        value={confirmarContraseña}
-        onChange={(e) => setConfirmarContraseña(e.target.value)}
-        />
+        <div className="docentes-input-container">
+          <Textbox 
+            id="Confirmarcontraseña" 
+            placeholder="Confirmar contraseña"
+            type={MostrarConfirmarContraseña ? "text" : "password"} 
+            value={confirmarContraseña}
+            className="docentes-textbox"  
+            onChange={(e) => setConfirmarContraseña(e.target.value)} 
+          />
+          <span 
+            className="docentes-eye-icon" 
+            onClick={() => setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}
+          >
+            {MostrarConfirmarContraseña ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
       </div>
 
       <div className="docentes-campo">

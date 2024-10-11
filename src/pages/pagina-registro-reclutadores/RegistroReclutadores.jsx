@@ -11,6 +11,7 @@ import RadioButtons from '../../components/componente-boton-de-radio/radio-boton
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import {usuarioContext} from '../../App.js';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';  
 const RegistroReclutador = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
 
@@ -48,14 +49,7 @@ const RegistroReclutador = () => {
   const add = () => {
     console.log("Agregando reclutador");
 
-    if (contraseña !== confirmarContraseña) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Las contraseñas no coinciden.",
-      });
-      return; 
-    }
+
 
     if (!nombre) {
       Swal.fire({
@@ -65,15 +59,16 @@ const RegistroReclutador = () => {
       });
       return;
     }
-
-    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+    const Caracteres_especialesn = /^[A-Za-z.\s]+$/;
+    if (!Caracteres_especialesn.test(nombre)) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "El nombre no debe contener números ni caracteres especiales.",
+        text: "El nombre solo puede contener letras, espacios y puntos.",
       });
       return;
     }
+    
 
     if (nombre.length >= 50) {
       Swal.fire({
@@ -223,6 +218,8 @@ const RegistroReclutador = () => {
       return;
     }
 
+
+
     if (!contraseña) {
       Swal.fire({
         icon: "error",
@@ -230,6 +227,15 @@ const RegistroReclutador = () => {
         text: "La contraseña no debe quedar vacía.",
       });
       return;
+    }
+
+    if (contraseña !== confirmarContraseña) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden.",
+      });
+      return; 
     }
 
     if (contraseña.length < 8 || contraseña.length > 20) {
@@ -375,6 +381,9 @@ const RegistroReclutador = () => {
       }
     });
   };
+  const [mostrarContraseña, setMostrarContraseña] = useState(false);  
+  const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);  
+
 
   return (
     <div className="reclutador-contenedor">
@@ -454,27 +463,46 @@ const RegistroReclutador = () => {
         />
       </div>
 
-      <div className="reclutador-campo">
-        <label htmlFor="contraseña">Contraseña:</label>
-        <Textbox 
-          id="Contraseña" 
-          placeholder="Contraseña" 
-          type="password"
-          value={contraseña}
-          onChange={(e) => setContraseña(e.target.value)}
-        />
-      </div>
 
       <div className="reclutador-campo">
-        <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
-        <Textbox 
-          id="ConfirmarContraseña" 
-          placeholder="Confirmar contraseña" 
-          type="password" 
-          value={confirmarContraseña}
-          onChange={(e) => setConfirmarContraseña(e.target.value)}
-        />
+        <Label htmlFor="contraseña" texto="Contraseña:" />
+        <div className="reclutador-input-container">
+          <Textbox 
+            id="contraseña" 
+            placeholder="Contraseña"
+            type={mostrarContraseña ? "text" : "password"}  
+            value={contraseña}
+            className="reclutador-textbox"  
+            onChange={(e) => setContraseña(e.target.value)} 
+          />
+          <span 
+            className="reclutador-eye-icon" 
+            onClick={() => setMostrarContraseña(!mostrarContraseña)}
+          >
+            {mostrarContraseña ? <FaEyeSlash /> : <FaEye />} 
+          </span>
+        </div>
       </div>
+      <div className="reclutador-campo">
+        <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
+        <div className="reclutador-input-container">
+          <Textbox 
+            id="Confirmarcontraseña" 
+            placeholder="Confirmar contraseña"
+            type={MostrarConfirmarContraseña ? "text" : "password"} 
+            value={confirmarContraseña}
+            className="reclutador-textbox"  
+            onChange={(e) => setConfirmarContraseña(e.target.value)} 
+          />
+          <span 
+            className="reclutador-eye-icon" 
+            onClick={() => setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}
+          >
+            {MostrarConfirmarContraseña ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+        </div>
+  
 
       <div className="reclutador-campo">
         <label htmlFor="biografia">Biografía:</label>
