@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
-import Textarea from '../../componetes/Text-area.jsx';
+import Textarea from '../../components/componente-text-area/text-area.jsx';
 import Button from '../../components/boton/Boton.jsx';
 import Fecha from '../../components/fecha/Fecha.jsx';
 import './RegistroReclutadores.css';
