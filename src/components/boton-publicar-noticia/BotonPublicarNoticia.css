@@ -1,0 +1,40 @@
+.PublicarNoticia-button {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  width: 200px;
+  height: 60px;
+  background-color: #4CAF50;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px;
+  font-family: 'Sans Serif', Arial, sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  padding: 0 15px;
+}
+
+.PublicarNoticia-button:hover {
+  transform: scale(1.05);
+}
+
+.PublicarNoticia-content {
+  display: flex; 
+  align-items: center; 
+}
+
+.PublicarNoticia-icon {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 10px; 
+}
+
+.PublicarNoticia-text {
+  font-size: 16px;
+  text-align: center; 
+}
+
+.PublicarNoticia-button:focus {
+  outline: none;
+}
