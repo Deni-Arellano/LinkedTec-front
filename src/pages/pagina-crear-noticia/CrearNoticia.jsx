@@ -52,8 +52,9 @@ const CrearNoticias = () => {
             "enlace": enlace,
             "categoria": categoriaSeleccionada,
         };
+        console.log('Datos a enviar:', datosEnviar)
 
-        axios.post('http://localhost:3000/noticias/', datosEnviar)
+        axios.post('http://localhost:3000/noticias', datosEnviar)
         .then((response) => {
             Swal.fire('Éxito', 'La noticia ha sido publicada con éxito.', 'success');
             handleBack();
