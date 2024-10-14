@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { FaImage } from 'react-icons/fa';  
+import React, { useState, useContext } from 'react';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
 import Etiquetas from '../../components/componente-label/Etiquetas'; 
 import CajaDeTexto from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
@@ -9,28 +8,23 @@ import './CrearNoticia.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { usuarioContext } from '../../App';
 
 const CrearNoticias = () => {
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
+    const [imagenURL, setImagenURL] = useState(''); 
     const [enlace, setEnlace] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); 
-    const [imagen, setImagen] = useState(null); 
+    const { usuarioLog } = useContext(usuarioContext); 
+    
     const navigate = useNavigate();
 
     const handleBack = () => {
         navigate('/noticias');
     };
 
-    const handleImagenSeleccionada = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setImagen(file);  
-        }
-    };
-
     const add = () => {
-        // Validaciones
         if (!titulo) {
             Swal.fire('Error', 'El título no debe estar vacío.', 'error');
             return;
@@ -47,19 +41,23 @@ const CrearNoticias = () => {
         }
 
         const datosEnviar = {
-            "titulo": titulo,
+            "titulo": titulo,  // Corregido
             "descripcion": descripcion,
-            "enlace": enlace,
-            "categoria": categoriaSeleccionada,
+            "imagen_noticia": imagenURL,  
+            "enlace_noticia": enlace,
+            "categoria_noticia": categoriaSeleccionada,
+            "id_usuario": usuarioLog
         };
-        console.log('Datos a enviar:', datosEnviar)
+        console.log(datosEnviar)
 
-        axios.post('http://localhost:3000/noticias', datosEnviar)
+        axios.post('http://localhost:3000/noticias/', datosEnviar)
         .then((response) => {
+            console.log(response)
             Swal.fire('Éxito', 'La noticia ha sido publicada con éxito.', 'success');
             handleBack();
         })
         .catch((error) => {
+            console.log(response)
             Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
         });
     };
@@ -92,18 +90,14 @@ const CrearNoticias = () => {
                             onChange={(e) => setDescripcion(e.target.value)} 
                         />
                     </div>
+
                     <div className="formulario-noticias-input-group">
-                        <Etiquetas tamano={14} texto="Imagen" />
-                        <label htmlFor="imagen-noticia" className="formulario-noticias-boton-imagen">
-                            <FaImage className="icono-imagen" /> 
-                            {imagen ? imagen.name : 'Seleccionar Imagen'} 
-                        </label>
-                        <input 
-                            type="file" 
-                            id="imagen-noticia" 
-                            className="formulario-noticias-imagen-input" 
-                            accept="image/*"
-                            onChange={handleImagenSeleccionada}
+                        <Etiquetas tamano={14} texto="Imagen (URL)" />
+                        <CajaDeTexto 
+                            id="imagen-url-noticia" 
+                            placeholder="Ingresa la URL de la imagen..." 
+                            value={imagenURL} 
+                            onChange={(e) => setImagenURL(e.target.value)} 
                         />
                     </div>
 

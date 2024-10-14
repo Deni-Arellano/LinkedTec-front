@@ -22,8 +22,8 @@ import CrearNoticias from './pages/pagina-crear-noticia/CrearNoticia.jsx';
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(null);  
-  //const [usuarioLog, setUsuarioLog] = useState('11'); 
+  //const [usuarioLog, setUsuarioLog] = useState(null);  
+  const [usuarioLog, setUsuarioLog] = useState('1'); 
   return (
     //Pasa a los componentes hijos el usuario
     <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>

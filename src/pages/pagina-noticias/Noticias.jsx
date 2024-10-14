@@ -6,7 +6,6 @@ import PublicacionNoticiaNuevo from '../../components/publicacion-noticia/Public
 import './Noticias.css'; 
 import { usuarioContext } from '../../App';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 const Noticias = () => {
     const navigate = useNavigate();
