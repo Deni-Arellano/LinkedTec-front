@@ -5,7 +5,7 @@
     justify-content: center;
     padding: 20px;
     background: white;
-    max-width: 60%;
+    max-width: 34%;
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -85,4 +85,11 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+}
+
+.editar-docente-botones {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
 }

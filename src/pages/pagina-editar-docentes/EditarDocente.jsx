@@ -4,7 +4,8 @@ import Cajatexto from '../../components/componente-caja-de-texto/CajaDeTexto';
 import Label from '../../components/componente-label/Etiquetas';
 import Radio from '../../components/componente-boton-de-radio/radio-boton';
 import Fecha from '../../components/fecha/Fecha';
-import Logo from '../../assets/Logo24.png'
+import Button from '../../components/boton/Boton';
+import Logo from '../../assets/Logo24.png';
 import './EditarDocente.css'
 
 const EditDocente = () => {
@@ -181,9 +182,14 @@ const EditDocente = () => {
                 </div>
             </div>
 
+            <div className="editar-docente-botones">  
+                <Button texto="Atrás" />
+                <Button texto="Guardar cambios" />
+            </div>
+
         </div>
     </div>
-    );
-};
+    )
+}
 
 export default EditDocente;
