@@ -3,53 +3,24 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  min-height: 100vh; 
-  background-color: #F5F5F5; 
+  min-height: 100vh;
+  background-color: #F5F5F5;
 }
 .formulario-noticias-form {
   background-color: #F6FAFF;
   border-radius: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); 
-  padding: 40px 60px; 
-  width: 500px; 
+  padding: 40px 60px;
+  width: 500px;
   max-width: 100%;
   box-sizing: border-box;
 }
 
-.formulario-noticias-input-group {
-  margin-bottom: 20px;
-}
 
 
-.formulario-noticias-textarea {
-  resize: vertical; 
-  min-height: 120px;
-  max-height: 300px;
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 8px;
-  background-color: #f9f9f9; 
-  font-size: 14px;
-  box-sizing: border-box;
-}
 
-
-.formulario-noticias-textarea:focus {
-  border-color: #007BFF;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-
-.formulario-noticias-imagen {
-  display: block;
-  margin-top: 10px;
-  width: 100%;
-}
 .formulario-noticias-botones {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 }
-

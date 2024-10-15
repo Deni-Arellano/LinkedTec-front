@@ -11,12 +11,13 @@ import { useNavigate } from 'react-router-dom';
 import { usuarioContext } from '../../App';
 
 const CrearNoticias = () => {
+
     const [titulo_noticia, setTitulonoticia] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [imagenURL, setImagenURL] = useState(''); 
     const [enlace, setEnlace] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); 
-    const { usuarioLog } = useContext(usuarioContext); 
+    const { usuarioLog } = useContext(usuarioContext); // Usuario logueado
     
     const navigate = useNavigate();
 
@@ -30,17 +31,59 @@ const CrearNoticias = () => {
             Swal.fire('Error', 'Por favor, completa todos los campos.', 'error');
             return;
         }
+        if (descripcion.length<=10){
+            Swal.fire('Error', 'Por favor, describe mejor la noticia.', 'error');
+            return;
 
+        }
+        if (!/^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(:[0-9]{1,5})?(\/.*)?$/.test(imagenURL)) {
+            Swal.fire('Error', 'La imagen debe ser una URL válida, por favor revisa el enlace.', 'error');
+            return;
+        }
+
+        if (!/^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(:[0-9]{1,5})?(\/.*)?$/.test(enlace)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El URL de enlace no tiene un formato valido.",
+                footer:'Intenta ingresarlo bien...'
+              });
+            return;
+        }
+
+        if (enlace.length>=255){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El URL de el enlace es demasiado largo.",
+                footer:'Intenta con menos de 255 caracteres'
+              });
+              return;
+
+        }
+        if (imagenURL.length>=255){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El URL de la imagen es demasiado largo.",
+                footer:'Intenta con menos de 255 caracteres'
+              });
+              return;
+
+        }
+        
+        
+        
         const datosEnviar = {
             "titulo_noticia": titulo_noticia,
             "descripcion": descripcion,
             "imagen_noticia": imagenURL,  
             "enlace_noticia": enlace,
             "categoria_noticia": categoriaSeleccionada,
-            "id_usuario": usuarioLog
+            "id_usuario": usuarioLog // Verifica que usuarioLog sea un número válido
         };
 
-        console.log(datosEnviar);
+        console.log('Datos enviados:', datosEnviar); // Revisa la consola para asegurarte de que se están enviando correctamente
 
         axios.post('http://localhost:3000/noticias/', datosEnviar)
         .then((response) => {
@@ -49,7 +92,14 @@ const CrearNoticias = () => {
             handleBack();
         })
         .catch((error) => {
-            Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
+            // Mejor captura de errores
+            if (error.response) {
+                console.error('Error en la solicitud:', error.response.data);
+                Swal.fire('Error', `Error en la solicitud: ${error.response.data.message || 'Error al crear la noticia'}`, 'error');
+            } else {
+                console.error('Error:', error.message);
+                Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
+            }
         });
     };
 
