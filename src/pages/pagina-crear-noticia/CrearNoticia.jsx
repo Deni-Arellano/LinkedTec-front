@@ -17,7 +17,7 @@ const CrearNoticias = () => {
     const [imagenURL, setImagenURL] = useState(''); 
     const [enlace, setEnlace] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); 
-    const { usuarioLog } = useContext(usuarioContext); // Usuario logueado
+    const { usuarioLog } = useContext(usuarioContext); 
     
     const navigate = useNavigate();
 
@@ -26,7 +26,6 @@ const CrearNoticias = () => {
     };
 
     const add = () => {
-        // Validación simple de los campos
         if (!titulo_noticia || !descripcion || !imagenURL || !enlace || !categoriaSeleccionada) {
             Swal.fire('Error', 'Por favor, completa todos los campos.', 'error');
             return;
@@ -80,11 +79,10 @@ const CrearNoticias = () => {
             "imagen_noticia": imagenURL,  
             "enlace_noticia": enlace,
             "categoria_noticia": categoriaSeleccionada,
-            "id_usuario": usuarioLog // Verifica que usuarioLog sea un número válido
+            "id_usuario": usuarioLog
         };
 
-        console.log('Datos enviados:', datosEnviar); // Revisa la consola para asegurarte de que se están enviando correctamente
-
+        console.log('Datos enviados:', datosEnviar);
         axios.post('http://localhost:3000/noticias/', datosEnviar)
         .then((response) => {
             console.log(response);
@@ -92,14 +90,28 @@ const CrearNoticias = () => {
             handleBack();
         })
         .catch((error) => {
-            // Mejor captura de errores
             if (error.response) {
                 console.error('Error en la solicitud:', error.response.data);
                 Swal.fire('Error', `Error en la solicitud: ${error.response.data.message || 'Error al crear la noticia'}`, 'error');
-            } else {
+            }
+            if (error.response.message==="Network Error")
+            {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Network Error.",
+                    footer:'No ay conexion con el servidor'
+                  });
+                  return;
+                }
+            if (error.response.status === 400) {
+                    Swal.fire('Error', 'Solicitud inválida o no puede ser procesada.', 'error');
+            }
+            else {
                 console.error('Error:', error.message);
                 Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
             }
+
         });
     };
 
