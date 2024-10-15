@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { usuarioContext } from '../../App';
 
 const CrearNoticias = () => {
-    const [titulo, setTitulo] = useState('');
+    const [titulo_noticia, setTitulonoticia] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [imagenURL, setImagenURL] = useState(''); 
     const [enlace, setEnlace] = useState('');
@@ -25,39 +25,30 @@ const CrearNoticias = () => {
     };
 
     const add = () => {
-        if (!titulo) {
-            Swal.fire('Error', 'El título no debe estar vacío.', 'error');
-            return;
-        }
-
-        if (!descripcion) {
-            Swal.fire('Error', 'La descripción no debe estar vacía.', 'error');
-            return;
-        }
-
-        if (!enlace) {
-            Swal.fire('Error', 'El enlace no debe estar vacío.', 'error');
+        // Validación simple de los campos
+        if (!titulo_noticia || !descripcion || !imagenURL || !enlace || !categoriaSeleccionada) {
+            Swal.fire('Error', 'Por favor, completa todos los campos.', 'error');
             return;
         }
 
         const datosEnviar = {
-            "titulo": titulo,  // Corregido
+            "titulo_noticia": titulo_noticia,
             "descripcion": descripcion,
             "imagen_noticia": imagenURL,  
             "enlace_noticia": enlace,
             "categoria_noticia": categoriaSeleccionada,
             "id_usuario": usuarioLog
         };
-        console.log(datosEnviar)
+
+        console.log(datosEnviar);
 
         axios.post('http://localhost:3000/noticias/', datosEnviar)
         .then((response) => {
-            console.log(response)
+            console.log(response);
             Swal.fire('Éxito', 'La noticia ha sido publicada con éxito.', 'success');
             handleBack();
         })
         .catch((error) => {
-            console.log(response)
             Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
         });
     };
@@ -74,8 +65,8 @@ const CrearNoticias = () => {
                         <CajaDeTexto 
                             id="titulo-noticia" 
                             placeholder="Ingresa el título..."
-                            value={titulo} 
-                            onChange={(e) => setTitulo(e.target.value)} 
+                            value={titulo_noticia} 
+                            onChange={(e) => setTitulonoticia(e.target.value)} 
                         />
                     </div>
 
