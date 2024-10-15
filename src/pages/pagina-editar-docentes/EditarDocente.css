@@ -12,7 +12,7 @@
     background-color: rgba(255, 255,255, 0.6);
 }
 
-  .editar-docentes-contenedor-apellidos {
+.editar-docentes-contenedor-apellidos {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -22,17 +22,6 @@
 .editar-docentes-campo-nombre {
     width: 100%;
     margin-bottom: 3vh;
-    font-family: sans-serif;
-    color: #093e61;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.editar-docentes-campo-fecha {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-radius: 10px;
     font-family: sans-serif;
     color: #093e61;
     font-size: 16px;
@@ -55,8 +44,11 @@
 }
 
 .editar-titulo-docente {
-    font-size: 300%;
+    font-size: clamp(2rem, 5vw, 3rem);
     color: #093e61;
+    max-width: 100%;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .editar-docentes-fecha-sexo {
@@ -64,6 +56,31 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editar-docentes-campo-fecha {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-sexo {
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-fecha, .editar-docentes-campo-sexo {
+    flex: 1;
+    min-width: 150px;
 }
 
 .editar-docentes-password-editarpassword {
@@ -71,6 +88,34 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editar-docentes-campo-password {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-confirmar-password {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-password, .editar-docentes-campo-confirmar-password {
+    flex: 1;
+    min-width: 150px;
 }
 
 .editar-docentes-telefono-numEmpleado {
@@ -85,6 +130,34 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editar-docentes-campo-academia {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-nivelestudio {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-academia, .editar-docentes-campo-nivelestudio {
+    flex: 1;
+    min-width: 150px;
 }
 
 .editar-docente-botones {

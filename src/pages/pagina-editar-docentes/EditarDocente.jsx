@@ -68,7 +68,7 @@ const EditDocente = () => {
                     />
                 </div>
 
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-sexo">
                     <Label texto="Sexo" />
                     <Radio
                     name="Sexo"
@@ -94,7 +94,7 @@ const EditDocente = () => {
             </div>
 
             <div className='editar-docentes-password-editarpassword'>
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-password">
                     <Label htmlFor="contraseña" texto="Contraseña:" />
                     <Cajatexto 
                     id="contraseña" 
@@ -105,7 +105,7 @@ const EditDocente = () => {
                     />
                 </div>
 
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-confirmar-password">
                     <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
                     <Cajatexto 
                     id="Confirmarcontraseña" 
@@ -150,7 +150,7 @@ const EditDocente = () => {
             </div>
 
             <div className='editar-docentes-academia-nivelestudio'>
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-academia">
                     <Label texto="Academia" />
                     <Radio
                     name="Academia"
@@ -167,7 +167,7 @@ const EditDocente = () => {
                     />
                 </div>
 
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-nivelestudio">
                     <Label texto="Nivel de estudio" />
                     <Radio
                     name="Ultimoniveldeestudios"

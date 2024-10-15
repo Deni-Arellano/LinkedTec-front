@@ -17,8 +17,11 @@
 }
 
 .editar-titulo-estudiante {
-    font-size: 300%;
+    font-size: clamp(2rem, 5vw, 3rem);
     color: #093e61;
+    max-width: 100%;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .editar-estudiante-campo-nombre {
@@ -85,6 +88,34 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editar-estudiante-campo-password {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-estudiante-campo-confirmar-password {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-estudiante-campo-password, .editar-estudiante-campo-confirmar-password {
+    flex: 1;
+    min-width: 150px;
 }
 
 .editar-estudiante-telefono-numControl {

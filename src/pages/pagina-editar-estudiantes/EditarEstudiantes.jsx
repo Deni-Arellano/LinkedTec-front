@@ -93,7 +93,7 @@ const EditEstudiante = () => {
             </div>
 
             <div className='editar-estudiante-password-editarpassword'>
-                <div className="editar-estudiante-campo">
+                <div className="editar-estudiante-campo-password">
                     <Label htmlFor="contraseña" texto="Contraseña:" />
                     <Cajatexto 
                     id="contraseña" 
@@ -104,7 +104,7 @@ const EditEstudiante = () => {
                     />
                 </div>
 
-                <div className="editar-estudiante-campo">
+                <div className="editar-estudiante-campo-confirmar-password">
                     <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
                     <Cajatexto 
                     id="Confirmarcontraseña" 
