@@ -68,7 +68,6 @@ const Pagina = () => {
         <h2 className="titulo-selecciona-rol">Selecciona tu rol</h2>
         <div className="radio-group">
           <RadioButtons
-            label="Selecciona tu rol"
             name="rol"
             options={opcionesRol}
             selectedOption={rolSeleccionado}

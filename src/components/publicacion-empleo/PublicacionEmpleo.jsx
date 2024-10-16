@@ -26,6 +26,11 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
             console.error('Error al eliminar la publicación:', err);
         }
     };
+    const EditarPublicacionEmpleo = () => {
+        // Navegar a la página de edición pasando todos los datos de la publicación como estado
+        navigate(`/editar-publicacion-empleo/${datos.id_empleo}`, { state: datos });
+    };
+    
 
     const editarPublicacionEmpleo = () => {
         // Navega a la página de edición, pasando el ID del empleo en la URL

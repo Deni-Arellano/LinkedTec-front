@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
@@ -10,31 +10,39 @@ import './EditarPublicacionEmpleo.css';
 
 const EditarPublicacionEmpleo = () => {
     const { idEmpleo } = useParams(); 
+    const location = useLocation();  // Obtener los datos pasados desde la publicación
     const navigate = useNavigate(); 
 
-    const [titulo, setTitulo] = useState(''); // Cambiado a 'titulo'
-    const [empresa, setEmpresa] = useState(''); 
-    const [salario, setSalario] = useState(''); 
-    const [descripcion, setDescripcion] = useState(''); 
-    const [ubicacion, setUbicacion] = useState(''); 
-    const [nivelDeIngles, setNivelDeIngles] = useState('Avanzado'); // Cambiado a 'nivelDeIngles'
+    const datos = location.state; // Capturar los datos de la publicación
 
+    // Asegúrate de que los datos estén presentes antes de inicializar los estados
     useEffect(() => {
-        axios.get(`http://localhost:3000/empleos/${idEmpleo}`)
-            .then(response => {
-                const empleo = response.data;
-                setTitulo(empleo.titulo); // Cambiado a 'titulo'
-                setEmpresa(empleo.empresa);
-                setSalario(empleo.salario);
-                setDescripcion(empleo.descripcion);
-                setUbicacion(empleo.ubicacion);
-                setNivelDeIngles(empleo.nivel_de_ingles || 'Avanzado'); // Cambiado a 'nivel_de_ingles'
-            })
-            .catch(error => {
-                console.error('Error al cargar los datos del empleo:', error);
-                Swal.fire('Error', 'No se pudieron cargar los datos del empleo.', 'error');
-            });
-    }, [idEmpleo]);
+        if (!datos) {
+            Swal.fire('Error', 'No se recibieron los datos de la publicación.', 'error');
+            navigate('/empleos');  // Redirige si no hay datos
+        }
+    }, [datos, navigate]);
+
+    // Inicializamos los estados con los datos recibidos de la publicación
+    const [titulo, setTitulo] = useState(datos?.tituloEmpleo || ''); 
+    const [empresa, setEmpresa] = useState(datos?.empresa || ''); 
+    const [salario, setSalario] = useState(datos?.salario || ''); 
+    const [descripcion, setDescripcion] = useState(datos?.descripcion || ''); 
+    const [ubicacion, setUbicacion] = useState(datos?.ubicacion || ''); 
+    const [nivelDeIngles, setNivelDeIngles] = useState(datos?.nivelIngles || 'Avanzado');
+    const [image, setImage] = useState(datos?.fotoPerfil || null); // Cargar la imagen de la publicación
+
+    // Función para manejar el cambio de imagen
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result); // Esto previsualiza la imagen seleccionada
+            };
+            reader.readAsDataURL(file); // Lee el archivo de imagen seleccionado
+        }
+    };
 
     const handleGuardarCambios = () => {
         if (!titulo || !empresa || !salario || !descripcion || !ubicacion) {
@@ -43,12 +51,13 @@ const EditarPublicacionEmpleo = () => {
         }
 
         const datosActualizados = {
-            "titulo": titulo, // Cambiado a 'titulo'
+            "titulo": titulo,
             "empresa": empresa,
             "salario": salario,
             "descripcion": descripcion,
             "ubicacion": ubicacion,
-            "nivel_de_ingles": nivelDeIngles // Cambiado a 'nivel_de_ingles'
+            "nivel_de_ingles": nivelDeIngles,
+            "fotoPerfil": image // Añadir la imagen al objeto de datos
         };
 
         axios.patch(`http://localhost:3000/empleos/${idEmpleo}`, datosActualizados)
@@ -137,12 +146,17 @@ const EditarPublicacionEmpleo = () => {
                         </select>
                     </div>
 
+                    {/* Imagen cargada */}
+                    <div className="fromularioempleoo-input-group">
+                        {image && <img src={image} alt="Imagen de perfil" className="fromularioempleoo-imagen-preview" />}
+                        <input type="file" accept="image/*" onChange={handleImageChange} />
+                    </div>
+
                     {/* Botones */}
                     <div className="fromularioempleoo-botones">
                         <Button texto="Guardar cambios" className="texto-transformar" onClick={handleGuardarCambios} />
                         <Button texto="Cancelar" className="texto-transformar" onClick={() => navigate('/empleos')} />
                     </div>
-
                 </div>
             </div>
         </>
