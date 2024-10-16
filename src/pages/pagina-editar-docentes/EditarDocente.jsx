@@ -1,15 +1,20 @@
-import React, {useState} from 'react';
-
+import React, { useContext, useState, useEffect } from 'react';
+import { usuarioContext } from '../../App';
 import Cajatexto from '../../components/componente-caja-de-texto/CajaDeTexto';
 import Label from '../../components/componente-label/Etiquetas';
 import Radio from '../../components/componente-boton-de-radio/radio-boton';
 import Fecha from '../../components/fecha/Fecha';
 import Button from '../../components/boton/Boton';
+import Textarea from '../../componetes/Text-area';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
-import Logo from '../../assets/Logo24.png';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Axios from 'axios'; 
 import './EditarDocente.css'
 
 const EditDocente = () => {
+    const { usuarioData, setUsuarioData } = useContext(usuarioContext);
+
     const [nombre, setNombre] = useState('');
     const [apellidoPaterno, setApellidoPaterno] = useState('');
     const [apellidoMaterno, setApellidoMaterno] = useState('');
@@ -23,6 +28,35 @@ const EditDocente = () => {
     const [academiaSeleccionada, setAcademiaSeleccionada] = useState('');
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [nivelSeleccionado, setNivelSeleccionado] = useState('');
+
+    //Axios.get('http://localhost:3000/usuarios/docentes/10')
+
+    useEffect(() => {
+        if (usuarioData) {
+            setNombre(usuarioData.nombre);
+            setApellidoPaterno(usuarioData.apellidoPaterno);
+            setApellidoMaterno(usuarioData.apellidoMaterno);
+            setFechaNacimiento(usuarioData.fechaNacimiento);
+            setTelefono(usuarioData.telefono);
+            setCorreo(usuarioData.correo);
+            setBiografia(usuarioData.biografia);
+            setNoEmpleado(usuarioData.noEmpleado);
+            setAcademiaSeleccionada(usuarioData.academia);
+            setSexoSeleccionado(usuarioData.sexo);
+            setNivelSeleccionado(usuarioData.nivelSeleccionado);
+        }
+    }, [usuarioData]);
+
+    console.log(usuarioData)
+
+    const navigate = useNavigate(); 
+    const handleBack = () => {
+        navigate('/perfil'); 
+    };
+
+    const add = async() => {
+
+    }
 
     return (
 
@@ -145,7 +179,7 @@ const EditDocente = () => {
 
             <div className="editar-docentes-campo">
                 <Label texto="Biografía:" />
-                <Cajatexto 
+                <Textarea 
                 name="Biografia" 
                 placeholder="Biografía" 
                 value={biografia}
@@ -187,7 +221,7 @@ const EditDocente = () => {
             </div>
 
             <div className="editar-docente-botones">  
-                <Button texto="Atrás" />
+                <Button texto="Atrás" onClick={handleBack} />
                 <Button texto="Guardar cambios" />
             </div>
 

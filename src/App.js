@@ -17,15 +17,34 @@ import RegistroReclutadores from './pages/pagina-registro-reclutadores/RegistroR
 import Roles from './pages/pagina-seleccionar-rol/SeleccionarRol';
 import Perfil from './pages/pagina-Perfil/Perfil';
 import EditDocente from './pages/pagina-editar-docentes/EditarDocente';
+import EditEstu from './pages/pagina-editar-estudiantes/EditarEstudiantes';
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
-  // const [usuarioLog, setUsuarioLog] = useState(null);  
-  const [usuarioLog, setUsuarioLog] = useState('8'); 
+  //const [usuarioLog, setUsuarioLog] = useState(null);  
+  const [usuarioLog, setUsuarioLog] = useState('10'); 
+  const [usuarioData, setUsuarioData] = useState({
+    id: 10,
+    nombre: 'Ariel',
+    apellidoPaterno: 'saafdsgh',
+    apellidoMaterno: '',
+    fechaNacimiento: '2001-09-17',
+    telefono: '12356789743',
+    correo: 'ahsdk@gmail.com',
+    contraseña: '',
+    confirmarContraseña: '',
+    biografia: 'asfdghjhjkgdfsd',
+    noEmpleado: 'RH654',
+    academia: 'ISC',
+    sexo: 'Masculino',
+    nivelSeleccionado: 'Doctorado',
+  });
+
   return (
     //Pasa a los componentes hijos el usuario
-    <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
+    //<usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
+    <usuarioContext.Provider value={{usuarioLog, setUsuarioLog, usuarioData, setUsuarioData}}>
       <Router>
         <Routes>
           <Route path="/" element={<Login />} /> 
@@ -42,6 +61,7 @@ function App() {
           <Route path="/registro-empleo" element={<RegistroEmpleo />} />
           <Route path="/editar-publicacion" element={<EditarPublicacion />} />
           <Route path='/editar-docente' element={<EditDocente/>} />
+          <Route path='/editar-estudiante' element={<EditEstu/>} />
           
         </Routes>
       </Router>

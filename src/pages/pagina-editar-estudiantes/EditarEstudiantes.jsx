@@ -5,7 +5,8 @@ import Label from '../../components/componente-label/Etiquetas';
 import Radio from '../../components/componente-boton-de-radio/radio-boton';
 import Fecha from '../../components/fecha/Fecha';
 import Button from '../../components/boton/Boton';
-import Logo from '../../assets/Logo24.png';
+import Textarea from '../../componetes/Text-area';
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './EditarEstudiantes.css';
 
 const EditEstudiante = () => {
@@ -24,8 +25,10 @@ const EditEstudiante = () => {
     const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
 
     return (
+        <>
+        <MenuNavegacion/>
+        <div className='fondo-editar-estudiante'>
         <div className='editar-estudiante-contenedor'>
-            <img src={Logo} alt="Logo" className="logo" />
             <h1 className='editar-titulo-estudiante'>Editar estudiante</h1>
 
             <div className="editar-estudiante-campo-nombre">  
@@ -139,7 +142,7 @@ const EditEstudiante = () => {
 
             <div className="editar-estudiante-campo">
                 <Label texto="Biografía:" />
-                <Cajatexto 
+                <Textarea 
                 name="Biografia" 
                 placeholder="Biografía" 
                 value={biografia}
@@ -192,6 +195,8 @@ const EditEstudiante = () => {
             </div>
 
         </div>
+    </div>
+    </>
     )
 }
 
