@@ -1,59 +1,5 @@
 
-.carrera {
-    font-size: 20px;
-    color: #555;
-    text-align: left; /* Alinea el texto a la izquierda */
-}
-
-/* Cuadro de información */
-.perfil-cuadro {
-    background-color: #fff;
-    border: 2px solid #012a6f;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    max-width: 800px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    text-align: left;
-    margin-left: 50px; /* Asegura que ambos cuadros estén alineados */
-
-}
-
-/* Ajuste de los elementos dentro del cuadro */
-.perfil-cuadro p {
-    font-size: 18px;
-    margin-bottom: 10px;
-    line-height: 1.5;
-    display: flex;
-    align-items: center; /* Alinea los iconos con el texto */
-}
-
-.perfil-cuadro strong {
-    color: #012a6f;
-}
-
-/* Iconos */
-.icono {
-    margin-right: 10px;
-    color: #012a6f;
-}
-
-/* Ajustes generales para el contenedor de los componentes PEDE y Reclutador */
-.contenedor-perfil-cuadro {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea ambos componentes a la izquierda */
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-
-/* Estilo para el título de Biografía */
-.perfil-cuadro .biografia {
+.perfil-cuadro-reclutador .biografia {
     min-height: 50px;
     padding: 10px 0;
     color: #555;
@@ -61,4 +7,34 @@
     word-wrap: break-word;
     border-top: 1px solid #ddd;
     margin-top: 20px; /* Ajusta el margen para dar espacio después del título */
+}
+
+.perfil-cuadro-reclutador {
+    position: relative;
+    background-color: #fff;
+    border: 2px solid #08016f; /* Asegura que el borde sea visible y con color */
+    padding-top: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para darle profundidad */
+    width: 80%; /* Ancho ajustable para el cuadro */
+    max-width: 800px; /* Ancho máximo */
+    margin: 0 auto; /* Centrado automático */
+    text-align: left;
+
+}
+
+/* Ajuste de los elementos dentro del cuadro */
+.perfil-cuadro-reclutador p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center; /* Alinea los iconos con el texto */
+}
+
+.perfil-cuadro-reclutador strong {
+    color: #012a6f;
 }

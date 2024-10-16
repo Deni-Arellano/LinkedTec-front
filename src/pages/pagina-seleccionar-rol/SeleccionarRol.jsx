@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import Button from '../../components/boton/Boton.jsx';
-import VentanaEmergente from '../../components/ventana-emergente/VentanaEmergente.jsx'; // Importar el componente
 import './SeleccionarRol.css';
 import logo from '../../assets/Logo24.png';
+import Swal from 'sweetalert2';
 import {usuarioContext} from '../../App'; 
 
 
@@ -24,7 +24,6 @@ const Pagina = () => {
   };
   
   const [rolSeleccionado, setRolSeleccionado] = useState(''); 
-  const [mostrarVentana, setMostrarVentana] = useState(false); // Estado para la ventana emergente
   const navigate = useNavigate(); 
 
   const opcionesRol = [
@@ -50,16 +49,18 @@ const Pagina = () => {
           navigate('/registro-egresado'); 
           break;
         default:
+          
           break;
       }
     } else {
-      setMostrarVentana(true); // Mostrar la ventana emergente si no hay rol seleccionado
+      Swal.fire({
+        icon: "warning",
+        title: "Selecciona una opción",
+        text: "Ningún elemento ha sido seleccionado",
+      });
     }
   };
 
-  const cerrarVentana = () => {
-    setMostrarVentana(false); // Cerrar la ventana emergente
-  };
 
   return (
     <div className="contenedor-pagina">
@@ -68,9 +69,10 @@ const Pagina = () => {
       </header>
 
       <main className="main-content">
+        <h2 className="titulo-selecciona-rol">Selecciona tu rol</h2>
         <div className="radio-group">
           <RadioButtons 
-            label="Selecciona tu rol"
+           
             name="rol"
             options={opcionesRol} 
             selectedOption={rolSeleccionado}  
@@ -78,17 +80,11 @@ const Pagina = () => {
           />
         </div>
 
-        <div className="botones">
+        <div className="botones-seleccionar-rol">
           <Button texto="Atrás" onClick={handleBack}/>
           <Button texto="Siguiente" onClick={handleNext} /> 
         </div>
 
-        {/* Componente de Ventana Emergente */}
-        <VentanaEmergente 
-          mostrar={mostrarVentana} 
-          mensaje="Selecciona una opción" 
-          cerrarVentana={cerrarVentana} 
-        />
       </main>
     </div>
   );

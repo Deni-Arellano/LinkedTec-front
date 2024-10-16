@@ -81,20 +81,38 @@ const Registro = () => {
     }
   };
   const verificarNumeroControlExistente = async () => {
+    let paginaActual = 1;
+    const limite = 10; // El límite que estás usando en la API
+  
     try {
-      const response = await Axios.get('http://localhost:3000/usuarios/estudiantes');
-      const usuarios = response.data;
-      const controlExistente = usuarios.some((estudiantes) => estudiantes.no_control === noControl);
-      if (controlExistente) {
-        console.log('El número de control ya está en uso.');
-        Swal.fire({
-          icon: "error",
-          title: "Número de control en uso",
-          text: "El número de control ya está registrado. Por favor, usa otro.",
-        });
-        return false;
+      while (true) {
+        // Hacer la solicitud a la API, especificando el número de página y el límite
+        const response = await Axios.get(`http://localhost:3000/usuarios/estudiantes?pagina=${paginaActual}&limite=${limite}`);
+        const { estudiantes, exists_pagina_siguiente } = response.data;
+        
+        // Verificar si el número de control ya existe en la página actual
+        const controlExistente = estudiantes.some((estudiante) => estudiante.no_control === noControl);
+        
+        if (controlExistente) {
+          console.log('El número de control ya está en uso.');
+          Swal.fire({
+            icon: "error",
+            title: "Número de control en uso",
+            text: "El número de control ya está registrado. Por favor, usa otro.",
+          });
+          return false;
+        }
+  
+        // Si no hay más páginas que revisar, salir del bucle
+        if (!exists_pagina_siguiente) {
+          break;
+        }
+        
+        // Pasar a la siguiente página
+        paginaActual++;
       }
   
+      // Si no se encontró el número de control duplicado
       return true;
   
     } catch (error) {
@@ -107,6 +125,7 @@ const Registro = () => {
       return false;
     }
   };
+  
   
   const add = async() => {
     console.log("Agregando estudiante");
