@@ -12,24 +12,23 @@ const EditarPublicacionEmpleo = () => {
     const { idEmpleo } = useParams(); 
     const navigate = useNavigate(); 
 
-    const [tituloEmpleo, settituloEmpleo] = useState('');
-    const [empresa, setempresa] = useState('');
-    const [salario, setSalario] = useState('');
-    const [descripcion, setDescripcion] = useState('');
-    const [ubicacion, setUbicacion] = useState('');
-    const [nivelIngles, setNivelIngles] = useState('Avanzado'); // Valor por defecto
+    const [titulo, setTitulo] = useState(''); // Cambiado a 'titulo'
+    const [empresa, setEmpresa] = useState(''); 
+    const [salario, setSalario] = useState(''); 
+    const [descripcion, setDescripcion] = useState(''); 
+    const [ubicacion, setUbicacion] = useState(''); 
+    const [nivelDeIngles, setNivelDeIngles] = useState('Avanzado'); // Cambiado a 'nivelDeIngles'
 
     useEffect(() => {
         axios.get(`http://localhost:3000/empleos/${idEmpleo}`)
             .then(response => {
                 const empleo = response.data;
-                // Verificamos que las claves sean correctas
-                settituloEmpleo(empleo.tituloEmpleo || empleo.titulo);
-                setempresa(empleo.empresa);
+                setTitulo(empleo.titulo); // Cambiado a 'titulo'
+                setEmpresa(empleo.empresa);
                 setSalario(empleo.salario);
                 setDescripcion(empleo.descripcion);
                 setUbicacion(empleo.ubicacion);
-                setNivelIngles(empleo.nivelIngles || 'Avanzado'); 
+                setNivelDeIngles(empleo.nivel_de_ingles || 'Avanzado'); // Cambiado a 'nivel_de_ingles'
             })
             .catch(error => {
                 console.error('Error al cargar los datos del empleo:', error);
@@ -38,18 +37,18 @@ const EditarPublicacionEmpleo = () => {
     }, [idEmpleo]);
 
     const handleGuardarCambios = () => {
-        if (!tituloEmpleo || !empresa || !salario || !descripcion || !ubicacion) {
+        if (!titulo || !empresa || !salario || !descripcion || !ubicacion) {
             Swal.fire('Error', 'Todos los campos deben ser completados.', 'error');
             return;
         }
 
         const datosActualizados = {
-            "tituloEmpleo": tituloEmpleo,
+            "titulo": titulo, // Cambiado a 'titulo'
             "empresa": empresa,
             "salario": salario,
             "descripcion": descripcion,
             "ubicacion": ubicacion,
-            "nivelIngles": nivelIngles
+            "nivel_de_ingles": nivelDeIngles // Cambiado a 'nivel_de_ingles'
         };
 
         axios.patch(`http://localhost:3000/empleos/${idEmpleo}`, datosActualizados)
@@ -75,8 +74,8 @@ const EditarPublicacionEmpleo = () => {
                     <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Título empleo:" className="texto-transformar" />
                         <CajaDeTexto
-                            value={tituloEmpleo}
-                            onChange={(e) => settituloEmpleo(e.target.value)}
+                            value={titulo}
+                            onChange={(e) => setTitulo(e.target.value)}
                             placeholder="Escribe el título del empleo"
                         />
                     </div>
@@ -86,7 +85,7 @@ const EditarPublicacionEmpleo = () => {
                         <Etiquetas tamano={14} texto="Empresa:" className="texto-transformar" />
                         <CajaDeTexto
                             value={empresa}
-                            onChange={(e) => setempresa(e.target.value)}
+                            onChange={(e) => setEmpresa(e.target.value)}
                             placeholder="Nombre de la empresa"
                         />
                     </div>
@@ -127,8 +126,8 @@ const EditarPublicacionEmpleo = () => {
                     <div className="fromularioempleoo-input-group">
                         <Etiquetas tamano={14} texto="Nivel de inglés requerido:" className="texto-transformar" />
                         <select
-                            value={nivelIngles}
-                            onChange={(e) => setNivelIngles(e.target.value)}
+                            value={nivelDeIngles}
+                            onChange={(e) => setNivelDeIngles(e.target.value)}
                             className="fromularioempleoo-dropdown"
                         >
                             <option value="Avanzado">Avanzado</option>
