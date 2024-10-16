@@ -1,3 +1,10 @@
+/**
+ * Aqui estubo el panadero alv
+ */
+
+
+
+
 import React, { useState, useContext, useEffect } from 'react';
 import './RegistroDocentes.css';
 import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx'; 
@@ -43,6 +50,7 @@ const RegistroDocentes = () => {
   const [academiaSeleccionada, setAcademiaSeleccionada] = useState('');
   const [sexoSeleccionado, setSexoSeleccionado] = useState('');
   const [nivelSeleccionado, setNivelSeleccionado] = useState('');
+
   const verificarUsuarioExistente = async () => {
     try {
       const response = await Axios.get('http://localhost:3000/usuarios');
@@ -80,11 +88,20 @@ const RegistroDocentes = () => {
     }
   };
 
-  const verificarDocenteExistente = async () => {
-    try {
-      const response = await Axios.get('http://localhost:3000/usuarios/docentes');
-      const docentes = response.data;
-      const empleadoExistente = docentes.some((docente) => docente.numeroEmpleado === noEmpleado);
+const verificarDocenteExistente = async () => {
+  let paginaActual = 1;
+  const limite = 5; // El límite de resultados que usas en la API
+  let existeDocente = false;
+
+  try {
+    while (true) {
+      // Hacer la solicitud a la API, especificando el número de página y el límite
+      const response = await Axios.get(`http://localhost:3000/usuarios/docentes?pagina=${paginaActual}&limite=${limite}`);
+      const { docentes, exists_pagina_siguiente } = response.data;
+
+      // Verificar si el número de empleado ya existe en la página actual
+      const empleadoExistente = docentes.some((docente) => docente.numero_empleado === noEmpleado);
+      
       if (empleadoExistente) {
         console.log('El número de empleado ya está en uso.');
         Swal.fire({
@@ -94,17 +111,41 @@ const RegistroDocentes = () => {
         });
         return false;
       }
-      return true;
-    } catch (error) {
-      console.log("Error al verificar número de empleado existente:", error.message);
-      Swal.fire({
-        icon: "error",
-        title: "Error de verificación",
-        text: "Hubo un error al verificar el número de empleado.",
-      });
-      return false;
+
+      // Si no hay más páginas que revisar, salir del bucle
+      if (!exists_pagina_siguiente) {
+        break;
+      }
+
+      // Pasar a la siguiente página
+      paginaActual++;
     }
-  };
+
+    // Si no se encontró el número de empleado duplicado
+    return true;
+
+  } catch (error) {
+    // Si la respuesta incluye un mensaje de error "Usuario no encontrado", tratarlo adecuadamente
+    if (error.response && error.response.data && error.response.data.error === "Usuario no encontrado.") {
+      console.log("Usuario no encontrado. No hay registros de docentes.");
+      Swal.fire({
+        icon: "info",
+        title: "Usuario no encontrado",
+        text: "No se encontraron registros de docentes.",
+      });
+      return true; // Si no hay registros, puedes considerar que es válido registrar el nuevo número
+    }
+
+    console.log("Error al verificar número de empleado existente:", error.message);
+    Swal.fire({
+      icon: "error",
+      title: "Error de verificación",
+      text: "Hubo un error al verificar el número de empleado.",
+    });
+    return false;
+  }
+};
+
 
   const add = async() => {
     console.log("Agregando docente");
