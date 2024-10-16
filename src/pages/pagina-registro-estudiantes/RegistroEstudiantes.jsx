@@ -86,31 +86,21 @@ const Registro = () => {
       return false;
     }
   };
+
+ 
   const verificarNumeroControlExistente = async () => {
     let paginaActual = 1;
     const limite = 10; // El límite que estás usando en la API
-  
+    
     try {
       while (true) {
         // Hacer la solicitud a la API, especificando el número de página y el límite
         const response = await Axios.get(`http://localhost:3000/usuarios/estudiantes?pagina=${paginaActual}&limite=${limite}`);
-  
-        // Verificar si hay un error indicando que no hay usuarios registrados
-        if (response.data.error === "Usuario no encontrado.") {
-          console.log("No se encontraron registros de estudiantes.");
-          Swal.fire({
-            icon: "info",
-            title: "Usuario no encontrado",
-            text: "No se encontraron registros de estudiantes.",
-          });
-          return true; // Si no hay usuarios, consideramos que es seguro continuar
-        }
-  
         const { estudiantes, exists_pagina_siguiente } = response.data;
   
         // Verificar si el número de control ya existe en la página actual
         const controlExistente = estudiantes.some((estudiante) => estudiante.no_control === noControl);
-  
+        
         if (controlExistente) {
           console.log('El número de control ya está en uso.');
           Swal.fire({
@@ -134,7 +124,17 @@ const Registro = () => {
       return true;
   
     } catch (error) {
-      // Manejo de errores generales
+      // Si la respuesta incluye un mensaje de error "Usuario no encontrado", tratarlo adecuadamente
+      if (error.response && error.response.data && error.response.data.error === "Usuario no encontrado.") {
+        console.log("Usuario no encontrado. No hay registros de estudiantes.");
+        Swal.fire({
+          icon: "info",
+          title: "Usuario no encontrado",
+          text: "No se encontraron registros de estudiantes.",
+        });
+        return true; // Si no hay registros, puedes considerar que es válido registrar el nuevo número
+      }
+  
       console.log("Error al verificar número de control existente:", error.message);
       Swal.fire({
         icon: "error",
@@ -144,6 +144,7 @@ const Registro = () => {
       return false;
     }
   };
+  
   
   
   
