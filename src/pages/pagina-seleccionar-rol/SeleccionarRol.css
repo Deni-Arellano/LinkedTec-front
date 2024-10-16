@@ -5,6 +5,17 @@ body {
   font-family: 'Sans-Serif', Arial, sans-serif;
 }
 
+
+.titulo-selecciona-rol{
+  font-size: 25px ;
+  font-family: sans-serif;
+  color: #012a6f;
+  margin-bottom: 0px;
+  font-weight: bold;
+
+
+}
+
 .contenedor-pagina {
   display: flex;
   flex-direction: column;
@@ -29,6 +40,13 @@ body {
   height: 55px;
 }
 
+.radio-group{
+  font-size: 18px;
+}
+
+.botones-seleccionar-rol{
+  margin-top: 15px;
+}
 .main-content {
   display: flex;
   flex-direction: column; 

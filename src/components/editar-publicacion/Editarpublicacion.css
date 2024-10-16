@@ -68,12 +68,14 @@
 }
 
 .editar-publicacion-boton {
+    width: 100%;
     background-color: #4CAF50;
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 15px;
     transition: background-color 0.3s;
 }
 
@@ -82,6 +84,7 @@
 }
 
 .editar-publicacion-eliminar-boton {
+    width: 100%;
     background-color: #ff4d4d;
     color: white;
     border: none;

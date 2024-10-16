@@ -161,6 +161,7 @@ body {
 
 /* Botón Postularse */
 .PublicacionEmpleoNuevo-boton-postularse {
+    width: 100%;
     background-color: #012a6f; /* Azul utilizado en el texto */
     color: white; /* Texto blanco */
     padding: 10px 20px;

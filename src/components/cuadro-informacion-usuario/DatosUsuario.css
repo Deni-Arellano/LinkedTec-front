@@ -1,64 +1,108 @@
-.reclutador-contenedor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: white;
-    max-width: 650px;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-
-.reclutador-perfil-cuadro {
+/* Cuadro de información */
+.perfil-cuadro-datos-usuario {
+    position: relative;
     background-color: #fff;
-    border: 2px solid #012a6f;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    max-width: 800px;
-    margin: -50px 10%; 
+    border: 2px solid #08016f; /* Asegura que el borde sea visible y con color */
+    padding-top: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para darle profundidad */
+    width: 80%; /* Ancho ajustable para el cuadro */
+    max-width: 800px; /* Ancho máximo */
+    margin: 0 auto; /* Centrado automático */
+    text-align: left;
+
+}
+.carrera {
+    font-size: 20px;
+    color: #555;
+    text-align: left; /* Alinea el texto a la izquierda */
 }
 
-.reclutador-perfil-cuadro p {
+
+
+/* Ajuste de los elementos dentro del cuadro */
+.perfil-cuadro-datos-usuario p {
     font-size: 18px;
     margin-bottom: 10px;
     line-height: 1.5;
+    display: flex;
+    align-items: center; /* Alinea los iconos con el texto */
 }
 
-.reclutador-perfil-cuadro strong {
+.perfil-cuadro-datos-usuario strong {
     color: #012a6f;
 }
 
-.reclutador-biografia {
-    min-height: 100px;
+/* Iconos */
+.icono {
+    margin-right: 10px;
+    color: #012a6f;
+}
+
+/* Ajustes generales para el contenedor de los componentes PEDE y Reclutador */
+.contenedor-perfil-cuadro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea ambos componentes a la izquierda */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+/* Estilo para el título de Biografía */
+.perfil-cuadro-datos-usuario .biografia {
+    min-height: 50px;
     padding: 10px 0;
     color: #555;
     white-space: pre-wrap;
     word-wrap: break-word;
     border-top: 1px solid #ddd;
-    margin-top: 10px;
+    margin-top: 20px; /* Ajusta el margen para dar espacio después del título */
 }
 
-.reclutador-icono {
-    margin-right: 10px;
-    color: #012a6f;
+.mostrar-datos-usuario-opcion-boton {
+    background-color: #012a6f;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.reclutador-campo {
+.mostrar-datos-usuario-opcion-boton:hover {
+    background-color: #f1f1f1;
+}
+
+.mostrar-datos-usuario-icono-tres-puntos {
+    margin-left: auto;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+
+}
+
+.mostrar-datos-usuario-opciones-dropdown {
+    position: absolute;
+    right: 0;
+    top: 30px;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-bottom: 20px;
-  }
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    
 
-.reclutador-campo label {
-    font-family: sans-serif;
-    color: #093e61;
-    font-size: 16px;
-    margin-bottom: 5px;
-    font-weight: bold;
 }

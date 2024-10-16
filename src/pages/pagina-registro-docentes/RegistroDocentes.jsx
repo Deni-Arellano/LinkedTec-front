@@ -289,7 +289,7 @@ const RegistroDocentes = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "El No. de Empleado debe estar seguido de 3 dígitos.",
+        text: "El No. de empleado debe estar seguido de 3 dígitos.",
       });
       return;
     }
@@ -502,7 +502,7 @@ const RegistroDocentes = () => {
       </div>
 
       <div className="docentes-campo">
-        <Label htmlFor="noDocente" texto="No. Empleado:" />
+        <Label htmlFor="noDocente" texto="No. empleado:" />
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span style={{marginRight: '5px'}}>RH</span>
           <Textbox 

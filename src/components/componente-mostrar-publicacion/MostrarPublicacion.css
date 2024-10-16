@@ -55,6 +55,9 @@
     text-align: left;
     width: 100%;
     border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .mostrar-publicacion-opcion-boton:hover {
@@ -103,14 +106,41 @@
 
 .mostrar-publicacion-megusta {
     margin-right: 10px;
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .mostrar-publicacion-medisgusta {
     margin-right: 10px;
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .mostrar-publicacion-comentar {
     margin-left: auto;
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .Fecha-mostrar-publicacion {
