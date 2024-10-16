@@ -5,6 +5,7 @@ import Label from '../../components/componente-label/Etiquetas';
 import Radio from '../../components/componente-boton-de-radio/radio-boton';
 import Fecha from '../../components/fecha/Fecha';
 import Button from '../../components/boton/Boton';
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import Logo from '../../assets/Logo24.png';
 import './EditarDocente.css'
 
@@ -24,9 +25,12 @@ const EditDocente = () => {
     const [nivelSeleccionado, setNivelSeleccionado] = useState('');
 
     return (
+
+        <>
+        <MenuNavegacion/>
         <div className='fondo-editar-docente'>
-        <div className="editar-docentes-contenedor">  
-            <img src={Logo} alt="Logo" className="logo" />
+
+        <div className="editar-docentes-contenedor">
             <h1 className='editar-titulo-docente'>Editar docente</h1>
 
             <div className="editar-docentes-campo-nombre">  
@@ -189,6 +193,7 @@ const EditDocente = () => {
 
         </div>
     </div>
+    </>
     )
 }
 
