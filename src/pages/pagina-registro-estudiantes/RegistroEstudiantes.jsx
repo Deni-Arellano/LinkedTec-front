@@ -1,3 +1,9 @@
+/**
+ * Aqui tambien estuvo el panadero
+ */
+
+
+
 import React, { useState, useContext, useEffect } from 'react';
 import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
 import Textarea from '../../componetes/Text-area.jsx';
@@ -80,24 +86,55 @@ const Registro = () => {
       return false;
     }
   };
+
+ 
   const verificarNumeroControlExistente = async () => {
+    let paginaActual = 1;
+    const limite = 10; // El límite que estás usando en la API
+    
     try {
-      const response = await Axios.get('http://localhost:3000/usuarios/estudiantes');
-      const usuarios = response.data;
-      const controlExistente = usuarios.some((estudiantes) => estudiantes.no_control === noControl);
-      if (controlExistente) {
-        console.log('El número de control ya está en uso.');
-        Swal.fire({
-          icon: "error",
-          title: "Número de control en uso",
-          text: "El número de control ya está registrado. Por favor, usa otro.",
-        });
-        return false;
+      while (true) {
+        // Hacer la solicitud a la API, especificando el número de página y el límite
+        const response = await Axios.get(`http://localhost:3000/usuarios/estudiantes?pagina=${paginaActual}&limite=${limite}`);
+        const { estudiantes, exists_pagina_siguiente } = response.data;
+  
+        // Verificar si el número de control ya existe en la página actual
+        const controlExistente = estudiantes.some((estudiante) => estudiante.no_control === noControl);
+        
+        if (controlExistente) {
+          console.log('El número de control ya está en uso.');
+          Swal.fire({
+            icon: "error",
+            title: "Número de control en uso",
+            text: "El número de control ya está registrado. Por favor, usa otro.",
+          });
+          return false;
+        }
+  
+        // Si no hay más páginas que revisar, salir del bucle
+        if (!exists_pagina_siguiente) {
+          break;
+        }
+  
+        // Pasar a la siguiente página
+        paginaActual++;
       }
   
+      // Si no se encontró el número de control duplicado
       return true;
   
     } catch (error) {
+      // Si la respuesta incluye un mensaje de error "Usuario no encontrado", tratarlo adecuadamente
+      if (error.response && error.response.data && error.response.data.error === "Usuario no encontrado.") {
+        console.log("Usuario no encontrado. No hay registros de estudiantes.");
+        Swal.fire({
+          icon: "info",
+          title: "Usuario no encontrado",
+          text: "No se encontraron registros de estudiantes.",
+        });
+        return true; // Si no hay registros, puedes considerar que es válido registrar el nuevo número
+      }
+  
       console.log("Error al verificar número de control existente:", error.message);
       Swal.fire({
         icon: "error",
@@ -107,6 +144,9 @@ const Registro = () => {
       return false;
     }
   };
+  
+  
+  
   
   const add = async() => {
     console.log("Agregando estudiante");

@@ -430,7 +430,7 @@ const RegistroEgresado = () => {
           <Label htmlFor="ApellidoPaterno" texto='Apellido paterno:'/>
           <Textbox 
             id="ApellidoPaterno" 
-            placeholder="Apellido Paterno"
+            placeholder="Apellido paterno"
             value={apellidoPaterno} 
             onChange={(e) => setApellidoPaterno(e.target.value)}
           />
@@ -440,7 +440,7 @@ const RegistroEgresado = () => {
           <Label htmlFor="ApellidoMaterno" texto='Apellido materno:'/>
           <Textbox 
             id="ApellidoMaterno" 
-            placeholder="Apellido Materno" 
+            placeholder="Apellido materno" 
             value={apellidoMaterno}
             onChange={(e) => setApellidoMaterno(e.target.value)}
           />
@@ -542,7 +542,7 @@ const RegistroEgresado = () => {
           <Label htmlFor="AñoGraduacion" texto='Año de graduación:'/>
           <Textbox 
             id="AñodeGraduacion"  
-            placeholder="Año de Graduación" 
+            placeholder="Año de graduación" 
             value={AñoGraduacion}
             onChange={(e) => setAñoGraduacion(e.target.value)}
           />

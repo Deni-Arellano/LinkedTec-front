@@ -24,12 +24,20 @@
 .boton-imagen-crear-publicacion {
     width: 10%;
     background-color:#798eb2;
+    padding: 12px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
     
 }
 
 .boton-imagen-crear-publicacion:hover {
     background-color: #35548b;
     color: white;
+    
 }
 
 .boton-contenedor-crear-publicacion {

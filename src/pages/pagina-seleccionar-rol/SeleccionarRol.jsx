@@ -45,6 +45,7 @@ const Pagina = () => {
           navigate('/registro-egresado');
           break;
         default:
+          
           break;
       }
     } else {
@@ -64,6 +65,7 @@ const Pagina = () => {
       </header>
 
       <main className="main-content">
+        <h2 className="titulo-selecciona-rol">Selecciona tu rol</h2>
         <div className="radio-group">
           <RadioButtons
             label="Selecciona tu rol"
@@ -74,10 +76,11 @@ const Pagina = () => {
           />
         </div>
 
-        <div className="botones">
-          <Button texto="Atrás" onClick={handleBack} />
-          <Button texto="Siguiente" onClick={handleNext} />
+        <div className="botones-seleccionar-rol">
+          <Button texto="Atrás" onClick={handleBack}/>
+          <Button texto="Siguiente" onClick={handleNext} /> 
         </div>
+
       </main>
     </div>
   );

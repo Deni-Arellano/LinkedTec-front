@@ -491,7 +491,7 @@ const RegistroReclutador = () => {
         <label htmlFor="nombreEmpresa">Nombre de la empresa:</label>
         <Textbox 
           id="NombredelaEmpresa" 
-          placeholder="Nombre de la Empresa"
+          placeholder="Nombre de la empresa"
           value={nombreEmpresa}
           onChange={(e) => setNombreEmpresa(e.target.value)} 
         />
