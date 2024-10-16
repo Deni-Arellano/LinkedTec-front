@@ -94,11 +94,23 @@ const Registro = () => {
       while (true) {
         // Hacer la solicitud a la API, especificando el número de página y el límite
         const response = await Axios.get(`http://localhost:3000/usuarios/estudiantes?pagina=${paginaActual}&limite=${limite}`);
+  
+        // Verificar si hay un error indicando que no hay usuarios registrados
+        if (response.data.error === "Usuario no encontrado.") {
+          console.log("No se encontraron registros de estudiantes.");
+          Swal.fire({
+            icon: "info",
+            title: "Usuario no encontrado",
+            text: "No se encontraron registros de estudiantes.",
+          });
+          return true; // Si no hay usuarios, consideramos que es seguro continuar
+        }
+  
         const { estudiantes, exists_pagina_siguiente } = response.data;
-        
+  
         // Verificar si el número de control ya existe en la página actual
         const controlExistente = estudiantes.some((estudiante) => estudiante.no_control === noControl);
-        
+  
         if (controlExistente) {
           console.log('El número de control ya está en uso.');
           Swal.fire({
@@ -113,7 +125,7 @@ const Registro = () => {
         if (!exists_pagina_siguiente) {
           break;
         }
-        
+  
         // Pasar a la siguiente página
         paginaActual++;
       }
@@ -122,6 +134,7 @@ const Registro = () => {
       return true;
   
     } catch (error) {
+      // Manejo de errores generales
       console.log("Error al verificar número de control existente:", error.message);
       Swal.fire({
         icon: "error",
@@ -131,6 +144,7 @@ const Registro = () => {
       return false;
     }
   };
+  
   
   
   const add = async() => {
