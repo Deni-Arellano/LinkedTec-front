@@ -34,8 +34,6 @@ const EditDocente = () => {
             try {
                 const response = await Axios.get(`http://localhost:3000/usuarios/docentes/${usuarioLog}`);
                 const data = response.data;
-
-                console.log(data)
                 
                 setNombre(data.nombre);
                 setApellidoPaterno(data.apellido_paterno);
@@ -64,7 +62,260 @@ const EditDocente = () => {
     };
 
     const modificar = async() => {
-        console.log('modificado')
+        try {
+            // Verificar que las contraseñas coincidan
+            if (contraseña !== confirmarContraseña) {
+                Swal.fire('Error', 'Las contraseñas no coinciden.', 'error');
+                return;
+            }
+
+            if (nombre.length < 2 || nombre.length > 50) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "El nombre debe tener entre 2 y 50 caracteres.",
+                });
+                return;
+              }
+          
+            const Caracteres_especialesn = /^[A-Za-z\s]+$/; 
+            if (!Caracteres_especialesn.test(nombre)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El nombre solo puede contener letras.",
+            });
+            return;
+            }
+        
+            if (nombre.trim() === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El nombre no debe estar vacío.",
+            });
+            return;
+            }
+        
+            if (/[\s]{2,}/.test(nombre)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El nombre no puede tener más de un espacio vacío consecutivo.",
+            });
+            return;
+            }
+        
+            /*--------------------apellido paterno-------------------------*/
+            if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El apellido paterno debe tener entre 2 y 50 caracteres.",
+            });
+            return;
+            }
+        
+            if (apellidoPaterno.trim() === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El apellido paterno no puede estar vacío.",
+            });
+            return;
+            }
+        
+            /*--------------------fecha-------------------------*/
+            const fechaIngresada = new Date(fechaNacimiento); 
+            const anioNacimiento = fechaIngresada.getFullYear(); 
+            const fechaActual = new Date(); 
+            const edad = fechaActual.getFullYear() - anioNacimiento; 
+            const haCumplidoAnios = (fechaActual.getMonth() > fechaIngresada.getMonth()) ||
+            (fechaActual.getMonth() === fechaIngresada.getMonth() && fechaActual.getDate() >= fechaIngresada.getDate());
+            const edadReal = haCumplidoAnios ? edad : edad - 1;
+        
+            if (anioNacimiento <= 1950) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'El año de nacimiento debe ser mayor a 1950.',
+            });
+            return;
+            }
+        
+            if (edadReal < 17) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Debes tener al menos 17 años.',
+            });
+            return;
+            }
+            if (fechaNacimiento.trim()==='')
+            {
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'La fecha no puede estar vacía.',
+                });
+                return;
+            }
+        
+            
+        
+        
+            /*------------------telefono---------------*/
+            if (telefono.trim() === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'El teléfono no puede estar vacío.',
+            });
+            return;
+            }
+        
+            if (telefono.length < 10 || telefono.length > 15) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'El teléfono debe tener entre 10 y 15 caracteres.',
+            });
+            return;
+            }
+        
+            /*------------------correo---------------*/
+            if (correo.trim() === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'El correo no puede estar vacío.',
+            });
+            return;
+            }
+        
+            const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regexCorreo.test(correo)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Introduzca un correo electrónico válido.',
+            });
+            return;
+            }
+        
+            /*--------------------contraseña y confirmar-------------------------- */
+            if (contraseña.length < 8 || contraseña.length > 12) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "La contraseña debe contener entre 8 y 12 caracteres.",
+            });
+            return;
+            }
+        
+            const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
+            if (!regexContraseña.test(contraseña)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "La contraseña debe incluir letras, números y caracteres especiales.",
+            });
+            return;
+            }
+        
+            if (contraseña !== confirmarContraseña) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Las contraseñas no coinciden.",
+                });
+                return;
+            }
+        
+            /*------------------No.empleado------------------------*/
+            const regexNoEmpleado = /^[A-Za-z]{2}\d{3}$/;
+            if (!regexNoEmpleado.test(noEmpleado)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El No. de empleado debe estar seguido de 3 dígitos.",
+                });
+                return;
+            }
+        
+            /*-------------carrera,sexo,semestre----------------- */
+            if (academiaSeleccionada === '') {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Debes seleccionar una academia.",
+                });
+                return;
+            }
+        
+            if (sexoSeleccionado === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Debes seleccionar un sexo.",
+            });
+            return;
+            }
+        
+            if (nivelSeleccionado === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Debes seleccionar un nivel de estudio.",
+            });
+            return;
+            }
+
+            const datosActualizados = {
+                "usuario": {
+                    "nombre": nombre,
+                    "apellido_paterno": apellidoPaterno,
+                    "apellido_materno": apellidoMaterno,
+                    "fecha_nacimiento": fechaNacimiento,
+                    "sexo": sexoSeleccionado,
+                    "correo": correo,
+                    "contraseña": contraseña,
+                    "telefono": telefono,
+                    //"numero_empleado": noEmpleado,
+                    "biografia": biografia,
+                },
+                "docente": {
+                    "ultimo_nivel_estudios": nivelSeleccionado,
+                    "academia": academiaSeleccionada
+                }
+
+            }
+
+            // Realizar la solicitud patch para actualizar los datos
+            try {
+                await Axios.patch(`http://localhost:3000/usuarios/docentes/${usuarioLog}`, datosActualizados);
+
+                // Mostrar mensaje de éxito
+                Swal.fire('Éxito', 'Los datos del docente han sido actualizados.', 'success');
+
+                // Redireccionar a perfil
+                navigate('/perfil');
+
+            } catch (error) {
+                console.error('Error al actualizar los datos del docente', error);
+                Swal.fire('Error', 'No se pudieron guardar los cambios.', 'error');
+            }
+
+            } catch (error) {
+                console.log("Error al verificar usuario existente:", error.message);
+                Swal.fire({
+                    icon: "error",
+                    title: "Error de verificación",
+                    text: "Hubo un error al verificar el correo o el teléfono.",
+                });
+                return false;
+            }
+
     }
 
     return (
