@@ -159,3 +159,13 @@
     justify-content: space-between;
     margin-top: 20px;
 }
+
+.docente-eye-icon {
+    position: static;
+    cursor: pointer;
+    color: #888;
+}
+
+.docente-eye-icon:hover {
+    color: #333;
+}

@@ -29,6 +29,9 @@ const EditDocente = () => {
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [nivelSeleccionado, setNivelSeleccionado] = useState('');
 
+    const [mostrarContraseña, setMostrarContraseña] = useState(false); 
+    const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);
+
     useEffect(() => {
         const obtenerDatos = async () => {
             try {
@@ -426,10 +429,16 @@ const EditDocente = () => {
                     <Cajatexto 
                     id="contraseña" 
                     placeholder="Contraseña"
-                    type="password"
+                    type={mostrarContraseña ? "text" : "password" }
                     value={contraseña}
                     onChange={(e) => setContraseña(e.target.value)} 
                     />
+                    <span className="docente-eye-icon" onClick={()=> setMostrarContraseña(!mostrarContraseña)}
+                        >
+                        {mostrarContraseña ?
+                        <FaEyeSlash /> :
+                        <FaEye />}
+                    </span>
                 </div>
 
                 <div className="editar-docentes-campo-confirmar-password">
@@ -437,10 +446,17 @@ const EditDocente = () => {
                     <Cajatexto 
                     id="Confirmarcontraseña" 
                     placeholder="Confirmar contraseña" 
-                    type="password" 
+                    type={MostrarConfirmarContraseña ? "text" : "password" }
                     value={confirmarContraseña}
                     onChange={(e) => setConfirmarContraseña(e.target.value)}
                     />
+                    <span className="docente-eye-icon" onClick={()=>
+                        setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}
+                        >
+                        {MostrarConfirmarContraseña ?
+                        <FaEyeSlash /> :
+                        <FaEye />}
+                    </span>
                 </div>
             </div>
 
