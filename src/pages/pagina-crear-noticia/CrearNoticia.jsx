@@ -23,20 +23,20 @@ const CrearNoticias = () => {
     const [enlace, setEnlace] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); 
     const { usuarioLog } = useContext(usuarioContext); 
-/**
- * Para navegar entre las pagionas
- */
+    /**
+     * Para navegar entre las paginas
+     */
     const navigate = useNavigate();
-/**
- * navegar a la pagina principal de noticias
- */
+    /**
+     * navegar a la pagina principal de noticias
+     */
     const handleBack = () => {
         navigate('/noticias');
     };
-/**
- * Comprobacion de datos en formato correcto y encapsulamiento de datos para enviar la solicitud
- * 
- */
+    /**
+     * Comprobacion de datos en formato correcto y encapsulamiento de datos para enviar la solicitud
+     * 
+     */
     
     const add = () => {
         if (!titulo_noticia || !descripcion || !imagenURL || !enlace || !categoriaSeleccionada) {
@@ -124,7 +124,6 @@ const CrearNoticias = () => {
     *  <MenuNavegacion />manda a llamar funcion de menu navegacion
     */
 
-    
     /**
     * Componentes de formulario noticia como caja de texto,botones,radio buton
     */
@@ -180,7 +179,7 @@ const CrearNoticias = () => {
                     </div>
 
                     <div className="formulario-noticias-input-group">
-                        <Etiquetas tamano={14} texto="Categoría" />
+                        <Etiquetas tamano={14} texto="Categoría(Carrera)" />
                         <RadioButtons
                             name="categoria"
                             options={[
@@ -195,6 +194,7 @@ const CrearNoticias = () => {
                             onChange={(e) => setCategoriaSeleccionada(e.target.value)}
                         />
                     </div>
+                    
 
                     <div className="formulario-noticias-botones">
                         <Button texto="Cancelar" onClick={handleBack} />
