@@ -6,6 +6,7 @@ import Fecha from '../../components/fecha/Fecha';
 import Button from '../../components/boton/Boton';
 import Textarea from '../../componetes/Text-area';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import {usuarioContext} from '../../App';
 import Swal from 'sweetalert2';
@@ -75,15 +76,15 @@ const EditDocente = () => {
                 });
                 return;
               }
-          
-            const Caracteres_especialesn = /^[A-Za-z\s]+$/; 
+            
+            const Caracteres_especialesn = /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/;
             if (!Caracteres_especialesn.test(nombre)) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "El nombre solo puede contener letras.",
-            });
-            return;
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El nombre solo puede contener letras.",
+                });
+                return;
             }
         
             if (nombre.trim() === '') {
@@ -122,6 +123,33 @@ const EditDocente = () => {
             });
             return;
             }
+
+            if (apellidoPaterno.length >= 50) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "El apellido paterno no debe exceder los 50 caracteres.",
+                });
+                return;
+              }
+
+              if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El apellido materno no debe contener números ni caracteres especiales.",
+                });
+                return;
+            }
+
+            if (apellidoMaterno.length >= 50) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El apellido materno no debe exceder los 50 caracteres.",
+                });
+                return;
+            }
         
             /*--------------------fecha-------------------------*/
             const fechaIngresada = new Date(fechaNacimiento); 
@@ -159,9 +187,6 @@ const EditDocente = () => {
                 return;
             }
         
-            
-        
-        
             /*------------------telefono---------------*/
             if (telefono.trim() === '') {
             Swal.fire({
@@ -180,6 +205,15 @@ const EditDocente = () => {
             });
             return;
             }
+
+            if (!/^\d+$/.test(telefono)) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "El teléfono debe contener solo dígitos.",
+                });
+                return;
+              }
         
             /*------------------correo---------------*/
             if (correo.trim() === '') {
@@ -200,6 +234,15 @@ const EditDocente = () => {
             });
             return;
             }
+
+            if (correo.length > 40) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El correo es demasiado largo",
+                });
+                return;
+                }
         
             /*--------------------contraseña y confirmar-------------------------- */
             if (contraseña.length < 8 || contraseña.length > 12) {
@@ -454,9 +497,9 @@ const EditDocente = () => {
                 </div>
             </div>
 
-            <div className="editar-docente-botones">  
+            <div className="editar-docente-botones">
+                <Button texto="Guardar" onClick={modificar} />
                 <Button texto="Atrás" onClick={handleBack} />
-                <Button texto="Guardar cambios" onClick={modificar} />
             </div>
 
         </div>

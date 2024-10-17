@@ -6,6 +6,7 @@ import Fecha from '../../components/fecha/Fecha';
 import Button from '../../components/boton/Boton';
 import Textarea from '../../componetes/Text-area';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import {usuarioContext} from '../../App';
 import Swal from 'sweetalert2';
@@ -27,6 +28,9 @@ const EditEstudiante = () => {
     const [biografia, setBiografia] = useState('');
     const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
     const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
+
+    const [mostrarContraseña, setMostrarContraseña] = useState(false); 
+    const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);
 
     useEffect(() => {
         const obtenerDatos = async () => {
@@ -76,14 +80,14 @@ const EditEstudiante = () => {
                 return;
             }
         
-            const Caracteres_especialesn = /^[A-Za-z\s]+$/; 
+            const Caracteres_especialesn = /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/;
             if (!Caracteres_especialesn.test(nombre)) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "El nombre solo puede contener letras.",
-            });
-            return;
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El nombre solo puede contener letras.",
+                });
+                return;
             }
         
             if (nombre.trim() === '') {
@@ -102,6 +106,15 @@ const EditEstudiante = () => {
                 text: "El nombre no puede tener más de un espacio vacío consecutivo.",
             });
             return;
+            }
+
+            if (nombre.length >= 50) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El nombre no debe exceder los 50 caracteres.",
+                });
+                return;
             }
         
             /*--------------------apellido paterno-------------------------*/
@@ -130,25 +143,34 @@ const EditEstudiante = () => {
                   text: "El apellido paterno no debe contener números ni caracteres especiales.",
                 });
                 return;
-              }
+            }
 
-              if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+            if (apellidoPaterno.length >= 50) {
                 Swal.fire({
                   icon: "error",
                   title: "Oops...",
-                  text: "El apellido materno no debe contener números ni caracteres especiales.",
+                  text: "El apellido paterno no debe exceder los 50 caracteres.",
                 });
                 return;
               }
 
-              if (apellidoMaterno.length >= 50) {
+            if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
                 Swal.fire({
-                  icon: "error",
-                  title: "Oops...",
-                  text: "El apellido materno no debe exceder los 50 caracteres.",
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El apellido materno no debe contener números ni caracteres especiales.",
                 });
                 return;
-              }
+            }
+
+            if (apellidoMaterno.length >= 50) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El apellido materno no debe exceder los 50 caracteres.",
+                });
+                return;
+            }
         
             /*--------------------fecha-------------------------*/
             const fechaIngresada = new Date(fechaNacimiento); 
@@ -205,6 +227,15 @@ const EditEstudiante = () => {
             });
             return;
             }
+
+            if (!/^\d+$/.test(telefono)) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "El teléfono debe contener solo dígitos.",
+                });
+                return;
+              }
         
             /*------------------correo---------------*/
             if (correo.trim() === '') {
@@ -414,10 +445,16 @@ const EditEstudiante = () => {
                     <Cajatexto 
                     id="contraseña" 
                     placeholder="Contraseña"
-                    type="password"
+                    type={mostrarContraseña ? "text" : "password" }
                     value={contraseña}
                     onChange={(e) => setContraseña(e.target.value)} 
                     />
+                    <span className="estudiante-eye-icon" onClick={()=> setMostrarContraseña(!mostrarContraseña)}
+                        >
+                        {mostrarContraseña ?
+                        <FaEyeSlash /> :
+                        <FaEye />}
+                    </span>
                 </div>
 
                 <div className="editar-estudiante-campo-confirmar-password">
@@ -425,10 +462,17 @@ const EditEstudiante = () => {
                     <Cajatexto 
                     id="Confirmarcontraseña" 
                     placeholder="Confirmar contraseña" 
-                    type="password" 
+                    type={MostrarConfirmarContraseña ? "text" : "password" }
                     value={confirmarContraseña}
                     onChange={(e) => setConfirmarContraseña(e.target.value)}
                     />
+                    <span className="estudiante-eye-icon" onClick={()=>
+                        setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}
+                        >
+                        {MostrarConfirmarContraseña ?
+                        <FaEyeSlash /> :
+                        <FaEye />}
+                    </span>
                 </div>
             </div>
 

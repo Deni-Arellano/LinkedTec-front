@@ -21,7 +21,7 @@ export const usuarioContext = createContext(); //Contexto para poder pasar el us
 
 function App() {
   //const [usuarioLog, setUsuarioLog] = useState(null);  
-  const [usuarioLog, setUsuarioLog] = useState('11'); 
+  const [usuarioLog, setUsuarioLog] = useState('10'); 
 
   return (
     //Pasa a los componentes hijos el usuario

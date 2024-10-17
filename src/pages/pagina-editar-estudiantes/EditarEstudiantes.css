@@ -131,3 +131,13 @@
     justify-content: space-between;
     margin-top: 20px;
 }
+
+.estudiante-eye-icon {
+    position: static;
+    cursor: pointer;
+    color: #888;
+}
+
+.estudiante-eye-icon:hover {
+    color: #333;
+}
