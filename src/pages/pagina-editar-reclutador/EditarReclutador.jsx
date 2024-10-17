@@ -37,18 +37,21 @@ const EditarReclutador = () => {
 
     const [correoAnterior, setCorreoAnterior] = useState('');
 
-    const [mostrarContraseña, setMostrarContraseña] = useState(false); 
+    const [mostrarContraseña, setMostrarContraseña] = useState(false);
     const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);
 
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
         try {
             const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
-            console.log(response.data);
-    
+            //console.log(response.data);
+            if (response.data.role !== 'Reclutadores') {
+                navigate('/perfil');
+            }
+
             const usuario = response.data;
-            
-            
+
+
             setNombre(usuario.nombre);
             setApellidoPaterno(usuario.apellido_paterno);
             setApellidoMaterno(usuario.apellido_materno);
@@ -65,7 +68,7 @@ const EditarReclutador = () => {
 
             setCorreoAnterior(usuario.correo);
 
-    
+
         } catch (err) {
             console.error('Error al obtener el usuario:', err);
         }
@@ -76,250 +79,155 @@ const EditarReclutador = () => {
         getUsuario();
     }, []);
 
+    
+    const excepciones = (mensaje) => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: mensaje
+        });
+
+    }
+
 
 
     const editarUsuario = async (event) => {
         event.preventDefault();
 
         if (contraseña !== confirmarContraseña) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Las contraseñas no coinciden.",
-            });
-            return; 
-          }
-      
-          if (!nombre) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El nombre no debe quedar vacío.",
-            });
+            excepciones("Las contraseñas no coinciden.");
             return;
-          }
-      
-          if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ.\s]+$/.test(nombre)) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El nombre no debe contener números ni caracteres especiales.",
-            });
+        }
+
+        if (!nombre) {
+            excepciones("El nombre no debe quedar vacío.");
             return;
-          }
-      
-          if (nombre.length >= 50) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El nombre no debe exceder los 50 caracteres.",
-            });
+        }
+
+        if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ.\s]+$/.test(nombre)) {
+            excepciones("El nombre no debe contener números ni caracteres especiales.");
             return;
-          }
-      
-          if (!apellidoPaterno) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El apellido paterno no debe quedar vacío.",
-            });
+        }
+
+        if (nombre.length >= 50) {
+            excepciones("El nombre no debe exceder los 50 caracteres.");
             return;
-          }
-      
-          if (apellidoPaterno.length >= 50) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El apellido paterno no debe exceder los 50 caracteres.",
-            });
+        }
+
+        if (!apellidoPaterno) {
+            excepciones("El apellido paterno no debe quedar vacío.");
             return;
-          }
-      
-          if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El apellido paterno no debe contener números ni caracteres especiales.",
-            });
+        }
+
+        if (apellidoPaterno.length >= 50) {
+            excepciones("El apellido paterno no debe exceder los 50 caracteres.");
             return;
-          }
-      
-          if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El apellido materno no debe contener números ni caracteres especiales.",
-            });
+        }
+
+        if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
+            excepciones("El apellido paterno no debe contener números ni caracteres especiales.");
             return;
-          }
-      
-          if (apellidoMaterno.length >= 50) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El apellido materno no debe exceder los 50 caracteres.",
-            });
+        }
+
+        if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+            excepciones("El apellido materno no debe contener números ni caracteres especiales.");
             return;
-          }
-      
-          if (!fechaNacimiento) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "La fecha de nacimiento no debe quedar vacía.",
-            });
+        }
+
+        if (apellidoMaterno.length >= 50) {
+            excepciones("El apellido materno no debe exceder los 50 caracteres.");
             return;
-          }
-      
-          const obtenerAño = new Date(fechaNacimiento).getFullYear();
-          if (obtenerAño <= 1950) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El año de nacimiento debe ser mayor a 1950.",
-            });
+        }
+
+        if (!fechaNacimiento) {
+            excepciones("La fecha de nacimiento no debe quedar vacía.");
             return;
-          }
-      
-          const añoActual = new Date().getFullYear();
-          const edad = añoActual - obtenerAño;
-          if (edad <= 17) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Debes tener al menos 17 años.",
-            });
+        }
+
+        const obtenerAño = new Date(fechaNacimiento).getFullYear();
+        if (obtenerAño <= 1950) {
+            excepciones("El año de nacimiento debe ser mayor a 1950.");
             return;
-          }
-      
-          if (!sexoSeleccionado) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Se debe ingresar el sexo.",
-            });
+        }
+
+        const añoActual = new Date().getFullYear();
+        const edad = añoActual - obtenerAño;
+        if (edad <= 17) {
+            excepciones("Debes tener al menos 17 años.");
             return;
-          }
-      
-          if (!telefono) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El teléfono no debe quedar vacío.",
-            });
+        }
+
+        if (!sexoSeleccionado) {
+            excepciones("El sexo no debe quedar vacío.");
             return;
-          }
-      
-          if (telefono.length < 10 || telefono.length > 15) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El teléfono debe tener entre 10 y 15 dígitos.",
-            });
+        }
+
+        if (!telefono) {
+            excepciones("El teléfono no debe quedar vacío.");
             return;
-          }
-      
-          if (!/^\d+$/.test(telefono)) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El teléfono debe contener solo dígitos.",
-            });
+        }
+
+        if (telefono.length < 10 || telefono.length > 15) {
+            excepciones("El teléfono debe tener entre 10 y 15 dígitos.");
             return;
-          }
-      
-          if (!correo) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El correo no debe quedar vacío.",
-            });
+        }
+
+        if (!/^\d+$/.test(telefono)) {
+            excepciones("El teléfono debe contener solo dígitos.");
             return;
-          }
-      
-          if (correo.length > 40) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El correo no debe tener más de 40 caracteres.",
-            });
+        }
+
+        if (!correo) {
+            excepciones("El correo no debe quedar vacío.");
             return;
-          }
-      
-          const obtenerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!obtenerEmail.test(correo)) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El formato del correo no es válido.",
-            });
+        }
+
+        if (correo.length > 40) {
+            excepciones("El correo no debe tener más de 40 caracteres.");
             return;
-          }
-      
-          if (!contraseña) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "La contraseña no debe quedar vacía.",
-            });
+        }
+
+        const obtenerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!obtenerEmail.test(correo)) {
+            excepciones("El formato del correo no es válido.")
             return;
-          }
-      
-          if (contraseña.length < 8 || contraseña.length > 20) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "La contraseña debe tener entre 8 y 12 caracteres.",
-            });
+        }
+
+        if (!contraseña) {
+            excepciones("La contraseña no debe quedar vacía.");
             return;
-          }
-      
-          const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,20}$/;
-          if (!regexContraseña.test(contraseña)) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "La contraseña no cumple con los requisitos.",
-              footer: "La contraseña debe incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (@, $, !, %, *, ?, &).",
-            });
+        }
+
+        if (contraseña.length < 8 || contraseña.length > 20) {
+            excepciones("La contraseña debe tener entre 8 y 20 caracteres.");
             return;
-          }
-      
-          if (biografia.length >= 255) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "La biografía no debe exceder los 255 caracteres.",
-            });
+        }
+
+        const regexContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,20}$/;
+        if (!regexContraseña.test(contraseña)) {
+            excepciones("La contraseña no cumple con los requisitos.");
             return;
-          }
-      
-          if (!nombreEmpresa) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El nombre de la empresa no debe quedar vacío.",
-            });
+        }
+
+        if (biografia.length >= 255) {
+            excepciones("La biografía no debe exceder los 255 caracteres.");
             return;
-          }
-      
-          if (!sede) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "La sede no debe quedar vacía.",
-            });
+        }
+
+        if (!nombreEmpresa) {
+            excepciones("El nombre de la empresa no debe quedar vacío.");
             return;
-          }
-      
-          if (!giroSeleccionado) {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "El giro no debe quedar vacío.",
-            });
+        }
+
+        if (!sede) {
+            excepciones("La sede no debe quedar vacía.");
             return;
-          }
+        }
+
+        if (!giroSeleccionado) {
+            excepciones("El giro no debe quedar vacío.");
+            return;
+        }
 
         const datosEnviar = {
             "usuario": {
@@ -347,62 +255,15 @@ const EditarReclutador = () => {
             Swal.fire('Guardado', 'El usuario ha sido actualizado con éxito', 'success');
             handleBack();
         } catch (error) {
-            //ACTUALIZAR CON LAS EXCEPCIONES DE BACKEND 
-            //EXCEPCION PENDIENTE:CORREO DE OTRO USUARIO
             if (error.response) {
-                if (error.response.data.message === 'El correo ya está en uso') {
-                  Swal.fire({
+                Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "El correo ya está en uso.",
-                    footer: "Ingresa otro diferente."
-                  });
-                }
-        
-                if (error.response.status === 400) {
-                  Swal.fire({
-                    icon: "error",
-                    title: "Bad request",
-                    text: "La solicitud es inválida o no puede ser procesada.",
-                  });
-                }
-        
-                if (error.response.status === 404) {
-                  Swal.fire({
-                    icon: "error",
-                    title: "Not found",
-                    text: "El recurso solicitado no existe.",
-                  });
-                }
-        
-                if (error.response.status === 500) {
-                  Swal.fire({
-                    icon: "error",
-                    title: "Error del servidor",
-                    text: "Error general del servidor.",
-                  });
-                }
-        
-                if (error.response.status === 422) {
-                  Swal.fire({
-                    icon: "error",
-                    title: "Error semántico",
-                    text: "La solicitud contiene errores semánticos.",
-                  });
-                }
-        
-                console.log("Error de respuesta del servidor:", error.response.data);
-                console.log("Código de estado:", error.response.status);
-              } else {
-                Swal.fire({
-                  icon: "error",
-                  title: "Error en la solicitud",
-                  text: error.message,
+                    text: error.response.data.message,
                 });
-              }
-            };
-        
-    }
+        };
+
+    }}
 
     return (
         <>
@@ -488,9 +349,9 @@ const EditarReclutador = () => {
                                 />
                                 <span
                                     className="reclutador-eye-icon"
-                                    onClick={() => setMostrarContraseña(!mostrarContraseña)}  
+                                    onClick={() => setMostrarContraseña(!mostrarContraseña)}
                                 >
-                                    {mostrarContraseña ? <FaEyeSlash /> : <FaEye />}  
+                                    {mostrarContraseña ? <FaEyeSlash /> : <FaEye />}
                                 </span>
                             </div>
                             <div className='editar-reclutador-confirmar-contraseña'>
@@ -504,7 +365,7 @@ const EditarReclutador = () => {
                                 />
                                 <span
                                     className="reclutador-eye-icon"
-                                    onClick={() => setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}  
+                                    onClick={() => setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}
                                 >
                                     {MostrarConfirmarContraseña ? <FaEyeSlash /> : <FaEye />}
                                 </span>
@@ -533,7 +394,7 @@ const EditarReclutador = () => {
                         <div className='editar-reclutador-empresa-sede-giro editar-reclutador-general'>
                             <div className='editar-reclutador-empresa-sede'>
 
-                                <Label htmlFor="nombreEmpresa" texto="Nombre de la empresa:"/>
+                                <Label htmlFor="nombreEmpresa" texto="Nombre de la empresa:" />
                                 <Textbox
                                     id="NombredelaEmpresa"
                                     placeholder="Nombre de la empresa"
@@ -541,7 +402,7 @@ const EditarReclutador = () => {
                                     onChange={(e) => setNombreEmpresa(e.target.value)}
                                 />
 
-                                <Label htmlFor="sede" texto="Sede:"/>
+                                <Label htmlFor="sede" texto="Sede:" />
                                 <Textbox
                                     id="Sede"
                                     placeholder="Sede"
@@ -550,7 +411,7 @@ const EditarReclutador = () => {
                                 />
                             </div>
                             <div className='editar-reclutador-giro'>
-                                <Label className="reclutador-radio-buttons-label" texto="Giro:"/>
+                                <Label className="reclutador-radio-buttons-label" texto="Giro:" />
                                 <RadioButtons
                                     name="Giro"
                                     options={[
@@ -567,7 +428,7 @@ const EditarReclutador = () => {
                         </div>
                         <div className="botones-editar-reclutador">
                             <div className="boton-editar-reclutador">
-                                <Button texto="Guardar" onClick={editarUsuario}/>
+                                <Button texto="Guardar" onClick={editarUsuario} />
                                 <Button texto="Cancelar" onClick={handleBack} />
                             </div>
                         </div>
