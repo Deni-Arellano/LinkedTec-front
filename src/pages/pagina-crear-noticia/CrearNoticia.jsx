@@ -1,3 +1,6 @@
+/**
+ * Importaciones de React y otros componentes y dependencias necesarias para el formulario de creación de noticias.
+ */
 import React, { useState, useContext } from 'react';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
 import Etiquetas from '../../components/componente-label/Etiquetas'; 
@@ -9,7 +12,9 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { usuarioContext } from '../../App';
-
+/**
+ * Se manejan los estados de cada componente de entrada
+ */
 const CrearNoticias = () => {
 
     const [titulo_noticia, setTitulonoticia] = useState('');
@@ -18,13 +23,21 @@ const CrearNoticias = () => {
     const [enlace, setEnlace] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); 
     const { usuarioLog } = useContext(usuarioContext); 
-    
+/**
+ * Para navegar entre las pagionas
+ */
     const navigate = useNavigate();
-
+/**
+ * navegar a la pagina principal de noticias
+ */
     const handleBack = () => {
         navigate('/noticias');
     };
-
+/**
+ * Comprobacion de datos en formato correcto y encapsulamiento de datos para enviar la solicitud
+ * 
+ */
+    
     const add = () => {
         if (!titulo_noticia || !descripcion || !imagenURL || !enlace || !categoriaSeleccionada) {
             Swal.fire('Error', 'Por favor, completa todos los campos.', 'error');
@@ -72,7 +85,9 @@ const CrearNoticias = () => {
         }
         
         
-        
+        /**
+        * Se encapsulan los datos a enviar
+        */
         const datosEnviar = {
             "titulo_noticia": titulo_noticia,
             "descripcion": descripcion,
@@ -82,7 +97,11 @@ const CrearNoticias = () => {
             "id_usuario": usuarioLog
         };
 
+
         console.log('Datos enviados:', datosEnviar);
+        /**
+        * Se realiza la solicitud al servidor para enviar los datos si no existe ningun error
+        */
         axios.post('http://localhost:3000/noticias/', datosEnviar)
         .then((response) => {
             console.log(response);
@@ -94,19 +113,6 @@ const CrearNoticias = () => {
                 console.error('Error en la solicitud:', error.response.data);
                 Swal.fire('Error', `Error en la solicitud: ${error.response.data.message || 'Error al crear la noticia'}`, 'error');
             }
-            if (error.response.message==="Network Error")
-            {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Network Error.",
-                    footer:'No ay conexion con el servidor'
-                  });
-                  return;
-                }
-            if (error.response.status === 400) {
-                    Swal.fire('Error', 'Solicitud inválida o no puede ser procesada.', 'error');
-            }
             else {
                 console.error('Error:', error.message);
                 Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
@@ -114,9 +120,18 @@ const CrearNoticias = () => {
 
         });
     };
+    /**
+    *  <MenuNavegacion />manda a llamar funcion de menu navegacion
+    */
+
+    
+    /**
+    * Componentes de formulario noticia como caja de texto,botones,radio buton
+    */
 
     return (
         <>
+            
             <MenuNavegacion />
             <div className="formulario-noticias-container">
                 <div className="formulario-noticias-form">
