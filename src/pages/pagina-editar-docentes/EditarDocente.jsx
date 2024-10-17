@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { usuarioContext } from '../../App';
+import React, {useState, useEffect, useContext} from 'react';
 import Cajatexto from '../../components/componente-caja-de-texto/CajaDeTexto';
 import Label from '../../components/componente-label/Etiquetas';
 import Radio from '../../components/componente-boton-de-radio/radio-boton';
@@ -8,12 +7,13 @@ import Button from '../../components/boton/Boton';
 import Textarea from '../../componetes/Text-area';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import { useNavigate } from 'react-router-dom';
+import {usuarioContext} from '../../App';
 import Swal from 'sweetalert2';
 import Axios from 'axios'; 
-import './EditarDocente.css'
+import './EditarDocente.css';
 
 const EditDocente = () => {
-    const { usuarioData, setUsuarioData } = useContext(usuarioContext);
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
 
     const [nombre, setNombre] = useState('');
     const [apellidoPaterno, setApellidoPaterno] = useState('');
@@ -29,33 +29,42 @@ const EditDocente = () => {
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [nivelSeleccionado, setNivelSeleccionado] = useState('');
 
-    //Axios.get('http://localhost:3000/usuarios/docentes/10')
-
     useEffect(() => {
-        if (usuarioData) {
-            setNombre(usuarioData.nombre);
-            setApellidoPaterno(usuarioData.apellidoPaterno);
-            setApellidoMaterno(usuarioData.apellidoMaterno);
-            setFechaNacimiento(usuarioData.fechaNacimiento);
-            setTelefono(usuarioData.telefono);
-            setCorreo(usuarioData.correo);
-            setBiografia(usuarioData.biografia);
-            setNoEmpleado(usuarioData.noEmpleado);
-            setAcademiaSeleccionada(usuarioData.academia);
-            setSexoSeleccionado(usuarioData.sexo);
-            setNivelSeleccionado(usuarioData.nivelSeleccionado);
-        }
-    }, [usuarioData]);
+        const obtenerDatos = async () => {
+            try {
+                const response = await Axios.get(`http://localhost:3000/usuarios/docentes/${usuarioLog}`);
+                const data = response.data;
 
-    console.log(usuarioData)
+                console.log(data)
+                
+                setNombre(data.nombre);
+                setApellidoPaterno(data.apellido_paterno);
+                setApellidoMaterno(data.apellido_materno);
+                setFechaNacimiento(data.fecha_nacimiento);
+                setTelefono(data.telefono);
+                setCorreo(data.correo);
+                setContraseña(data.contraseña);
+                setBiografia(data.biografia);
+                setNoEmpleado(data.numero_empleado);
+                setAcademiaSeleccionada(data.academia);
+                setSexoSeleccionado(data.sexo);
+                setNivelSeleccionado(data.ultimo_nivel_estudios);
+            } catch (error) {
+                console.error('Error al obtener los datos del docente', error);
+                Swal.fire('Error', 'No se pudieron cargar los datos del docente.', 'error');
+            }
+        };
+
+        obtenerDatos();
+    }, []);
 
     const navigate = useNavigate(); 
     const handleBack = () => {
         navigate('/perfil'); 
     };
 
-    const add = async() => {
-
+    const modificar = async() => {
+        console.log('modificado')
     }
 
     return (
@@ -222,7 +231,7 @@ const EditDocente = () => {
 
             <div className="editar-docente-botones">  
                 <Button texto="Atrás" onClick={handleBack} />
-                <Button texto="Guardar cambios" />
+                <Button texto="Guardar cambios" onClick={modificar} />
             </div>
 
         </div>

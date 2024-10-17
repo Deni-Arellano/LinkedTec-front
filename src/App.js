@@ -1,7 +1,5 @@
 import React, {useState, createContext} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-
 //Compontentes de React
 import CodigoVerificacion from './pages/pagina-codigo-verificacion/CodigoVerificacion';
 import EditarPublicacion from './pages/pagina-editar-publicacion/EditarPublicacion'; 
@@ -23,28 +21,12 @@ export const usuarioContext = createContext(); //Contexto para poder pasar el us
 
 function App() {
   //const [usuarioLog, setUsuarioLog] = useState(null);  
-  const [usuarioLog, setUsuarioLog] = useState('10'); 
-  const [usuarioData, setUsuarioData] = useState({
-    id: 10,
-    nombre: 'Ariel',
-    apellidoPaterno: 'saafdsgh',
-    apellidoMaterno: '',
-    fechaNacimiento: '2001-09-17',
-    telefono: '12356789743',
-    correo: 'ahsdk@gmail.com',
-    contraseña: '',
-    confirmarContraseña: '',
-    biografia: 'asfdghjhjkgdfsd',
-    noEmpleado: 'RH654',
-    academia: 'ISC',
-    sexo: 'Masculino',
-    nivelSeleccionado: 'Doctorado',
-  });
+  const [usuarioLog, setUsuarioLog] = useState('11'); 
 
   return (
     //Pasa a los componentes hijos el usuario
-    //<usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
-    <usuarioContext.Provider value={{usuarioLog, setUsuarioLog, usuarioData, setUsuarioData}}>
+    <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
+    
       <Router>
         <Routes>
           <Route path="/" element={<Login />} /> 

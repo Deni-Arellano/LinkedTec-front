@@ -48,19 +48,33 @@ const VisualizacionPerfil = () => {
                 fecha: datosUsuario.fecha_nacimiento,
                 sexo: datosUsuario.sexo,
                 empresa: datosUsuario.nombre_empresa,
-                giro: datosUsuario.giro
+                giro: datosUsuario.giro,
+                rol:'Reclutador'
             });
             //console.log("Datos del perfil");
             //console.log(datosPerfil);
 
-        } else if (datosUsuario.role === 'Estudiantes' || datosUsuario.role === 'Egresados') {
+        } else if (datosUsuario.role === 'Estudiantes') {
             setDatosPerfil({
                 carrera: datosUsuario.carrera,
                 biografia: datosUsuario.biografia,
                 correo: datosUsuario.correo,
                 telefono: datosUsuario.telefono,
                 fecha: datosUsuario.fecha_nacimiento,
-                sexo: datosUsuario.sexo
+                sexo: datosUsuario.sexo,
+                rol:'Estudiante'
+            });
+            console.log("Datos del perfil");
+            console.log(datosPerfil);
+        }else if (datosUsuario.role === 'Egresados') {
+            setDatosPerfil({
+                carrera: datosUsuario.carrera,
+                biografia: datosUsuario.biografia,
+                correo: datosUsuario.correo,
+                telefono: datosUsuario.telefono,
+                fecha: datosUsuario.fecha_nacimiento,
+                sexo: datosUsuario.sexo,
+                rol:'Egresado'
             });
             console.log("Datos del perfil");
             console.log(datosPerfil);
@@ -71,7 +85,8 @@ const VisualizacionPerfil = () => {
                 correo: datosUsuario.correo,
                 telefono: datosUsuario.telefono,
                 fecha: datosUsuario.fecha_nacimiento,
-                sexo: datosUsuario.sexo
+                sexo: datosUsuario.sexo,
+                rol:'Docente'
             });
             console.log("Datos del perfil");
             console.log(datosPerfil);

@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-
+import React, {useState, useEffect, useContext} from 'react';
 import Cajatexto from '../../components/componente-caja-de-texto/CajaDeTexto';
 import Label from '../../components/componente-label/Etiquetas';
 import Radio from '../../components/componente-boton-de-radio/radio-boton';
@@ -7,9 +6,15 @@ import Fecha from '../../components/fecha/Fecha';
 import Button from '../../components/boton/Boton';
 import Textarea from '../../componetes/Text-area';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import { useNavigate } from 'react-router-dom';
+import {usuarioContext} from '../../App';
+import Swal from 'sweetalert2';
+import Axios from 'axios'; 
 import './EditarEstudiantes.css';
 
 const EditEstudiante = () => {
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+
     const [nombre, setNombre] = useState('');
     const [apellidoPaterno, setApellidoPaterno] = useState('');
     const [apellidoMaterno, setApellidoMaterno] = useState('');
@@ -23,6 +28,44 @@ const EditEstudiante = () => {
     const [biografia, setBiografia] = useState('');
     const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
     const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            try {
+                const response = await Axios.get(`http://localhost:3000/usuarios/estudiantes/${usuarioLog}`);
+                const data = response.data;
+
+                console.log(data)
+                
+                setNombre(data.nombre);
+                setApellidoPaterno(data.apellido_paterno);
+                setApellidoMaterno(data.apellido_materno);
+                setFechaNacimiento(data.fecha_nacimiento);
+                setTelefono(data.telefono);
+                setCorreo(data.correo);
+                setContraseña(data.contraseña);
+                setBiografia(data.biografia);
+                setNoControl(data.no_control);
+                setCarreraSeleccionada(data.carrera);
+                setSexoSeleccionado(data.sexo);
+                setSemestreSeleccionado(data.semestre);
+            } catch (error) {
+                console.error('Error al obtener los datos del estudiante', error);
+                Swal.fire('Error', 'No se pudieron cargar los datos del estudiante.', 'error');
+            }
+        };
+
+        obtenerDatos();
+    }, []);
+
+    const navigate = useNavigate(); 
+    const handleBack = () => {
+        navigate('/perfil'); 
+    };
+
+    const modificar = async() => {
+        console.log('modificado')
+    }
 
     return (
         <>
