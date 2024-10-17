@@ -100,3 +100,12 @@
     text-align: center;
     word-wrap: break-word;
 }
+
+.egresado-eye-icon {
+    position: absolute;
+    cursor: pointer;
+    color: #888;
+  }
+  .egresado-eye-icon:hover {
+    color: #333;
+  }

@@ -11,7 +11,7 @@ import Label from '../../components/componente-label/Etiquetas.jsx';
 import Swal from 'sweetalert2';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './EditarReclutador.css'
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const EditarReclutador = () => {
     const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
@@ -36,7 +36,9 @@ const EditarReclutador = () => {
     const [giroSeleccionado, setGiroSeleccionado] = useState('');
 
     const [correoAnterior, setCorreoAnterior] = useState('');
-    const [telefonoAnterior, setTelefonoAnterior] = useState('');
+
+    const [mostrarContraseña, setMostrarContraseña] = useState(false); 
+    const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);
 
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
@@ -62,7 +64,6 @@ const EditarReclutador = () => {
             setGiroSeleccionado(usuario.giro);
 
             setCorreoAnterior(usuario.correo);
-            setTelefonoAnterior(usuario.telefono);
 
     
         } catch (err) {
@@ -481,20 +482,32 @@ const EditarReclutador = () => {
                                 <Textbox
                                     id="contraseña"
                                     placeholder="Contraseña"
-                                    type="password"
+                                    type={mostrarContraseña ? "text" : "password"}
                                     value={contraseña}
                                     onChange={(e) => setContraseña(e.target.value)}
                                 />
+                                <span
+                                    className="reclutador-eye-icon"
+                                    onClick={() => setMostrarContraseña(!mostrarContraseña)}  
+                                >
+                                    {mostrarContraseña ? <FaEyeSlash /> : <FaEye />}  
+                                </span>
                             </div>
                             <div className='editar-reclutador-confirmar-contraseña'>
                                 <Label htmlFor="Confirmarcontraseña" texto="Confirmar contraseña:" />
                                 <Textbox
                                     id="Confirmarcontraseña"
                                     placeholder="Confirmar contraseña"
-                                    type="password"
+                                    type={MostrarConfirmarContraseña ? "text" : "password"}
                                     value={confirmarContraseña}
                                     onChange={(e) => setConfirmarContraseña(e.target.value)}
                                 />
+                                <span
+                                    className="reclutador-eye-icon"
+                                    onClick={() => setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}  
+                                >
+                                    {MostrarConfirmarContraseña ? <FaEyeSlash /> : <FaEye />}
+                                </span>
                             </div>
                         </div>
                         <div className='editar-reclutador-telefono editar-reclutador-general'>

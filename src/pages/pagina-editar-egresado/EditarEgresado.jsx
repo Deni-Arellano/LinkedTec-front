@@ -11,6 +11,7 @@ import Label from '../../components/componente-label/Etiquetas.jsx';
 import Swal from 'sweetalert2';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './EditarEgresado.css'
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const EditarEgresado = () => {
@@ -36,6 +37,11 @@ const EditarEgresado = () => {
     const [AñoGraduacion, setAñoGraduacion] = useState('');
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
+
+    const [correoAnterior, setCorreoAnterior] = useState('');
+
+    const [mostrarContraseña, setMostrarContraseña] = useState(false); 
+    const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);
 
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
@@ -494,20 +500,32 @@ const EditarEgresado = () => {
                                 <Textbox
                                     id="contraseña"
                                     placeholder="Contraseña"
-                                    type="password"
+                                    type={mostrarContraseña ? "text" : "password"}
                                     value={contraseña}
                                     onChange={(e) => setContraseña(e.target.value)}
                                 />
+                                <span
+                                    className="reclutador-eye-icon"
+                                    onClick={() => setMostrarContraseña(!mostrarContraseña)}  
+                                >
+                                    {mostrarContraseña ? <FaEyeSlash /> : <FaEye />}  
+                                </span>
                             </div>
                             <div className='editar-egresado-confirmar-contraseña'>
                                 <Label htmlFor="Confirmarcontraseña" texto="Confirmar contraseña:" />
                                 <Textbox
                                     id="Confirmarcontraseña"
                                     placeholder="Confirmar contraseña"
-                                    type="password"
+                                    type={MostrarConfirmarContraseña ? "text" : "password"}
                                     value={confirmarContraseña}
                                     onChange={(e) => setConfirmarContraseña(e.target.value)}
                                 />
+                                <span
+                                    className="reclutador-eye-icon"
+                                    onClick={() => setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}  
+                                >
+                                    {MostrarConfirmarContraseña ? <FaEyeSlash /> : <FaEye />}
+                                </span>
                             </div>
                         </div>
                         <div className='editar-egresado-telefono editar-egresado-general'>

@@ -110,3 +110,12 @@
     text-align: center;
     word-wrap: break-word;
 }
+
+.reclutador-eye-icon {
+    position: absolute;
+    cursor: pointer;
+    color: #888;
+  }
+  .reclutador-eye-icon:hover {
+    color: #333;
+  }
