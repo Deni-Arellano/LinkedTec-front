@@ -16,10 +16,12 @@ import './EditarReclutador.css'
 const EditarReclutador = () => {
     const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
     const navigate = useNavigate();
+
     const handleBack = () => {
         console.log("Navegando a /Perfil");
         navigate('/perfil');
     };
+    const [datosUsuario, setDatosUsuario] = useState('');
 
     const [nombre, setNombre] = useState('');
     const [apellidoPaterno, setApellidoPaterno] = useState('');
@@ -35,14 +37,87 @@ const EditarReclutador = () => {
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [giroSeleccionado, setGiroSeleccionado] = useState('');
 
+    //Obtener los datos del usuario logeado
+    const getUsuario = async () => {
+        try {
+            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            console.log(response.data);
+    
+            const usuario = response.data;
+            setDatosUsuario(usuario);
+            
+            setNombre(usuario.nombre);
+            setApellidoPaterno(usuario.apellido_paterno);
+            setApellidoMaterno(usuario.apellido_materno);
+            setFechaNacimiento(usuario.fecha_nacimiento);
+            setTelefono(usuario.telefono);
+            setCorreo(usuario.correo);
+            setContraseña(usuario.contraseña);
+            setConfirmarContraseña(usuario.contraseña);
+            setBiografia(usuario.biografia);
+            setNombreEmpresa(usuario.nombre_empresa);
+            setSede(usuario.sede);
+            setSexoSeleccionado(usuario.sexo);
+            setGiroSeleccionado(usuario.giro);
+
+    
+        } catch (err) {
+            console.error('Error al obtener el usuario:', err);
+        }
+    };
+
+    //Se ejacuta al cagar la pagina y obtiene los datos del usuario logeado
+    useEffect(() => {
+        getUsuario();
+    }, []);
+
+
+
+    const editarUsuario = async (event) => {
+        event.preventDefault();
+
+        const datosEnviar = {
+            "usuario": {
+                "nombre": nombre,
+                "apellido_paterno": apellidoPaterno,
+                "apellido_materno": apellidoMaterno,
+                "correo": correo,
+                "contrasena": contraseña,
+                "fecha_nacimiento": fechaNacimiento,
+                "telefono": telefono,
+                "sexo": sexoSeleccionado,
+                "biografia": biografia,
+                "role": "Reclutadores",
+            },
+            "reclutador": {
+                "nombre_empresa": nombreEmpresa,
+                "sector_comercial": giroSeleccionado,
+                "sede": sede,
+                "giro": giroSeleccionado
+            }
+        };
+
+        try {
+            await Axios.patch(`http://localhost:3000/usuarios/reclutadores/${usuarioLog}`, datosEnviar);
+            Swal.fire('Guardado', 'El usuario ha sido actualizado', 'success');
+            handleBack();
+        } catch (error) {
+            if (error.response) {
+                Swal.fire('Error', `Error de respuesta del servidor: ${error.response.data}`, 'error');
+            } else {
+                Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
+            }
+        }
+    }
+
     return (
         <>
             <MenuNavegacion />
             <div className='editar-reclutador-contenedor-pagina'>
                 <div className="editar-reclutador-contenedor">
-                    
-                    <h1  className='editar-titulo-reclutador'>Editar reclutador</h1>
-                    
+
+                    <h1 className='editar-titulo-reclutador'>Editar reclutador</h1>
+
                     <div className='formulario-editar-reclutador'>
                         <div className='editar-reclutador-general'>
                             <Label htmlFor="Nombre" texto="Nombre(s):" />
@@ -75,15 +150,15 @@ const EditarReclutador = () => {
                         </div>
                         <div className='editar-reclutador-fecha-sexo editar-reclutador-general'>
                             <div className='editar-reclutador-fecha'>
-                            <Fecha
-                                label="Fecha de nacimiento"
-                                value={fechaNacimiento}
-                                onChange={(e) => setFechaNacimiento(e.target.value)}
-                            />
+                                <Fecha
+                                    label="Fecha de nacimiento"
+                                    value={fechaNacimiento}
+                                    onChange={(e) => setFechaNacimiento(e.target.value)}
+                                />
                             </div>
 
                             <div className='editar-reclutador-sexo'>
-                            
+
                                 <Label htmlFor="Sex" texto="Sexo:" />
                                 <RadioButtons
                                     name="Sexo"
@@ -186,7 +261,7 @@ const EditarReclutador = () => {
                         </div>
                         <div className="botones-editar-reclutador">
                             <div className="boton-editar-reclutador">
-                                <Button texto="Guardar" />
+                                <Button texto="Guardar" onClick={editarUsuario}/>
                                 <Button texto="Cancelar" onClick={handleBack} />
                             </div>
                         </div>

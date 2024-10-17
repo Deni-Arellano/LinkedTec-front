@@ -24,6 +24,21 @@ const EditarEgresado = () => {
 
     const [datosUsuario, setDatosUsuario] = useState('');
 
+
+    const [nombre, setNombre] = useState('');
+    const [apellidoPaterno, setApellidoPaterno] = useState('');
+    const [apellidoMaterno, setApellidoMaterno] = useState('');
+    const [fechaNacimiento, setFechaNacimiento] = useState('');
+    const [telefono, setTelefono] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [contraseña, setContraseña] = useState('');
+    const [confirmarContraseña, setConfirmarContraseña] = useState('');
+    const [biografia, setBiografia] = useState('');
+    const [Puesto, setPuesto] = useState('');
+    const [AñoGraduacion, setAñoGraduacion] = useState('');
+    const [sexoSeleccionado, setSexoSeleccionado] = useState('');
+    const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
+
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
         try {
@@ -57,23 +72,9 @@ const EditarEgresado = () => {
         getUsuario();
     }, []);
 
-    const [nombre, setNombre] = useState('');
-    const [apellidoPaterno, setApellidoPaterno] = useState('');
-    const [apellidoMaterno, setApellidoMaterno] = useState('');
-    const [fechaNacimiento, setFechaNacimiento] = useState('');
-    const [telefono, setTelefono] = useState('');
-    const [correo, setCorreo] = useState('');
-    const [contraseña, setContraseña] = useState('');
-    const [confirmarContraseña, setConfirmarContraseña] = useState('');
-    const [biografia, setBiografia] = useState('');
-    const [Puesto, setPuesto] = useState('');
-    const [AñoGraduacion, setAñoGraduacion] = useState('');
-    const [sexoSeleccionado, setSexoSeleccionado] = useState('');
-    const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
-
     
 
-    const editarPublicacion = async (event) => {
+    const editarUsuario = async (event) => {
         event.preventDefault();
 
         const datosEnviar = {
@@ -262,7 +263,7 @@ const EditarEgresado = () => {
                         </div>
                         <div className="botones-editar-egresado">
                             <div className="boton-editar-egresado">
-                                <Button texto="Guardar" onClick={editarPublicacion} />
+                                <Button texto="Guardar" onClick={editarUsuario} />
                                 <Button texto="Cancelar" onClick={handleBack} />
                             </div>
                         </div>
