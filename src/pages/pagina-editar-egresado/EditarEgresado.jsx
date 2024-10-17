@@ -22,8 +22,6 @@ const EditarEgresado = () => {
         navigate('/perfil');
     };
 
-    const [datosUsuario, setDatosUsuario] = useState('');
-
 
     const [nombre, setNombre] = useState('');
     const [apellidoPaterno, setApellidoPaterno] = useState('');
@@ -46,7 +44,7 @@ const EditarEgresado = () => {
             console.log(response.data);
     
             const usuario = response.data;
-            setDatosUsuario(usuario);
+            
             
             setNombre(usuario.nombre);
             setApellidoPaterno(usuario.apellido_paterno);
@@ -72,10 +70,280 @@ const EditarEgresado = () => {
         getUsuario();
     }, []);
 
+    const validatePassword = () => {
+    
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(contraseña)) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "La contraseña debe contener al menos una letra mayúscula, una minúscula, un número y un carácter especial.",
+          });
+          return;
+        }
+      };
+
     
 
     const editarUsuario = async (event) => {
         event.preventDefault();
+
+        if (contraseña !== confirmarContraseña) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Las contraseñas no coinciden.",
+            });
+            return;
+          }
+          validatePassword();
+      
+          if (!nombre) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El nombre no debe quedar vacío.",
+            });
+            return;
+          }
+      
+          if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ.\s]+$/.test(nombre)) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El nombre no debe contener números ni caracteres especiales.",
+            });
+            return;
+          }
+      
+          if (nombre.length >= 50) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El nombre no debe exceder los 50 caracteres.",
+            });
+            return;
+          }
+      
+          if (!apellidoPaterno) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El apellido paterno no debe quedar vacío.",
+            });
+            return;
+          }
+      
+          if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El apellido paterno no debe contener números ni caracteres especiales.",
+            });
+            return;
+          }
+      
+          if (apellidoPaterno.length >= 50) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El apellido paterno no debe exceder los 50 caracteres.",
+            });
+            return;
+          }
+      
+          if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El apellido materno no debe contener números ni caracteres especiales.",
+            });
+            return;
+          }
+      
+          if (apellidoMaterno.length >= 50) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El apellido materno no debe exceder los 50 caracteres.",
+            });
+            return;
+          }
+      
+          if (!fechaNacimiento) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "La fecha de nacimiento no debe quedar vacía.",
+            });
+            return;
+          }
+      
+          const obtenerAño = new Date(fechaNacimiento).getFullYear();
+          if (obtenerAño <= 1950) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El año de nacimiento debe ser mayor a 1950.",
+            });
+            return;
+          }
+      
+          const añoActual = new Date().getFullYear();
+          const edad = añoActual - obtenerAño;
+          if (edad <= 17) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Debes tener al menos 17 años.",
+            });
+            return;
+          }
+      
+          if (!sexoSeleccionado) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Se debe ingresar el sexo.",
+            });
+            return;
+          }
+      
+          if (!telefono) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El teléfono no debe quedar vacío.",
+            });
+            return;
+          }
+      
+          if (telefono.length < 10 || telefono.length > 15) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El teléfono debe tener entre 10 y 15 dígitos.",
+            });
+            return;
+          }
+      
+          if (!/^\d+$/.test(telefono)) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El teléfono debe contener solo dígitos.",
+            });
+            return;
+          }
+      
+          if (!correo) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El correo no debe quedar vacío.",
+            });
+            return;
+          }
+      
+          if (correo.length > 40) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El correo no debe tener más de 40 caracteres.",
+            });
+            return;
+          }
+      
+          const obtenerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!obtenerEmail.test(correo)) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El formato del correo no es válido.",
+            });
+            return;
+          }
+      
+          if (!contraseña) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "La contraseña no debe quedar vacía.",
+            });
+            return;
+          }
+      
+          if (contraseña.length < 8 || contraseña.length > 20) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "La contraseña debe tener entre 8 y 12 caracteres.",
+            });
+            return;
+          }
+      
+      
+          if (!carreraSeleccionada) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "La carrera no debe quedar vacía.",
+            });
+            return;
+          }
+      
+          if (!AñoGraduacion) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El año de graduación no debe quedar vacío.",
+            });
+            return;
+          }
+      
+          if (AñoGraduacion.length > 4) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El año de graduación no debe tener más de 4 caracteres.",
+            });
+            return;
+          }
+      
+          if (AñoGraduacion <= 0) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El año de graduación debe ser mayor a 0.",
+            });
+            return;
+          }
+      
+          if (!/^\d{4}$/.test(AñoGraduacion)) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El año de graduación debe ser un número entero de 4 dígitos.",
+            });
+            return;
+          }
+      
+          if (!Puesto) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El puesto no debe quedar vacío.",
+            });
+            return;
+          }
+      
+          if (Puesto.length > 50) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El puesto no debe tener más de 50 caracteres.",
+            });
+            return;}
 
         const datosEnviar = {
             "usuario": {
@@ -99,16 +367,53 @@ const EditarEgresado = () => {
 
         try {
             await Axios.patch(`http://localhost:3000/usuarios/egresados/${usuarioLog}`, datosEnviar);
-            Swal.fire('Guardado', 'El usuario ha sido actualizado', 'success');
+            Swal.fire('Guardado', 'El usuario ha sido actualizado con éxito', 'success');
             handleBack();
-        } catch (error) {
+          } catch (error) {
+            //ACTUALIZAR CON LAS EXCEPCIONES DE BACKEND 
+            //EXCEPCION PENDIENTE:CORREO DE OTRO USUARIO
             if (error.response) {
-                Swal.fire('Error', `Error de respuesta del servidor: ${error.response.data}`, 'error');
+              if (error.response.data.message === 'El correo ya está en uso') {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "El correo ya está en uso.",
+                  footer: "Ingresa otro diferente."
+                });
+              }
+              if (error.response.status === 404) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Not found",
+                  text: "El recurso solicitado no existe.",
+                });
+              }
+              if (error.response.status === 500) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Error del servidor",
+                  text: "Error general del servidor.",
+                });
+              }
+              if (error.response.status === 422) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Error semántico",
+                  text: "La solicitud contiene errores semánticos.",
+                });
+              }
+          
+              console.log("Error de respuesta del servidor:", error.response.data);
+              console.log("Código de estado:", error.response.status);
             } else {
-                Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
+              Swal.fire({
+                icon: "error",
+                title: "Error en la solicitud",
+                text: error.message,
+              });
             }
-        }
-    }
+        }}
+    
            
 
     return (

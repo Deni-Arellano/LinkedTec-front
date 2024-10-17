@@ -311,15 +311,6 @@ const RegistroEgresado = () => {
       return;
     }
 
-    if (!biografia) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "La biografia no debe quedar vacia.",
-      });
-      return;
-    }
-
     if (Puesto.length > 50) {
       Swal.fire({
         icon: "error",
