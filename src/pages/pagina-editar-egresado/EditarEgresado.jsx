@@ -570,7 +570,7 @@ const EditarEgresado = () => {
                                 <Label htmlFor="AnoGraduacion" texto='Año de graduación:' />
                                 <Textbox
                                     id="AnoGraduacion"
-                                    placeholder="Año de Graduación"
+                                    placeholder="Año de graduación"
                                     value={AñoGraduacion}
                                     onChange={(e) => setAñoGraduacion(e.target.value)}
                                 />
