@@ -24,7 +24,7 @@ const VisualizacionPerfil = () => {
         try {
             const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
             //console.log("Servidor dice")
-            console.log(response.data);
+            //console.log(response.data);
             setDatosUsuario(response.data);
             
         } catch (err) {
@@ -64,8 +64,8 @@ const VisualizacionPerfil = () => {
                 sexo: datosUsuario.sexo,
                 rol:'Estudiante'
             });
-            console.log("Datos del perfil");
-            console.log(datosPerfil);
+            //console.log("Datos del perfil");
+            //console.log(datosPerfil);
         }else if (datosUsuario.role === 'Egresados') {
             setDatosPerfil({
                 carrera: datosUsuario.carrera,
@@ -76,8 +76,8 @@ const VisualizacionPerfil = () => {
                 sexo: datosUsuario.sexo,
                 rol:'Egresado'
             });
-            console.log("Datos del perfil");
-            console.log(datosPerfil);
+            //console.log("Datos del perfil");
+            //console.log(datosPerfil);
         } else {
             setDatosPerfil({
                 carrera: datosUsuario.academia,
@@ -88,8 +88,8 @@ const VisualizacionPerfil = () => {
                 sexo: datosUsuario.sexo,
                 rol:'Docente'
             });
-            console.log("Datos del perfil");
-            console.log(datosPerfil);
+            //console.log("Datos del perfil");
+            //console.log(datosPerfil);
         }
         if (datosUsuario.role === 'Reclutadores') {
             setDatosEncabezado({

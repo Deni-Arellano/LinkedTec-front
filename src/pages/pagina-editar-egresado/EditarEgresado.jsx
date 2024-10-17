@@ -16,10 +16,46 @@ import './EditarEgresado.css'
 const EditarEgresado = () => {
     const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
     const navigate = useNavigate();
+
     const handleBack = () => {
         console.log("Navegando a /Perfil");
         navigate('/perfil');
     };
+
+    const [datosUsuario, setDatosUsuario] = useState('');
+
+    //Obtener los datos del usuario logeado
+    const getUsuario = async () => {
+        try {
+            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            console.log(response.data);
+    
+            const usuario = response.data;
+            setDatosUsuario(usuario);
+            
+            setNombre(usuario.nombre);
+            setApellidoPaterno(usuario.apellido_paterno);
+            setApellidoMaterno(usuario.apellido_materno);
+            setFechaNacimiento(usuario.fecha_nacimiento);
+            setTelefono(usuario.telefono);
+            setCorreo(usuario.correo);
+            setContraseña(usuario.contraseña);
+            setConfirmarContraseña(usuario.contraseña);
+            setBiografia(usuario.biografia);
+            setPuesto(usuario.puesto);
+            setAñoGraduacion(usuario.año_graduacion);
+            setSexoSeleccionado(usuario.sexo);
+            setCarreraSeleccionada(usuario.carrera);
+    
+        } catch (err) {
+            console.error('Error al obtener el usuario:', err);
+        }
+    };
+
+    //Se ejacuta al cagar la pagina y obtiene los datos del usuario logeado
+    useEffect(() => {
+        getUsuario();
+    }, []);
 
     const [nombre, setNombre] = useState('');
     const [apellidoPaterno, setApellidoPaterno] = useState('');
@@ -35,7 +71,44 @@ const EditarEgresado = () => {
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
 
+    
 
+    const editarPublicacion = async (event) => {
+        event.preventDefault();
+
+        const datosEnviar = {
+            "usuario": {
+                "nombre": nombre,
+                "apellido_paterno": apellidoPaterno,
+                "apellido_materno": apellidoMaterno,
+                "correo": correo,
+                "contraseña": contraseña,
+                "fecha_nacimiento": fechaNacimiento,
+                "telefono": telefono,
+                "sexo": sexoSeleccionado,
+                "biografia": biografia,
+                "role": "Egresados"
+            },
+            "egresado": {
+                "carrera": carreraSeleccionada,
+                "año_graduacion": AñoGraduacion,
+                "puesto": Puesto
+            }
+        };
+
+        try {
+            await Axios.patch(`http://localhost:3000/usuarios/egresados/${usuarioLog}`, datosEnviar);
+            Swal.fire('Guardado', 'El usuario ha sido actualizado', 'success');
+            handleBack();
+        } catch (error) {
+            if (error.response) {
+                Swal.fire('Error', `Error de respuesta del servidor: ${error.response.data}`, 'error');
+            } else {
+                Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
+            }
+        }
+    }
+           
 
     return (
         <>
@@ -189,7 +262,7 @@ const EditarEgresado = () => {
                         </div>
                         <div className="botones-editar-egresado">
                             <div className="boton-editar-egresado">
-                                <Button texto="Guardar" />
+                                <Button texto="Guardar" onClick={editarPublicacion} />
                                 <Button texto="Cancelar" onClick={handleBack} />
                             </div>
                         </div>

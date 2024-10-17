@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './EditarReclutador.css'
 
+
 const EditarReclutador = () => {
     const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
     const navigate = useNavigate();
