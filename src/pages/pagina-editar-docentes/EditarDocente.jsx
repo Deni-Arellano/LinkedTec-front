@@ -24,7 +24,6 @@ const EditDocente = () => {
     const [contraseña, setContraseña] = useState('');
     const [confirmarContraseña, setConfirmarContraseña] = useState('');
     const [biografia, setBiografia] = useState('');
-    const [noEmpleado, setNoEmpleado] = useState('');
     const [academiaSeleccionada, setAcademiaSeleccionada] = useState('');
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [nivelSeleccionado, setNivelSeleccionado] = useState('');
@@ -43,7 +42,6 @@ const EditDocente = () => {
                 setCorreo(data.correo);
                 setContraseña(data.contraseña);
                 setBiografia(data.biografia);
-                setNoEmpleado(data.numero_empleado);
                 setAcademiaSeleccionada(data.academia);
                 setSexoSeleccionado(data.sexo);
                 setNivelSeleccionado(data.ultimo_nivel_estudios);
@@ -232,17 +230,6 @@ const EditDocente = () => {
                 return;
             }
         
-            /*------------------No.empleado------------------------*/
-            const regexNoEmpleado = /^[A-Za-z]{2}\d{3}$/;
-            if (!regexNoEmpleado.test(noEmpleado)) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "El No. de empleado debe estar seguido de 3 dígitos.",
-                });
-                return;
-            }
-        
             /*-------------carrera,sexo,semestre----------------- */
             if (academiaSeleccionada === '') {
                 Swal.fire({
@@ -281,7 +268,6 @@ const EditDocente = () => {
                     "correo": correo,
                     "contraseña": contraseña,
                     "telefono": telefono,
-                    //"numero_empleado": noEmpleado,
                     "biografia": biografia,
                 },
                 "docente": {
@@ -415,26 +401,14 @@ const EditDocente = () => {
                 </div>
             </div>
 
-            <div className='editar-docentes-telefono-numEmpleado'>
-                <div className="editar-docentes-campo">
-                    <Label texto="Teléfono:" />
-                    <Cajatexto
-                    placeholder="Teléfono" 
-                    type="tel" 
-                    value={telefono}
-                    onChange={(e) => setTelefono(e.target.value)}
-                    />
-                </div>
-
-                <div className="editar-docentes-campo">
-                    <Label texto="No. Empleado:" />
-                    <Cajatexto
-                    placeholder="Número RH" 
-                    value={noEmpleado}
-                    onChange={(e) => setNoEmpleado(e.target.value)}
-                    />
-                </div>
-
+            <div className="editar-docentes-campo">
+                <Label texto="Teléfono:" />
+                <Cajatexto
+                placeholder="Teléfono" 
+                type="tel" 
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                />
             </div>
 
             <div className="editar-docentes-campo">

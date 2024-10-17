@@ -24,7 +24,6 @@ const EditEstudiante = () => {
     const [contraseña, setContraseña] = useState('');
     const [confirmarContraseña, setConfirmarContraseña] = useState('');
     const [telefono, setTelefono] = useState('');
-    const [noControl, setNoControl] = useState('');
     const [biografia, setBiografia] = useState('');
     const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
     const [semestreSeleccionado, setSemestreSeleccionado] = useState('');
@@ -43,7 +42,6 @@ const EditEstudiante = () => {
                 setCorreo(data.correo);
                 setContraseña(data.contraseña);
                 setBiografia(data.biografia);
-                setNoControl(data.no_control);
                 setCarreraSeleccionada(data.carrera);
                 setSexoSeleccionado(data.sexo);
                 setSemestreSeleccionado(data.semestre);
@@ -266,17 +264,6 @@ const EditEstudiante = () => {
             return;
             }
         
-            /*------------------No.control------------------------*/
-            const regexNoControl = /^Z\d{8}$/;
-            if (!regexNoControl.test(noControl)) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "El No. de Control debe comenzar con 'Z' y estar seguido de 8 dígitos.",
-            });
-            return;
-            }
-        
             /*-------------carrera,sexo,semestre----------------- */
             if (carreraSeleccionada === '') {
             Swal.fire({
@@ -316,7 +303,6 @@ const EditEstudiante = () => {
                     "correo": correo,
                     "contraseña": contraseña,
                     "telefono": telefono,
-                    "no_control": noControl,
                     "biografia": biografia,
                     },
                 "estudiante": {
@@ -446,25 +432,14 @@ const EditEstudiante = () => {
                 </div>
             </div>
 
-            <div className='editar-estudiante-telefono-numControl'>
-                <div className="editar-estudiante-campo">
-                    <Label texto="Teléfono:" />
-                    <Cajatexto
-                    placeholder="Teléfono" 
-                    type="tel" 
-                    value={telefono}
-                    onChange={(e) => setTelefono(e.target.value)}
-                    />
-                </div>
-
-                <div className="editar-estudiante-campo">
-                    <Label texto="No. Control:" />
-                    <Cajatexto
-                    placeholder="No. Control" 
-                    value={noControl}
-                    onChange={(e) => setNoControl(e.target.value)}
-                    />
-                </div>
+            <div className="editar-estudiante-campo">
+                <Label texto="Teléfono:" />
+                <Cajatexto
+                placeholder="Teléfono" 
+                type="tel" 
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                />
             </div>
 
             <div className="editar-estudiante-campo">
@@ -516,9 +491,9 @@ const EditEstudiante = () => {
                 </div>
             </div>
 
-            <div className="editar-estudiantes-botones">  
+            <div className="editar-estudiantes-botones">
+                <Button texto="Guardar" onClick={modificar}/>
                 <Button texto="Atrás"  onClick={handleBack}/>
-                <Button texto="Guardar cambios" onClick={modificar}/>
             </div>
 
         </div>
