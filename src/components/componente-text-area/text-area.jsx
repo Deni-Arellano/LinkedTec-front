@@ -1,5 +1,5 @@
 import React from "react";
-import '../hojas-de-estilo/Text-area.css';
+import './text-area.css';
 
 function Textarea({ id, placeholder, rows = 4, cols = 50, value, onChange }) {
     return (
