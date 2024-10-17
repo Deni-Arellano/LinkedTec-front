@@ -1,29 +1,34 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react'; 
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
-import { usuarioContext } from '../../App';
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importar iconos de react
+import Axios from 'axios';// Importar Axios para realizar peticiones al backend
+import { usuarioContext } from '../../App'; // Importa el contexto de usuario para obtener el id del usuario logeado
+import Swal from 'sweetalert2'; // Importar sweetalert2 para mostrar alertas
+// Importa los componentes de la página
 import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
 import Button from '../../components/boton/Boton.jsx';
 import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import Fecha from '../../components/fecha/Fecha.jsx';
 import Textarea from '../../components/componente-text-area/text-area.jsx';
 import Label from '../../components/componente-label/Etiquetas.jsx';
-import Swal from 'sweetalert2';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+// Importa la hoja de estilos
 import './EditarEgresado.css'
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 
 const EditarEgresado = () => {
-    const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
-    const navigate = useNavigate();
+    const { usuarioLog, setUsuarioLog } = useContext(usuarioContext); // Obtiene el id del usuario logeado
+    const navigate = useNavigate(); // Hook para navegación
 
+
+    //Función para regresar a la pagina de perfil
     const handleBack = () => {
         console.log("Navegando a /Perfil");
         navigate('/perfil');
     };
 
-
+    //Estados para los datos del usuario al ingresar a la página
     const [nombre, setNombre] = useState('');
     const [apellidoPaterno, setApellidoPaterno] = useState('');
     const [apellidoMaterno, setApellidoMaterno] = useState('');
@@ -38,20 +43,23 @@ const EditarEgresado = () => {
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [carreraSeleccionada, setCarreraSeleccionada] = useState('');
 
-    const [correoAnterior, setCorreoAnterior] = useState('');
-
+    //Estados para mostrar o no la contraseña
     const [mostrarContraseña, setMostrarContraseña] = useState(false);
     const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);
 
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
+        //Petición para obtener los datos del usuario
         try {
             const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+
+            //Si el usuario no es un egresado, redirige a la página de perfil
             if (response.data.role !== 'Egresados') {
                 navigate('/perfil');}    
 
             const usuario = response.data;
-
+            
+            //Asignar los valores obtenidos a los estados
             setNombre(usuario.nombre);
             setApellidoPaterno(usuario.apellido_paterno);
             setApellidoMaterno(usuario.apellido_materno);
@@ -76,6 +84,7 @@ const EditarEgresado = () => {
         getUsuario();
     }, []);
 
+    //Función para validar la contraseña
     const validatePassword = () => {
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -85,6 +94,7 @@ const EditarEgresado = () => {
         }
     };
 
+    //Función para mostrar excepciones
     const excepciones = (mensaje) => {
         Swal.fire({
             icon: "error",
@@ -94,12 +104,11 @@ const EditarEgresado = () => {
 
     }
 
-
-
-
+    //Función para editar el usuario
     const editarUsuario = async (event) => {
         event.preventDefault();
 
+        //Excepciones para validar los campos 
         if (contraseña !== confirmarContraseña) {
             excepciones("Las contraseñas no coinciden.")
             return;
@@ -246,6 +255,7 @@ const EditarEgresado = () => {
             return;
         }
 
+        //Datos a enviar al backend
         const datosEnviar = {
             "usuario": {
                 "nombre": nombre,
@@ -266,6 +276,7 @@ const EditarEgresado = () => {
             }
         };
 
+        //Petición para editar el usuario
         try {
             await Axios.patch(`http://localhost:3000/usuarios/egresados/${usuarioLog}`, datosEnviar);
             Swal.fire('Guardado', 'El usuario ha sido actualizado con éxito', 'success');

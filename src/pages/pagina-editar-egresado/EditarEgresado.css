@@ -101,6 +101,8 @@
     word-wrap: break-word;
 }
 
+
+/*Estilos para el icono de ojo aplicado al ver contraseñas*/
 .egresado-eye-icon {
     position: absolute;
     cursor: pointer;
