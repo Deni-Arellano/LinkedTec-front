@@ -16,6 +16,7 @@ import RegistroExitoso from './pages/pagina-registro-exitoso/RegistroExitoso';
 import RegistroReclutadores from './pages/pagina-registro-reclutadores/RegistroReclutadores';
 import Roles from './pages/pagina-seleccionar-rol/SeleccionarRol';
 import Perfil from './pages/pagina-Perfil/Perfil';
+import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo';
 import EditarReclutador from './pages/pagina-editar-reclutador/EditarReclutador';
 import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/empleos" element={<Empleos />} /> 
           <Route path="/registro-empleo" element={<RegistroEmpleo />} />
           <Route path="/editar-publicacion" element={<EditarPublicacion />} />
+          <Route path="/editar-publicacion-empleo/:idEmpleo" element={<EditarPublicacionEmpleo />} />
           <Route path="/editar-reclutador" element={<EditarReclutador />} />
           <Route path="/editar-egresado" element={<EditarEgresado />} />
           
