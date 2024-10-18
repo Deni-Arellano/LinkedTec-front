@@ -11,6 +11,7 @@ import RadioButtons from '../../components/componente-boton-de-radio/radio-boton
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import {usuarioContext} from '../../App.js';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';  
 
 const RegistroEgresado = () => {
   const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
@@ -62,14 +63,6 @@ const RegistroEgresado = () => {
   const add = () => {
     console.log('Agregando egresado');
 
-    if (contraseña !== confirmarContraseña) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Las contraseñas no coinciden.",
-      });
-      return;
-    }
     validatePassword();
 
     if (!nombre) {
@@ -81,11 +74,12 @@ const RegistroEgresado = () => {
       return;
     }
 
-    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+    const Caracteres_especialesn = /^[A-Za-z.\s]+$/;
+    if (!Caracteres_especialesn.test(nombre)) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "El nombre no debe contener números ni caracteres especiales.",
+        text: "El nombre solo puede contener letras, espacios y puntos.",
       });
       return;
     }
@@ -247,6 +241,15 @@ const RegistroEgresado = () => {
       return;
     }
 
+    if (contraseña !== confirmarContraseña) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden.",
+      });
+      return;
+    }
+
     if (contraseña.length < 8 || contraseña.length > 20) {
       Swal.fire({
         icon: "error",
@@ -307,15 +310,6 @@ const RegistroEgresado = () => {
         icon: "error",
         title: "Oops...",
         text: "El puesto no debe quedar vacío.",
-      });
-      return;
-    }
-
-    if (!biografia) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "La biografia no debe quedar vacia.",
       });
       return;
     }
@@ -409,6 +403,9 @@ const RegistroEgresado = () => {
       }
     });
   };
+  const [mostrarContraseña, setMostrarContraseña] = useState(false);  // Estado para controlar visibilidad
+  const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);  // Estado para controlar visibilidad
+
 
   return (
     <div className="registro-egresado">
@@ -490,26 +487,43 @@ const RegistroEgresado = () => {
         </div>
 
         <div className="egresado-campo">
-          <Label htmlFor="Contraseña" texto='Contraseña:'/>
+        <Label htmlFor="contraseña" texto="Contraseña:" />
+        <div className="egresado-input-container">
           <Textbox 
-            id="Contraseña" 
-            placeholder="Contraseña" 
-            type="password" 
+            id="contraseña" 
+            placeholder="Contraseña"
+            type={mostrarContraseña ? "text" : "password"}  
             value={contraseña}
-            onChange={(e) => setContraseña(e.target.value)}
+            className="egresado-textbox"  
+            onChange={(e) => setContraseña(e.target.value)} 
           />
+          <span 
+            className="egresado-eye-icon" 
+            onClick={() => setMostrarContraseña(!mostrarContraseña)}
+          >
+            {mostrarContraseña ? <FaEyeSlash /> : <FaEye />} 
+          </span>
         </div>
-
-        <div className="egresado-campo">
-          <Label htmlFor="confirmarContraseña" texto='Confirmar contraseña:'/>
+      </div>
+      <div className="egresado-campo">
+        <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
+        <div className="egresado-input-container">
           <Textbox 
-            id="ConfirmarContraseña" 
-            placeholder="Confirmar contraseña" 
-            type="password" 
+            id="Confirmarcontraseña" 
+            placeholder="Confirmar contraseña"
+            type={MostrarConfirmarContraseña ? "text" : "password"} 
             value={confirmarContraseña}
-            onChange={(e) => setConfirmarContraseña(e.target.value)}
+            className="egresado-textbox"  
+            onChange={(e) => setConfirmarContraseña(e.target.value)} 
           />
+          <span 
+            className="egresado-eye-icon" 
+            onClick={() => setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}
+          >
+            {MostrarConfirmarContraseña ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
+      </div>
 
         <div className="egresado-campo">
           <Label htmlFor="biografia" texto='Biografía:'/>

@@ -62,3 +62,29 @@
     margin-bottom: 5px;
     font-weight: bold;
 }
+
+
+
+
+
+.reclutador-input-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .reclutador-textbox {
+    width: 100%;
+    padding-right: 40px; 
+  }
+  .reclutador-eye-icon {
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%); 
+    cursor: pointer;
+    color: #888;
+  }
+  .reclutador-eye-icon:hover {
+    color: #333;
+  }
+  

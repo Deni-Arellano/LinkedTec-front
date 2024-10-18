@@ -117,3 +117,24 @@
   margin-bottom: 5px;
   font-weight: bold;
 }
+
+.egresado-input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.egresado-textbox {
+  width: 100%;
+  padding-right: 40px; 
+}
+.egresado-eye-icon {
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%); 
+  cursor: pointer;
+  color: #888;
+}
+.egresado-eye-icon:hover {
+  color: #333;
+}

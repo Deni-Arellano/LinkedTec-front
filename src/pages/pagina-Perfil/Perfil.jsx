@@ -24,7 +24,7 @@ const VisualizacionPerfil = () => {
         try {
             const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
             //console.log("Servidor dice")
-            console.log(response.data);
+            //console.log(response.data);
             setDatosUsuario(response.data);
             
         } catch (err) {
@@ -48,22 +48,36 @@ const VisualizacionPerfil = () => {
                 fecha: datosUsuario.fecha_nacimiento,
                 sexo: datosUsuario.sexo,
                 empresa: datosUsuario.nombre_empresa,
-                giro: datosUsuario.giro
+                giro: datosUsuario.giro,
+                rol:'Reclutador'
             });
             //console.log("Datos del perfil");
             //console.log(datosPerfil);
 
-        } else if (datosUsuario.role === 'Estudiantes' || datosUsuario.role === 'Egresados') {
+        } else if (datosUsuario.role === 'Estudiantes') {
             setDatosPerfil({
                 carrera: datosUsuario.carrera,
                 biografia: datosUsuario.biografia,
                 correo: datosUsuario.correo,
                 telefono: datosUsuario.telefono,
                 fecha: datosUsuario.fecha_nacimiento,
-                sexo: datosUsuario.sexo
+                sexo: datosUsuario.sexo,
+                rol:'Estudiante'
             });
-            console.log("Datos del perfil");
-            console.log(datosPerfil);
+            //console.log("Datos del perfil");
+            //console.log(datosPerfil);
+        }else if (datosUsuario.role === 'Egresados') {
+            setDatosPerfil({
+                carrera: datosUsuario.carrera,
+                biografia: datosUsuario.biografia,
+                correo: datosUsuario.correo,
+                telefono: datosUsuario.telefono,
+                fecha: datosUsuario.fecha_nacimiento,
+                sexo: datosUsuario.sexo,
+                rol:'Egresado'
+            });
+            //console.log("Datos del perfil");
+            //console.log(datosPerfil);
         } else {
             setDatosPerfil({
                 carrera: datosUsuario.academia,
@@ -71,10 +85,11 @@ const VisualizacionPerfil = () => {
                 correo: datosUsuario.correo,
                 telefono: datosUsuario.telefono,
                 fecha: datosUsuario.fecha_nacimiento,
-                sexo: datosUsuario.sexo
+                sexo: datosUsuario.sexo,
+                rol:'Docente'
             });
-            console.log("Datos del perfil");
-            console.log(datosPerfil);
+            //console.log("Datos del perfil");
+            //console.log(datosPerfil);
         }
         if (datosUsuario.role === 'Reclutadores') {
             setDatosEncabezado({

@@ -66,3 +66,29 @@
 .estudiantes-radio-group.center {
   justify-content: center; 
 }
+
+
+
+
+
+
+.estudiantes-input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.estudiantes-textbox {
+  width: 100%;
+  padding-right: 40px; 
+}
+.estudiantes-eye-icon {
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%); 
+  cursor: pointer;
+  color: #888;
+}
+.estudiantes-eye-icon:hover {
+  color: #333;
+}

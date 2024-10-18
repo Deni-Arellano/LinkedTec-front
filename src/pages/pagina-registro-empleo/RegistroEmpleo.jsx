@@ -1,11 +1,8 @@
 import React, { useContext, useState } from 'react';
-
-
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
 import Etiquetas from '../../components/componente-label/Etiquetas'; 
 import CajaDeTexto from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
 import Button from '../../components/boton/Boton'; 
-
 import { usuarioContext } from '../../App';
 import './RegistroEmpleo.css';
 
@@ -123,7 +120,7 @@ const PaginaFormulario = () => {
             <MenuNavegacion /> {/* Barra de navegación */}
             <div className="fromularioempleoo-container">
                 <div className="fromularioempleoo-form">
-                    <Etiquetas tamano={20} texto="+ Nuevo Empleo" id="fromularioempleoo-titulo-publicacion-empleo" />
+                    <Etiquetas tamano={20} texto="+ Nuevo empleo" id="fromularioempleoo-titulo-publicacion-empleo" />
                     &nbsp;
 
                     <div className="fromularioempleoo-input-group">
@@ -167,7 +164,7 @@ const PaginaFormulario = () => {
                     </div>
 
                     <div className="fromularioempleoo-input-group">
-                        <Etiquetas tamano={14} texto="Ubicación (Estado):" />
+                        <Etiquetas tamano={14} texto="Ubicación (estado):" />
                         <CajaDeTexto 
                             id="fromularioempleoo-ubicacion" 
                             value={Ubicacion} 
@@ -176,7 +173,7 @@ const PaginaFormulario = () => {
                     </div>
 
                     <div className="fromularioempleoo-input-group">
-                        <Etiquetas tamano={14} texto="Nivel de Inglés requerido:" />
+                        <Etiquetas tamano={14} texto="Nivel de inglés requerido:" />
                         <select 
                             id="fromularioempleoo-nivel-ingles" 
                             className="fromularioempleoo-dropdown" 

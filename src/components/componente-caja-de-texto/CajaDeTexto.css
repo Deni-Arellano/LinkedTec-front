@@ -1,5 +1,5 @@
 /* Estilo para los inputs con sombra */
-input {
+.cajadetexto-form .contenidostyle {
     padding: 12px 20px;
     margin: 10px 0;
     font-size: 16px;
@@ -10,10 +10,9 @@ input {
     border: 2px solid #000000;
     margin-right: 10px;
     outline: none;
-    transition: box-shadow 0.3s ease; /* Transición suave */
+    transition: box-shadow 0.3s ease;
 }
-
-input:focus {
+.cajadetexto-form .contenidostyle:focus {
     border-color: #007BFF;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); /* Sombra al enfocar */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
 }

@@ -1,30 +1,26 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
-
 import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import Button from '../../components/boton/Boton.jsx';
 import './SeleccionarRol.css';
 import logo from '../../assets/Logo24.png';
-import Swal from 'sweetalert2';
-import {usuarioContext} from '../../App'; 
-
+import { usuarioContext } from '../../App';
+import Swal from 'sweetalert2'; // Importar SweetAlert2
 
 const Pagina = () => {
 
-  const {setUsuarioLog} = useContext(usuarioContext);
-    
-    useEffect(() => {
-        setUsuarioLog(null); // Restablece el contexto del usuario 
-      }, [setUsuarioLog]);
+  const { setUsuarioLog } = useContext(usuarioContext);
 
+  useEffect(() => {
+    setUsuarioLog(null); // Restablece el contexto del usuario 
+  }, [setUsuarioLog]);
 
   const handleBack = () => {
-    console.log("Navegando a /login");
-    navigate('/'); 
+    navigate('/');
   };
-  
-  const [rolSeleccionado, setRolSeleccionado] = useState(''); 
-  const navigate = useNavigate(); 
+
+  const [rolSeleccionado, setRolSeleccionado] = useState('');
+  const navigate = useNavigate();
 
   const opcionesRol = [
     { value: 'Estudiante', label: 'Estudiante' },
@@ -36,31 +32,31 @@ const Pagina = () => {
   const handleNext = () => {
     if (rolSeleccionado) {
       switch (rolSeleccionado) {
-        case 'Docente': 
-          navigate('/registro-docente'); 
+        case 'Docente':
+          navigate('/registro-docente');
           break;
         case 'Estudiante':
-          navigate('/registro-estudiante'); 
+          navigate('/registro-estudiante');
           break;
         case 'Reclutador':
-          navigate('/registro-reclutador'); 
+          navigate('/registro-reclutador');
           break;
         case 'Egresado':
-          navigate('/registro-egresado'); 
+          navigate('/registro-egresado');
           break;
         default:
           
           break;
       }
     } else {
+      // Mostrar alerta con SweetAlert2 si no se seleccionó un rol
       Swal.fire({
-        icon: "warning",
-        title: "Selecciona una opción",
-        text: "Ningún elemento ha sido seleccionado",
+        icon: 'warning',
+        title: 'Rol no seleccionado',
+        text: 'Por favor, selecciona un rol antes de continuar.'
       });
     }
   };
-
 
   return (
     <div className="contenedor-pagina">
@@ -71,12 +67,11 @@ const Pagina = () => {
       <main className="main-content">
         <h2 className="titulo-selecciona-rol">Selecciona tu rol</h2>
         <div className="radio-group">
-          <RadioButtons 
-           
+          <RadioButtons
             name="rol"
-            options={opcionesRol} 
-            selectedOption={rolSeleccionado}  
-            onChange={(e) => setRolSeleccionado(e.target.value)} 
+            options={opcionesRol}
+            selectedOption={rolSeleccionado}
+            onChange={(e) => setRolSeleccionado(e.target.value)}
           />
         </div>
 
