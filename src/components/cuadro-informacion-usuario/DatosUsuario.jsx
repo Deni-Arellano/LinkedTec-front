@@ -31,13 +31,13 @@ const DatosUsu_EsDoEg = ({ datos }) => {
                     <button className="mostrar-datos-usuario-opcion-boton" onClick={editarPerfil}>Editar</button>
                 </div>
             )}
-            <p><FaBriefcase className="icono" /> <strong>Carrera:</strong> {datos.carrera}</p>
-            <p><strong>Biografía:</strong></p>
+            <p><FaBriefcase className="icono" /> <strong>Carrera: </strong> {datos.carrera}</p>
+            <p><strong>Biografía: </strong></p>
             <p className="biografia">{datos.biografia}</p>
-            <p><FaEnvelope className="icono" /> <strong>Correo:</strong> {datos.correo}</p>
-            <p><FaPhone className="icono" /> <strong>Teléfono:</strong> {datos.telefono}</p>
-            <p><FaBirthdayCake className="icono" /> <strong>Fecha de nacimiento:</strong> {datos.fecha}</p>
-            <p><FaVenusMars className="icono" /> <strong>Sexo:</strong> {datos.sexo}</p>
+            <p><FaEnvelope className="icono" /> <strong>Correo: </strong> {datos.correo}</p>
+            <p><FaPhone className="icono" /> <strong>Teléfono: </strong> {datos.telefono}</p>
+            <p><FaBirthdayCake className="icono" /> <strong>Fecha de nacimiento: </strong> {datos.fecha}</p>
+            <p><FaVenusMars className="icono" /> <strong>Sexo: </strong> {datos.sexo}</p>
         </div>
     );
 }
