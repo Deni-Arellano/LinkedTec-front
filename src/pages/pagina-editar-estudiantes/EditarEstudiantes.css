@@ -1,0 +1,143 @@
+.editar-estudiante-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3% 3% 3%;
+    background: white;
+    max-width: 54%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255,255, 1);
+}
+
+.fondo-editar-estudiante {
+    margin-left: 250px;
+}
+
+.editar-titulo-estudiante {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #093e61;
+    max-width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.editar-estudiante-campo-nombre {
+    width: 100%;
+    margin-bottom: 3vh;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-estudiante-campo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-estudiante-contenedor-apellidos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.editar-estudiante-fecha-sexo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editar-estudiante-campo-fecha {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-estudiante-campo-sexo {
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-estudiante-campo-fecha, .editar-estudiante-campo-sexo {
+    flex: 1;
+    min-width: 150px;
+}
+
+.editar-estudiante-password-editarpassword {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editar-estudiante-campo-password {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-estudiante-campo-confirmar-password {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-estudiante-campo-password, .editar-estudiante-campo-confirmar-password {
+    flex: 1;
+    min-width: 150px;
+}
+
+.editar-estudiante-carrera-semestre {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.editar-estudiantes-botones {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.estudiante-eye-icon {
+    position: static;
+    cursor: pointer;
+    color: #888;
+}
+
+.estudiante-eye-icon:hover {
+    color: #333;
+}

@@ -1,13 +1,21 @@
-import React, {useState} from 'react';
-
+import React, {useState, useEffect, useContext} from 'react';
 import Cajatexto from '../../components/componente-caja-de-texto/CajaDeTexto';
 import Label from '../../components/componente-label/Etiquetas';
 import Radio from '../../components/componente-boton-de-radio/radio-boton';
 import Fecha from '../../components/fecha/Fecha';
-import Logo from '../../assets/Logo24.png'
-import './EditarDocente.css'
+import Button from '../../components/boton/Boton';
+import Textarea from '../../componetes/Text-area';
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import {usuarioContext} from '../../App';
+import Swal from 'sweetalert2';
+import Axios from 'axios'; 
+import './EditarDocente.css';
 
 const EditDocente = () => {
+    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+
     const [nombre, setNombre] = useState('');
     const [apellidoPaterno, setApellidoPaterno] = useState('');
     const [apellidoMaterno, setApellidoMaterno] = useState('');
@@ -17,15 +25,338 @@ const EditDocente = () => {
     const [contraseña, setContraseña] = useState('');
     const [confirmarContraseña, setConfirmarContraseña] = useState('');
     const [biografia, setBiografia] = useState('');
-    const [noEmpleado, setNoEmpleado] = useState('');
     const [academiaSeleccionada, setAcademiaSeleccionada] = useState('');
     const [sexoSeleccionado, setSexoSeleccionado] = useState('');
     const [nivelSeleccionado, setNivelSeleccionado] = useState('');
 
+    const [mostrarContraseña, setMostrarContraseña] = useState(false); 
+    const [MostrarConfirmarContraseña, setMostrarConfirmarContraseña] = useState(false);
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            try {
+                const response = await Axios.get(`http://localhost:3000/usuarios/docentes/${usuarioLog}`);
+                const data = response.data;
+                
+                setNombre(data.nombre);
+                setApellidoPaterno(data.apellido_paterno);
+                setApellidoMaterno(data.apellido_materno);
+                setFechaNacimiento(data.fecha_nacimiento);
+                setTelefono(data.telefono);
+                setCorreo(data.correo);
+                setContraseña(data.contraseña);
+                setBiografia(data.biografia);
+                setAcademiaSeleccionada(data.academia);
+                setSexoSeleccionado(data.sexo);
+                setNivelSeleccionado(data.ultimo_nivel_estudios);
+            } catch (error) {
+                console.error('Error al obtener los datos del docente', error);
+                Swal.fire('Error', 'No se pudieron cargar los datos del docente.', 'error');
+            }
+        };
+
+        obtenerDatos();
+    }, []);
+
+    const navigate = useNavigate(); 
+    const handleBack = () => {
+        navigate('/perfil'); 
+    };
+
+    const modificar = async() => {
+        try {
+            // Verificar que las contraseñas coincidan
+            if (contraseña !== confirmarContraseña) {
+                Swal.fire('Error', 'Las contraseñas no coinciden.', 'error');
+                return;
+            }
+
+            if (nombre.length < 2 || nombre.length > 50) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "El nombre debe tener entre 2 y 50 caracteres.",
+                });
+                return;
+              }
+            
+            const Caracteres_especialesn = /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/;
+            if (!Caracteres_especialesn.test(nombre)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El nombre solo puede contener letras.",
+                });
+                return;
+            }
+        
+            if (nombre.trim() === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El nombre no debe estar vacío.",
+            });
+            return;
+            }
+        
+            if (/[\s]{2,}/.test(nombre)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El nombre no puede tener más de un espacio vacío consecutivo.",
+            });
+            return;
+            }
+        
+            /*--------------------apellido paterno-------------------------*/
+            if (apellidoPaterno.length < 2 || apellidoPaterno.length > 50) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El apellido paterno debe tener entre 2 y 50 caracteres.",
+            });
+            return;
+            }
+        
+            if (apellidoPaterno.trim() === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El apellido paterno no puede estar vacío.",
+            });
+            return;
+            }
+
+            if (apellidoPaterno.length >= 50) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "El apellido paterno no debe exceder los 50 caracteres.",
+                });
+                return;
+              }
+
+              if (apellidoMaterno && !/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]*$/.test(apellidoMaterno)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El apellido materno no debe contener números ni caracteres especiales.",
+                });
+                return;
+            }
+
+            if (apellidoMaterno.length >= 50) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El apellido materno no debe exceder los 50 caracteres.",
+                });
+                return;
+            }
+        
+            /*--------------------fecha-------------------------*/
+            const fechaIngresada = new Date(fechaNacimiento); 
+            const anioNacimiento = fechaIngresada.getFullYear(); 
+            const fechaActual = new Date(); 
+            const edad = fechaActual.getFullYear() - anioNacimiento; 
+            const haCumplidoAnios = (fechaActual.getMonth() > fechaIngresada.getMonth()) ||
+            (fechaActual.getMonth() === fechaIngresada.getMonth() && fechaActual.getDate() >= fechaIngresada.getDate());
+            const edadReal = haCumplidoAnios ? edad : edad - 1;
+        
+            if (anioNacimiento <= 1950) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'El año de nacimiento debe ser mayor a 1950.',
+            });
+            return;
+            }
+        
+            if (edadReal < 17) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Debes tener al menos 17 años.',
+            });
+            return;
+            }
+            if (fechaNacimiento.trim()==='')
+            {
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'La fecha no puede estar vacía.',
+                });
+                return;
+            }
+        
+            /*------------------telefono---------------*/
+            if (telefono.trim() === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'El teléfono no puede estar vacío.',
+            });
+            return;
+            }
+        
+            if (telefono.length < 10 || telefono.length > 15) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'El teléfono debe tener entre 10 y 15 caracteres.',
+            });
+            return;
+            }
+
+            if (!/^\d+$/.test(telefono)) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "El teléfono debe contener solo dígitos.",
+                });
+                return;
+              }
+        
+            /*------------------correo---------------*/
+            if (correo.trim() === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'El correo no puede estar vacío.',
+            });
+            return;
+            }
+        
+            const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regexCorreo.test(correo)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Introduzca un correo electrónico válido.',
+            });
+            return;
+            }
+
+            if (correo.length > 40) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "El correo es demasiado largo",
+                });
+                return;
+                }
+        
+            /*--------------------contraseña y confirmar-------------------------- */
+            if (contraseña.length < 8 || contraseña.length > 12) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "La contraseña debe contener entre 8 y 12 caracteres.",
+            });
+            return;
+            }
+        
+            const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
+            if (!regexContraseña.test(contraseña)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "La contraseña debe incluir letras, números y caracteres especiales.",
+            });
+            return;
+            }
+        
+            if (contraseña !== confirmarContraseña) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Las contraseñas no coinciden.",
+                });
+                return;
+            }
+        
+            /*-------------carrera,sexo,semestre----------------- */
+            if (academiaSeleccionada === '') {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Debes seleccionar una academia.",
+                });
+                return;
+            }
+        
+            if (sexoSeleccionado === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Debes seleccionar un sexo.",
+            });
+            return;
+            }
+        
+            if (nivelSeleccionado === '') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Debes seleccionar un nivel de estudio.",
+            });
+            return;
+            }
+
+            const datosActualizados = {
+                "usuario": {
+                    "nombre": nombre,
+                    "apellido_paterno": apellidoPaterno,
+                    "apellido_materno": apellidoMaterno,
+                    "fecha_nacimiento": fechaNacimiento,
+                    "sexo": sexoSeleccionado,
+                    "correo": correo,
+                    "contraseña": contraseña,
+                    "telefono": telefono,
+                    "biografia": biografia,
+                },
+                "docente": {
+                    "ultimo_nivel_estudios": nivelSeleccionado,
+                    "academia": academiaSeleccionada
+                }
+
+            }
+
+            // Realizar la solicitud patch para actualizar los datos
+            try {
+                await Axios.patch(`http://localhost:3000/usuarios/docentes/${usuarioLog}`, datosActualizados);
+
+                // Mostrar mensaje de éxito
+                Swal.fire('Éxito', 'Los datos del docente han sido actualizados.', 'success');
+
+                // Redireccionar a perfil
+                navigate('/perfil');
+
+            } catch (error) {
+                console.error('Error al actualizar los datos del docente', error);
+                Swal.fire('Error', 'No se pudieron guardar los cambios.', 'error');
+            }
+
+            } catch (error) {
+                console.log("Error al verificar usuario existente:", error.message);
+                Swal.fire({
+                    icon: "error",
+                    title: "Error de verificación",
+                    text: "Hubo un error al verificar el correo o el teléfono.",
+                });
+                return false;
+            }
+
+    }
+
     return (
+
+        <>
+        <MenuNavegacion/>
         <div className='fondo-editar-docente'>
-        <div className="editar-docentes-contenedor">  
-            <img src={Logo} alt="Logo" className="logo" />
+
+        <div className="editar-docentes-contenedor">
             <h1 className='editar-titulo-docente'>Editar docente</h1>
 
             <div className="editar-docentes-campo-nombre">  
@@ -67,7 +398,7 @@ const EditDocente = () => {
                     />
                 </div>
 
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-sexo">
                     <Label texto="Sexo" />
                     <Radio
                     name="Sexo"
@@ -93,54 +424,55 @@ const EditDocente = () => {
             </div>
 
             <div className='editar-docentes-password-editarpassword'>
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-password">
                     <Label htmlFor="contraseña" texto="Contraseña:" />
                     <Cajatexto 
                     id="contraseña" 
                     placeholder="Contraseña"
-                    type="password"
+                    type={mostrarContraseña ? "text" : "password" }
                     value={contraseña}
                     onChange={(e) => setContraseña(e.target.value)} 
                     />
+                    <span className="docente-eye-icon" onClick={()=> setMostrarContraseña(!mostrarContraseña)}
+                        >
+                        {mostrarContraseña ?
+                        <FaEyeSlash /> :
+                        <FaEye />}
+                    </span>
                 </div>
 
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-confirmar-password">
                     <Label htmlFor="Confirmarcontraseñ" texto="Confirmar contraseña:" />
                     <Cajatexto 
                     id="Confirmarcontraseña" 
                     placeholder="Confirmar contraseña" 
-                    type="password" 
+                    type={MostrarConfirmarContraseña ? "text" : "password" }
                     value={confirmarContraseña}
                     onChange={(e) => setConfirmarContraseña(e.target.value)}
                     />
+                    <span className="docente-eye-icon" onClick={()=>
+                        setMostrarConfirmarContraseña(!MostrarConfirmarContraseña)}
+                        >
+                        {MostrarConfirmarContraseña ?
+                        <FaEyeSlash /> :
+                        <FaEye />}
+                    </span>
                 </div>
             </div>
 
-            <div className='editar-docentes-telefono-numEmpleado'>
-                <div className="editar-docentes-campo">
-                    <Label texto="Teléfono:" />
-                    <Cajatexto
-                    placeholder="Teléfono" 
-                    type="tel" 
-                    value={telefono}
-                    onChange={(e) => setTelefono(e.target.value)}
-                    />
-                </div>
-
-                <div className="editar-docentes-campo">
-                    <Label texto="No. Empleado:" />
-                    <Cajatexto
-                    placeholder="Número RH" 
-                    value={noEmpleado}
-                    onChange={(e) => setNoEmpleado(e.target.value)}
-                    />
-                </div>
-
+            <div className="editar-docentes-campo">
+                <Label texto="Teléfono:" />
+                <Cajatexto
+                placeholder="Teléfono" 
+                type="tel" 
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                />
             </div>
 
             <div className="editar-docentes-campo">
                 <Label texto="Biografía:" />
-                <Cajatexto 
+                <Textarea 
                 name="Biografia" 
                 placeholder="Biografía" 
                 value={biografia}
@@ -149,7 +481,7 @@ const EditDocente = () => {
             </div>
 
             <div className='editar-docentes-academia-nivelestudio'>
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-academia">
                     <Label texto="Academia" />
                     <Radio
                     name="Academia"
@@ -166,7 +498,7 @@ const EditDocente = () => {
                     />
                 </div>
 
-                <div className="editar-docentes-campo">
+                <div className="editar-docentes-campo-nivelestudio">
                     <Label texto="Nivel de estudio" />
                     <Radio
                     name="Ultimoniveldeestudios"
@@ -181,9 +513,15 @@ const EditDocente = () => {
                 </div>
             </div>
 
+            <div className="editar-docente-botones">
+                <Button texto="Guardar" onClick={modificar} />
+                <Button texto="Atrás" onClick={handleBack} />
+            </div>
+
         </div>
     </div>
-    );
-};
+    </>
+    )
+}
 
 export default EditDocente;

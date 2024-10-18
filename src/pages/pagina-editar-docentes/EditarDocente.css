@@ -3,16 +3,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 0 3% 3% 3%;
     background: white;
-    max-width: 650px;
+    max-width: 54%;
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255,255, 0.6);
+    background-color: rgba(255, 255,255, 1);
 }
 
-  .editar-docentes-contenedor-apellidos {
+.fondo-editar-docente {
+    margin-left: 250px;
+}
+
+.editar-docentes-contenedor-apellidos {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -22,17 +26,6 @@
 .editar-docentes-campo-nombre {
     width: 100%;
     margin-bottom: 3vh;
-    font-family: sans-serif;
-    color: #093e61;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.editar-docentes-campo-fecha {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-radius: 10px;
     font-family: sans-serif;
     color: #093e61;
     font-size: 16px;
@@ -50,13 +43,12 @@
     font-weight: bold;
 }
 
-.logo {
-    width: 25%;
-}
-
 .editar-titulo-docente {
-    font-size: 300%;
+    font-size: clamp(2rem, 5vw, 3rem);
     color: #093e61;
+    max-width: 100%;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .editar-docentes-fecha-sexo {
@@ -64,6 +56,31 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editar-docentes-campo-fecha {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-sexo {
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-fecha, .editar-docentes-campo-sexo {
+    flex: 1;
+    min-width: 150px;
 }
 
 .editar-docentes-password-editarpassword {
@@ -71,13 +88,34 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
-.editar-docentes-telefono-numEmpleado {
+.editar-docentes-campo-password {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
-    gap: 20px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-confirmar-password {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-password, .editar-docentes-campo-confirmar-password {
+    flex: 1;
+    min-width: 150px;
 }
 
 .editar-docentes-academia-nivelestudio {
@@ -85,4 +123,49 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+    flex-wrap: wrap;
+}
+
+.editar-docentes-campo-academia {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-nivelestudio {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    color: #093e61;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.editar-docentes-campo-academia, .editar-docentes-campo-nivelestudio {
+    flex: 1;
+    min-width: 150px;
+}
+
+.editar-docente-botones {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.docente-eye-icon {
+    position: static;
+    cursor: pointer;
+    color: #888;
+}
+
+.docente-eye-icon:hover {
+    color: #333;
 }
