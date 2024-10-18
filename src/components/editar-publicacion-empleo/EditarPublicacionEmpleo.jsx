@@ -30,19 +30,6 @@ const EditarPublicacionEmpleo = () => {
     const [descripcion, setDescripcion] = useState(datos?.descripcion || ''); 
     const [ubicacion, setUbicacion] = useState(datos?.ubicacion || ''); 
     const [nivelDeIngles, setNivelDeIngles] = useState(datos?.nivelIngles || 'Avanzado');
-    const [image, setImage] = useState(datos?.fotoPerfil || null); // Estado para la imagen seleccionada
-
-    // Función para manejar el cambio de imagen
-    const handleImageChange = (event) => {
-        const file = event.target.files[0]; // Captura el archivo seleccionado
-        if (file) {
-            const reader = new FileReader(); // Utiliza FileReader para leer el archivo
-            reader.onloadend = () => {
-                setImage(reader.result); // Establece la imagen como una URL base64 para previsualizarla
-            };
-            reader.readAsDataURL(file); // Lee el archivo como un Data URL
-        }
-    };
 
     // Función para guardar los cambios de la publicación de empleo
     const handleGuardarCambios = () => {
@@ -59,8 +46,7 @@ const EditarPublicacionEmpleo = () => {
             "salario": salario,
             "descripcion": descripcion,
             "ubicacion": ubicacion,
-            "nivel_de_ingles": nivelDeIngles,
-            "fotoPerfil": image // Incluye la imagen seleccionada
+            "nivel_de_ingles": nivelDeIngles
         };
 
         // Realiza una petición PATCH para actualizar los datos en el servidor
@@ -150,12 +136,6 @@ const EditarPublicacionEmpleo = () => {
                             <option value="Básico">Básico</option>
                             <option value="No aplica">No aplica</option>
                         </select>
-                    </div>
-
-                    {/* Imagen cargada */}
-                    <div className="fromularioempleoo-input-group">
-                        {image && <img src={image} alt="Imagen de perfil" className="fromularioempleoo-imagen-preview" />} 
-                        <input type="file" accept="image/*" onChange={handleImageChange} /> {/* Campo para seleccionar una nueva imagen */}
                     </div>
 
                     {/* Botones para guardar cambios o cancelar */}
