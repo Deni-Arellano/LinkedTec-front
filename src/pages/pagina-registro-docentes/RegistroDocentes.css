@@ -47,3 +47,28 @@
 .docentes-button:hover {
   background-color: #0056b3;
 }
+
+
+
+.docentes-input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.docentes-textbox {
+  width: 100%;
+  padding-right: 40px; 
+}
+.docentes-eye-icon {
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%); 
+  cursor: pointer;
+  color: #888;
+}
+.docentes-eye-icon:hover {
+  color: #333;
+}
+
+

@@ -16,15 +16,25 @@ import RegistroExitoso from './pages/pagina-registro-exitoso/RegistroExitoso';
 import RegistroReclutadores from './pages/pagina-registro-reclutadores/RegistroReclutadores';
 import Roles from './pages/pagina-seleccionar-rol/SeleccionarRol';
 import Perfil from './pages/pagina-Perfil/Perfil';
+<<<<<<< HEAD
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo';
 import EditarReclutador from './pages/pagina-editar-reclutador/EditarReclutador';
 import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
+=======
+import Noticias from './pages/pagina-noticias/Noticias.jsx';
+import CrearNoticias from './pages/pagina-crear-noticia/CrearNoticia.jsx';
+>>>>>>> carlos
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
+<<<<<<< HEAD
   const [usuarioLog, setUsuarioLog] = useState(null);  
   //const [usuarioLog, setUsuarioLog] = useState('6'); 
+=======
+  //const [usuarioLog, setUsuarioLog] = useState(null);  
+  const [usuarioLog, setUsuarioLog] = useState('1'); 
+>>>>>>> carlos
   return (
     //Pasa a los componentes hijos el usuario
     <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
@@ -43,9 +53,15 @@ function App() {
           <Route path="/empleos" element={<Empleos />} /> 
           <Route path="/registro-empleo" element={<RegistroEmpleo />} />
           <Route path="/editar-publicacion" element={<EditarPublicacion />} />
+<<<<<<< HEAD
           <Route path="/editar-publicacion-empleo/:idEmpleo" element={<EditarPublicacionEmpleo />} />
           <Route path="/editar-reclutador" element={<EditarReclutador />} />
           <Route path="/editar-egresado" element={<EditarEgresado />} />
+=======
+          <Route path="/noticias" element={<Noticias />} />
+          <Route path="/registro-noticia" element={<CrearNoticias/>} />
+
+>>>>>>> carlos
           
         </Routes>
       </Router>

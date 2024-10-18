@@ -70,7 +70,7 @@ const MenuNavegacion = () => {
                 </div>
 
                 <nav className="MenuNavegacion-menu">
-                    <button className="MenuNavegacion-menu-button">Noticias</button>
+                    <button className="MenuNavegacion-menu-button"onClick={() => navigate('/noticias')}>Noticias</button>
                     <button className="MenuNavegacion-menu-button" onClick={() => navigate('/empleos')}>Empleos</button>
                     <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicaciones')}>Publicaciones</button>
                     <button className="MenuNavegacion-menu-button">Foro</button>

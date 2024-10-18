@@ -1,7 +1,7 @@
 import React from "react";
 import './CajaDeTexto.css';
 
-function Textbox({ id, placeholder, type = "text" , value, onChange }) {
+function Textbox({ id, placeholder, type = "text", value, onChange }) {
     return (
         <div className="cajadetexto-form">
             <input
@@ -10,10 +10,11 @@ function Textbox({ id, placeholder, type = "text" , value, onChange }) {
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className="contenidostyle"
+                className="contenidostyle"  
             />
         </div>
     );
 }
+
 
 export default Textbox;
