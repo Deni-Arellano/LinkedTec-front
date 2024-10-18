@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom'; // Hooks para la navegación y parámetros de la URL
 import axios from 'axios'; // Librería para hacer peticiones HTTP
 import Swal from 'sweetalert2'; // Librería para mostrar alertas
@@ -7,13 +7,21 @@ import Etiquetas from '../../components/componente-label/Etiquetas';
 import CajaDeTexto from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
 import Button from '../../components/boton/Boton';
 import './EditarPublicacionEmpleo.css';
+import { usuarioContext } from '../../App';
+
 
 const EditarPublicacionEmpleo = () => {
+    
+    const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
+    //console.log(usuarioLog)
     const { idEmpleo } = useParams(); // Obtiene el parámetro 'idEmpleo' de la URL
+    //console.log(idEmpleo)
     const location = useLocation();  // Obtiene los datos de la publicación pasados a través de la navegación
     const navigate = useNavigate();  // Hook para manejar la navegación entre rutas
 
     const datos = location.state; // Captura los datos de la publicación desde el estado pasado por la navegación
+    //console.log('Editando publicacion empleo')
+    //console.log(datos)
 
     // Efecto que se ejecuta al cargar el componente, verifica si se recibieron datos, si no, muestra un error
     useEffect(() => {
@@ -41,6 +49,7 @@ const EditarPublicacionEmpleo = () => {
 
         // Objeto con los datos actualizados que se enviará al backend
         const datosActualizados = {
+            "id_usuario": usuarioLog,
             "titulo": titulo,
             "empresa": empresa,
             "salario": salario,
@@ -48,9 +57,11 @@ const EditarPublicacionEmpleo = () => {
             "ubicacion": ubicacion,
             "nivel_de_ingles": nivelDeIngles
         };
+        console.log(datosActualizados)
+        
 
         // Realiza una petición PATCH para actualizar los datos en el servidor
-        axios.patch(`http://localhost:3000/empleos/${idEmpleo}`, datosActualizados)
+        axios.patch(`http://localhost:3000/empleos/${datos.id_empleo}`, datosActualizados)
             .then(response => {
                 Swal.fire('Éxito', 'La publicación de empleo ha sido actualizada.', 'success');
                 navigate('/empleos'); // Redirige a la página de empleos después de la actualización exitosa

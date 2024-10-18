@@ -29,7 +29,7 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
 
     const editarPublicacionEmpleo = () => {
         // Navegar a la página de edición pasando todos los datos de la publicación como estado
-        navigate(`/editar-publicacion-empleo/${datos.id_empleo}`, { state: datos });
+        navigate(`/editar-publicacion-empleo/`, { state: datos });
     };
 
     return (
