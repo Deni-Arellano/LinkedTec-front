@@ -14,6 +14,7 @@ const Noticias = () => {
         try {
             const response = await axios.get('http://localhost:3000/noticias/');
             setDatosNoticias(response.data); 
+            console.log(datosNoticias)
         } catch (err) {
             console.error('Error al obtener las noticias:', err);
         }

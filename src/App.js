@@ -19,12 +19,14 @@ import Perfil from './pages/pagina-Perfil/Perfil';
 import EditarReclutador from './pages/pagina-editar-reclutador/EditarReclutador';
 import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
+import Noticias from './pages/pagina-noticias/Noticias.jsx';
+import CrearNoticias from './pages/pagina-crear-noticia/CrearNoticia.jsx';
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(null);  
-  //const [usuarioLog, setUsuarioLog] = useState('9');  
+  //const [usuarioLog, setUsuarioLog] = useState(null);  
+  const [usuarioLog, setUsuarioLog] = useState('3');  
   return (
     //Pasa a los componentes hijos el usuario
     <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
@@ -46,6 +48,8 @@ function App() {
           <Route path="/editar-reclutador" element={<EditarReclutador />} />
           <Route path="/editar-egresado" element={<EditarEgresado />} />
           <Route path="/editar-publicacion-empleo" element={<EditarPublicacionEmpleo />} />
+          <Route path="/noticias" element={<Noticias />} />
+          <Route path="/registro-noticia" element={<CrearNoticias/>} />
           
         </Routes>
       </Router>
