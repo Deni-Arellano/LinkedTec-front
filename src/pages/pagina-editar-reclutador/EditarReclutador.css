@@ -111,7 +111,7 @@
 }
 
 .reclutador-eye-icon {
-    position: absolute;
+    position: static;
     cursor: pointer;
     color: #888;
   }
