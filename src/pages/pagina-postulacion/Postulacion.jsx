@@ -41,9 +41,9 @@ const Postulacion = () => {
     const getUsuario = async () => {
         try {
             const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
-            
+            //console.log('Usuario:', response.data.role);
             // Si el usuario no es un egresado o estudiante, redirige a la página de publicaciones empleo
-            if (response.data.role !== 'Egresados' || response.data.role !== 'Estudiantes') {
+            if (response.data.role !== 'Egresados' && response.data.role !== 'Estudiantes') {
                 navigate('/empleos');
             }
             
