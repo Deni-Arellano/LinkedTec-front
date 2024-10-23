@@ -1,6 +1,7 @@
 import React, {useState, createContext} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //Compontentes de React
+//parece arreglado
 import CodigoVerificacion from './pages/pagina-codigo-verificacion/CodigoVerificacion';
 import EditarPublicacion from './pages/pagina-editar-publicacion/EditarPublicacion'; 
 import Empleos from './pages/pagina-empleos/Empleos'
