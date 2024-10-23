@@ -11,8 +11,9 @@ import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './Postulacion.css';
 import { GrDocumentPdf } from "react-icons/gr";
 
+
 const Postulacion = () => {
-    const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
+    const { usuarioLog } = useContext(usuarioContext);
     const navigate = useNavigate();
 
     // Estados para los datos de la postulación
@@ -47,12 +48,17 @@ const Postulacion = () => {
                 navigate('/empleos');
             }
             
+            
+            
             const usuario = response.data;
             // Asignar los valores obtenidos a los estados
             setNombre(usuario.nombre + ' ' + usuario.apellido_paterno + ' ' + usuario.apellido_materno);
             setCorreo(usuario.correo);
         } catch (err) {
             console.error('Error al obtener el usuario:', err);
+            /*if (usuarioLog === null) {
+                navigate('/empleos');
+            }*/
         }
     };
 
@@ -60,6 +66,92 @@ const Postulacion = () => {
     useEffect(() => {
         getUsuario();
     }, []);
+
+    const excepciones = (mensaje) => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: mensaje
+        });
+
+    }
+
+    const confirmarPostulacion = async () => {
+        const resultado = await Swal.fire({
+            icon: "question",
+            title: "¿Deseas continuar con la postulación?",
+            showCancelButton: true,
+            confirmButtonText: "Sí",
+            cancelButtonText: "No"
+        });
+    
+        if (resultado.isConfirmed) {
+            postularse();
+        } else {
+            excepciones('Postulación cancelada.');
+        }
+    };    
+
+    const postularse = async () => {
+
+        if (!fileSelected) {
+            excepciones('Debes seleccionar un archivo PDF');
+            return;
+        }
+
+        const file = CV.current.files[0];
+        if (file) {
+            //console.log(file.size);
+            const tamañofile = (file.size / (1024 * 1024)).toFixed(2); // Convierte el tamaño a MB
+            //console.log("El tamaño del archivo es: " + tamañofile + " MB");
+            if (tamañofile > 5) {
+                excepciones("El archivo es demasiado grande. Debe ser menor a 5MB.");
+                setFileSelected(false); 
+                return;
+            }
+        }
+
+        if (!nombre) {
+            excepciones('El nombre no puede estar vacío');
+            return;
+        }
+
+        if (!correo) {
+            excepciones('El correo no puede estar vacío');
+            return;
+        }
+
+        if (correo.length > 40) {
+            excepciones('El correo no puede tener más de 40 caracteres');
+            return;
+        }
+
+        const obtenerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!obtenerEmail.test(correo)) {
+            excepciones('El formato del correo no es válido');
+            return;
+        }
+            
+
+        if (!descripcion) {
+            excepciones('La descripción no puede estar vacía');
+            return;
+        }
+
+        if (descripcion.length > 500) {
+            excepciones('La descripción no puede tener más de 500 caracteres');
+            return;
+        }
+
+
+        if (!fileSelected) {
+            excepciones('Debes seleccionar un archivo PDF');
+            return;
+        }
+
+
+        
+    };
 
     return (
         <>
@@ -99,7 +191,7 @@ const Postulacion = () => {
 
 
                         <div className='botones-postulacion'>
-                            <button type="button" className="postulacion-boton-postularse">Postularse</button>
+                            <button type="button" className="postulacion-boton-postularse" onClick={confirmarPostulacion}>Postularse</button>
                             <button type="button" className="postulacion-boton-cancelar" onClick={handleBack}>Cancelar</button>
                         </div>
                     </div>

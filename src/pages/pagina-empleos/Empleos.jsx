@@ -65,7 +65,8 @@ useEffect(() => {
                         ubicacion: empleo.ubicacion,
                         nivelIngles: empleo.nivel_de_ingles,
                         fotoPerfil: datosUsuario[3] || 'https://via.placeholder.com/100', 
-                        nombreUsuario: `${datosUsuario[0] || ''} ${datosUsuario[1] || ''} ${datosUsuario[2] || ''}`
+                        nombreUsuario: `${datosUsuario[0] || ''} ${datosUsuario[1] || ''} ${datosUsuario[2] || ''}`,
+                        id_usuario: empleo.id_usuario
                     }}
 
                     onEliminar={id => {
