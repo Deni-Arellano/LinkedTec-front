@@ -104,6 +104,12 @@
     z-index: 1000;
     margin: 0;
     padding: 10px;
+    display: flex;
+    flex-direction: column; /* Alinea los botones en columna */
+}
+
+.PublicacionEmpleoNuevo-boton-flotante > button {
+    margin-bottom: 15px; /* Espacio entre los botones */
 }
 
 /* Estilos adicionales */
@@ -173,4 +179,3 @@ body {
 .PublicacionEmpleoNuevo-boton-postularse:hover {
     background-color: #011c4f; /* Un azul más oscuro para el hover */
 }
-

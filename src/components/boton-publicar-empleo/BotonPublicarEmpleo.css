@@ -4,35 +4,38 @@
   justify-content: center;
   width: 200px;
   height: 60px;
-  background-color: #4CAF50;
+  background-color: #4CAF50; /* Color verde */
   color: white;
   border: 2px solid white;
-  border-radius: 30px;
+  border-radius: 10px; /* Reduce el redondeo del borde */
   font-family: 'Sans Serif', Arial, sans-serif;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, background-color 0.2s, color 0.2s;
   position: relative;
   padding: 0 15px;
 }
 
 .PublicarEmpleo-button:hover {
   transform: scale(1.05);
+  background-color: white;
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
 }
 
 .PublicarEmpleo-content {
-  display: flex; /* Mantiene el icono y el texto en una línea */
-  align-items: center; /* Alinea verticalmente el icono y el texto */
+  display: flex;
+  align-items: center;
 }
 
 .PublicarEmpleo-icon {
   font-size: 24px;
   font-weight: bold;
-  margin-right: 10px; /* Espacio entre el icono y el texto */
+  margin-right: 10px;
 }
 
 .PublicarEmpleo-text {
   font-size: 16px;
-  text-align: center; /* Centra el texto */
+  text-align: center;
 }
 
 .PublicarEmpleo-button:focus {
