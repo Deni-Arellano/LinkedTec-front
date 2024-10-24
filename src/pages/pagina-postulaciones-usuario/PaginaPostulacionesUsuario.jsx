@@ -82,12 +82,19 @@ const PaginasPostulacionesUsuario = () => {
 
     return (
         <>
-            <MenuNavegacion /> 
+            <MenuNavegacion />
             <div className="PostulacionesUsuario-contenedor">
-                {componentesPostulaciones.length > 0 ? componentesPostulaciones : <p>No hay postulaciones disponibles</p>}
+                {componentesPostulaciones.length > 0 ? (
+                    componentesPostulaciones
+                ) : (
+                    <div className="mensaje-sin-postulaciones">
+                        <p>No hay postulaciones disponibles</p>
+                    </div>
+                )}
             </div>
         </>
     );
+    
 };
 
 export default PaginasPostulacionesUsuario;
