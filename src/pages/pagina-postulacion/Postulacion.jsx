@@ -222,8 +222,9 @@ const Postulacion = () => {
             Swal.fire('Postulación realizada', 'La postulación ha sido realizada con éxito', 'success');
             handleBack();
         } catch (error) {
+            
             if (error.response) {
-                excepciones(error.response.data.message);
+                excepciones(error.response.data.error);
             }
         }
         
