@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect, useRef,useCallback } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Axios from 'axios';
 import { usuarioContext } from '../../App';
 import Swal from 'sweetalert2';
 import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
-import Button from '../../components/boton/Boton.jsx';
 import Textarea from '../../components/componente-text-area/text-area.jsx';
 import Label from '../../components/componente-label/Etiquetas.jsx';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './Postulacion.css';
 import { GrDocumentPdf } from "react-icons/gr";
+
 
 
 const Postulacion = () => {
@@ -23,6 +23,9 @@ const Postulacion = () => {
     const CV = useRef(null); 
     const [fileSelected, setFileSelected] = useState(false);
 
+    const location = useLocation();
+    const { id_empleo } = location.state || {};
+
     // Función para regresar a las publicaciones de empleos
     const handleBack = () => {
         console.log("Navegando a /empleos");
@@ -33,13 +36,24 @@ const Postulacion = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            console.log("Archivo seleccionado: ", file.name);
-            setFileSelected(true);
+            //console.log("Archivo seleccionado: ", file.name);
+            //console.log(file.type)
+            if (file.type !=='application/pdf'){
+                excepciones('Selecciona un archivo PDF')
+                setFileSelected(false)
+            }else{
+                setFileSelected(true);
+
+            }
+            
+        }else{
+            setFileSelected(false)
         }
     };
 
+
     // Obtener los datos del usuario logeado
-    const getUsuario = async () => {
+    const getUsuario = useCallback(async () => {
         try {
             const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
             //console.log('Usuario:', response.data.role);
@@ -55,17 +69,16 @@ const Postulacion = () => {
             setNombre(usuario.nombre + ' ' + usuario.apellido_paterno + ' ' + usuario.apellido_materno);
             setCorreo(usuario.correo);
         } catch (err) {
-            console.error('Error al obtener el usuario:', err);
-            /*if (usuarioLog === null) {
+            //console.error('Error al obtener el usuario:', err);
+            if (usuarioLog === null) {
                 navigate('/empleos');
-            }*/
-        }
-    };
-
+            
+        }}
+    }, [usuarioLog, navigate]);
     // Se ejecuta al cargar la página y obtiene los datos del usuario logeado
     useEffect(() => {
         getUsuario();
-    }, []);
+    }, [getUsuario]);
 
     const excepciones = (mensaje) => {
         Swal.fire({
@@ -87,10 +100,33 @@ const Postulacion = () => {
     
         if (resultado.isConfirmed) {
             postularse();
-        } else {
-            excepciones('Postulación cancelada.');
+        } 
+    };   
+    
+    const subirArchivo = async () => {
+        const archivo = CV.current.files[0];
+        
+        const formData = new FormData();
+        formData.append('archivo', archivo);
+
+        try {
+            const respuesta = await Axios.post('http://localhost:3000/subidas/subir-archivo', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            });
+
+            return { 
+                success: true, 
+                data: respuesta.data.data}; 
+            
+        } catch (error) {
+            //console.log(error)
+            return {
+                success: false,
+                mensaje: error.response?.data?.mensaje || 'Error al subir el archivo.'
+            };
         }
-    };    
+    }
+
 
     const postularse = async () => {
 
@@ -148,6 +184,49 @@ const Postulacion = () => {
             excepciones('Debes seleccionar un archivo PDF');
             return;
         }
+
+        //Subir archivo
+        const resultadoSubirPDF= await subirArchivo()
+
+        if (resultadoSubirPDF.success){
+            
+        } else{
+            excepciones(resultadoSubirPDF.mensaje)
+            return;
+        }
+
+        //Datos para mandar al backend
+        const datosEnviar={
+            "id_usuario": usuarioLog, 
+            "id_empleo": id_empleo,
+            "descripcion_personal": descripcion,
+            "cv": {
+              "id_recurso": resultadoSubirPDF.data.asset_id,              
+              "id_publico": resultadoSubirPDF.data.public_id,
+              "formato": "pdf",
+              "tipo_recurso": "archivo",
+              "fecha_creacion": resultadoSubirPDF.data.created_at,
+              "url_segura": resultadoSubirPDF.data.secure_url,
+              "carpeta": "files",
+              "nombre_original": resultadoSubirPDF.data.original_filename,
+              "tipo_subida": "archivo"
+            },
+            "id_estado": 1
+          }
+
+        console.log('Datos a enviar', datosEnviar)
+
+        //Petición para agregar postulación   
+        try {
+            await Axios.post(`http://localhost:3000/postulaciones/`, datosEnviar);
+            Swal.fire('Postulación realizada', 'La postulación ha sido realizada con éxito', 'success');
+            handleBack();
+        } catch (error) {
+            if (error.response) {
+                excepciones(error.response.data.message);
+            }
+        }
+        
 
 
         

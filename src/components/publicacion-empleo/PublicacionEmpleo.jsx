@@ -44,7 +44,7 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
     };
 
     const postularse = () => {
-        navigate('/postulacion');
+        navigate('/postulacion', { state: { id_empleo: datos.id_empleo } });
     };
 
     // Obtener los datos del usuario logeado
