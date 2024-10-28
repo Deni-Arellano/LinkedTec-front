@@ -1,0 +1,43 @@
+.Postulaciones-button {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el icono y el texto */
+  justify-content: center;
+  width: 200px;
+  height: 60px;
+  background-color: #3108c7; /* Color azul */
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px; /* Reduce el redondeo de las esquinas */
+  font-family: 'Sans Serif', Arial, sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s, color 0.2s;
+  position: relative;
+  padding: 0 15px;
+}
+
+.Postulaciones-button:hover {
+  transform: scale(1.05);
+  background-color: white; /* Cambia el color de fondo a blanco */
+  color: #3108c7; /* Cambia el color del texto a azul */
+  border: 2px solid #3108c7; /* Cambia el color del borde a azul */
+}
+
+.Postulaciones-content {
+  display: flex; /* Mantiene el icono y el texto en una línea */
+  align-items: center; /* Alinea verticalmente el icono y el texto */
+}
+
+.Postulaciones-icon {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.Postulaciones-text {
+  font-size: 16px;
+  text-align: center; /* Centra el texto */
+}
+
+.Postulaciones-button:focus {
+  outline: none;
+}

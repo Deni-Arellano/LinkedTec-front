@@ -4,35 +4,21 @@
   justify-content: center;
   width: 200px;
   height: 60px;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #5dcc61; /* Color verde para el fondo */
+  color: white; /* Texto blanco */
   border: 2px solid white;
   border-radius: 30px;
   font-family: 'Sans Serif', Arial, sans-serif;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, background-color 0.3s, color 0.3s;
   position: relative;
   padding: 0 15px;
 }
 
 .PublicarEmpleo-button:hover {
   transform: scale(1.05);
-}
-
-.PublicarEmpleo-content {
-  display: flex; /* Mantiene el icono y el texto en una línea */
-  align-items: center; /* Alinea verticalmente el icono y el texto */
-}
-
-.PublicarEmpleo-icon {
-  font-size: 24px;
-  font-weight: bold;
-  margin-right: 10px; /* Espacio entre el icono y el texto */
-}
-
-.PublicarEmpleo-text {
-  font-size: 16px;
-  text-align: center; /* Centra el texto */
+  background-color: white; /* Fondo blanco al pasar el ratón */
+  color: #5dcc61; /* Texto verde al pasar el ratón */
 }
 
 .PublicarEmpleo-button:focus {

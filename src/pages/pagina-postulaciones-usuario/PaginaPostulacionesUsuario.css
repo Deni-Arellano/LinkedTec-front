@@ -1,0 +1,33 @@
+.PostulacionesUsuario-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.PostulacionesUsuario-contenedor p {
+    font-size: 18px;
+    color: #333;
+}
+.PostulacionesUsuario-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Ajusta la altura para centrar verticalmente */
+}
+
+.mensaje-sin-postulaciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
