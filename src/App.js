@@ -21,12 +21,13 @@ import EditarReclutador from './pages/pagina-editar-reclutador/EditarReclutador'
 import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
 import Postulacion from './pages/pagina-postulacion/Postulacion';
+import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-como-reclutador/VisualizarPostuComoReclutador.jsx';
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
 function App() {
   const [usuarioLog, setUsuarioLog] = useState(null);
-  //const [usuarioLog, setUsuarioLog] = useState('38');
+  //const [usuarioLog, setUsuarioLog] = useState('11');
   return (
     //Pasa a los componentes hijos el usuario
     <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
@@ -52,6 +53,7 @@ function App() {
           <Route path='/editar-docente' element={<EditDocente/>} />
           <Route path='/editar-estudiante' element={<EditEstu/>} />
           <Route path='/postulacion' element={<Postulacion/>} />
+          <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
           
         </Routes>
       </Router>
