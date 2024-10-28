@@ -8,29 +8,39 @@ import './Noticias.css';
 import axios from 'axios';
 import { usuarioContext } from '../../App'; 
 import Swal from 'sweetalert2';
+import { BsThreeDots } from "react-icons/bs"; 
 
 const Noticias = () => {
     const navigate = useNavigate();
     const { usuarioLog } = useContext(usuarioContext); 
     const [datosNoticias, setDatosNoticias] = useState([]);
+    const [usuarios, setUsuarios] = useState([]);
     const [usuarioLogueado, setUsuarioLogueado] = useState(null);
     const [paginaActual, setPaginaActual] = useState(1); 
     const [paginaSiguiente, setPaginaSiguiente] = useState(null);
     const [paginaAnterior, setPaginaAnterior] = useState(null);
     const [totalPaginas, setTotalPaginas] = useState(1); 
-    const [menuAbierto, setMenuAbierto] = useState(null); // Para controlar qué menú está abierto
+    const [menuAbierto, setMenuAbierto] = useState(null); 
 
     const getNoticias = async (pagina = 1) => {
         try {
             const response = await axios.get(`http://localhost:3000/noticias?pagina=${pagina}`);
             const { noticias, total_paginas, pagina_siguiente, pagina_anterior } = response.data;
-
             setDatosNoticias(noticias);  
             setTotalPaginas(total_paginas);  
             setPaginaSiguiente(pagina_siguiente.exists ? pagina_siguiente.url : null);  
-            setPaginaAnterior(pagina_anterior.exists ? pagina_anterior.url : null);  
+            setPaginaAnterior(pagina_anterior.exists ? pagina_anterior.url : null);
         } catch (err) {
             console.error('Error al obtener las noticias:', err);
+        }
+    };
+
+    const getUsuarios = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/usuarios');
+            setUsuarios(response.data); 
+        } catch (err) {
+            console.error('Error al obtener los usuarios:', err);
         }
     };
 
@@ -64,26 +74,29 @@ const Noticias = () => {
     };
 
     const toggleMenu = (id_noticia) => {
-        setMenuAbierto(menuAbierto === id_noticia ? null : id_noticia); // Cambiar entre abrir/cerrar el menú
+        setMenuAbierto(menuAbierto === id_noticia ? null : id_noticia);
     };
 
     const manejarEliminar = (id_noticia) => {
-        // Función para manejar la eliminación de una noticia
         console.log(`Eliminar noticia con id: ${id_noticia}`);
     };
 
     const manejarEditar = (id_noticia) => {
-        // Función para manejar la edición de una noticia
-        console.log(`Editar noticia con id: ${id_noticia}`);
         navigate(`/editar-noticia/${id_noticia}`);
     };
 
     const manejarReportar = (id_noticia) => {
-        navigate('/reportar-contenido');  
+        navigate(`/reportar-contenido/${id_noticia}`); 
+    };
+
+    const obtenerNombreUsuario = (id_usuario) => {
+        const usuario = usuarios.find(user => user.id === id_usuario);
+        return usuario ? `${usuario.nombre} ${usuario.apellido_paterno} ${usuario.apellido_materno}` : 'Usuario desconocido';
     };
 
     useEffect(() => {
         getNoticias(paginaActual);
+        getUsuarios(); 
         getUsuarioLogueado();
     }, []);  
 
@@ -105,46 +118,49 @@ const Noticias = () => {
                                         alt="100x100"
                                         className="imagen-perfil"
                                     />
-                                    <Etiquetas tamano={16} texto={noticia.usuario || 'Usuario desconocido'} id={`usuario-${noticia.id_noticia}`} />
+                                    <Etiquetas tamano={16} texto={obtenerNombreUsuario(noticia.id_usuario)} id={`usuario-${noticia.id_noticia}`}/>
                                 </div>
                                 <p>{new Date(noticia.fecha_noticia).toLocaleDateString()}</p>
                                 
-                                <div className="menu-opciones">
-                                    <button className="menu-tres-puntos" onClick={() => toggleMenu(noticia.id_noticia)}>⋮</button>
-                                    {menuAbierto === noticia.id_noticia && (
-                                        <div className="menu-desplegable">
-                                            {usuarioLogueado?.id_usuario === noticia.id_usuario ? (
-                                                <>
-                                                    <button onClick={() => manejarEditar(noticia.id_noticia)}>Editar</button>
-                                                    <button onClick={() => manejarEliminar(noticia.id_noticia)}>Eliminar</button>
-                                                </>
-                                            ) : (
-                                                <button onClick={() => manejarReportar(noticia.id_noticia)}>Reportar</button>
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
+                                <BsThreeDots className="mostrar-datos-usuario-icono-tres-puntos" size={20} onClick={() => toggleMenu(noticia.id_noticia)} />
+                                
+                                {menuAbierto === noticia.id_noticia && (
+                                    <div className="mostrar-datos-usuario-opciones-dropdown">
+                                        {usuarioLogueado?.id === noticia.id_usuario ? (
+                                            <>
+                                                <button className="mostrar-datos-usuario-opcion-boton" onClick={() => manejarEditar(noticia.id_noticia)}>Editar</button>
+                                                <button className="mostrar-datos-usuario-opcion-boton" onClick={() => manejarEliminar(noticia.id_noticia)}>Eliminar</button>
+                                            </>
+                                        ) : (
+                                            <button className="mostrar-datos-usuario-opcion-boton" onClick={() => manejarReportar(noticia.id_noticia)}>Reportar</button> 
+                                        )}
+                                    </div>
+                                )}
                             </div>
 
                             <div className="tarjeta-noticia-cuerpo">
-                                <Etiquetas tamano={20} texto={noticia.titulo_noticia} id={`titulo-${noticia.id_noticia}`} className="titulo-centrado" />
-                                <p><strong>Descripción:</strong> {noticia.descripcion}</p>
+                                <Etiquetas tamano={24} texto={noticia.titulo_noticia} id={`titulo-${noticia.id_noticia}`} className="titulo-centrado" />
+
+                                <Etiquetas tamano={16} texto="Descripción:" id={`descripcion-label-${noticia.id_noticia}`} />
+                                <p>{noticia.descripcion}</p>
+
                                 <img 
                                     src={noticia.imagen_noticia || 'https://via.placeholder.com/600x400'} 
                                     alt="Imagen de noticia" 
                                     className="imagen-noticia" 
                                 />
-                                <p><strong>Categoría:</strong> {noticia.categoria_noticia}</p>
-                                <p>
-                                    <a 
-                                        href={noticia.enlace_noticia} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        className="leer-mas"
-                                    >
-                                        Leer más
-                                    </a>
-                                </p>
+                                
+                                <Etiquetas tamano={16} texto="Categoría:" id={`categoria-label-${noticia.id_noticia}`} />
+                                <p>{noticia.categoria_noticia}</p>
+
+                                <a 
+                                    href={noticia.enlace_noticia} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="leer-mas"
+                                >
+                                    Leer más
+                                </a>
                             </div>
                         </div>
                     ))
@@ -152,7 +168,7 @@ const Noticias = () => {
                     <p>No hay noticias disponibles</p>
                 )}
             </div>
-
+            
             <div className="paginacion">
                 <Button 
                     texto="Anterior" 

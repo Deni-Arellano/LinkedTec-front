@@ -1,52 +1,114 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Etiquetas from '../componente-label/Etiquetas.jsx'; 
 import CajaDeTexto from '../componente-caja-de-texto/CajaDeTexto.jsx';
 import Button from '../boton/Boton.jsx'; 
-import RadioButtons from '../componente-boton-de-radio/radio-boton.jsx'; // Reutilizamos los radio buttons
+import RadioButtons from '../componente-boton-de-radio/radio-boton.jsx';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ReportarContenido.css'; 
+import { usuarioContext } from '../../App';
 
-const ReportarContenido = ({ categoriaActual = 'Noticias' }) => {
+const ReportarContenido = ({ categoriaActual }) => {
+    const { id_noticia } = useParams(); 
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [categoria, setCategoria] = useState(categoriaActual);  // Precargamos la categoría actual
+    const [categoria, setCategoria] = useState(categoriaActual);
     const [tipoReporte, setTipoReporte] = useState('');
-    const [motivoReporte, setMotivoReporte] = useState('');
+    const [idUsuario, setIdUsuario] = useState(null);
+    const { usuarioLog } = useContext(usuarioContext);
     const navigate = useNavigate();
+    
+    useEffect(() => {
+        const obtenerUsuarioNoticia = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/noticias/${id_noticia}`);
+                const noticia = response.data;
+                setIdUsuario(noticia.id_usuario); 
+            } catch (error) {
+                console.error('Error al obtener la noticia:', error);
+                Swal.fire('Error', 'No se pudo cargar la información de la noticia.', 'error');
+            }
+        };
 
-    // Función para manejar el envío del reporte
-    const handleSubmit = async () => {
-        if (!titulo || !motivoReporte || !tipoReporte) {
-            Swal.fire('Error', 'Por favor, llena todos los campos requeridos.', 'error');
+        if (id_noticia) {
+            obtenerUsuarioNoticia();
+        }
+    }, [id_noticia]);
+
+    /*Manejo de el envio del reporte*/
+    const handleSubmit = () => {
+        if (titulo.trim()==='' ) {
+            Swal.fire('Error', 'Por favor, ingresa el titulo de reporte.', 'error');
             return;
         }
-
-        try {
-            const reporte = {
-                titulo,
-                descripcion,
-                categoria_reporte: categoria,  // Aquí va la categoría seleccionada
-                tipo_reporte: tipoReporte,
-                motivo: motivoReporte
-            };
-
-            const response = await axios.post('http://localhost:3000/reportes', reporte);  // Enviar el reporte con POST
-
-            if (response.status === 200) {
-                Swal.fire('Éxito', 'Tu reporte ha sido enviado.', 'success');
-                navigate(-1); // Volver a la página anterior
-            } else {
-                throw new Error('Error en el envío');
-            }
-        } catch (error) {
-            Swal.fire('Error', 'Hubo un problema al enviar tu reporte.', 'error');
+        if(tipoReporte.trim()==='')
+        {
+            Swal.fire('Error','Porfavor ayudanos a ingresar el tipo de reporte','error')
         }
+        if (titulo.length>255)
+            {
+                Swal.fire("Error","Porfavor el titulo debe de contener menos de 255 caracteres ")
+                return;
+            }
+        if (descripcion.trim() === '')
+        {
+            Swal.fire('Error', 'Por favor ingresa una descripcion a la noticia', 'error');
+            return;
+        }
+        if(descripcion.length < 10)
+        {
+            Swal.fire('Error', 'Por favor la descripcion debe de tener mas de 10 caracteres', 'error');
+            return;
+        }
+        if(descripcion.length>500)
+            {
+                Swal.fire('Error', 'Por favor la descripcion debe de tener menos de 500 caracteres', 'error');
+                return;
+            }
+            if (categoria.trim()==='')
+                {
+                    Swal.fire("Error","Porfavor elige una categoria de reporte ")
+                    return;
+                }
+        if (!tipoReporte) {
+            Swal.fire('Error', 'Por favor, elige el tipo de reporte.', 'error');
+            return;
+        }
+        if (tipoReporte.trim()==='')
+            {
+                Swal.fire("Error","Porfavor el titulo debe de contener menos de 255 caracteres ")
+                return;
+            }
+
+        const reporte = {
+            "id_usuario": idUsuario,
+            "tipo_reporte": tipoReporte,
+            "categoria_reporte": categoria,
+            "descripcion": descripcion,
+            "id_elemento_reportado": id_noticia,
+            "titulo_reporte": titulo
+        };
+
+        axios.post('http://localhost:3000/reportes', reporte)
+            .then((response) => {
+                console.log(response);
+                Swal.fire('Éxito', 'Tu reporte ha sido enviado con éxito.', 'success');
+                navigate(-1);
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.error('Error en la solicitud:', error.response.data);
+                    Swal.fire('Error', `Error en la solicitud: ${error.response.data.message || 'Error al enviar el reporte'}`, 'error');
+                } else {
+                    console.error('Error:', error.message);
+                    Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
+                }
+            });
     };
 
     const cerrarModal = () => {
-        navigate(-1); // Volver a la página anterior
+        navigate(-1);
     };
 
     return (
@@ -69,7 +131,7 @@ const ReportarContenido = ({ categoriaActual = 'Noticias' }) => {
                     <Etiquetas tamano={14} texto="Descripción del problema" />
                     <CajaDeTexto 
                         id="descripcion-reporte" 
-                        placeholder="Descripción del problema (opcional)" 
+                        placeholder="Descripción de reporte" 
                         value={descripcion}
                         onChange={(e) => setDescripcion(e.target.value)}
                         className="reportar-textarea"
@@ -81,16 +143,12 @@ const ReportarContenido = ({ categoriaActual = 'Noticias' }) => {
                     <RadioButtons 
                         name="categoria_reporte"
                         options={[
-                            { value: 'perfil', label: 'Perfil' },
                             { value: 'publicaciones', label: 'Publicaciones' },
                             { value: 'noticias', label: 'Noticias' },
-                            { value: 'empleos', label: 'Empleos' },
-                            { value: 'foros', label: 'Foros' },
-                            { value: 'eventos', label: 'Eventos' },
-                            { value: 'otros', label: 'Otros' }
+                            { value: 'empleos', label: 'Empleos' }
                         ]}
-                        selectedOption={categoria}  // Precargamos la categoría seleccionada
-                        onChange={(e) => setCategoria(e.target.value)}  // Actualizamos la categoría
+                        selectedOption={categoria}
+                        onChange={(e) => setCategoria(e.target.value)}
                     />
                 </div>
 
@@ -105,24 +163,13 @@ const ReportarContenido = ({ categoriaActual = 'Noticias' }) => {
                         <option value="">--Seleccionar tipo de reporte--</option>
                         <option value="acoso">Acoso</option>
                         <option value="amenaza">Amenaza</option>
-                        <option value="discriminacion">Discriminación</option>
-                        <option value="difamacion">Difamación</option>
+                        <option value="discriminación">Discriminación</option>
+                        <option value="difamación">Difamación</option>
                         <option value="ofensa">Ofensa</option>
-                        <option value="suplantacion">Suplantación de identidad</option>
+                        <option value="suplantación de identidad">Suplantación de identidad</option>
                         <option value="fraude">Fraude</option>
                         <option value="otros">Otros</option>
                     </select>
-                </div>
-
-                <div className="reportar-input-group">
-                    <Etiquetas tamano={14} texto="Motivo del reporte" />
-                    <CajaDeTexto 
-                        id="motivo-reporte" 
-                        placeholder="Describe el motivo del reporte (requerido)" 
-                        value={motivoReporte}
-                        onChange={(e) => setMotivoReporte(e.target.value)}
-                        className="reportar-textbox"
-                    />
                 </div>
 
                 <div className="reportar-botones">
