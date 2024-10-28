@@ -20,6 +20,7 @@ import EditEstu from './pages/pagina-editar-estudiantes/EditarEstudiantes';
 import EditarReclutador from './pages/pagina-editar-reclutador/EditarReclutador';
 import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
+import Postulacion from './pages/pagina-postulacion/Postulacion';
 
 export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/editar-publicacion-empleo" element={<EditarPublicacionEmpleo />} />
           <Route path='/editar-docente' element={<EditDocente/>} />
           <Route path='/editar-estudiante' element={<EditEstu/>} />
+          <Route path='/postulacion' element={<Postulacion/>} />
           
         </Routes>
       </Router>

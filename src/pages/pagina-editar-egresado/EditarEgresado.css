@@ -104,7 +104,7 @@
 
 /*Estilos para el icono de ojo aplicado al ver contraseñas*/
 .egresado-eye-icon {
-    position: absolute;
+    position: static;
     cursor: pointer;
     color: #888;
   }

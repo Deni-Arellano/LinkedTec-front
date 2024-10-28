@@ -1,0 +1,126 @@
+.postulacion-contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3%;
+    background-color: white;
+    max-width: 54%;
+    width: 100%;
+    
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.postulacion-general {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px; 
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.formulario-postulacion{
+    width: 100%;
+}
+
+.postulacion-contenedor-pagina{
+    margin-left: 250px;
+
+}
+
+.subir-cv{
+    display: none;
+}
+
+.postulacion-titulo{ /*Modificar*/
+    font-size: clamp(2rem, 2.5vw, 1.5rem);
+    color: #093e61;
+    max-width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.text-area-postulacion{
+    width: 100%;
+    height: 200px;
+}
+
+.boton-subir-cv {
+    background-color: #f8f8f8;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    
+}
+.boton-subir-cv:hover {
+    background-color:  #cbcfd6;
+    color: black;
+    
+    width: 100%;
+    
+}
+
+.cv-seleccionado {
+    background-color: #4caf50; 
+    border: 2px solid #4caf50;
+    color: white;
+    border-color: #4caf50;
+}
+
+.cv-seleccionado:hover {
+    background-color: #4caf50;
+    color: white;
+    border-color: #4caf50;
+}
+
+.botones-postulacion{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.postulacion-boton-postularse{
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color:#35548b ;
+}
+
+.postulacion-boton-postularse:hover{
+    background-color: #012a6f;
+}
+
+.postulacion-boton-cancelar{
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color:#ff4d4d ;
+
+}
+
+.postulacion-boton-cancelar:hover{
+    background-color: #e60000;
+}
+
+
+
+@media (max-width: 940px) {
+    .postulacion-general, .botones-postulacion{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+    }
+}
