@@ -1,81 +1,58 @@
-import React, { useContext, useState, useEffect } from 'react';
-import Etiquetas from '../componente-label/Etiquetas';
-import './PostulacionesUsuario.css';
-import { usuarioContext } from '../../App';
-import Axios from 'axios';
+import React, { useState } from 'react';
+import './Postulacion-usuario.css';
+import { BsThreeDots } from "react-icons/bs";
 
-const PostulacionesUsuario = ({ userId }) => {
-  const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
-  const [postulaciones, setPostulaciones] = useState([]);
+const PostulacionesUsuario = ({ datos, onEliminar }) => {
   const [mostrarDetalles, setMostrarDetalles] = useState(null);
-  const [estadoPostulacion, setEstadoPostulacion] = useState([]);
-  const [detallePostulacion, setDetallePostulacion] = useState(null);
+  const [estadoPostulacion, setEstadoPostulacion] = useState('Activa');
 
-  useEffect(() => {
-    // Cargar todas las postulaciones del usuario
-    Axios.get(`http://localhost:3000/postulaciones/${userId}?pagina=1&limite=10`)
-      .then(response => {
-        setPostulaciones(response.data.postulaciones);
-        setEstadoPostulacion(response.data.postulaciones.map(post => post.estado || 'Activa'));
-      })
-      .catch(error => console.error("Error al cargar postulaciones:", error));
-  }, [userId]);
-
-  const handleVerDetalles = (id_postulacion) => {
-    Axios.get(`http://localhost:3000/postulaciones/${id_postulacion}/info`)
-      .then(response => {
-        setDetallePostulacion(response.data);
-        setMostrarDetalles(id_postulacion);
-      })
-      .catch(error => console.error("Error al cargar detalles de la postulación:", error));
+  const handleVerDetalles = () => {
+    setMostrarDetalles(!mostrarDetalles);
   };
 
   const handleCerrarDetalles = () => {
     setMostrarDetalles(null);
-    setDetallePostulacion(null);
   };
 
-  const handleCancelarPostulacion = (index) => {
+  const handleCancelarPostulacion = () => {
     if (window.confirm('¿Estás seguro de que deseas cancelar esta postulación?')) {
-      const nuevoEstado = [...estadoPostulacion];
-      nuevoEstado[index] = 'Cancelada';
-      setEstadoPostulacion(nuevoEstado);
+      setEstadoPostulacion('Cancelada');
+      onEliminar(datos.id_postulacion);
       handleCerrarDetalles();
     }
   };
 
   return (
-    <div className="postulaciones-lista">
-      {postulaciones.map((postulacion, index) => (
-        <div key={postulacion.id_postulacion} className="postulacion-tarjeta">
-          <div className="postulacion-header">
-            <h3>{postulacion.titulo}</h3>
-            <p><strong><Etiquetas texto="Empresa" />:</strong> {postulacion.empresa}</p>
-            <p><strong><Etiquetas texto="Salario" />:</strong> {postulacion.salario}</p>
-            <p><strong>Estado de la postulación:</strong> {estadoPostulacion[index]}</p>
-            <button onClick={() => handleVerDetalles(postulacion.id_postulacion)} className="ver-detalles-boton">
-              Ver detalles
+    <div className="postulacion-tarjeta">
+      <div className="postulacion-header">
+        <img src={datos.fotoPerfil} alt="Foto de perfil" className="postulacion-foto-perfil" />
+        <p className="postulacion-usuario-nombre">{datos.nombreUsuario}</p>
+        <BsThreeDots className="icono-tres-puntos" />
+      </div>
+      <h3 className="titulo-empleo">{datos.tituloEmpleo}</h3>
+      <p className="detalle"><strong>Empresa:</strong> {datos.empresa}</p>
+      <p className="detalle"><strong>Salario:</strong> {datos.salario}</p>
+      <p className="detalle"><strong>Estado de la postulación:</strong> {estadoPostulacion}</p>
+      <button onClick={handleVerDetalles} className="ver-detalles-boton">
+        {mostrarDetalles ? "Ocultar detalles" : "Ver detalles"}
+      </button>
+
+      {mostrarDetalles && (
+        <div className="detalles-modal">
+          <div className="detalles-contenido">
+            <h2 className="titulo-empleo">{datos.tituloEmpleo}</h2>
+            <p><strong>Descripción:</strong> {datos.descripcion}</p>
+            <p><strong>Ubicación:</strong> {datos.ubicacion}</p>
+            <p><strong>Nivel de inglés:</strong> {datos.nivelIngles}</p>
+            <button onClick={handleCancelarPostulacion} className="cancelar-boton">
+              Cancelar Postulación
+            </button>
+            <button onClick={handleCerrarDetalles} className="cerrar-boton">
+              Cerrar
             </button>
           </div>
-
-          {mostrarDetalles === postulacion.id_postulacion && detallePostulacion && (
-            <div className="detalles-modal">
-              <div className="detalles-contenido">
-                <h2>{detallePostulacion.empleo.titulo}</h2>
-                <p><strong><Etiquetas texto="Descripción" />:</strong> {detallePostulacion.empleo.descripcion}</p>
-                <p><strong><Etiquetas texto="Ubicación (estado)" />:</strong> {detallePostulacion.empleo.ubicacion}</p>
-                <p><strong><Etiquetas texto="Nivel de inglés requerido" />:</strong> {detallePostulacion.empleo.nivel_de_ingles}</p>
-                <button onClick={() => handleCancelarPostulacion(index)} className="cancelar-boton">
-                  Cancelar Postulación
-                </button>
-                <button onClick={handleCerrarDetalles} className="cerrar-boton">
-                  Cerrar
-                </button>
-              </div>
-            </div>
-          )}
         </div>
-      ))}
+      )}
     </div>
   );
 };

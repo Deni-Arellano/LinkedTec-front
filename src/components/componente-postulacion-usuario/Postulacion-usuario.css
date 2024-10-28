@@ -1,35 +1,83 @@
+/* Contenedor principal para centrar la tarjeta */
 .postulaciones-lista {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
     justify-content: center;
+    align-items: center;
     padding: 20px;
+    margin-top: 80px; /* Para alinear con el margen superior similar */
 }
-  
+
+/* Estilo de la tarjeta de postulación */
 .postulacion-tarjeta {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
+    background-color: white;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Ancho máximo similar al de la imagen */
+    width: 100%;
+    margin-bottom: 20px;
 }
-  
+
+/* Encabezado de la tarjeta */
 .postulacion-header {
-    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
-  
-.ver-detalles-boton {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
+
+.postulacion-foto-perfil {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.postulacion-usuario-nombre {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.icono-tres-puntos {
+    font-size: 1.5rem;
+    color: #333;
     cursor: pointer;
-    margin-top: 10px; /* Añadir separación */
 }
-  
+
+/* Título del empleo */
+.titulo-empleo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #003366;
+    margin: 20px 0;
+}
+
+/* Detalles del empleo */
+.detalle {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Botón "Postularse" */
+.ver-detalles-boton {
+    width: 100%;
+    background-color: #012a6f;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.ver-detalles-boton:hover {
+    background-color: #011c4f;
+}
+
+/* Estilos de la ventana modal */
 .detalles-modal {
     position: fixed;
     top: 0;
@@ -40,32 +88,57 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
 }
-  
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .detalles-contenido {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     max-width: 500px;
     width: 100%;
-    text-align: left;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    animation: slideIn 0.3s ease;
 }
-  
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(0); }
+}
+
+/* Botones de la ventana modal */
+.cancelar-boton,
+.cerrar-boton {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
 .cancelar-boton {
     background-color: red;
     color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
 }
-  
+
+.cancelar-boton:hover {
+    background-color: darkred;
+}
+
 .cerrar-boton {
     background-color: gray;
     color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
+}
+
+.cerrar-boton:hover {
+    background-color: #505050;
 }
