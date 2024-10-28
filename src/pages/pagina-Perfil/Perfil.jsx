@@ -132,10 +132,11 @@ const VisualizacionPerfil = () => {
         const getPublicacionesUsu = async () => {
             try {
                 const response = await Axios.get(`http://localhost:3000/publicaciones/usuario/${usuarioLog}`);
-                setDatosPublicaciones(response.data);
-    
-                if (response.data && response.data.length > 0) {
-                    setDatosPublicaciones(response.data);
+                setDatosPublicaciones(response.data.publicaciones);
+                console.log("Datos de las publicaciones" , response.data.publicaciones);
+                if (response.data.publicaciones && response.data.publicaciones.length > 0) {
+                    setDatosPublicaciones(response.data.publicaciones);
+
                 } else {
                     
                     setDatosPublicaciones([]);

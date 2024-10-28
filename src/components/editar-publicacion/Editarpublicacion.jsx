@@ -117,6 +117,8 @@ const EditarPublicacion = () => {
             "descripcion": descripcion,
             "imagen": imagen || datos.imagen
         };
+
+        console.log("datos a actualizar" , datosEnviar);
     
         try {
             await Axios.patch(`http://localhost:3000/publicaciones/${datos.id_publicacion}`, datosEnviar);
@@ -139,15 +141,16 @@ const EditarPublicacion = () => {
         }
 
         const formData = new FormData();
-        formData.append('image', file);
+        formData.append('imagen', file);
 
         try {
-            const response = await Axios.post('http://localhost:3000/imagenes/upload', formData, {
+            const response = await Axios.post('http://localhost:3000/subidas/subir-imagen', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            return response.data.fileName; 
+            console.log("URL de la imagen", response.data.secure_url);
+            return response.data.secure_url; 
         } catch (error) {
             Swal.fire('Error', 'Error al subir la imagen.', 'error');
         }
