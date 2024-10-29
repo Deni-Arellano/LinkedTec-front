@@ -10,18 +10,26 @@ import { usuarioContext } from '../../App';
 import Swal from 'sweetalert2';
 import { BsThreeDots } from "react-icons/bs"; 
 
-const Noticias = () => {
+const Noticias = ({ openReportModal }) => {
     const navigate = useNavigate();
     const { usuarioLog } = useContext(usuarioContext); 
-    const [datosNoticias, setDatosNoticias] = useState([]);
-    const [usuarios, setUsuarios] = useState([]);
-    const [usuarioLogueado, setUsuarioLogueado] = useState(null);
-    const [paginaActual, setPaginaActual] = useState(1); 
-    const [paginaSiguiente, setPaginaSiguiente] = useState(null);
-    const [paginaAnterior, setPaginaAnterior] = useState(null);
-    const [totalPaginas, setTotalPaginas] = useState(1); 
-    const [menuAbierto, setMenuAbierto] = useState(null); 
 
+    /** 
+     * Estados para gestionar datos de noticias, usuarios y navegación de la paginación
+     */
+    const [datosNoticias, setDatosNoticias] = useState([]); // Datos de las noticias a mostrar
+    const [usuarios, setUsuarios] = useState([]); // Lista de usuarios para asociar con noticias
+    const [usuarioLogueado, setUsuarioLogueado] = useState(null); // Información del usuario logueado
+    const [paginaActual, setPaginaActual] = useState(1); // Paginación actual
+    const [paginaSiguiente, setPaginaSiguiente] = useState(null); // URL de la página siguiente
+    const [paginaAnterior, setPaginaAnterior] = useState(null); // URL de la página anterior
+    const [totalPaginas, setTotalPaginas] = useState(1); // Número total de páginas
+    const [menuAbierto, setMenuAbierto] = useState(null); // ID del menú de opciones abierto actualmente
+
+    /**
+     * Función para obtener noticias de la API
+     * @param {number} pagina - Número de página a obtener
+     */
     const getNoticias = async (pagina = 1) => {
         try {
             const response = await axios.get(`http://localhost:3000/noticias?pagina=${pagina}`);
@@ -35,6 +43,10 @@ const Noticias = () => {
         }
     };
 
+    /**
+     * Función para obtener todos los usuarios de la API
+     * Esto permite asociar el nombre del usuario con sus publicaciones
+     */
     const getUsuarios = async () => {
         try {
             const response = await axios.get('http://localhost:3000/usuarios');
@@ -44,6 +56,10 @@ const Noticias = () => {
         }
     };
 
+    /**
+     * Función para obtener la información del usuario logueado
+     * Utiliza el contexto `usuarioLog` para obtener el ID y luego busca el usuario correspondiente.
+     */
     const getUsuarioLogueado = async () => {
         try {
             const response = await axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
@@ -53,6 +69,10 @@ const Noticias = () => {
         }
     };
 
+    /**
+     * Función para verificar si el usuario puede publicar una noticia.
+     * Permite la publicación solo para reclutadores y docentes.
+     */
     const manejarPublicarNoticia = () => {
         if (usuarioLogueado && (usuarioLogueado.role === 'Reclutadores' || usuarioLogueado.role === 'Docentes')) {
             navigate('/registro-noticia');  
@@ -65,6 +85,10 @@ const Noticias = () => {
         }
     };
 
+    /**
+     * Función para cambiar la página actual al número de página dado en la URL
+     * url - URL de la página siguiente o anterior para navegar
+     */
     const cambiarPagina = (url) => {
         if (url) {
             const pagina = new URL(url).searchParams.get('pagina');  
@@ -73,6 +97,10 @@ const Noticias = () => {
         }
     };
 
+    /**
+     * Alterna la visibilidad del menú de opciones en cada tarjeta de noticia
+     * id_noticia - ID de la noticia cuyo menú de opciones se abrirá/cerrará
+     */
     const toggleMenu = (id_noticia) => {
         setMenuAbierto(menuAbierto === id_noticia ? null : id_noticia);
     };
@@ -85,15 +113,28 @@ const Noticias = () => {
         navigate(`/editar-noticia/${id_noticia}`);
     };
 
+    /**
+     * Abre el modal de reporte para la noticia seleccionada
+     *id_noticia - ID de la noticia a reportar
+     */
     const manejarReportar = (id_noticia) => {
-        navigate(`/reportar-contenido/${id_noticia}`); 
+        openReportModal(id_noticia);
     };
 
+    /**
+     * Obtiene el nombre completo del usuario que publicó la noticia
+     * id_usuario - ID del usuario autor de la noticia
+     * return usuario Nombre completo del usuario o 'Usuario desconocido' si no se encuentra
+     */
     const obtenerNombreUsuario = (id_usuario) => {
         const usuario = usuarios.find(user => user.id === id_usuario);
         return usuario ? `${usuario.nombre} ${usuario.apellido_paterno} ${usuario.apellido_materno}` : 'Usuario desconocido';
     };
 
+    /**
+     * useEffect para inicializar la carga de datos al cargar el componente:
+     * Obtiene noticias, usuarios, y los datos del usuario logueado.
+     */
     useEffect(() => {
         getNoticias(paginaActual);
         getUsuarios(); 
@@ -139,7 +180,12 @@ const Noticias = () => {
                             </div>
 
                             <div className="tarjeta-noticia-cuerpo">
-                                <Etiquetas tamano={24} texto={noticia.titulo_noticia} id={`titulo-${noticia.id_noticia}`} className="titulo-centrado" />
+                                <Etiquetas 
+                                    tamano={24} 
+                                    texto={noticia.titulo_noticia} 
+                                    id={`titulo-${noticia.id_noticia}`} 
+                                    className="titulo-centrado" 
+                                />
 
                                 <Etiquetas tamano={16} texto="Descripción:" id={`descripcion-label-${noticia.id_noticia}`} />
                                 <p>{noticia.descripcion}</p>
