@@ -1,38 +1,42 @@
 import React from 'react';
-import './PublicacionNoticia.css';  // Aquí estarán los estilos
+import './PublicacionNoticia.css';  // Importa los estilos específicos para esta tarjeta de noticias
 
-
+/**
+ * Componente `PublicacionNoticiaNuevo`
+ * Este componente recibe los datos de una noticia y los muestra en una tarjeta estilizada.
+ * datos - Tiene los detalles de la noticia como título, descripción, enlace, imagen, categoría y fecha.
+ */
 const PublicacionNoticiaNuevo = ({ datos }) => {
+    // Se separan los datos para obtener cada campo necesario
     const { titulo_noticia, descripcion, enlace_noticia, imagen_noticia, categoria_noticia, fecha_noticia } = datos;
 
     return (
         <div className="tarjeta-noticia">
             <div className="tarjeta-noticia-header">
                 <img 
-                    src={imagen_noticia || 'https://via.placeholder.com/100'} 
-                    alt={titulo_noticia}
-                    className="tarjeta-noticia-imagen"
+                    src={imagen_noticia || 'https://via.placeholder.com/100'}  
+                    alt={titulo_noticia} 
+                    className="tarjeta-noticia-imagen"  
                 />
                 <div className="tarjeta-noticia-usuario">
                     <h4>Categoría: {categoria_noticia}</h4> 
                     <p>{new Date(fecha_noticia).toLocaleDateString()}</p> 
                 </div>
             </div>
-
             <div className="tarjeta-noticia-cuerpo">
-                <h3 className="titulo-noticia">{titulo_noticia}</h3>
-                <p>{descripcion}</p>
+                <h3 className="titulo-noticia">{titulo_noticia}</h3>  
+                <p>{descripcion}</p> 
             </div>
 
             <div className="tarjeta-noticia-footer">
                 {enlace_noticia && (
                     <a 
-                        href={enlace_noticia} 
+                        href={enlace_noticia}  
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="tarjeta-noticia-enlace"
+                        className="tarjeta-noticia-enlace"  
                     >
-                        Leer más
+                        Leer más  
                     </a>
                 )}
             </div>
