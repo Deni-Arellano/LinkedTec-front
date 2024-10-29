@@ -17,18 +17,18 @@ const Noticias = ({ openReportModal }) => {
     /** 
      * Estados para gestionar datos de noticias, usuarios y navegación de la paginación
      */
-    const [datosNoticias, setDatosNoticias] = useState([]); // Datos de las noticias a mostrar
-    const [usuarios, setUsuarios] = useState([]); // Lista de usuarios para asociar con noticias
-    const [usuarioLogueado, setUsuarioLogueado] = useState(null); // Información del usuario logueado
-    const [paginaActual, setPaginaActual] = useState(1); // Paginación actual
-    const [paginaSiguiente, setPaginaSiguiente] = useState(null); // URL de la página siguiente
-    const [paginaAnterior, setPaginaAnterior] = useState(null); // URL de la página anterior
-    const [totalPaginas, setTotalPaginas] = useState(1); // Número total de páginas
-    const [menuAbierto, setMenuAbierto] = useState(null); // ID del menú de opciones abierto actualmente
+    const [datosNoticias, setDatosNoticias] = useState([]); 
+    const [usuarios, setUsuarios] = useState([]); 
+    const [usuarioLogueado, setUsuarioLogueado] = useState(null); 
+    const [paginaActual, setPaginaActual] = useState(1); 
+    const [paginaSiguiente, setPaginaSiguiente] = useState(null);
+    const [paginaAnterior, setPaginaAnterior] = useState(null); 
+    const [totalPaginas, setTotalPaginas] = useState(1); 
+    const [menuAbierto, setMenuAbierto] = useState(null); 
 
     /**
      * Función para obtener noticias de la API
-     * @param {number} pagina - Número de página a obtener
+     * pagina - Número de página a obtener
      */
     const getNoticias = async (pagina = 1) => {
         try {
