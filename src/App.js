@@ -1,10 +1,10 @@
-import React, {useState, createContext} from 'react';
+// App.js
+import React, { useState, createContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-//Compontentes de React 2.0
-//parece arreglado
+// Importaciones de los componentes
 import CodigoVerificacion from './pages/pagina-codigo-verificacion/CodigoVerificacion';
 import EditarPublicacion from './pages/pagina-editar-publicacion/EditarPublicacion'; 
-import Empleos from './pages/pagina-empleos/Empleos'
+import Empleos from './pages/pagina-empleos/Empleos';
 import Login from './pages/pagina-login/Login';
 import Publicaciones from './pages/pagina-publicaciones/Publicaciones';
 import RegistroEmpleo from './pages/pagina-registro-empleo/RegistroEmpleo';
@@ -24,16 +24,28 @@ import PaginasPostulacionesUsuario from './pages/pagina-postulaciones-usuario/Pa
 
 import Postulacion from './pages/pagina-postulacion/Postulacion';
 import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-como-reclutador/VisualizarPostuComoReclutador.jsx';
+import Noticias from './pages/pagina-noticias/Noticias.jsx';
+import CrearNoticias from './pages/pagina-crear-noticia/CrearNoticia.jsx';
+import ReportarContenido from './components/reportar-contenido/ReportarContenido.jsx';
 
-export const usuarioContext = createContext(); //Contexto para poder pasar el usuario a los componentes hijos
+export const usuarioContext = createContext(); 
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(null);
-  //const [usuarioLog, setUsuarioLog] = useState('11');
+  const [usuarioLog, setUsuarioLog] = useState('2'); 
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+  const [idNoticia, setIdNoticia] = useState(null);
+  
+  const openReportModal = (id) => {
+    setIdNoticia(id);
+    setIsReportModalOpen(true);
+  };
+  const closeReportModal = () => {
+    setIsReportModalOpen(false);
+    setIdNoticia(null);
+  };
+
   return (
-    //Pasa a los componentes hijos el usuario
-    <usuarioContext.Provider value={{usuarioLog,setUsuarioLog}}>
-    
+    <usuarioContext.Provider value={{ usuarioLog, setUsuarioLog }}>
       <Router>
         <Routes>
           <Route path="/" element={<Login />} /> 
@@ -52,14 +64,20 @@ function App() {
           <Route path="/editar-reclutador" element={<EditarReclutador />} />
           <Route path="/editar-egresado" element={<EditarEgresado />} />
           <Route path="/editar-publicacion-empleo" element={<EditarPublicacionEmpleo />} />
-          <Route path='/editar-docente' element={<EditDocente/>} />
-          <Route path='/editar-estudiante' element={<EditEstu/>} />
+          <Route path="/noticias" element={<Noticias openReportModal={openReportModal} />} />
+          <Route path="/registro-noticia" element={<CrearNoticias />} />
           <Route path='/pagina-postulaciones-usuario' element={<PaginasPostulacionesUsuario/>} />
           <Route path='/postulacion' element={<Postulacion/>} />
           <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
-          
         </Routes>
       </Router>
+      {isReportModalOpen && (
+        <ReportarContenido 
+          categoriaActual="noticias" 
+          id_noticia={idNoticia} 
+          onClose={closeReportModal} 
+        />
+      )}
     </usuarioContext.Provider>
   );
 }
