@@ -83,6 +83,7 @@ const RegistroDocentes = () => {
       return true;
   
     } catch (error) {
+      
       console.log("Error al verificar usuario existente:", error.message);
       Swal.fire({
         icon: "error",
@@ -90,6 +91,7 @@ const RegistroDocentes = () => {
         text: "Hubo un error al verificar el correo o el teléfono.",
       });
       return false;
+      
     }
   };
 

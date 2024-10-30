@@ -73,6 +73,10 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
         
 
 
+    const mostrarPostulantesSiendoReclutador = () => {
+        navigate(`/postulantes-empleo/${datos.id_empleo}`, { state: datos });
+    };
+
     return (
         <div className="PublicacionEmpleoNuevo-publicacion-container">
             <div className="PublicacionEmpleoNuevo-publicacion">
@@ -100,6 +104,9 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
                                 onClick={eliminarPublicacionEmpleo}
                             >
                                 Eliminar
+                            </button>
+                            <button className='mostrar-publicacion-opcion-boton' onClick={mostrarPostulantesSiendoReclutador}>
+                                Mostrar Postulantes
                             </button>
                         </div>
                     )}
