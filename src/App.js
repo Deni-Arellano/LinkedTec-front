@@ -69,6 +69,8 @@ function App() {
           <Route path='/pagina-postulaciones-usuario' element={<PaginasPostulacionesUsuario/>} />
           <Route path='/postulacion' element={<Postulacion/>} />
           <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
+          <Route path='/editar-docente' element={<EditDocente/>} />
+          <Route path='/editar-estudiante' element={<EditEstu/>} />
         </Routes>
       </Router>
       {isReportModalOpen && (
