@@ -397,7 +397,7 @@ const verificarDocenteExistente = async () => {
         "sexo": sexoSeleccionado,
         "biografia": biografia,
         "role": "Docentes", 
-        "imagen_usuario": ""
+        "imagen_usuario": "https://res.cloudinary.com/dsysk6y0t/image/upload/v1730346904/images/co7yy9sanbmzkzh6oaje.png"
       },
       "docente": {
         "ultimo_nivel_estudios": nivelSeleccionado,

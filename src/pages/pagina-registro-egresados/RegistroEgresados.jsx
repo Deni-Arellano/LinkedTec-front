@@ -336,7 +336,7 @@ const RegistroEgresado = () => {
         "sexo": sexoSeleccionado,
         "biografia": biografia,
         "role": "Egresados", 
-        "imagen_usuario": ""
+        "imagen_usuario": "https://res.cloudinary.com/dsysk6y0t/image/upload/v1730346904/images/co7yy9sanbmzkzh6oaje.png"
       },
       "egresado": {
         "carrera": carreraSeleccionada,

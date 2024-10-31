@@ -95,25 +95,26 @@ const VisualizacionPerfil = () => {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Reclutador',
-                foto: urlApi+datosUsuario.imagen_usuario
+                foto: datosUsuario.imagen_usuario
+
             });
         } else if (datosUsuario.role === 'Estudiantes') {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Estudiante',
-                foto: urlApi+datosUsuario.imagen_usuario
+                foto: datosUsuario.imagen_usuario
             });
         } else if (datosUsuario.role === 'Egresados') {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Egresado',
-                foto: urlApi+datosUsuario.imagen_usuario
+                foto: datosUsuario.imagen_usuario
             });
         }else if (datosUsuario.role === 'Docentes') {
             setDatosEncabezado({
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Docente',
-                foto: urlApi+datosUsuario.imagen_usuario
+                foto: datosUsuario.imagen_usuario
             });
         } else {
             setDatosEncabezado({
@@ -122,6 +123,8 @@ const VisualizacionPerfil = () => {
                 foto: urlApi+datosUsuario.imagen_usuario
             });
         }
+
+
         
     }, [datosUsuario]);
 
@@ -133,7 +136,6 @@ const VisualizacionPerfil = () => {
             try {
                 const response = await Axios.get(`http://localhost:3000/publicaciones/usuario/${usuarioLog}`);
                 setDatosPublicaciones(response.data.publicaciones);
-                console.log("Datos de las publicaciones" , response.data.publicaciones);
                 if (response.data.publicaciones && response.data.publicaciones.length > 0) {
                     setDatosPublicaciones(response.data.publicaciones);
 
@@ -156,7 +158,6 @@ const VisualizacionPerfil = () => {
     useEffect(() => {
         const generarComponentesPublicaciones = async () => {
             const componentesPublicacionesPromises = datosPublicaciones.map(async (publicacion) => {
-                //console.log("Datos de la publicacionñññññ", publicacion);
                 return (
                     <MostrarPublicacion
                         key={publicacion.id_publicacion}
@@ -166,7 +167,7 @@ const VisualizacionPerfil = () => {
                             fecha: publicacion.fecha,
                             meGusta: publicacion.me_gusta,
                             disgusta: publicacion.disgusta,
-                            fotoPerfil: datosUsuario.imagen_usuario || 'https://via.placeholder.com/100', 
+                            fotoPerfil: datosUsuario.imagen_usuario || 'https://res.cloudinary.com/dsysk6y0t/image/upload/v1729878506/images/cvaawi9imiuzbninnmj8.jpg', 
                             nombreUsuario: `${datosUsuario.nombre || ''} ${datosUsuario.apellido_paterno || ''} ${datosUsuario.apellido_materno || ''}`,
                             id_publicacion: publicacion.id_publicacion
                         }}

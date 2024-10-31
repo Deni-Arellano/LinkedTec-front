@@ -149,8 +149,7 @@ const EditarPublicacion = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log("URL de la imagen", response.data.secure_url);
-            return response.data.secure_url; 
+            return response.data.data.secure_url; 
         } catch (error) {
             Swal.fire('Error', 'Error al subir la imagen.', 'error');
         }
