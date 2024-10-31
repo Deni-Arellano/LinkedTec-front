@@ -47,15 +47,16 @@ const CrearPubli = () => {
 
     const agregarImagen = async () => {
         const formData = new FormData();
-        formData.append('image', image);
+        formData.append('imagen', image);
 
         try {
-            const response = await Axios.post('http://localhost:3000/imagenes/upload', formData, {
+            const response = await Axios.post('http://localhost:3000/subidas/subir-imagen', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            return response.data.fileName; 
+            console.log("URL imagen" , response);
+            return response.data.data.secure_url; 
         } catch (error) {
             Swal.fire('Error', 'Error al subir la imagen.', 'error');
             throw error; 

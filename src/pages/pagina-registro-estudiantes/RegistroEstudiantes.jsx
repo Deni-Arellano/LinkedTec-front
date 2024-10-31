@@ -312,7 +312,7 @@ const Registro = () => {
       });
       return;
     }
-
+    /** 
     const regexContraseña = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@._\-#$%&*]).{7,12}$/;
     if (!regexContraseña.test(contraseña)) {
       Swal.fire({
@@ -322,6 +322,7 @@ const Registro = () => {
       });
       return;
     }
+      */
 
     if (contraseña !== confirmarContraseña) {
       Swal.fire({
@@ -384,7 +385,7 @@ const Registro = () => {
         'sexo': sexoSeleccionado,
         'biografia': biografia,
         'role': 'Estudiantes',
-        "imagen_usuario": ''
+        "imagen_usuario": 'https://res.cloudinary.com/dsysk6y0t/image/upload/v1730346904/images/co7yy9sanbmzkzh6oaje.png'
       },
       'estudiante': {
         'no_control': noControl,

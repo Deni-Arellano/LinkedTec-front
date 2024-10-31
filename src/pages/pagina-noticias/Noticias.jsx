@@ -131,6 +131,17 @@ const Noticias = ({ openReportModal }) => {
         return usuario ? `${usuario.nombre} ${usuario.apellido_paterno} ${usuario.apellido_materno}` : 'Usuario desconocido';
     };
 
+    const obtenerImagenUsuario = async (id_usuario) => {
+        try {
+            console.log('Obteniendo imagen del usuario:', id_usuario);
+            const response = await axios.get(`http://localhost:3000/usuarios/imagen/${id_usuario}`);
+            console.log('Imagen del usuario:', response.data.imagen_usuario);
+            return '"https://res.cloudinary.com/dsysk6y0t/image/upload/v1729878506/images/cvaawi9imiuzbninnmj8.jpg"';
+        } catch (err) {
+            console.error('Error al obtener la imagen del usuario:', err);
+        } 
+    }
+
     /**
      * useEffect para inicializar la carga de datos al cargar el componente:
      * Obtiene noticias, usuarios, y los datos del usuario logueado.
@@ -155,7 +166,7 @@ const Noticias = ({ openReportModal }) => {
                             <div className="tarjeta-noticia-header">
                                 <div className="usuario-perfil">
                                     <img
-                                        src={'https://via.placeholder.com/100x100.png?text=100+x+100'}
+                                        src={obtenerImagenUsuario(noticia.id_usuario) || 'https://via.placeholder.com/100x100'}
                                         alt="100x100"
                                         className="imagen-perfil"
                                     />
