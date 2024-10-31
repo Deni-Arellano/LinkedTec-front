@@ -1,29 +1,40 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
-import PostulacionUsuario from '../../components/componente-postulacion-usuario/Postulacion-usuario'; 
-import './PaginaPostulacionesUsuario.css'; 
+import { useNavigate } from 'react-router-dom';
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import PostulacionUsuario from '../../components/componente-postulacion-usuario/Postulacion-usuario';
+import './PaginaPostulacionesUsuario.css';
 import { usuarioContext } from '../../App';
 import axios from 'axios';
 
 const PaginasPostulacionesUsuario = () => {
     const navigate = useNavigate();
     const { usuarioLog } = useContext(usuarioContext);
-    const [datosPostulaciones, setDatosPostulaciones] = useState([]); 
+    const [datosPostulaciones, setDatosPostulaciones] = useState([]);
 
     const getPostulaciones = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/postulaciones/5?pagina=1&limite=10');
+            const response = await axios.get(`http://localhost:3000/postulaciones/${usuarioLog.id}?pagina=1&limite=10`);
             console.log('Postulaciones:', response.data);
-            setDatosPostulaciones(response.data.postulaciones || []); // Aseguramos que sea un arreglo
+            setDatosPostulaciones(response.data.postulaciones || []);
         } catch (err) {
             console.error('Error al obtener las postulaciones:', err);
         }
     };
 
+    const handleEliminarPostulacion = async (id_postulacion) => {
+        try {
+            await axios.delete(`http://localhost:3000/postulaciones/${id_postulacion}`);
+            setDatosPostulaciones(prev => prev.filter(postulacion => postulacion.id_postulacion !== id_postulacion));
+        } catch (error) {
+            console.error('Error al eliminar la postulación:', error);
+        }
+    };
+
     useEffect(() => {
-        getPostulaciones();
-    }, []);
+        if (usuarioLog) {
+            getPostulaciones();
+        }
+    }, [usuarioLog]);
 
     return (
         <>
@@ -37,16 +48,13 @@ const PaginasPostulacionesUsuario = () => {
                                 id_postulacion: postulacion.id_postulacion,
                                 tituloEmpleo: postulacion.titulo,
                                 empresa: postulacion.empresa,
-                                salario: postulacion.salario,
-                                descripcion: postulacion.descripcion,
-                                ubicacion: postulacion.ubicacion,
-                                nivelIngles: postulacion.nivel_de_ingles,
-                                fotoPerfil: postulacion.fotoPerfil || 'https://via.placeholder.com/100',
-                                nombreUsuario: `${postulacion.nombreUsuario || ''}`
+                                fechaPostulacion: postulacion.fecha,
+                                estado: postulacion.estado,
+                                // Estos valores son ejemplos, modifica según los datos reales si hay un perfil de usuario
+                                fotoPerfil: 'https://via.placeholder.com/100',
+                                nombreUsuario: `Usuario ${postulacion.id_usuario}`
                             }}
-                            onEliminar={id => {
-                                setDatosPostulaciones(prev => prev.filter(p => p.id_postulacion !== id));
-                            }}
+                            onEliminar={handleEliminarPostulacion}
                         />
                     ))
                 ) : (
