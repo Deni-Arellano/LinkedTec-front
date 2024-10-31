@@ -1,10 +1,10 @@
-/* Contenedor principal para centrar la tarjeta */
+/* Contenedor principal para centrar la lista de postulaciones */
 .postulaciones-lista {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
-    margin-top: 80px; /* Para alinear con el margen superior similar */
+    margin-top: 80px;
 }
 
 /* Estilo de la tarjeta de postulación */
@@ -13,9 +13,10 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Ancho máximo similar al de la imagen */
+    max-width: 800px;
     width: 100%;
     margin-bottom: 20px;
+    position: relative; /* Asegura que el modal esté posicionado respecto a la tarjeta */
 }
 
 /* Encabezado de la tarjeta */
@@ -23,7 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .postulacion-foto-perfil {
@@ -38,6 +39,7 @@
     font-weight: bold;
     color: #333;
     margin: 0;
+    flex-grow: 1;
 }
 
 .icono-tres-puntos {
@@ -51,26 +53,28 @@
     font-size: 24px;
     font-weight: bold;
     color: #003366;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 /* Detalles del empleo */
 .detalle {
     font-size: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    color: #555;
 }
 
-/* Botón "Postularse" */
+/* Botón "Ver Detalles" */
 .ver-detalles-boton {
     width: 100%;
     background-color: #012a6f;
     color: white;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
 .ver-detalles-boton:hover {
@@ -89,28 +93,18 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 .detalles-contenido {
     background-color: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
-    max-width: 500px;
-    width: 100%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
-    animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-    from { transform: translateY(-20px); }
-    to { transform: translateY(0); }
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 80vh;
+    position: fixed; /* Fija el modal en la pantalla para que no se mueva */
 }
 
 /* Botones de la ventana modal */
@@ -123,22 +117,23 @@
     font-size: 16px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .cancelar-boton {
-    background-color: red;
+    background-color: #d9534f;
     color: white;
 }
 
 .cancelar-boton:hover {
-    background-color: darkred;
+    background-color: #c9302c;
 }
 
 .cerrar-boton {
-    background-color: gray;
+    background-color: #6c757d;
     color: white;
 }
 
 .cerrar-boton:hover {
-    background-color: #505050;
+    background-color: #565e64;
 }
