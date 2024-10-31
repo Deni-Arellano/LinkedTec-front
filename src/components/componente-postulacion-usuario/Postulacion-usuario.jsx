@@ -62,7 +62,7 @@ const PostulacionUsuario = ({ datos, onEliminar }) => {
             <p><strong>Ubicación:</strong> {datos.ubicacion || "Ubicación no disponible"}</p>
             <p><strong>Nivel de inglés:</strong> {datos.nivelIngles || "Nivel no disponible"}</p>
 
-            <h3>Detalles de la Postulación</h3>
+            <h3>Detalles de la postulación</h3>
             <p><strong>Fecha de postulación:</strong> {datos.fechaPostulacion || "Fecha no disponible"}</p>
             <p><strong>Mensaje del candidato:</strong> {datos.mensajeCandidato || "Mensaje no disponible"}</p>
             <p><strong>Experiencia relevante:</strong> {datos.experiencia || "Experiencia no disponible"}</p>
