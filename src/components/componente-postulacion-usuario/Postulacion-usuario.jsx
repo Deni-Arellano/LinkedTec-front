@@ -6,6 +6,26 @@ const PostulacionesUsuario = ({ datos, onEliminar }) => {
   const [mostrarDetalles, setMostrarDetalles] = useState(null);
   const [estadoPostulacion, setEstadoPostulacion] = useState('Activa');
 
+  useEffect(() => {
+    const fetchPostulacionData = async () => {
+      try {
+        console.log("Llamada a la API para obtener datos de la postulación ID:", idPostulacion);
+        const response = await axios.get(`http://localhost:3000/postulaciones/${idPostulacion}/info`);
+        console.log("Datos de la postulación recibidos:", response.data);
+        setDatos(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        Swal.fire(
+          'Error',
+          'No se pudieron cargar los datos de la postulación.',
+          'error'
+        );
+      }
+    };
+
+    fetchPostulacionData();
+  }, [idPostulacion]);
+
   const handleVerDetalles = () => {
     setMostrarDetalles(!mostrarDetalles);
   };
