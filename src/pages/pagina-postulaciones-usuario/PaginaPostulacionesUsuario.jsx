@@ -1,65 +1,105 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
-import PostulacionUsuario from '../../components/componente-postulacion-usuario/Postulacion-usuario';
+import React, { useState, useEffect } from 'react';
 import './PaginaPostulacionesUsuario.css';
-import { usuarioContext } from '../../App';
+import Swal from 'sweetalert2';
+import { BsThreeDots } from "react-icons/bs";
 import axios from 'axios';
 
-const PaginasPostulacionesUsuario = () => {
-    const navigate = useNavigate();
-    const { usuarioLog } = useContext(usuarioContext);
-    const [datosPostulaciones, setDatosPostulaciones] = useState([]);
-    const [componentesPostulaciones, setComponentesPostulaciones] = useState([]); 
-    const [componentesPostulaciones, setComponentesPostulaciones] = useState([]);
+const PostulacionUsuario = ({ idPostulacion, onEliminar }) => {
+  const [datos, setDatos] = useState({});
+  const [mostrarDetalles, setMostrarDetalles] = useState(false);
+  const [estadoPostulacion, setEstadoPostulacion] = useState('Activa');
 
-    // Obtiene las postulaciones del usuario logueado
-    // Obtiene todas las postulaciones del usuario con id 5
-    const getPostulaciones = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3000/postulaciones/${usuarioLog.id}?pagina=1&limite=10`);
-            console.log('Postulaciones:', response.data);
-            setDatosPostulaciones(response.data.postulaciones || []);
-        } catch (err) {
-            console.error('Error al obtener las postulaciones:', err);
-        }
+  useEffect(() => {
+    // Obtener los datos de la postulación desde la API
+    const fetchPostulacionData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/postulaciones/${idPostulacion}/info`);
+        setDatos(response.data); // Asigna los datos recibidos a 'datos'
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        Swal.fire(
+          'Error',
+          'No se pudieron cargar los datos de la postulación.',
+          'error'
+        );
+      }
     };
 
-    const handleEliminarPostulacion = async (id_postulacion) => {
-        try {
-            await axios.delete(`http://localhost:3000/postulaciones/${id_postulacion}`);
-            setDatosPostulaciones(prev => prev.filter(postulacion => postulacion.id_postulacion !== id_postulacion));
-        } catch (error) {
-            console.error('Error al eliminar la postulación:', error);
-        }
-    };
+    fetchPostulacionData();
+  }, [idPostulacion]);
 
-    useEffect(() => {
-        if (usuarioLog) {
-            getPostulaciones();
-        }
-    }, [usuarioLog]);
+  const handleVerDetalles = () => {
+    setMostrarDetalles(!mostrarDetalles);
+  };
 
-    return (
-        <>
-            <MenuNavegacion />
-            <div className="PostulacionesUsuario-contenedor">
-                {datosPostulaciones.length > 0 ? (
-                    datosPostulaciones.map(postulacion => (
-                        <PostulacionUsuario
-                            key={postulacion.id_postulacion}
-                            idPostulacion={postulacion.id_postulacion} // Pasamos el ID de la postulación
-                            onEliminar={handleEliminarPostulacion}
-                        />
-                    ))
-                ) : (
-                    <div className="mensaje-sin-postulaciones">
-                        <p>No hay postulaciones disponibles</p>
-                    </div>
-                )}
-            </div>
-        </>
-    );
+  const handleCerrarDetalles = () => {
+    setMostrarDetalles(false);
+  };
+
+  const handleCancelarPostulacion = () => {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás revertir esta acción.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cancelar',
+      cancelButtonText: 'No, mantener'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setEstadoPostulacion('Cancelada');
+        onEliminar(idPostulacion);
+        handleCerrarDetalles();
+        Swal.fire(
+          'Cancelada',
+          'Tu postulación ha sido cancelada.',
+          'success'
+        );
+      }
+    });
+  };
+
+  return (
+    <div className="postulacion-tarjeta">
+      <div className="postulacion-header">
+        <img src={datos.usuario?.fotoPerfil || "default_profile.png"} alt="Foto de perfil" className="postulacion-foto-perfil" />
+        <p className="postulacion-usuario-nombre">{datos.usuario?.nombre || "Usuario desconocido"}</p>
+        <BsThreeDots className="icono-tres-puntos" />
+      </div>
+      <h3 className="titulo-empleo">{datos.empleo?.titulo || "Título no disponible"}</h3>
+      <p className="detalle"><strong>Empresa:</strong> {datos.empleo?.empresa || "Empresa no disponible"}</p>
+      <p className="detalle"><strong>Salario:</strong> {datos.empleo?.salario || "Salario no disponible"}</p>
+      <p className="detalle"><strong>Estado de la postulación:</strong> {estadoPostulacion}</p>
+      <button onClick={handleVerDetalles} className="ver-detalles-boton">
+        {mostrarDetalles ? "Ocultar detalles" : "Ver detalles"}
+      </button>
+
+      {mostrarDetalles && (
+        <div className="detalles-modal">
+          <div className="detalles-contenido">
+            <h2 className="titulo-empleo">{datos.empleo?.titulo}</h2>
+            <p><strong>Descripción:</strong> {datos.empleo?.descripcion || "Descripción no disponible"}</p>
+            <p><strong>Ubicación:</strong> {datos.empleo?.ubicacion || "Ubicación no disponible"}</p>
+            <p><strong>Nivel de inglés:</strong> {datos.empleo?.nivel_de_ingles || "Nivel no disponible"}</p>
+            <p><strong>Fecha de creación:</strong> {datos.empleo?.fecha_creacion || "Fecha no disponible"}</p>
+
+            <h3>Detalles de la postulación</h3>
+            <p><strong>Correo del candidato:</strong> {datos.usuario?.correo || "Correo no disponible"}</p>
+            <p><strong>Mensaje del candidato:</strong> {datos.usuario?.descripcion_personal || "Mensaje no disponible"}</p>
+            <p><strong>Experiencia relevante:</strong> {datos.usuario?.cv || "Experiencia no disponible"}</p>
+
+            <button onClick={handleCancelarPostulacion} className="cancelar-boton">
+              Cancelar Postulación
+            </button>
+            <button onClick={handleCerrarDetalles} className="cerrar-boton">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default PaginasPostulacionesUsuario;
+export default PostulacionUsuario;
