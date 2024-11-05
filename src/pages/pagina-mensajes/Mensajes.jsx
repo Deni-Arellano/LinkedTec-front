@@ -3,11 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Axios from 'axios';
 import { usuarioContext } from '../../App';
 import Swal from 'sweetalert2';
-import Textbox from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
-import Textarea from '../../components/componente-text-area/text-area.jsx';
-import Label from '../../components/componente-label/Etiquetas.jsx';
 import BotonNuevoMensaje from '../../components/boton-nuevo-mensaje/BotonNuevoMensaje.jsx';
 import VistaChatUsuario from '../../components/vista-chat-usuario/VistaChatUsuario.jsx';
+import SugerenciasUsuario from '../../components/SugerenciasUsuarioChat/SugerenciasUsuario.jsx';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './Mensajes.css';
 
@@ -25,6 +23,7 @@ const Mensajes = () => {
                 </div>
                 <div className='vista-chats'>
                     <VistaChatUsuario />
+                    <SugerenciasUsuario />
                     
                     
                 </div>

@@ -20,7 +20,7 @@ const VistaChatUsuario = () => {
 
     const handleClick = () => {
         console.log('click chat usuario');
-        // navigate('/chat');
+        
     };
 
     return (

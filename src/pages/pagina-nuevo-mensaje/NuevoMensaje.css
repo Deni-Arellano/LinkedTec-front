@@ -1,0 +1,62 @@
+.nuevo-mensaje-contenedor-pagina {
+    
+    margin-left: 258px;
+    
+}
+
+.nuevo-mensaje-contenedor-busqueda{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #e9ecef;
+    border-bottom: 1px solid #ddd;
+}
+
+.nuevo-mensaje-busqueda-usuario {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.nuevo-mensaje-busqueda-usuario span {
+    font-size: 16px;
+    color: #012a6f;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.nuevo-mensaje-busqueda-usuario input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: none;
+    padding: 1%;
+    font-size: 14px;
+    flex-grow: 1;
+    background-color: white;
+}
+
+.nuevo-mensaje-boton-atras {
+    margin-left: auto; 
+}
+
+.nuevo-mensaje-boton-atras button {
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    color: white;
+    border-radius: 10%; 
+    font-family: 'Sans Serif', Arial, sans-serif;
+    cursor: pointer;
+    padding: 10px 20px; 
+    background-color: #35548b;
+    font-size: 16px; 
+   ;
+}
+
+.nuevo-mensaje-boton-atras button:hover {
+    background-color: #798eb2;
+    
+}
+

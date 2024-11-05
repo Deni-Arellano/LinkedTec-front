@@ -29,6 +29,8 @@ import Noticias from './pages/pagina-noticias/Noticias.jsx';
 import CrearNoticias from './pages/pagina-crear-noticia/CrearNoticia.jsx';
 import ReportarContenido from './components/reportar-contenido/ReportarContenido.jsx';
 import Mensajes from './pages/pagina-mensajes/Mensajes.jsx';
+import NuevoMensaje from './pages/pagina-nuevo-mensaje/NuevoMensaje.jsx';
+import Chat from './pages/pagina-chat/Chat.jsx';
 
 
 export const usuarioContext = createContext(); 
@@ -75,6 +77,8 @@ function App() {
           <Route path='/postulacion' element={<Postulacion/>} />
           <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
           <Route path="/mensajes" element={<Mensajes />} />
+          <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </Router>
       {isReportModalOpen && (
