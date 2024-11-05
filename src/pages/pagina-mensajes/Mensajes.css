@@ -1,0 +1,23 @@
+.mensajes-contenedor-pagina{
+    margin-left: 250px;
+    
+    
+}
+
+.encabezado-mensajes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e9ecef;
+    border-bottom: 2px solid #dee2e6;
+    padding: 0 7%;
+}
+
+.mensajes-titulo{
+    font-family: sans-serif;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #093e61;
+    text-align: left;
+    width: 100%;
+}

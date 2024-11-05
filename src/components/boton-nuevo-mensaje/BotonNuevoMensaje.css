@@ -1,0 +1,22 @@
+.mensajes-button {
+    display: inline-block;
+    width: auto;
+    align-items: center; 
+    justify-content: center;
+    color: #093e61;
+    border-radius: 10%; 
+    font-family: 'Sans Serif', Arial, sans-serif;
+    cursor: pointer;
+    position: relative;
+    padding: 5px;
+    background-color: #e9ecef;
+  }
+
+  .mensajes-button:hover {
+    background-color: #d6d9dc;
+  }
+  
+
+
+
+  

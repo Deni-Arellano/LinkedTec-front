@@ -1,6 +1,7 @@
 // App.js
 import React, { useState, createContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { SiNushell } from 'react-icons/si';
 // Importaciones de los componentes
 import CodigoVerificacion from './pages/pagina-codigo-verificacion/CodigoVerificacion';
 import EditarPublicacion from './pages/pagina-editar-publicacion/EditarPublicacion'; 
@@ -27,7 +28,8 @@ import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-
 import Noticias from './pages/pagina-noticias/Noticias.jsx';
 import CrearNoticias from './pages/pagina-crear-noticia/CrearNoticia.jsx';
 import ReportarContenido from './components/reportar-contenido/ReportarContenido.jsx';
-import { SiNushell } from 'react-icons/si';
+import Mensajes from './pages/pagina-mensajes/Mensajes.jsx';
+
 
 export const usuarioContext = createContext(); 
 
@@ -72,6 +74,7 @@ function App() {
           <Route path='/pagina-postulaciones-usuario' element={<PaginasPostulacionesUsuario/>} />
           <Route path='/postulacion' element={<Postulacion/>} />
           <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
+          <Route path="/mensajes" element={<Mensajes />} />
         </Routes>
       </Router>
       {isReportModalOpen && (
