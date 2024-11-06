@@ -134,7 +134,7 @@ const TablaPostuVerReclutador = () => {
             // Obtiene la información del postulante
             const { nombre_usuario, correo_usuario, fecha_postulacion, estado, descripcion, cv } = response.data;
     
-            // Muestra la información en un modal de SweetAlert
+            // Muestra la información en un modal de SweetAlert con comboBox y botón de confirmación
             Swal.fire({
                 title: 'Información del postulante',
                 html: `
@@ -142,12 +142,24 @@ const TablaPostuVerReclutador = () => {
                     <strong>Correo:</strong> ${correo_usuario} <br>
                     <strong>Fecha de Postulación:</strong> ${new Date(fecha_postulacion).toLocaleDateString()} <br>
                     <strong>Descripción:</strong> ${descripcion} <br>
-                    <strong>CV:</strong> <a href="${cv}" target="_blank">Ver CV</a>
+                    <strong>CV:</strong> <a href="${cv}" target="_blank">Ver CV</a> <br><br>
+    
+                    <label for="estado">Editar estado del Postulante:</label>
+                    <select id="estado" class="swal2-select" style="width: 150px;">
+                        <option value="Pendiente" ${estado === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                        <option value="Aceptado" ${estado === 'Aceptado' ? 'selected' : ''}>Aceptado</option>
+                        <option value="No Aceptado" ${estado === 'No Aceptado' ? 'selected' : ''}>No Aceptado</option>
+                    </select>
                 `,
                 showCloseButton: true,
                 closeButtonHtml: 'X',
-                showConfirmButton: false,
+                showConfirmButton: true,
+                confirmButtonText: 'Confirmar',
                 focusConfirm: false,
+                preConfirm: () => {
+                    const estadoSeleccionado = document.getElementById('estado').value;
+                    console.log('Estado seleccionado:', estadoSeleccionado);
+                }
             });
     
         } catch (error) {
@@ -160,6 +172,7 @@ const TablaPostuVerReclutador = () => {
             });
         }
     };
+    
       
 
     const customStyles = {
