@@ -27,11 +27,12 @@ import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-
 import Noticias from './pages/pagina-noticias/Noticias.jsx';
 import CrearNoticias from './pages/pagina-crear-noticia/CrearNoticia.jsx';
 import ReportarContenido from './components/reportar-contenido/ReportarContenido.jsx';
+import { SiNushell } from 'react-icons/si';
 
 export const usuarioContext = createContext(); 
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState('2'); 
+  const [usuarioLog, setUsuarioLog] = useState(null); 
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [idNoticia, setIdNoticia] = useState(null);
   
@@ -63,6 +64,8 @@ function App() {
           <Route path="/editar-publicacion" element={<EditarPublicacion />} />
           <Route path="/editar-reclutador" element={<EditarReclutador />} />
           <Route path="/editar-egresado" element={<EditarEgresado />} />
+          <Route path="/editar-estudiante" element={<EditEstu />} />
+          <Route path="/editar-docente" element={<EditDocente />} />
           <Route path="/editar-publicacion-empleo" element={<EditarPublicacionEmpleo />} />
           <Route path="/noticias" element={<Noticias openReportModal={openReportModal} />} />
           <Route path="/registro-noticia" element={<CrearNoticias />} />

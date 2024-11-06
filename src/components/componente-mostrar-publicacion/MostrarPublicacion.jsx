@@ -53,7 +53,11 @@ const MostrarPubli = ({ datos, onEliminar }) => {
         try {
             const response = await Axios.get(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`);
             console.log(response.data);
-            setComentariosPublicacion(response.data);
+            if (response.data.length === 0) {
+                setComentariosPublicacion([]);
+                return;
+            }
+            setComentariosPublicacion(response.data.comentarios);
         } catch (err) {
             console.error('Error al obtener los comentarios:', err);
         }
@@ -114,7 +118,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     </div>
                 </div>
                 <img 
-                    src={ "https://via.placeholder.com/300"} //datos.imagen ||
+                    src={ datos.imagen || "https://via.placeholder.com/300"} //
                     alt="Post" 
                     className="mostrar-publicacion-imagen" 
                 />
