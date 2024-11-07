@@ -1,18 +1,26 @@
+/* Aplicar box-sizing global */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Contenedor principal de login */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('../../assets/fondologin.png'); /* Imagen de fondo */
+  background-image: url('../../assets/fondologin.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .login-box {
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
-  padding: 40px; /* Reducir padding para aprovechar más el espacio interno */
-  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 30px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
@@ -21,36 +29,59 @@
   max-width: 500px;
 }
 
+/* Logo */
 .logo-login {
   width: 100%;
-  max-width: 300px; /* Ajustar el tamaño del logo para que encaje mejor */
+  max-width: 300px;
   height: auto;
   margin-bottom: 20px;
-  animation: logo-flip 2s ease-out forwards;
+  animation: logo-flip 20s ease-in-out infinite; /* 4s de giro + 16s estático */
 }
 
 @keyframes logo-flip {
   0% { transform: rotateY(0deg); }
-  50% { transform: rotateY(180deg); }
-  100% { transform: rotateY(0deg); }
+  20% { transform: rotateY(720deg); } /* Dos giros completos en los primeros 4 segundos */
+  100% { transform: rotateY(720deg); } /* Mantener estático para el resto del tiempo */
 }
 
+
+/* Etiquetas de texto */
+.label-text {
+  font-weight: bold;
+  font-size: 16px;
+  color: #2f6db7;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+}
+
+/* Campos de entrada iguales sin borde y con bordes redondeados */
 .login-input {
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  padding: 12px; /* Ajustar el padding para mayor consistencia */
-  font-size: 16px; /* Tamaño de fuente ajustado */
-  margin: 10px 0; /* Espacio entre los campos */
-  border-radius: 10px; /* Bordes redondeados */
-  border: 2px solid #000000;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  margin: 10px 0;
+  border-radius: 8px; /* Bordes redondeados */
+  border: none !important; /* Asegurarse de eliminar cualquier borde */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Sombra ligera */
   outline: none;
-  box-sizing: border-box;
+  background-color: #f5f5f5; /* Fondo gris claro */
+  transition: all 0.3s ease;
+  font-family: inherit;
+  color: #2f6db7;
 }
 
+.login-input:hover, .login-input:focus {
+  background-color: #e0e7ff; /* Fondo diferente en hover y focus */
+}
+
+/* Botón de login */
 .btn-login {
   background-color: #798eb2;
   color: white;
   border: none;
-  padding: 12px 0; /* Ajustar padding para mayor consistencia */
+  padding: 12px 0;
   margin-top: 20px;
   font-size: 16px;
   border-radius: 8px;
@@ -62,18 +93,19 @@
   background-color: #627399;
 }
 
+/* Enlaces */
 .login-links {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  width: 100%; /* Ocupa todo el ancho del contenedor */
+  width: 100%;
 }
 
 .login-link {
   color: #2f6db7;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px; /* Tamaño de fuente ajustado */
+  font-size: 16px;
 }
 
 .login-link:hover {
