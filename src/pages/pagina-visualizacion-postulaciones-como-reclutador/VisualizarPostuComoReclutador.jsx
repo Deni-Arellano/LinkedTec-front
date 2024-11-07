@@ -83,19 +83,19 @@ const TablaPostuVerReclutador = () => {
         {
             name: "Nombre del postulante",
             selector: row => row.nombre_usuario,
-            width: '400px',
+            width: '600px',
             cell: row => <div style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>{row.nombre_usuario}</div> 
         },
         {
             name: "Correo electrónico",
             selector: row => row.correo_usuario,
-            width: '350px',
+            width: '550px',
             cell: row => <div style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>{row.correo_usuario}</div> 
         },
         {
             name: <>Fecha de<br />postulación</>,
             selector: row => row.fecha_creacion,
-            width: '150px',
+            width: '200px',
             cell: row => {
                 const fecha = new Date(row.fecha_creacion);
                 const opciones = {
@@ -136,20 +136,22 @@ const TablaPostuVerReclutador = () => {
     
             // Muestra la información en un modal de SweetAlert con comboBox y botón de confirmación
             Swal.fire({
-                title: 'Información del postulante',
+                title: '<label>Información del postulante</label>',
                 html: `
-                    <strong>Nombre:</strong> ${nombre_usuario} <br>
-                    <strong>Correo:</strong> ${correo_usuario} <br>
-                    <strong>Fecha de Postulación:</strong> ${new Date(fecha_postulacion).toLocaleDateString()} <br>
-                    <strong>Descripción:</strong> ${descripcion} <br>
-                    <strong>CV:</strong> <a href="${cv}" target="_blank">Ver CV</a> <br><br>
-    
-                    <label for="estado">Editar estado del Postulante:</label>
-                    <select id="estado" class="swal2-select" style="width: 150px;">
-                        <option value="Pendiente" ${estado === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
-                        <option value="Aceptado" ${estado === 'Aceptado' ? 'selected' : ''}>Aceptado</option>
-                        <option value="No Aceptado" ${estado === 'No Aceptado' ? 'selected' : ''}>No Aceptado</option>
-                    </select>
+                    <div class='ContenedorTextoMostrarInformacionPostulacionPopup'>
+                        <strong class='TextoMostrarInformacionPostulacionPopup'>Nombre:</strong> ${nombre_usuario} <br><br>
+                        <strong class='TextoMostrarInformacionPostulacionPopup'>Correo:</strong> ${correo_usuario} <br><br>
+                        <strong class='TextoMostrarInformacionPostulacionPopup'>Fecha de Postulación:</strong> ${new Date(fecha_postulacion).toLocaleDateString()} <br><br>
+                        <strong class='TextoMostrarInformacionPostulacionPopup'>Descripción:</strong> ${descripcion} <br><br>
+                        <strong class='TextoMostrarInformacionPostulacionPopup'>CV:</strong> <a href="${cv}" target="_blank">Ver CV</a> <br><br>
+        
+                        <label for="estado" class='TextoMostrarInformacionPostulacionPopup'>Editar estado del Postulante:</label>
+                        <select id="estado" class="swal2-select" style="width: 350px;">
+                            <option value="Pendiente" ${estado === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                            <option value="Aceptado" ${estado === 'Aceptado' ? 'selected' : ''}>Aceptado</option>
+                            <option value="No Aceptado" ${estado === 'No Aceptado' ? 'selected' : ''}>No Aceptado</option>
+                        </select>
+                    </div>
                 `,
                 showCloseButton: true,
                 closeButtonHtml: 'X',
@@ -171,9 +173,7 @@ const TablaPostuVerReclutador = () => {
                 confirmButtonText: 'Cerrar'
             });
         }
-    };
-    
-      
+    }; 
 
     const customStyles = {
         rows: {

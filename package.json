@@ -22,7 +22,8 @@
     "react-scripts": "^5.0.1",
     "sanitize.css": "^13.0.0",
     "sweetalert2": "^11.14.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "ws": "^8.18.0"
   },
   "scripts": {
     "start": "set PORT=3001&& react-scripts start",

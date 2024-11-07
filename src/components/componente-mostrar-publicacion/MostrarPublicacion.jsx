@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import Texto from '../componente-label/Etiquetas.jsx';
 import './MostrarPublicacion.css';
 import { BsThreeDots } from "react-icons/bs";
@@ -11,14 +11,50 @@ import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
 import '../componente-mostrar-comentario/MostrarComentario.css';
 
-
 const MostrarPubli = ({ datos, onEliminar }) => {
     const { usuarioLog } = useContext(usuarioContext);
-    //console.log("datos m,ostrar publio:", datos);
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const [mostrarCrearComentario, setMostrarCrearComentario] = useState(false);
     const [comentariosPublicacion, setComentariosPublicacion] = useState([]);
+    const [meGusta, setMeGusta] = useState(datos.meGusta || 0);
+    const [disgusta, setDisgusta] = useState(datos.disgusta || 0);
+    const ws = useRef(null);
     const navigate = useNavigate();
+
+    const conectarWebSocket = () => {
+        ws.current = new WebSocket('ws://localhost:8082');
+
+        ws.current.onopen = () => {
+            console.log("Conectado al servidor de WebSocket de reacciones");
+        };
+
+        ws.current.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'actualizacion_reaccion') {
+                if (data.reaccion === 'me_gusta') {
+                    setMeGusta(data.conteo);
+                } else if (data.reaccion === 'disgusta') {
+                    setDisgusta(data.conteo);
+                }
+            }
+        };
+
+        ws.current.onerror = (error) => {
+            console.error("Error en WebSocket:", error);
+        };
+
+        ws.current.onclose = () => {
+            console.log("WebSocket desconectado, reintentando en 3 segundos...");
+            setTimeout(conectarWebSocket, 3000);
+        };
+    };
+
+    useEffect(() => {
+        conectarWebSocket();
+        return () => {
+            if (ws.current) ws.current.close();
+        };
+    }, []);
 
     const handleOpciones = () => {
         setMostrarOpciones(!mostrarOpciones);
@@ -35,9 +71,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
 
     const eliminarPublicacion = async () => {
         try {
-            console.log("Eliminando publicación con id:", datos.id_publicacion);
             const response = await Axios.delete(`http://localhost:3000/publicaciones/${datos.id_publicacion}`);
-            console.log(response.data);
             onEliminar(datos.id_publicacion);
             handleOpciones();
             setMostrarCrearComentario(false);
@@ -47,26 +81,17 @@ const MostrarPubli = ({ datos, onEliminar }) => {
         }
     };
 
-    
-
     const getComentariosPublicacion = async (id_publicacion) => {
         try {
             const response = await Axios.get(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`);
-            console.log(response.data);
-            if (response.data.length === 0) {
-                setComentariosPublicacion([]);
-                return;
-            }
-            setComentariosPublicacion(response.data.comentarios);
+            setComentariosPublicacion(response.data.comentarios || []);
         } catch (err) {
             console.error('Error al obtener los comentarios:', err);
         }
     };
 
-    // Función que se ejecuta cuando se agrega un nuevo comentario
     const agregarComentario = () => {
         getComentariosPublicacion(datos.id_publicacion);
-        
     };
 
     const editarPublicacion = () => {
@@ -75,20 +100,56 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 descripcion: datos.descripcion,
                 imagen: datos.imagen,
                 id_publicacion: datos.id_publicacion
-            }});
+            }
+        });
     };
 
+    const reaccionar = async (tipo_reaccion, cancelar = false) => {
+        try {
+            const response = await Axios.post('http://localhost:3000/reaccionar', {
+                id_publicacion: datos.id_publicacion,
+                tipo_reaccion: tipo_reaccion,
+                cancelar: cancelar ? "true" : "",
+                id_usuario: usuarioLog // ID del usuario que está reaccionando
+            });
+    
+            // Actualizar contadores localmente para un feedback inmediato
+            if (tipo_reaccion === 'me_gusta') {
+                setMeGusta((prev) => cancelar ? prev - 1 : prev + 1);
+            } else if (tipo_reaccion === 'disgusta') {
+                setDisgusta((prev) => cancelar ? prev - 1 : prev + 1);
+            }
+        } catch (err) {
+            console.error('Error al enviar la reacción:', err);
+        }
+    };
 
+    useEffect(() => {
+        if (ws.current) {
+            ws.current.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.type === 'actualizacion_reaccion' && data.id_publicacion === datos.id_publicacion) {
+                    if (data.reaccion === 'me_gusta') {
+                        setMeGusta(data.conteo);
+                    } else if (data.reaccion === 'disgusta') {
+                        setDisgusta(data.conteo);
+                    }
+                }
+            };
+        }
+    }, [datos.id_publicacion]);
 
+    const handleLike = () => {
+        reaccionar('me_gusta');
+    };
 
+    const handleDislike = () => {
+        reaccionar('disgusta');
+    };
 
     useEffect(() => {
         getComentariosPublicacion(datos.id_publicacion);
     }, [datos.id_publicacion]);
-
-    
-
-
 
     return (
         <div className="Mostrar-publicacion">
@@ -124,11 +185,11 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 />
             </div>
             <div className="mostrar-publicacion-botones">
-                <button className="mostrar-publicacion-megusta">
-                    <AiFillLike size={30} /> {datos.meGusta || 0}
+                <button className="mostrar-publicacion-megusta" onClick={handleLike}>
+                    <AiFillLike size={30} /> {meGusta}
                 </button>
-                <button className="mostrar-publicacion-medisgusta">
-                    <AiFillDislike size={30} /> {datos.disgusta || 0}
+                <button className="mostrar-publicacion-medisgusta" onClick={handleDislike}>
+                    <AiFillDislike size={30} /> {disgusta}
                 </button>
                 <button className="mostrar-publicacion-comentar" onClick={toggleCrearComentario}>
                     <MdAddComment size={30} />
@@ -141,11 +202,9 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                         idUsuario={usuarioLog}
                         onComentarioAgregado={agregarComentario} 
                     />
-                    
                 )}
                 
                 {mostrarCrearComentario && comentariosPublicacion.length > 0 && comentariosPublicacion.map(comentario => (
-                    console.log("comentario:", comentario),
                     <div className="mostrar-comentario" key={comentario.id_comentario}>
                         <div className="mostrar-comentario-header">
                             <img
@@ -161,7 +220,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                         <div className="comentario-contenido">
                             <div className="comentario-texto">
                                 <div className="comentario-descripcion">
-                                    <Texto texto={comentario.texto } />
+                                    <Texto texto={comentario.texto} />
                                 </div>
                             </div>
                         </div>
@@ -170,6 +229,6 @@ const MostrarPubli = ({ datos, onEliminar }) => {
             </div>
         </div>
     );
-}
+};
 
 export default MostrarPubli;
