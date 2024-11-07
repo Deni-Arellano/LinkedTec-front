@@ -111,3 +111,27 @@
 .login-link:hover {
   text-decoration: underline;
 }
+.password-container {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password {
+  background-color: #ffffff; /* Color de fondo del botón */
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+  padding: 6px; /* Reduce el padding para que el botón sea más pequeño */
+  width: 30px; /* Ajusta el ancho al tamaño aproximado del emoticón */
+  height: 45px; /* Ajusta la altura al tamaño aproximado del emoticón */
+  border-radius: 5px; /* Borde redondeado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease; /* Transición para el efecto hover */
+}
+
+.toggle-password:hover {
+  background-color: #e2e9fd; /* Color más gris al pasar el cursor */
+}
+
