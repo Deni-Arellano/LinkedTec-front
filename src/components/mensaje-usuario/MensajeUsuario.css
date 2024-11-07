@@ -1,0 +1,26 @@
+.mensaje-usuario {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.mensaje-contenido-usuario {
+    max-width: 60%;
+    padding: 10px 15px;
+    
+    background-color: #b6c8e2;
+    text-align: justify;
+
+    border-top-left-radius: 30px;
+    border-top-right-radius:30px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 30px;
+}
+
+.mensaje-hora-usuario {
+    font-size: 12px;
+    color: gray;
+    margin-top: 5px;
+    display: block;
+}

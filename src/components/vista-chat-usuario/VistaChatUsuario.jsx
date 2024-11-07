@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VistaChatUsuario.css';
 
-// Datos del chat
 const datosChat = {
     foto: 'https://www.w3schools.com/howto/img_avatar.png',
     nombre: 'Juan Pérez Mayorga',
@@ -13,7 +12,7 @@ const datosChat = {
 const VistaChatUsuario = () => {
     const navigate = useNavigate();
 
-    // Recorta el mensaje para la previsualización
+
     const recortarMensaje = (mensaje, maxCaracteres) => {
         return mensaje.length > maxCaracteres ? mensaje.substring(0, maxCaracteres) + '...' : mensaje;
     };

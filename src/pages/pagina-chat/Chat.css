@@ -6,10 +6,14 @@
 
 .conversacion-usuario-encabezado{
     padding: 5px 0;
-    background-color: #f6faff;
-    position: sticky;
+    background-color: white;
+    border-bottom: 1px solid #e0e0e0;
+    position: fixed;
+    margin-top: 59px;
     top: 0;
     z-index: 1000;
+    margin-bottom: 15px;
+    width: calc(100% - 262px);
 }
 
 .conversacion-vista-conversaciones{
@@ -20,7 +24,7 @@
     display: flex;
     align-items: center;
     padding:  0 1% ;
-    background-color: #f6faff;
+    background-color: white;
 }
 
 
@@ -56,4 +60,19 @@
     width: calc(100% - 262px);
     z-index: 1000;
     
+    
+}
+
+.conversacion-usuario-mensajes{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 55px;
+    margin-top: 39px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    background-color: white;
+    
+    
+
 }

@@ -1,0 +1,28 @@
+.mensaje-contacto {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    
+}
+
+.mensaje-contenido-contacto {
+    max-width: 60%;
+    padding: 10px 15px;
+    
+    background-color: #ecf4ff;
+    text-align: justify;
+
+
+    border-top-left-radius: 30px;
+    border-top-right-radius:30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 0;
+}
+
+.mensaje-hora-contacto {
+    font-size: 12px;
+    color: gray;
+    margin-top: 5px;
+    display: block;
+}

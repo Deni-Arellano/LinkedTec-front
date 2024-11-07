@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import EscribirMensaje from '../../components/escribir-mensaje/EscribirMensaje.jsx';
 import './Chat.css';
+import MensajeUsuario from '../../components/mensaje-usuario/MensajeUsuario.jsx';
+import MensajeContacto from '../../components/mensaje-contacto/MensajeContacto.jsx';
 
 const datosChat = {
     foto: 'https://www.w3schools.com/howto/img_avatar.png',
@@ -15,6 +17,8 @@ const datosChat = {
 const Mensajes = () => {
     const { usuarioLog } = useContext(usuarioContext);
     const navigate = useNavigate();
+    const textoPrueba = 'Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? Hola, ¿cómo estás? '; 
+    const horaPrueba = '10:31 AM'
 
     return (
         <>
@@ -35,7 +39,14 @@ const Mensajes = () => {
                 </div>
 
                 <div className='conversacion-usuario-mensajes'>
-                    <h1>Mensajes</h1>
+                    <MensajeContacto texto={'Hola'} hora={horaPrueba} />
+                    <MensajeUsuario texto={textoPrueba} hora={horaPrueba} />
+                    <MensajeContacto texto={textoPrueba} hora={horaPrueba} />
+                    <MensajeUsuario texto={textoPrueba} hora={horaPrueba} />
+                    <MensajeContacto texto={textoPrueba} hora={horaPrueba} />
+                    
+                    
+                    
                 </div>
                 <div className='conversacion-usuario-input'>
                     <EscribirMensaje />

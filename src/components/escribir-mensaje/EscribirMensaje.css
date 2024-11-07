@@ -5,9 +5,10 @@
     width: auto;
     height:auto;
     box-sizing: border-box;
-    background-color: #f6faff;
+    background-color:white;
     align-items: center;
     padding: 0 1%;
+    border-top: 1px solid #e0e0e0;
     
 }
 
@@ -15,7 +16,7 @@
     flex-grow: 1;
     border: none;
     font-size: 16px;
-    background-color: #f6faff;
+    background-color: white;
     resize: none; 
     overflow-y: auto;
     margin-bottom: 0; 
@@ -26,12 +27,12 @@
 .texto-nuevo-mensaje:focus, .texto-nuevo-mensaje:hover {
     border: none; 
     outline: none; 
-    background-color: #f6faff;
+    background-color: white;
     box-shadow: none; 
 }
 
 .nuevo-mensaje {
-    background-color: #f6faff;
+    background-color: white;
     color: gray;
     display: flex;
     align-items: center;
@@ -46,7 +47,7 @@
 
 
 .nuevo-mensaje:hover {
-    background-color: #f6faff;
+    background-color: white;
     color: gray; 
     box-shadow: none; 
 }
