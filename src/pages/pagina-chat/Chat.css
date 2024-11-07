@@ -1,0 +1,59 @@
+.conversacion-contenedor-pagina{
+    margin-left: 262px;
+    display: block;
+    
+}
+
+.conversacion-usuario-encabezado{
+    padding: 5px 0;
+    background-color: #f6faff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.conversacion-vista-conversaciones{
+     max-width: 30%;
+}
+
+.conversacion-usuario-info {
+    display: flex;
+    align-items: center;
+    padding:  0 1% ;
+    background-color: #f6faff;
+}
+
+
+
+.conversacion-usuario-foto {
+    display: flex;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.conversacion-usuario-foto img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.conversacion-usuario-info {
+    flex: 1;
+}
+
+.conversacion-usuario-nombre {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #093e61;
+    font-family: sans-serif;
+}
+
+.conversacion-usuario-input{
+    position:fixed;
+    bottom: 0;
+    width: calc(100% - 262px);
+    z-index: 1000;
+    
+}
