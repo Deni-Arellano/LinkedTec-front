@@ -133,7 +133,6 @@ const Noticias = ({ openReportModal }) => {
 
     const obtenerImagenUsuario = async (id_usuario) => {
         try {
-            console.log('Obteniendo imagen del usuario:', id_usuario);
             const response = await axios.get(`http://localhost:3000/usuarios/imagen/${id_usuario}`);
             console.log('Imagen del usuario:', response.data.imagen_usuario);
             return '"https://res.cloudinary.com/dsysk6y0t/image/upload/v1729878506/images/cvaawi9imiuzbninnmj8.jpg"';

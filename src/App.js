@@ -34,7 +34,7 @@ import { SiNushell } from 'react-icons/si';
 export const usuarioContext = createContext(); 
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(1); 
+  const [usuarioLog, setUsuarioLog] = useState(4); 
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [idNoticia, setIdNoticia] = useState(null);
   
