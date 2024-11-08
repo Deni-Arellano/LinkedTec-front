@@ -1,10 +1,8 @@
 import React, { useState, useContext, useRef } from "react";
-
 import Boton from '../../components/boton/Boton.jsx';
 import Cajatexto from '../componente-caja-de-texto/CajaDeTexto.jsx';
 import Texto from '../componente-label/Etiquetas.jsx';
 import './CrearPublicacion.css';
-
 import Axios from "axios";
 import { usuarioContext } from '../../App.js';
 import { BiImageAdd } from 'react-icons/bi';
@@ -55,11 +53,11 @@ const CrearPubli = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log("URL imagen" , response);
-            return response.data.data.secure_url; 
+            console.log("URL imagen", response);
+            return response.data.data.secure_url;
         } catch (error) {
             Swal.fire('Error', 'Error al subir la imagen.', 'error');
-            throw error; 
+            throw error;
         }
     };
 
@@ -78,9 +76,9 @@ const CrearPubli = () => {
 
         if (image) {
             try {
-                url = await agregarImagen(); 
+                url = await agregarImagen();
             } catch (error) {
-                return; 
+                return;
             }
         }
 
@@ -111,11 +109,11 @@ const CrearPubli = () => {
                 } else {
                     Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
                 }
-            });            
+            });
     };
 
     const publicar = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         add();
     };
 
@@ -126,29 +124,27 @@ const CrearPubli = () => {
         setImagenSeleccionada(false);
     };
 
-
-
     return (
         <div className="caja-crear-publicacion">
             <form className="estilo-caja-crear-publicacion" onSubmit={publicar}>
                 <Texto tamano='20' texto='¿Qué estás pensando?' />
-                <Cajatexto 
-                    className='estilo-caja-texto' 
-                    placeholder={'Ingresar texto...'} 
-                    value={textoPubli} 
-                    onChange={manejarCambioTexto} 
+                <Cajatexto
+                    className='estilo-caja-texto'
+                    placeholder={'Ingresar texto...'}
+                    value={textoPubli}
+                    onChange={manejarCambioTexto}
                 />
-                <input 
-                    type="file" 
-                    name='imagenPublicacion' 
-                    className="input-imagen-crear-publicacion" 
+                <input
+                    type="file"
+                    name='imagenPublicacion'
+                    className="input-imagen-crear-publicacion"
                     onChange={handleImage}
-                    ref={fileInputRef} 
+                    ref={fileInputRef}
                 />
-                
+
                 <div className="boton-contenedor-crear-publicacion">
                     <button
-                        type="button" 
+                        type="button"
                         className={`boton-imagen-crear-publicacion ${imagenSeleccionada ? 'imagen-seleccionada' : ''}`}
                         onClick={() => document.querySelector('.input-imagen-crear-publicacion').click()}
                     >
@@ -156,14 +152,14 @@ const CrearPubli = () => {
                     </button>
                     <div className="botones-derecha-crear-publicacion">
                         <Boton texto='Publicar' className='boton-crear-publicacion' />
-                        <Boton 
-                            type='button' 
-                            texto='Cancelar' 
-                            className='boton-crear-publicacion' 
-                            onClick={(e) => { 
-                                e.preventDefault(); 
-                                cancelar(); 
-                            }} 
+                        <Boton
+                            type='button'
+                            texto='Cancelar'
+                            className='boton-crear-publicacion'
+                            onClick={(e) => {
+                                e.preventDefault();
+                                cancelar();
+                            }}
                         />
                     </div>
                 </div>

@@ -1,18 +1,22 @@
-Menu-principal {
+.Menu-principal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 99.5%;
+    width: 100%;
     z-index: 1000;
 }
+
 .Crear-publicacion {
     display: flex;
     justify-content: center;
     width: 100%;
     box-sizing: border-box;
+    padding: 20px;
 }
+
 .contenedor-invisible {
     max-width: 800px;
+    margin: 5% auto;
     margin-left: 30%;
     display: flex;
     flex-direction: column;
@@ -21,4 +25,12 @@ Menu-principal {
     border-radius: 8px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.Publicaciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
