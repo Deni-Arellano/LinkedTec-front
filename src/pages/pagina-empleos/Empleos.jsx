@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
 import BotonPublicar from '../../components/boton-publicar-empleo/BotonPublicarEmpleo'; 
 import BotonPostulaciones from '../../components/boton-postulaciones/BotonPostulaciones';
+import BotonPostulaciones from '../../components/boton-postulaciones/BotonPostulaciones';
 import PublicacionEmpleoNuevo from '../../components/publicacion-empleo/PublicacionEmpleo'; 
 import './empleos.css'; 
 import { usuarioContext } from '../../App';
@@ -14,6 +15,8 @@ const PublicacionEmpleo = () => {
     const { usuarioLog } = useContext(usuarioContext);
     const [datosEmpleos, setDatosEmpleos] = useState([]);
     const [componentesEmpleos, setComponentesEmpleos] = useState([]); 
+
+    // Obtiene todos los empleos
 
     // Obtiene todos los empleos
     const getEmpleos = async () => {
@@ -37,10 +40,16 @@ const PublicacionEmpleo = () => {
     };
 
     // Obtiene los datos de los empleos al cargar la página
+    // Obtiene los datos de los empleos al cargar la página
     useEffect(() => {
         getEmpleos();
     }, []);
 
+    // Genera los componentes para cada empleo
+    useEffect(() => {
+        const generarComponentesEmpleos = async () => {
+            const componentesEmpleosPromises = datosEmpleos.empleos.map(async (empleo) => {
+                const datosUsuario = await getUsuarios(empleo.id_usuario); 
     // Genera los componentes para cada empleo
     useEffect(() => {
         const generarComponentesEmpleos = async () => {
@@ -72,6 +81,15 @@ const PublicacionEmpleo = () => {
                     />
                 );
             });
+                        onEliminar={id => {
+                            setDatosEmpleos(prevEmpleos => ({
+                                ...prevEmpleos,
+                                empleos: prevEmpleos.empleos.filter(empleo => empleo.id_empleo !== id)
+                            }));
+                        }}
+                    />
+                );
+            });
 
             const componentes = await Promise.all(componentesEmpleosPromises); 
             setComponentesEmpleos(componentes); 
@@ -82,14 +100,25 @@ const PublicacionEmpleo = () => {
         }
         
     }, [datosEmpleos]);
+        if (datosEmpleos && datosEmpleos.empleos) {
+            generarComponentesEmpleos();
+        }
+        
+    }, [datosEmpleos]);
 
+    // Función para manejar la navegación a la página de postulaciones
+    const manejarVerPostulaciones = () => {
+        navigate('/pagina-postulaciones-usuario');
+    };
     // Función para manejar la navegación a la página de postulaciones
     const manejarVerPostulaciones = () => {
         navigate('/pagina-postulaciones-usuario');
     };
 
     const manejarPublicarEmpleo = async () => {
+    const manejarPublicarEmpleo = async () => {
         const datosUsuario = await getUsuarios(usuarioLog); 
+        if (datosUsuario[4] === 'Reclutadores') { 
         if (datosUsuario[4] === 'Reclutadores') { 
             navigate('/registro-empleo');
         } else {
@@ -98,6 +127,7 @@ const PublicacionEmpleo = () => {
                 title: "Oops...",
                 text: "No puedes crear un empleo porque no eres reclutador.",
             });
+            });
         }
     };
 
@@ -105,6 +135,8 @@ const PublicacionEmpleo = () => {
         <>
             <MenuNavegacion /> 
             <div className="PublicacionEmpleoNuevo-boton-flotante">
+                <BotonPublicar onClick={manejarPublicarEmpleo} />
+                <BotonPostulaciones onClick={manejarVerPostulaciones} /> {/* Botón que navega a postulaciones */}
                 <BotonPublicar onClick={manejarPublicarEmpleo} />
                 <BotonPostulaciones onClick={manejarVerPostulaciones} /> {/* Botón que navega a postulaciones */}
             </div>
