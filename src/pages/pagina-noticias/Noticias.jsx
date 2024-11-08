@@ -131,14 +131,9 @@ const Noticias = ({ openReportModal }) => {
         return usuario ? `${usuario.nombre} ${usuario.apellido_paterno} ${usuario.apellido_materno}` : 'Usuario desconocido';
     };
 
-    const obtenerImagenUsuario = async (id_usuario) => {
-        try {
-            const response = await axios.get(`http://localhost:3000/usuarios/imagen/${id_usuario}`);
-            console.log('Imagen del usuario:', response.data.imagen_usuario);
-            return '"https://res.cloudinary.com/dsysk6y0t/image/upload/v1729878506/images/cvaawi9imiuzbninnmj8.jpg"';
-        } catch (err) {
-            console.error('Error al obtener la imagen del usuario:', err);
-        } 
+    const obtenerImagenUsuario =  (id_usuario) => {
+        const usuario = usuarios.find(user => user.id === id_usuario);
+         return usuario ? usuario.imagen_usuario : 'https://res.cloudinary.com/dsysk6y0t/image/upload/v1730349588/images/eqgqstpaupuljmog2yi0.jpg';
     }
 
     /**
@@ -165,7 +160,7 @@ const Noticias = ({ openReportModal }) => {
                             <div className="tarjeta-noticia-header">
                                 <div className="usuario-perfil">
                                     <img
-                                        src={obtenerImagenUsuario(noticia.id_usuario) || 'https://via.placeholder.com/100x100'}
+                                        src={obtenerImagenUsuario(noticia.id_usuario)}
                                         alt="100x100"
                                         className="imagen-perfil"
                                     />
