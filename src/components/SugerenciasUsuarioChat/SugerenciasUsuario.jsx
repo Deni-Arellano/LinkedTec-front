@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SugerenciasUsuario.css';
 
-// Datos del chat
-const datosChat = {
-    foto: 'https://www.w3schools.com/howto/img_avatar.png',
-    nombre: 'Mayra Sánchez',
-};
 
-const SugerenciasUsuario = () => {
-    const navigate = useNavigate();
 
+const SugerenciasUsuario = ({datosChat}) => {
+    const defaultChat = {
+        id: 0,
+        nombre: 'Desconocido',
+        foto: 'https://www.w3schools.com/howto/img_avatar.png',
+        
+    };
+
+    const {id,nombre, foto} = datosChat || defaultChat;
+    
     const handleClick = () => {
         console.log('click sugerencia usuario');
         
@@ -19,10 +22,10 @@ const SugerenciasUsuario = () => {
     return (
         <div className='sugerencia-chat-usuario' onClick={handleClick}>
             <div className='sugerencia-chat-usuario-foto'>
-                <img src={datosChat.foto} alt='foto-usuario' />
+                <img src={foto} alt='foto-usuario' />
             </div>
             <div className='sugerencia-chat-usuario-info'>
-                <h3 className='sugerencia-chat-usuario-nombre'>{datosChat.nombre}</h3>
+                <h3 className='sugerencia-chat-usuario-nombre'>{nombre}</h3>
             </div>
             
         </div>

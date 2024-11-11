@@ -36,8 +36,8 @@ import Chat from './pages/pagina-chat/Chat.jsx';
 export const usuarioContext = createContext(); 
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(null); 
-  //const [usuarioLog, setUsuarioLog] = useState(1);
+  //const [usuarioLog, setUsuarioLog] = useState(null); 
+  const [usuarioLog, setUsuarioLog] = useState(1);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [idNoticia, setIdNoticia] = useState(null);
   
