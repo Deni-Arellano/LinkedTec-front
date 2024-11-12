@@ -21,6 +21,8 @@ import EditarReclutador from './pages/pagina-editar-reclutador/EditarReclutador'
 import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
 import PaginasPostulacionesUsuario from './pages/pagina-postulaciones-usuario/PaginaPostulacionesUsuario.jsx'
+import EditarNoticia from './pages/pagina-editar-noticia/EditarNoticia';
+
 
 import Postulacion from './pages/pagina-postulacion/Postulacion';
 import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-como-reclutador/VisualizarPostuComoReclutador.jsx';
@@ -32,7 +34,7 @@ import { SiNushell } from 'react-icons/si';
 export const usuarioContext = createContext(); 
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(null); 
+  const [usuarioLog, setUsuarioLog] = useState(4); 
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [idNoticia, setIdNoticia] = useState(null);
   
@@ -72,6 +74,7 @@ function App() {
           <Route path='/pagina-postulaciones-usuario' element={<PaginasPostulacionesUsuario/>} />
           <Route path='/postulacion' element={<Postulacion/>} />
           <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
+          <Route path="/editar-noticia/:id_noticia" element={<EditarNoticia />} />
         </Routes>
       </Router>
       {isReportModalOpen && (

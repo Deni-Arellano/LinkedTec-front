@@ -1,53 +1,66 @@
 .Mostrar-publicacion {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    margin-bottom: 10px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    margin-bottom: 1.25rem;
     width: 75%;
-    box-sizing: border-box;
-    background-color: #f6faff;
-}
-
-.mostrar-publicacion-header {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  @media (max-width: 1024px) {
+    .Mostrar-publicacion {
+      width: 85%;
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .Mostrar-publicacion {
+      width: 95%;
+      padding: 0.875rem;
+    }
+  }
+  
+  .mostrar-publicacion-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    gap: 0.75rem;
     position: relative;
-}
-
-.mostrar-publicacion-imagen-perfil {
-    width: 50px;
-    height: 50px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .mostrar-publicacion-imagen-perfil {
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
-    margin-right: 10px;
-}
-
-.mostrar-publicacion-icono-tres-puntos {
-    margin-left: auto;
+    object-fit: cover;
+  }
+  
+  .mostrar-publicacion-icono-tres-puntos {
+    color: #6b7280;
     cursor: pointer;
-}
-
-.mostrar-publicacion-opciones-dropdown {
+    padding: 0.25rem;
+    margin-left: auto;
+  }
+  
+  .mostrar-publicacion-opciones-dropdown {
     position: absolute;
     right: 0;
-    top: 100%;
-    display: flex;
-    flex-direction: column;
+    top: 120%;
     background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    
-
-}
-
-
-.mostrar-publicacion-opcion-boton {
+    min-width: 120px;
+  }
+  
+  /* Mantenemos los estilos originales para los botones de opciones */
+  .mostrar-publicacion-opcion-boton {
     background-color: #012a6f;
     border: none;
     padding: 8px 12px;
@@ -58,91 +71,125 @@
     color: white;
     font-size: 16px;
     transition: background-color 0.3s ease;
-}
-
-.mostrar-publicacion-opcion-boton:hover {
+  }
+  
+  .mostrar-publicacion-opcion-boton:hover {
     background-color: #f1f1f1;
-}
-
-.mostrar-publicacion-contenido {
+  }
+  
+  .mostrar-publicacion-contenido {
     display: flex;
     flex-direction: column;
-    width: 100%;
-}
-
-.mostrar-publicacion-texto {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    font-size: 90%;
-}
-
-.mostrar-publicacion-descripcion {
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 5px;
+    gap: 1rem;
+  }
+  
+  .mostrar-publicacion-texto {
+    color: #1f2937;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  
+  .mostrar-publicacion-descripcion {
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
     word-wrap: break-word;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin-top: 1%;
-}
-
-.mostrar-publicacion-imagen {
+  }
+  
+  .mostrar-publicacion-imagen {
     width: 100%;
     max-height: 300px;
-    max-width: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
-.mostrar-publicacion-botones {
-    margin-top: 10px;
+    border-radius: 0.5rem;
+  }
+  
+  @media (max-width: 640px) {
+    .mostrar-publicacion-imagen {
+      max-height: 250px;
+    }
+  }
+  
+  .mostrar-publicacion-botones {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  @media (max-width: 480px) {
+    .mostrar-publicacion-botones {
+      gap: 0.5rem;
+    }
+  }
+  
+  .mostrar-publicacion-megusta,
+  .mostrar-publicacion-medisgusta,
+  .mostrar-publicacion-comentar {
     display: flex;
     align-items: center;
-}
-
-.mostrar-publicacion-megusta {
-    margin-right: 10px;
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.mostrar-publicacion-medisgusta {
-    margin-right: 10px;
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.mostrar-publicacion-comentar {
-    margin-left: auto;
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.Fecha-mostrar-publicacion {
-   margin-top: 1vh;
-}
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    color: #4b5563;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    flex: 1;
+  }
+  
+  @media (max-width: 480px) {
+    .mostrar-publicacion-megusta,
+    .mostrar-publicacion-medisgusta,
+    .mostrar-publicacion-comentar {
+      padding: 0.375rem;
+      font-size: 0.75rem;
+    }
+  }
+  
+  .mostrar-publicacion-megusta:hover {
+    background-color: #ecfdf5;
+    color: #059669;
+    border-color: #059669;
+  }
+  
+  .mostrar-publicacion-medisgusta:hover {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border-color: #dc2626;
+  }
+  
+  .mostrar-publicacion-comentar:hover {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-color: #2563eb;
+  }
+  
+  .Fecha-mostrar-publicacion {
+    color: #6b7280;
+    font-size: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Container queries para ajustar dentro de diferentes contenedores */
+  @container (max-width: 600px) {
+    .Mostrar-publicacion {
+      padding: 0.75rem;
+    }
+    
+    .mostrar-publicacion-imagen-perfil {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .mostrar-publicacion-texto {
+      font-size: 0.875rem;
+    }
+  }
+  
+  /* Asegúrate de que el contenedor padre tenga esta propiedad */
+  .container-principal {
+    container-type: inline-size;
+  }
