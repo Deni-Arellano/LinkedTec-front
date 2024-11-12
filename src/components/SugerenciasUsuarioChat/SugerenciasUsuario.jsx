@@ -15,14 +15,15 @@ const SugerenciasUsuario = ({datosChat}) => {
     const {id,nombre, foto} = datosChat || defaultChat;
     
     const handleClick = () => {
-        console.log('click sugerencia usuario');
+        console.log('click sugerencia usuario', id);
+    
         
     };
 
     return (
         <div className='sugerencia-chat-usuario' onClick={handleClick}>
             <div className='sugerencia-chat-usuario-foto'>
-                <img src={foto} alt='foto-usuario' />
+                <img src={foto} alt='foto' />
             </div>
             <div className='sugerencia-chat-usuario-info'>
                 <h3 className='sugerencia-chat-usuario-nombre'>{nombre}</h3>

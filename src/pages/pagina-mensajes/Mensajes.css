@@ -21,3 +21,11 @@
     text-align: left;
     width: 100%;
 }
+
+.cargando-chats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+}

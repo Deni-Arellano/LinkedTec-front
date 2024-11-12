@@ -6,13 +6,14 @@ const VistaChatUsuario = ({ datosChat }) => {
     const navigate = useNavigate();
 
     const defaultChat = {
+        idChat: 0,
         nombre: 'Desconocido',
         foto: 'https://www.w3schools.com/howto/img_avatar.png',
         mensaje: 'No hay mensaje',
         fecha: 'Fecha no disponible',
     };
 
-    const { nombre, foto, mensaje, fecha } = datosChat || defaultChat;
+    const {idChat, nombre, foto, mensaje, fecha } = datosChat || defaultChat;
 
 
     const recortarMensaje = (mensaje, maxCaracteres) => {
@@ -20,13 +21,13 @@ const VistaChatUsuario = ({ datosChat }) => {
     };
 
     const handleClick = () => {
-        console.log('click chat usuario');
+        console.log('click chat usuario',idChat);
     };
 
     return (
         <div className='chat-usuario' onClick={handleClick}>
             <div className='chat-usuario-foto'>
-                <img src={foto} alt='foto-usuario' />
+                <img src={foto} alt='foto' />
             </div>
             <div className='chat-usuario-info'>
                 <h3 className='chat-usuario-nombre'>{nombre}</h3>
