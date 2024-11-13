@@ -51,7 +51,7 @@ const MenuNavegacion = () => {
                 </div>
 
                 <div className="MenuNavegacion-icons">
-                    <button className="MenuNavegacion-icon-button">
+                    <button className="MenuNavegacion-icon-button" onClick={() => navigate('/Mensajes')}>
                         <BiChat className="MenuNavegacion-icon" />
                     </button>
                     <button className="MenuNavegacion-icon-button">
