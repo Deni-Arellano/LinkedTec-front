@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import './EscribirMensaje.css';
 import { IoSend } from "react-icons/io5";
-import { useState } from "react";
-import Axios from 'axios';
 
-const NuevoMensaje = () => {
+const NuevoMensaje = ({ enviarMensaje }) => {
     const [mensaje, setMensaje] = useState('');
 
+    const manejarEnvio = () => {
+        if (mensaje.trim()) {
+            enviarMensaje(mensaje);
+            setMensaje(''); // Limpiar el campo de entrada después de enviar el mensaje
+        }
+    };
+
     return (
-        
         <div className="mostrar-nuevo-mensaje">
             <textarea
                 className="texto-nuevo-mensaje"
@@ -17,11 +21,10 @@ const NuevoMensaje = () => {
                 onChange={(e) => setMensaje(e.target.value)}
                 maxLength="500"
             ></textarea>
-            <button className="nuevo-mensaje" >
+            <button className="nuevo-mensaje" onClick={manejarEnvio}>
                 <IoSend />
             </button>
         </div>
-        
     );
 };
 

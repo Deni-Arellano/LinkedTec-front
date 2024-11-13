@@ -30,7 +30,7 @@ const Mensajes = () => {
                 if (data.tipo === 'datosChat' || data.tipo === 'datosChatActualizados') {
                     setChats(data.datos);
                     setCargando(false);
-                    //console.log('Datos de chat:', data.datos);
+                    console.log('Datos de chat:', data.datos);
                 } else if (data.tipo === 'nuevoMensaje' || data.tipo === 'mensajeEnviado') {
                     console.log('Nuevo mensaje:', data.mensaje);
                 } else if (data.tipo === 'error') {
@@ -77,6 +77,8 @@ const Mensajes = () => {
                                 key={chat.id}
                                 datosChat={{
                                     idChat: chat.id,
+                                    idRemitente: chat.id_remitente,
+                                    idDestinatario: chat.id_destinatario,
                                     nombre: chat.usuario.nombre,
                                     foto: chat.usuario.imagen_usuario,
                                     mensaje: chat.mensaje,

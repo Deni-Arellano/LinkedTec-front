@@ -7,13 +7,15 @@ const VistaChatUsuario = ({ datosChat }) => {
 
     const defaultChat = {
         idChat: 0,
+        idRemitente: 0, 
+        idDestinatario: 0,
         nombre: 'Desconocido',
         foto: 'https://www.w3schools.com/howto/img_avatar.png',
         mensaje: 'No hay mensaje',
         fecha: 'Fecha no disponible',
     };
 
-    const {idChat, nombre, foto, mensaje, fecha } = datosChat || defaultChat;
+    const {idChat,idRemitente,idDestinatario, nombre, foto, mensaje, fecha } = datosChat || defaultChat;
 
 
     const recortarMensaje = (mensaje, maxCaracteres) => {
@@ -22,6 +24,7 @@ const VistaChatUsuario = ({ datosChat }) => {
 
     const handleClick = () => {
         console.log('click chat usuario',idChat);
+        navigate('/chat', { state: { idRemitente,idDestinatario, nombre, foto } });
     };
 
     return (
