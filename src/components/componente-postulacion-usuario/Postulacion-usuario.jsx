@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react'; // Importa useState y useEffect
-import axios from 'axios'; // Importa axios para realizar solicitudes HTTP
-import Swal from 'sweetalert2'; // Importa Swal para las alertas
+import React, { useState, useEffect } from 'react';
 import './Postulacion-usuario.css';
+import Swal from 'sweetalert2';
 import { BsThreeDots } from "react-icons/bs";
+import axios from 'axios';
 
-const PostulacionUsuario = ({ idPostulacion, onEliminar }) => { // Asegúrate de recibir idPostulacion como prop
+const PostulacionUsuario = ({ idPostulacion, onEliminar }) => {
   const [datos, setDatos] = useState({});
   const [mostrarDetalles, setMostrarDetalles] = useState(false);
   const [estadoPostulacion, setEstadoPostulacion] = useState('Activa');
 
   useEffect(() => {
-    // Obtener los datos de la postulación desde la API
+    // Fetch the post data from the API
     const fetchPostulacionData = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/postulaciones/${idPostulacion}/info`);
-        setDatos(response.data); // Asigna los datos recibidos a 'datos'
+        setDatos(response.data); // Assuming response.data contains the required structure
       } catch (error) {
         console.error("Error fetching data:", error);
         Swal.fire(
@@ -49,7 +49,7 @@ const PostulacionUsuario = ({ idPostulacion, onEliminar }) => { // Asegúrate de
     }).then((result) => {
       if (result.isConfirmed) {
         setEstadoPostulacion('Cancelada');
-        if (onEliminar) onEliminar(idPostulacion); // Llama a onEliminar si está definido
+        onEliminar(idPostulacion);
         handleCerrarDetalles();
         Swal.fire(
           'Cancelada',
@@ -81,11 +81,10 @@ const PostulacionUsuario = ({ idPostulacion, onEliminar }) => { // Asegúrate de
             <h2 className="titulo-empleo">{datos.empleo?.titulo}</h2>
             <p><strong>Descripción:</strong> {datos.empleo?.descripcion || "Descripción no disponible"}</p>
             <p><strong>Ubicación:</strong> {datos.empleo?.ubicacion || "Ubicación no disponible"}</p>
-            <p><strong>Nivel de inglés:</strong> {datos.empleo?.nivel_de_ingles || "Nivel no disponible"}</p>
-            <p><strong>Fecha de creación:</strong> {datos.empleo?.fecha_creacion || "Fecha no disponible"}</p>
+            <p><strong>Nivel de inglés:</strong> {datos.empleo?.nivel_ingles || "Nivel no disponible"}</p>
 
             <h3>Detalles de la postulación</h3>
-            <p><strong>Correo del candidato:</strong> {datos.usuario?.correo || "Correo no disponible"}</p>
+            <p><strong>Fecha de postulación:</strong> {datos.empleo?.fecha_creacion || "Fecha no disponible"}</p>
             <p><strong>Mensaje del candidato:</strong> {datos.usuario?.descripcion_personal || "Mensaje no disponible"}</p>
             <p><strong>Experiencia relevante:</strong> {datos.usuario?.cv || "Experiencia no disponible"}</p>
 

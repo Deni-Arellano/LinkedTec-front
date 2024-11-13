@@ -1,39 +1,70 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import PostulacionUsuario from '../../components/componente-postulacion-usuario/Postulacion-usuario';
+import './PaginaPostulacionesUsuario.css';
+import { usuarioContext } from '../../App';
 import axios from 'axios';
-import Swal from 'sweetalert2';
-import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; // Asegúrate de que la ruta sea correcta
-import PostulacionUsuario from '../../components/componente-postulacion-usuario/Postulacion-usuario'; // Importa el componente PostulacionUsuario
 
-const PaginaPostulacionesUsuario = () => {
-  const [postulaciones, setPostulaciones] = useState([]); // Estado para las postulaciones
+const PaginasPostulacionesUsuario = () => {
+    const navigate = useNavigate();
+    const { usuarioLog } = useContext(usuarioContext);
+    const [datosPostulaciones, setDatosPostulaciones] = useState([]);
 
-  useEffect(() => {
-    const fetchPostulaciones = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/postulaciones/id_usuario?pagina=1&limite=10');
-        setPostulaciones(response.data.postulaciones); // Actualizamos el estado con las postulaciones recibidas
-      } catch (error) {
-        console.error("Error al cargar las postulaciones:", error);
-        Swal.fire(
-          'Error',
-          'No se pudieron cargar las postulaciones del usuario.',
-          'error'
-        );
-      }
+    const getPostulaciones = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/postulaciones/${usuarioLog.id}?pagina=1&limite=10`);
+            console.log('Postulaciones:', response.data);
+            setDatosPostulaciones(response.data.postulaciones || []);
+        } catch (err) {
+            console.error('Error al obtener las postulaciones:', err);
+        }
     };
 
-    fetchPostulaciones();
-  }, []);
+    const handleEliminarPostulacion = async (id_postulacion) => {
+        try {
+            await axios.delete(`http://localhost:3000/postulaciones/${id_postulacion}`);
+            setDatosPostulaciones(prev => prev.filter(postulacion => postulacion.id_postulacion !== id_postulacion));
+        } catch (error) {
+            console.error('Error al eliminar la postulación:', error);
+        }
+    };
 
-  return (
-    <div className="pagina-postulaciones">
-      <MenuNavegacion />
-      {/* Mapea y muestra cada postulación */}
-      {postulaciones.map((postulacion) => (
-        <PostulacionUsuario key={postulacion.id_postulacion} idPostulacion={postulacion.id_postulacion} />
-      ))}
-    </div>
-  );
+    useEffect(() => {
+        if (usuarioLog) {
+            getPostulaciones();
+        }
+    }, [usuarioLog]);
+
+    return (
+        <>
+            <MenuNavegacion />
+            <div className="PostulacionesUsuario-contenedor">
+                {datosPostulaciones.length > 0 ? (
+                    datosPostulaciones.map(postulacion => (
+                        <PostulacionUsuario
+                            key={postulacion.id_postulacion}
+                            datos={{
+                                id_postulacion: postulacion.id_postulacion,
+                                tituloEmpleo: postulacion.titulo,
+                                empresa: postulacion.empresa,
+                                fechaPostulacion: postulacion.fecha,
+                                estado: postulacion.estado,
+                                // Estos valores son ejemplos, modifica según los datos reales si hay un perfil de usuario
+                                fotoPerfil: 'https://via.placeholder.com/100',
+                                nombreUsuario: `Usuario ${postulacion.id_usuario}`
+                            }}
+                            onEliminar={handleEliminarPostulacion}
+                        />
+                    ))
+                ) : (
+                    <div className="mensaje-sin-postulaciones">
+                        <p>No hay postulaciones disponibles</p>
+                    </div>
+                )}
+            </div>
+        </>
+    );
 };
 
-export default PaginaPostulacionesUsuario;
+export default PaginasPostulacionesUsuario;
