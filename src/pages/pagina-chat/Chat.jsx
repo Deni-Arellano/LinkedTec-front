@@ -11,7 +11,6 @@ const Mensajes = () => {
     const { usuarioLog } = useContext(usuarioContext);
     const location = useLocation();
     const { idRemitente: inicialIdRemitente, idDestinatario: inicialIdDestinatario, nombre, foto } = location.state || { idRemitente: 0, idDestinatario: 0, nombre: 'Desconocido', foto: 'https://www.w3schools.com/howto/img_avatar.png' };
-    
     const idRemitente = inicialIdRemitente === usuarioLog ? usuarioLog : inicialIdRemitente;
     const idDestinatario = inicialIdRemitente === usuarioLog ? inicialIdDestinatario : inicialIdRemitente;
     
@@ -41,7 +40,8 @@ const Mensajes = () => {
         setWs(socket);
     
         socket.onopen = () => {
-            console.log('Conectado al servidor WebSocket');
+            console.log('Conectado al servidor WebSocket chat');
+            
         };
     
         socket.onmessage = (event) => {
@@ -56,7 +56,7 @@ const Mensajes = () => {
         };
     
         socket.onclose = () => {
-            console.log('Desconectado del servidor WebSocket');
+            console.log('Desconectado del servidor WebSocket chat');
         };
     
         return () => {
