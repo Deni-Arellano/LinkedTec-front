@@ -1,66 +1,104 @@
+/* Aplicar box-sizing global */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Contenedor principal de login */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f7f7f7;
+  background-image: url('../../assets/fondologin.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .login-box {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 40px;
-  border-radius: 12px;
+  border-radius: 30px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 350px;
-  border: 3px solid #012a6f;
+  width: 100%;
+  max-width: 500px;
 }
 
+/* Logo */
 .logo-login {
-  width: 180px;
-  height: auto;
-  margin-bottom: 30px;
-}
-
-.Login-input {
   width: 100%;
   max-width: 300px;
-  padding: 15px;
-  margin: 15px 0;
-  border-radius: 8px;
-  border: 2px solid #ccc;
-  font-size: 18px;
-  box-sizing: border-box;
+  height: auto;
+  margin-bottom: 20px;
+  animation: logo-flip 20s ease-in-out infinite; /* 4s de giro + 16s estático */
 }
 
-/* Estilo específico para el botón de login con color del botón de verificación */
+@keyframes logo-flip {
+  0% { transform: rotateY(0deg); }
+  20% { transform: rotateY(720deg); } /* Dos giros completos en los primeros 4 segundos */
+  100% { transform: rotateY(720deg); } /* Mantener estático para el resto del tiempo */
+}
+
+
+/* Etiquetas de texto */
+.label-text {
+  font-weight: bold;
+  font-size: 16px;
+  color: #2f6db7;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+}
+
+/* Campos de entrada iguales sin borde y con bordes redondeados */
+.login-input {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  margin: 10px 0;
+  border-radius: 8px; /* Bordes redondeados */
+  border: none !important; /* Asegurarse de eliminar cualquier borde */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Sombra ligera */
+  outline: none;
+  background-color: #f5f5f5; /* Fondo gris claro */
+  transition: all 0.3s ease;
+  font-family: inherit;
+  color: #2f6db7;
+}
+
+.login-input:hover, .login-input:focus {
+  background-color: #e0e7ff; /* Fondo diferente en hover y focus */
+}
+
+/* Botón de login */
 .btn-login {
-  background-color: #798eb2; /* Mismo color de fondo que los botones de verificación */
-  color: white;              /* Texto en blanco */
-  border: none;              /* Sin borde */
-  padding: 10px 0;           /* Espaciado interno más pequeño */
-  margin-top: 20px;          /* Espaciado superior */
-  font-size: 16px;           /* Tamaño de fuente más pequeño */
-  border-radius: 8px;        /* Bordes redondeados */
-  cursor: pointer;           /* Cambia el cursor al pasar el ratón */
-  width: 100%;               /* Ancho completo del botón */
-  max-width: 250px;          /* Máximo ancho reducido */
+  background-color: #798eb2;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
 }
 
-/* Efecto hover para el botón de login */
 .btn-login:hover {
-  background-color: #627399; /* Color más oscuro al pasar el ratón, similar a los botones de verificación */
+  background-color: #627399;
 }
 
-/* Estilos adicionales para enlaces de login */
+/* Enlaces */
 .login-links {
-  margin-top: 25px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 300px;
 }
 
 .login-link {
@@ -73,14 +111,27 @@
 .login-link:hover {
   text-decoration: underline;
 }
-
-/* Estilos de los inputs */
-.login-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  box-sizing: border-box;
-  border: 2px solid #000000; /* Borde negro */
-  border-radius: 15px;       /* Bordes redondeados */
-  outline: none;             /* Sin borde al enfocar */
+.password-container {
+  display: flex;
+  align-items: center;
 }
+
+.toggle-password {
+  background-color: #ffffff; /* Color de fondo del botón */
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+  padding: 6px; /* Reduce el padding para que el botón sea más pequeño */
+  width: 30px; /* Ajusta el ancho al tamaño aproximado del emoticón */
+  height: 45px; /* Ajusta la altura al tamaño aproximado del emoticón */
+  border-radius: 5px; /* Borde redondeado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease; /* Transición para el efecto hover */
+}
+
+.toggle-password:hover {
+  background-color: #e2e9fd; /* Color más gris al pasar el cursor */
+}
+
