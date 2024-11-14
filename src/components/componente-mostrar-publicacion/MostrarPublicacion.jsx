@@ -213,21 +213,23 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     <MdAddComment size={30} />
                 </button>
             </div>
-            {mostrarCrearComentario && (
-                <CrearComentario
-                    idPublicacion={datos.id_publicacion}
-                    agregarComentario={agregarComentario}
-                    setMostrarCrearComentario={setMostrarCrearComentario}
-                />
-            )}
-            <div className="mostrar-comentarios">
-                {comentariosPublicacion.map((comentario, index) => (
-                    <div key={index} className="mostrar-comentario">
+            <div className="mostrar-publicacion-comentario">
+                {mostrarCrearComentario && (
+                    <CrearComentario
+                        id_publicacion={datos.id_publicacion}
+                        idUsuario={usuarioLog}
+                        onComentarioAgregado={agregarComentario} 
+                    />
+                    
+                )}
+                
+                {mostrarCrearComentario && comentariosPublicacion.length > 0 && comentariosPublicacion.map(comentario => (
+                    <div className="mostrar-comentario" key={comentario.id_comentario}>
                         <div className="mostrar-comentario-header">
-                            <img 
-                                src={comentario.foto_perfil_usuario || "https://via.placeholder.com/50"}
-                                alt="Imagen de perfil"
-                                className="mostrar-comentario-imagen-perfil"
+                            <img
+                                src={comentario.imagen || "https://via.placeholder.com/50"}
+                                alt="Profile"
+                                className="mostrar-imagen-perfil-comentario"
                             />
                             <Texto tamano={11} texto={comentario.nombreUsuario} />
                         </div>

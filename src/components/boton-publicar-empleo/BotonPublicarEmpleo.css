@@ -7,7 +7,7 @@
   background-color: #5dcc61; /* Color verde para el fondo */
   color: white; /* Texto blanco */
   border: 2px solid white;
-  border-radius: 30px;
+  border-radius: 10px; /* Reduce el redondeo del borde */
   font-family: 'Sans Serif', Arial, sans-serif;
   cursor: pointer;
   transition: transform 0.2s ease-in-out, background-color 0.3s, color 0.3s;

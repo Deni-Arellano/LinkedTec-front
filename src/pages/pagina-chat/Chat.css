@@ -1,0 +1,92 @@
+.chat-contenedor-toda-pagina  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; 
+
+  }
+
+.conversacion-contenedor-pagina{
+    margin-left: 262px;
+    display: flex;
+    flex-direction: column;
+    background-color: white; 
+    overflow: hidden;
+ 
+}
+
+.conversacion-usuario-encabezado{
+    padding: 5px 0;
+    background-color: white;
+    border-bottom: 1px solid #e0e0e0;
+    position: fixed;
+    margin-top: 58px;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 15px;
+    width: calc(100% - 262px);
+}
+
+.conversacion-vista-conversaciones{
+     max-width: 30%;
+}
+
+.conversacion-usuario-info {
+    display: flex;
+    align-items: center;
+    padding:  0 1% ;
+    background-color: white;
+}
+
+
+
+.conversacion-usuario-foto {
+    display: flex;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.conversacion-usuario-foto img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.conversacion-usuario-info {
+    flex: 1;
+}
+
+.conversacion-usuario-nombre {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #093e61;
+    font-family: sans-serif;
+}
+
+.conversacion-usuario-input{
+    position:fixed;
+    bottom: 0;
+    width: calc(100% - 262px);
+    z-index: 1000;
+    
+    
+}
+
+.conversacion-usuario-mensajes{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+    margin-bottom: 55px;
+    margin-top: 39px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    background-color: white;
+    overflow-y: auto;
+    
+    
+}

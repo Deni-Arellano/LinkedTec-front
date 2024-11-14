@@ -1,0 +1,39 @@
+.contenedor-toda-pagina-mensajes{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; 
+}
+.mensajes-contenedor-pagina{
+    margin-left: 258px;
+    
+    
+}
+
+.encabezado-mensajes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-bottom: 2px solid #dee2e6;
+    padding: 0 7%;
+}
+
+.mensajes-titulo{
+    font-family: sans-serif;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #093e61;
+    text-align: left;
+    width: 100%;
+}
+
+.cargando-chats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+}

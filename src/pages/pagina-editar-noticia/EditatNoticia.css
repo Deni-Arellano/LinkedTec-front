@@ -1,0 +1,86 @@
+label {
+
+    font-family: sans-serif;
+    font-size: 1.2em;
+    color: #012a6f;
+    font-style: bold;
+}
+
+
+.contenedor-editar-noticia {
+    max-width: 700px;
+    margin-left: 30%;
+    padding: 30px 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.contenedor-editar-noticia h1 {
+    color: #012a6f;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.campo-formulario {
+    margin-bottom: 20px;
+}
+
+.campo-formulario label {
+    display: block;
+    margin-bottom: 8px;
+    color: #012a6f;
+    font-weight: 500;
+}
+
+.loading-text {
+    color: #012a6f;
+    font-size: 0.9em;
+    margin-top: 8px;
+    text-align: center;
+}
+.boton-guardar,
+.boton-cancelar {
+    flex: 1; /* Permite que cada botón ocupe el mismo espacio */
+    padding: 12px;
+    background-color: #012a6f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    margin: 0 10px; /* Espacio entre botones */
+}
+
+.boton-cancelar {
+    background-color: #f13e3e;
+}
+
+.boton-guardar:hover {
+    background-color: #013d99;
+}
+
+.boton-guardar:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.contenedor-boton {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 50px;
+}
+
+@media (max-width: 768px) {
+    .contenedor-editar-noticia {
+        padding: 15px;
+        margin-top: 60px;
+    }
+
+    .boton-guardar {
+        padding: 10px;
+        font-size: 14px;
+    }
+}

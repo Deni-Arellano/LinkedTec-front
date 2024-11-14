@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
-import BotonPublicar from '../../components/boton-publicar-empleo/BotonPublicarEmpleo'; 
+import { useNavigate } from 'react-router-dom';
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import BotonPublicar from '../../components/boton-publicar-empleo/BotonPublicarEmpleo';
 import BotonPostulaciones from '../../components/boton-postulaciones/BotonPostulaciones';
-import PublicacionEmpleoNuevo from '../../components/publicacion-empleo/PublicacionEmpleo'; 
-import './empleos.css'; 
+import PublicacionEmpleoNuevo from '../../components/publicacion-empleo/PublicacionEmpleo';
+import './empleos.css';
 import { usuarioContext } from '../../App';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ const PublicacionEmpleo = () => {
     const navigate = useNavigate();
     const { usuarioLog } = useContext(usuarioContext);
     const [datosEmpleos, setDatosEmpleos] = useState([]);
-    const [componentesEmpleos, setComponentesEmpleos] = useState([]); 
+    const [componentesEmpleos, setComponentesEmpleos] = useState([]);
 
     // Obtiene todos los empleos
     const getEmpleos = async () => {
@@ -36,16 +36,16 @@ const PublicacionEmpleo = () => {
         }
     };
 
-    // Obtiene los datos de los empleos al cargar la página
+    // Ejecuta `getEmpleos` al cargar la página
     useEffect(() => {
         getEmpleos();
     }, []);
 
-    // Genera los componentes para cada empleo
+    // Genera componentes para cada empleo
     useEffect(() => {
         const generarComponentesEmpleos = async () => {
             const componentesEmpleosPromises = datosEmpleos.empleos.map(async (empleo) => {
-                const datosUsuario = await getUsuarios(empleo.id_usuario); 
+                const datosUsuario = await getUsuarios(empleo.id_usuario);
 
                 return (
                     <PublicacionEmpleoNuevo
@@ -58,29 +58,27 @@ const PublicacionEmpleo = () => {
                             descripcion: empleo.descripcion,
                             ubicacion: empleo.ubicacion,
                             nivelIngles: empleo.nivel_de_ingles,
-                            fotoPerfil: datosUsuario[3] || 'https://via.placeholder.com/100', 
+                            fotoPerfil: datosUsuario[3] || 'https://via.placeholder.com/100',
                             nombreUsuario: `${datosUsuario[0] || ''} ${datosUsuario[1] || ''} ${datosUsuario[2] || ''}`,
-                        id_usuario: empleo.id_usuario
+                            id_usuario: empleo.id_usuario,
                         }}
-
-                        onEliminar={id => {
-                            setDatosEmpleos(prevEmpleos => ({
+                        onEliminar={(id) => {
+                            setDatosEmpleos((prevEmpleos) => ({
                                 ...prevEmpleos,
-                                empleos: prevEmpleos.empleos.filter(empleo => empleo.id_empleo !== id)
+                                empleos: prevEmpleos.empleos.filter((empleo) => empleo.id_empleo !== id),
                             }));
                         }}
                     />
                 );
             });
 
-            const componentes = await Promise.all(componentesEmpleosPromises); 
-            setComponentesEmpleos(componentes); 
+            const componentes = await Promise.all(componentesEmpleosPromises);
+            setComponentesEmpleos(componentes);
         };
 
         if (datosEmpleos && datosEmpleos.empleos) {
             generarComponentesEmpleos();
         }
-        
     }, [datosEmpleos]);
 
     // Función para manejar la navegación a la página de postulaciones
@@ -88,9 +86,10 @@ const PublicacionEmpleo = () => {
         navigate('/pagina-postulaciones-usuario');
     };
 
+    // Función para publicar un empleo
     const manejarPublicarEmpleo = async () => {
-        const datosUsuario = await getUsuarios(usuarioLog); 
-        if (datosUsuario[4] === 'Reclutadores') { 
+        const datosUsuario = await getUsuarios(usuarioLog);
+        if (datosUsuario[4] === 'Reclutadores') {
             navigate('/registro-empleo');
         } else {
             Swal.fire({
@@ -103,12 +102,12 @@ const PublicacionEmpleo = () => {
 
     return (
         <>
-            <MenuNavegacion /> 
+            <MenuNavegacion />
             <div className="PublicacionEmpleoNuevo-boton-flotante">
                 <BotonPublicar onClick={manejarPublicarEmpleo} />
-                <BotonPostulaciones onClick={manejarVerPostulaciones} /> {/* Botón que navega a postulaciones */}
+                <BotonPostulaciones onClick={manejarVerPostulaciones} />
             </div>
-        
+
             <div className="PublicacionEmpleo-empleos-contenedor">
                 {componentesEmpleos.length > 0 ? componentesEmpleos : <p>No hay empleos disponibles</p>}
             </div>
