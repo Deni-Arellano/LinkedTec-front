@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import './DatosUsuario.css';
 import { FaEnvelope, FaPhone, FaBirthdayCake, FaBriefcase, FaVenusMars } from 'react-icons/fa';
@@ -8,6 +9,7 @@ import Swal from 'sweetalert2';
 const DatosUsu_EsDoEg = ({ datos }) => {
     const navigate = useNavigate();
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
+    const usuarioId = datos.id; // Asegúrate de que `id` esté presente en `datos`
 
     const handleOpciones = () => {
         setMostrarOpciones(!mostrarOpciones);
@@ -32,14 +34,6 @@ const DatosUsu_EsDoEg = ({ datos }) => {
             showCancelButton: true,
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar',
-            customClass: {
-                input: 'swal-input',
-                confirmButton: 'swal-confirm-button',
-                cancelButton: 'swal-cancel-button'
-            },
-            inputAttributes: {
-                style: 'width: 100%; padding: 10px; border-radius: 5px; box-sizing: border-box;'
-            },
             inputValidator: (value) => {
                 if (!value) {
                     return '¡Debe ingresar su contraseña!';
@@ -49,70 +43,67 @@ const DatosUsu_EsDoEg = ({ datos }) => {
 
         if (password) {
             try {
-                // Verificación del ID del usuario antes de la solicitud
-                console.log("Valor de usuarioLog antes de la solicitud:", datos.usuarioLog);
-
-                if (!datos || !datos.usuarioLog) {
-                    console.error("Error: usuarioLog no está definido o es inválido.");
+                if (!usuarioId) {
                     await Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'ID de usuario no encontrado. Verifique su sesión.'
+                        text: 'ID de usuario no válido. Verifique su sesión.'
                     });
                     return;
                 }
 
-                // Paso 1: Verificación de la contraseña con una solicitud GET
-                const verificarUrl = `http://localhost:3000/usuarios/${datos.usuarioLog}?contraseña=${encodeURIComponent(password)}`;
-                console.log("URL para la solicitud:", verificarUrl);
+                // URL combinada para verificar la contraseña y eliminar el perfil
+                const eliminarUrl = `http://localhost:3000/usuarios/${usuarioId}?contraseña=${encodeURIComponent(password)}`;
 
-                const verificarResponse = await fetch(verificarUrl);
+                // Realiza la solicitud DELETE para eliminar el perfil
+                const eliminarResponse = await axios.delete(eliminarUrl);
 
-                if (verificarResponse.ok) {
-                    const usuarioData = await verificarResponse.json();
-                    
-                    // Obtén el ID del usuario para la eliminación
-                    const usuarioId = usuarioData.id;
-                    console.log("ID del usuario para eliminación:", usuarioId);
-
-                    // Paso 2: Realiza la solicitud DELETE para eliminar el perfil
-                    const eliminarUrl = `http://localhost:3000/usuarios/${usuarioId}`;
-                    const eliminarResponse = await fetch(eliminarUrl, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
+                if (eliminarResponse.status === 200) {
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Perfil eliminado',
+                        text: 'Su perfil ha sido eliminado con éxito.',
+                        confirmButtonText: 'OK'
                     });
-
-                    if (eliminarResponse.ok) {
-                        await Swal.fire({
-                            icon: 'success',
-                            title: 'Perfil eliminado',
-                            text: 'Su perfil ha sido eliminado con éxito.',
-                            confirmButtonText: 'OK'
-                        });
-                        navigate('/pagina-login/Login');
-                    } else {
-                        await Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'No se pudo eliminar el perfil. Inténtelo de nuevo más tarde.'
-                        });
-                    }
+                    // Redirige al login después de eliminar el perfil
+                    navigate('/src/pages/pagina-login/Login');
                 } else {
                     await Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Contraseña incorrecta. Verifique e intente de nuevo.'
+                        text: 'No se pudo eliminar el perfil. Inténtelo de nuevo más tarde.'
                     });
                 }
             } catch (error) {
                 console.error('Error al eliminar perfil:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Ocurrió un error al eliminar su perfil.'
-                });
+                // Verifica si el error fue por una contraseña incorrecta o por usuario no encontrado
+                if (error.response) {
+                    if (error.response.status === 401) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Contraseña incorrecta. Verifique e intente de nuevo.'
+                        });
+                    } else if (error.response.status === 404) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Usuario no encontrado.'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Ocurrió un error al eliminar su perfil.'
+                        });
+                    }
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrió un error de conexión. Inténtelo más tarde.'
+                    });
+                }
             }
         }
     };
