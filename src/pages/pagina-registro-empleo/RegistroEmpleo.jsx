@@ -24,6 +24,28 @@ const PaginaFormulario = () => {
 
     const navigate = useNavigate();
 
+    /*Crear conexión WebSocket al cargar el componente*/
+    const [socket, setSocket] = useState(null);
+
+    useEffect(() => {
+        const ws = new WebSocket('ws://localhost:8081'); 
+        setSocket(ws);
+
+        ws.onopen = () => {
+            console.log('Conectado al servidor WebSocket');
+        };
+
+        ws.onclose = () => {
+            console.log('Conexión WebSocket cerrada');
+        };
+
+        return () => {
+            if (ws) {
+                ws.close();
+            }
+        };
+    }, []);
+
     const handleBack = () => {
         navigate('/empleos');
     };
@@ -93,6 +115,36 @@ const PaginaFormulario = () => {
         .then((response) => {
             Swal.fire('Éxito', 'El empleo ha sido publicado con éxito.', 'success');
             handleBack();
+            
+            // Crear JSON para la notificación
+            const notificacionData = {
+                "tipo": "empleo",
+                "id_referencia_tipo": response.data.id, // Asegúrate de usar el ID correcto aquí
+                "mensaje": `Nueva oferta de empleo disponible: ${tituloEmpleo} en ${empresa}`,
+                "id_creador": usuarioCreador
+            };
+
+            // Obtener usuarios específicos y enviar notificación y usuarios a través del WebSocket
+            axios.get('http://localhost:3000/usuarios/')
+                .then((resUsuarios) => {
+                    const usuariosFiltrados = resUsuarios.data.filter(usuario =>
+                        usuario.rol === 'egresado' || usuario.rol === 'estudiante'
+                    );
+
+                    // Enviar la notificación y los usuarios al WebSocket
+                    if (socket && socket.readyState === WebSocket.OPEN) {
+                        socket.send(JSON.stringify({
+                            notificacion: notificacionData,
+                            usuarios: usuariosFiltrados.map(usuario => usuario.id) // Solo IDs de los usuarios
+                        }));
+                        Swal.fire('Éxito', 'La notificación ha sido enviada a través de WebSocket.', 'success');
+                    } else {
+                        console.error('WebSocket no está conectado');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener usuarios:', error);
+                });
         })
         .catch((error) => {
             if (error.response) {

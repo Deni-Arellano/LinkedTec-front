@@ -1,12 +1,12 @@
 /**
  * Importaciones de React y otros componentes y dependencias necesarias para el formulario de creación de noticias.
  */
-import React, { useState, useContext } from 'react';
-import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
-import Etiquetas from '../../components/componente-label/Etiquetas'; 
+import React, { useState, useContext, useEffect } from 'react';
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import Etiquetas from '../../components/componente-label/Etiquetas';
 import CajaDeTexto from '../../components/componente-caja-de-texto/CajaDeTexto.jsx';
-import Button from '../../components/boton/Boton'; 
-import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx'; 
+import Button from '../../components/boton/Boton';
+import RadioButtons from '../../components/componente-boton-de-radio/radio-boton.jsx';
 import './CrearNoticia.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -19,17 +19,45 @@ const CrearNoticias = () => {
 
     const [titulo_noticia, setTitulonoticia] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [imagenURL, setImagenURL] = useState(''); 
+    const [imagenURL, setImagenURL] = useState('');
     const [enlace, setEnlace] = useState('');
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); 
-    const { usuarioLog } = useContext(usuarioContext); 
-    /**
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
+    const { usuarioLog } = useContext(usuarioContext);
+        /**
      * Para navegar entre las paginas
      */
     const navigate = useNavigate();
     /**
      * navegar a la pagina principal de noticias
      */
+    const [socket, setSocket] = useState(null);
+
+    /* Conectar al WebSocket al cargar el componente*/
+    useEffect(() => {
+        const ws = new WebSocket('ws://localhost:8081');
+
+        ws.onopen = () => {
+            console.log('Conectado al servidor WebSocket');
+            setSocket(ws);
+        };
+
+        ws.onclose = () => {
+            console.log('Conexión WebSocket cerrada');
+        };
+
+        ws.onerror = (error) => {
+            console.error('Error en WebSocket:', error);
+        };
+
+        /* Limpiar el WebSocket al desmontar el componente*/
+        return () => {
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.close();
+                console.log('WebSocket cerrado al desmontar');
+            }
+        };
+    }, []);
+
     const handleBack = () => {
         navigate('/noticias');
     };
@@ -37,7 +65,7 @@ const CrearNoticias = () => {
      * Comprobacion de datos en formato correcto y encapsulamiento de datos para enviar la solicitud
      * 
      */
-    
+
     const add = () => {
         if (!titulo_noticia || !descripcion || !imagenURL || !enlace || !categoriaSeleccionada) {
             Swal.fire('Error', 'Por favor, completa todos los campos.', 'error');
@@ -63,61 +91,42 @@ const CrearNoticias = () => {
             return;
         }
 
-        if (enlace.length>=255){
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "El URL de el enlace es demasiado largo.",
-                footer:'Intenta con menos de 255 caracteres'
-              });
-              return;
-
-        }
-        if (imagenURL.length>=255){
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "El URL de la imagen es demasiado largo.",
-                footer:'Intenta con menos de 255 caracteres'
-              });
-              return;
-
-        }
-        
-        
-        /**
-        * Se encapsulan los datos a enviar
-        */
-        const datosEnviar = {
+        const datosNoticia = {
             "titulo_noticia": titulo_noticia,
             "descripcion": descripcion,
-            "imagen_noticia": imagenURL,  
+            "imagen_noticia": imagenURL,
             "enlace_noticia": enlace,
             "categoria_noticia": categoriaSeleccionada,
             "id_usuario": usuarioLog
         };
 
-
-        console.log('Datos enviados:', datosEnviar);
-        /**
-        * Se realiza la solicitud al servidor para enviar los datos si no existe ningun error
-        */
-        axios.post('http://localhost:3000/noticias/', datosEnviar)
+        axios.post('http://localhost:3000/noticias/', datosNoticia)
         .then((response) => {
             console.log(response);
             Swal.fire('Éxito', 'La noticia ha sido publicada con éxito.', 'success');
+            const idNoticia = response.data.id_noticia;
+            const datosNotificacion = {
+                action: 'crear_notificacion_para_todos',
+                data: {
+                    tipo: 'noticia',
+                    id_referencia_tipo: idNoticia,
+                    mensaje: `Nueva noticia publicada: ${titulo_noticia}`,
+                    id_creador: usuarioLog
+                }
+            };
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify(datosNotificacion));
+                console.log('Datos de notificación enviados:', datosNotificacion);
+            } else {
+                console.error('WebSocket no está conectado');
+                Swal.fire('Error', 'No se pudo enviar la notificación a través de WebSocket.', 'error');
+            }
+
             handleBack();
         })
         .catch((error) => {
-            if (error.response) {
-                console.error('Error en la solicitud:', error.response.data);
-                Swal.fire('Error', `Error en la solicitud: ${error.response.data.message || 'Error al crear la noticia'}`, 'error');
-            }
-            else {
-                console.error('Error:', error.message);
-                Swal.fire('Error', `Error en la solicitud: ${error.message}`, 'error');
-            }
-
+            console.error('Error en la solicitud:', error.response.data);
+            Swal.fire('Error', `Error en la solicitud: ${error.response.data.message || 'Error al crear la noticia'}`, 'error');
         });
     };
     /**
