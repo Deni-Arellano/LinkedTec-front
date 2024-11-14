@@ -6,12 +6,14 @@ import { AiFillAlert } from "react-icons/ai";
 import { BiChat } from "react-icons/bi";
 import logo from '../../assets/Logo24.png';
 import { useNavigate } from 'react-router-dom';
-import {usuarioContext} from '../../App';
+import { usuarioContext } from '../../App';
 import Axios from 'axios';
+import NotificacionesFlotante from '../notificaciones-flotante/NotificacionesFlotante';
 
 const MenuNavegacion = () => {
     const [sidebarVisible] = useState(false);
-    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    const [notificacionesVisible, setNotificacionesVisible] = useState(false); 
+    const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
     const [datosUsuario, setDatosUsuario] = useState('');
     
     const navigate = useNavigate();
@@ -34,6 +36,10 @@ const MenuNavegacion = () => {
         }
     }, [usuarioLog]); 
 
+    const toggleNotificaciones = () => {
+        setNotificacionesVisible(!notificacionesVisible);
+    };
+
     return (
         <div className="MenuNavegacion-app">
             {/* Barra superior */}
@@ -54,7 +60,7 @@ const MenuNavegacion = () => {
                     <button className="MenuNavegacion-icon-button" onClick={() => navigate('/Mensajes')}>
                         <BiChat className="MenuNavegacion-icon" />
                     </button>
-                    <button className="MenuNavegacion-icon-button">
+                    <button className="MenuNavegacion-icon-button" onClick={toggleNotificaciones}>
                         <AiFillAlert className="MenuNavegacion-icon" />
                     </button>
                     <button className="MenuNavegacion-icon-button" onClick={() => navigate('/Perfil')}>
@@ -70,16 +76,25 @@ const MenuNavegacion = () => {
                 </div>
 
                 <nav className="MenuNavegacion-menu">
-                    <button className="MenuNavegacion-menu-button"onClick={() => navigate('/noticias')}>Noticias</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/noticias')}>Noticias</button>
                     <button className="MenuNavegacion-menu-button" onClick={() => navigate('/empleos')}>Empleos</button>
                     <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicaciones')}>Publicaciones</button>
                     <button className="MenuNavegacion-menu-button">Foro</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/notificaciones')}>Notificaciones</button>
                 </nav>
             </aside>
             
             <div className="MenuNavegacion-content">
                 {/* Aquí va el contenido */}
             </div>
+
+            {notificacionesVisible && (
+                <div className="modal-overlay" onClick={toggleNotificaciones}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <NotificacionesFlotante onClose={toggleNotificaciones} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

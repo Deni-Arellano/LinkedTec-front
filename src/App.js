@@ -33,22 +33,29 @@ import Mensajes from './pages/pagina-mensajes/Mensajes.jsx';
 import NuevoMensaje from './pages/pagina-nuevo-mensaje/NuevoMensaje.jsx';
 import Chat from './pages/pagina-chat/Chat.jsx';
 import { SiNushell } from 'react-icons/si';
+import NotificationSystem from './pages/pagina-notificaciones/Notificaciones.jsx';
+import NotificacionesFlotante from './components/notificaciones-flotante/NotificacionesFlotante.jsx';
 
 export const usuarioContext = createContext(); 
+export const notificacionContext = createContext();
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(null); 
+  const [usuarioLog, setUsuarioLog] = useState(4); 
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [idNoticia, setIdNoticia] = useState(null);
-  
+  const [isNotificacionesModalOpen, setIsNotificacionesModalOpen] = useState(false);
   const openReportModal = (id) => {
     setIdNoticia(id);
     setIsReportModalOpen(true);
   };
+
   const closeReportModal = () => {
     setIsReportModalOpen(false);
     setIdNoticia(null);
   };
+
+  const openNotificacionesModal = () => setIsNotificacionesModalOpen(true);
+  const closeNotificacionesModal = () => setIsNotificacionesModalOpen(false);
 
   return (
     <usuarioContext.Provider value={{ usuarioLog, setUsuarioLog }}>
@@ -78,6 +85,9 @@ function App() {
           <Route path='/postulacion' element={<Postulacion/>} />
           <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
           <Route path="/editar-noticia/:id_noticia" element={<EditarNoticia />} />
+          <Route path="/notificaciones" element={<NotificationSystem />} />
+          <Route path="/notificacionesflotante" element={<NotificacionesFlotante />} />
+          
           <Route path="/mensajes" element={<Mensajes />} />
           <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
           <Route path="/chat" element={<Chat />} />
@@ -89,6 +99,14 @@ function App() {
           id_noticia={idNoticia} 
           onClose={closeReportModal} 
         />
+      )}
+      {isNotificacionesModalOpen && (
+        <div className="modal-overlay" onClick={closeNotificacionesModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <NotificacionesFlotante />
+            <button onClick={closeNotificacionesModal}>Cerrar</button>
+          </div>
+        </div>
       )}
     </usuarioContext.Provider>
   );
