@@ -9,7 +9,7 @@
     cursor: pointer;
     position: relative;
     padding: 5px;
-    background-color: #e9ecef;
+    background-color: white;
   }
 
   .mensajes-button:hover {

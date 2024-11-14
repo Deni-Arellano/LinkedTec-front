@@ -3,10 +3,11 @@
     align-items: center;
     padding: 1% 2%;
     border-bottom: 1px solid #ddd;
+    background-color: white;
 }
 
 .chat-usuario:hover {
-    background-color: #f9f9f9;
+    background-color: #e9ecef;
 }
 
 .chat-usuario-foto {

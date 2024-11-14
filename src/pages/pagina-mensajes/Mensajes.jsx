@@ -59,6 +59,7 @@ const Mensajes = () => {
 
     return (
         <>
+            <div className='contenedor-toda-pagina-mensajes'>
             <MenuNavegacion />
 
             <div className="mensajes-contenedor-pagina">
@@ -88,6 +89,7 @@ const Mensajes = () => {
                         ))
                     )}
                 </div>
+            </div>
             </div>
         </>
     );

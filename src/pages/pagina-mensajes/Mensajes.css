@@ -1,3 +1,11 @@
+.contenedor-toda-pagina-mensajes{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; 
+}
 .mensajes-contenedor-pagina{
     margin-left: 258px;
     
@@ -8,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e9ecef;
+    background-color: white;
     border-bottom: 2px solid #dee2e6;
     padding: 0 7%;
 }

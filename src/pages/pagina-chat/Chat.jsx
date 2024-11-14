@@ -110,12 +110,12 @@ const Mensajes = () => {
     
                 <div className="conversacion-usuario-mensajes"  ref={mensajesRef}>
                     {mensajes}
-                    
                 </div>
     
                 <div className="conversacion-usuario-input">
                     <NuevoMensaje enviarMensaje={enviarMensaje} />
                 </div>
+                
             </div>
             </div>
         </>
