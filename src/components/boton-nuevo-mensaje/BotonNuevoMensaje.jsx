@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const BotonNuevoMensaje = () => {
   const navigate = useNavigate();
   const handleClick = () => {
-    console.log('click boton nuevo mensaje');
+    //console.log('click boton nuevo mensaje');
     navigate('/nuevo-mensaje');
   }
   return (

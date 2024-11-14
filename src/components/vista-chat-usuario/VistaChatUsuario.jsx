@@ -23,7 +23,7 @@ const VistaChatUsuario = ({ datosChat }) => {
     };
 
     const handleClick = () => {
-        console.log('click chat usuario',idChat);
+        //console.log('click chat usuario',idChat);
         navigate('/chat', { state: { idRemitente,idDestinatario, nombre, foto } });
     };
 

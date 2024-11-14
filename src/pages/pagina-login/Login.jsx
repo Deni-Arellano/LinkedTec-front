@@ -1,46 +1,94 @@
-import React, {useContext, useEffect} from 'react';
-import { Link } from 'react-router-dom'; // Importamos Link de react-router-dom
-import Cajadetexto from '../../components/componente-caja-de-texto/CajaDeTexto'; // Asegúrate de que sea el Cajadetexto correcto
-import './login.css';  // Importa tu hoja de estilo
-import logo from '../../assets/Logo24.png';  // Importa tu logo
-import { useNavigate } from 'react-router-dom';  
-import {usuarioContext} from '../../App'; 
-
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios'; // Importación de axios
+import { Link } from 'react-router-dom';
+import './login.css';
+import logo from '../../assets/Logo24.png';
+import { useNavigate } from 'react-router-dom';
+import { usuarioContext } from '../../App';
+import Swal from 'sweetalert2';
 
 const Login = () => {
-    const {setUsuarioLog} = useContext(usuarioContext);
-    
+    const { setUsuarioLog } = useContext(usuarioContext);
+    const navigate = useNavigate();
+    const [correo, setCorreo] = useState('');
+    const [contraseña, setContraseña] = useState('');
+    const [mostrarContraseña, setMostrarContraseña] = useState(false);
     useEffect(() => {
-        setUsuarioLog(null); // Restablece el contexto del usuario 
-      }, [setUsuarioLog]);
+        setUsuarioLog(null);
+    }, [setUsuarioLog]);
 
-    const navigate = useNavigate(); 
-    const handlepub = () => {
-      console.log("Navegando a /Publicaciones");
-      navigate('/publicaciones'); 
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        console.log(correo)
+        console.log(contraseña)
+
+
+
+        try {
+            const response = await axios.post('http://localhost:3000/acceso/login', {
+                "correo": correo,
+                "contraseña": contraseña
+            });
+
+            setUsuarioLog(response.data.usuario.id);
+            navigate('/publicaciones');
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de autenticación',
+                text: 'Correo o contraseña incorrectos. Por favor, intenta de nuevo.',
+            });
+        }
     };
+
     return (
         <div className="login-container">
             <div className="login-box">
                 <img src={logo} alt="Logo LinkedTec" className="logo-login" />
-                <form>
-                    <label>Usuario</label>
-                    <Cajadetexto placeholder="Ingresa tu usuario" className="login-input" />
-                    <label>Contraseña</label>
-                    <Cajadetexto type="password" placeholder="Ingresa tu contraseña" className="login-input" />
-                    {/* Aquí aplicamos la clase específica btn-login */}
-                    <button className="btn-login" onClick={handlepub}>Entrar </button>
+                <form onSubmit={handleLogin} autoComplete="off">
+                    <label className="label-text">Correo</label>
+                    <input
+                        type="text"
+                        placeholder="Ingresa tu correo"
+                        className="login-input"
+                        value={correo}
+                        onChange={(e) => setCorreo(e.target.value)}
+                        autoComplete="off"
+                    />
+                    <label className="label-text">Contraseña</label>
+                    <div className="password-container">
+                        <input
+                            type={mostrarContraseña ? 'text' : 'password'}
+                            placeholder="Ingresa tu contraseña"
+                            className="login-input"
+                            value={contraseña}
+                            onChange={(e) => setContraseña(e.target.value)}
+                            autoComplete="off"
+                        />
+                        <button
+                            type="button"
+                            className="toggle-password"
+                            onClick={() => setMostrarContraseña((prev) => !prev)}
+                        >
+                            {mostrarContraseña ? '🙈' : '👁️'}
+                        </button>
+                    </div>
+                    <button className="btn-login" type="submit">
+                        Ingresar
+                    </button>
                 </form>
                 <div className="login-links">
-                <a href="/recuperar" className="login-link" onClick={(e) => e.preventDefault()}>
-                Recuperar contraseña
-                </a>
-
-                    <Link to="/rol" className="login-link">Registro</Link> 
+                    <a href="/recuperar" className="login-link" onClick={(e) => e.preventDefault()}>
+                        Recuperar contraseña
+                    </a>
+                    <Link to="/rol" className="login-link">
+                        Registro
+                    </Link>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Login;

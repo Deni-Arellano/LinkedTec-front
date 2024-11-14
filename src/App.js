@@ -1,7 +1,6 @@
 // App.js
 import React, { useState, createContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SiNushell } from 'react-icons/si';
 // Importaciones de los componentes
 import CodigoVerificacion from './pages/pagina-codigo-verificacion/CodigoVerificacion';
 import EditarPublicacion from './pages/pagina-editar-publicacion/EditarPublicacion'; 
@@ -22,6 +21,8 @@ import EditarReclutador from './pages/pagina-editar-reclutador/EditarReclutador'
 import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
 import PaginasPostulacionesUsuario from './pages/pagina-postulaciones-usuario/PaginaPostulacionesUsuario.jsx'
+import EditarNoticia from './pages/pagina-editar-noticia/EditarNoticia';
+
 
 import Postulacion from './pages/pagina-postulacion/Postulacion';
 import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-como-reclutador/VisualizarPostuComoReclutador.jsx';
@@ -31,13 +32,12 @@ import ReportarContenido from './components/reportar-contenido/ReportarContenido
 import Mensajes from './pages/pagina-mensajes/Mensajes.jsx';
 import NuevoMensaje from './pages/pagina-nuevo-mensaje/NuevoMensaje.jsx';
 import Chat from './pages/pagina-chat/Chat.jsx';
-
+import { SiNushell } from 'react-icons/si';
 
 export const usuarioContext = createContext(); 
 
 function App() {
   const [usuarioLog, setUsuarioLog] = useState(null); 
-  //const [usuarioLog, setUsuarioLog] = useState(1);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [idNoticia, setIdNoticia] = useState(null);
   
@@ -77,6 +77,7 @@ function App() {
           <Route path='/pagina-postulaciones-usuario' element={<PaginasPostulacionesUsuario/>} />
           <Route path='/postulacion' element={<Postulacion/>} />
           <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
+          <Route path="/editar-noticia/:id_noticia" element={<EditarNoticia />} />
           <Route path="/mensajes" element={<Mensajes />} />
           <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
           <Route path="/chat" element={<Chat />} />

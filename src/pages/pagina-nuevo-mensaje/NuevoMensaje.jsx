@@ -8,12 +8,11 @@ import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './NuevoMensaje.css';
 
 const NuevoMensaje = () => {
-    const { usuarioLog } = useContext(usuarioContext);
     const navigate = useNavigate();
     const [usuarioBuscado, setUsuarioBuscado] = useState('');
 
     const handleBackClick = () => {
-        console.log('Botón atrás clicado');
+        //console.log('Botón atrás clicado');
         navigate('/mensajes');
     };
 
@@ -39,7 +38,8 @@ const NuevoMensaje = () => {
             setUsuarios(datosUsuarios);
             
         } catch (err) {
-            console.error('Error al obtener el usuario:', err);
+            //console.error('Error al obtener el usuario:', err);
+            excepciones('Error al obtener los usuarios');
         }
     };
 
@@ -48,12 +48,27 @@ const NuevoMensaje = () => {
     }, []);
 
     const usuariosFiltrados = usuarios.filter((usuario) => {
-        const nombreSinAcentos = usuario.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-        const busquedaSinAcentos = usuarioBuscado.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-    
-        return nombreSinAcentos.includes(busquedaSinAcentos);
+        try {
+            const nombreSinAcentos = usuario.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            const busquedaSinAcentos = usuarioBuscado.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        
+            return nombreSinAcentos.includes(busquedaSinAcentos);
+        } catch (error) {
+            excepciones('Error al filtrar los usuarios');
+            return [];
+        }
     });
-    
+
+    const excepciones = (mensaje) => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: mensaje
+        });
+
+    }
+
+
 
     return (
         <>

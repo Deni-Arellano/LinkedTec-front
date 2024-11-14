@@ -5,21 +5,21 @@ import BotonNuevoMensaje from '../../components/boton-nuevo-mensaje/BotonNuevoMe
 import VistaChatUsuario from '../../components/vista-chat-usuario/VistaChatUsuario.jsx';
 import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
 import './Mensajes.css';
+import Swal from 'sweetalert2';
 
 const Mensajes = () => {
     const { usuarioLog } = useContext(usuarioContext);
     const navigate = useNavigate();
-
-    const [socket, setSocket] = useState(null);
     const [estadoConexion, setEstadoConexion] = useState('No conectado');
     const [chats, setChats] = useState([]);
     const [cargando, setCargando] = useState(true); 
 
+    //Conecta al servidor WebSocket
     useEffect(() => {
         const socket = new WebSocket(`ws://localhost:8083/?idUsuario=${usuarioLog}`);
-
+        
         socket.addEventListener('open', () => {
-            console.log('Conectado al servidor WebSocket');
+            //console.log('Conectado al servidor WebSocket');
             setEstadoConexion('Conectado');
             socket.send(JSON.stringify({ tipo: 'obtenerDatosChat', usuarioLog }));
         });
@@ -32,30 +32,43 @@ const Mensajes = () => {
                     setCargando(false);
                     //console.log('Datos de chat:', data.datos);
                 } else if (data.tipo === 'nuevoMensaje' || data.tipo === 'mensajeEnviado') {
-                    console.log('Nuevo mensaje:', data.mensaje);
+                    //console.log('Nuevo mensaje:', data.mensaje);
                 } else if (data.tipo === 'error') {
-                    console.error('Error del servidor:', data.mensaje);
+                    //console.error('Error del servidor:', data.mensaje);
+                    excepciones(data.mensaje);
                 }
             } catch (error) {
-                console.error('Error al procesar el mensaje:', error);
+                //console.error('Error al procesar el mensaje:', error);
+                excepciones('Error al procesar el mensaje');
             }
         });
 
         socket.addEventListener('close', () => {
-            console.log('Desconectado del servidor WebSocket');
+            //console.log('Desconectado del servidor WebSocket');
             setEstadoConexion('No conectado');
         });
 
         socket.addEventListener('error', (event) => {
-            console.error('Error en la conexión WebSocket:', event);
+            //console.error('Error en la conexión WebSocket:', event);
             setEstadoConexion('Error de conexión');
+            //excepciones('Error en la conexión WebSocket');
         });
 
         return () => {
             socket.close();
-            console.log('Conexión WebSocket cerrada');
+            //console.log('Conexión WebSocket cerrada');
         };
     }, [usuarioLog, navigate]);
+
+    //Muestra un mensaje de error
+    const excepciones = (mensaje) => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: mensaje
+        });
+
+    }
 
     return (
         <>

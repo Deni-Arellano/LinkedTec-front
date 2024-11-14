@@ -145,11 +145,10 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 )}
                 
                 {mostrarCrearComentario && comentariosPublicacion.length > 0 && comentariosPublicacion.map(comentario => (
-                    console.log("comentario:", comentario),
                     <div className="mostrar-comentario" key={comentario.id_comentario}>
                         <div className="mostrar-comentario-header">
                             <img
-                                src={comentario.fotoPerfil || "https://via.placeholder.com/50"}
+                                src={comentario.imagen || "https://via.placeholder.com/50"}
                                 alt="Profile"
                                 className="mostrar-imagen-perfil-comentario"
                             />
