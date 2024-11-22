@@ -1,0 +1,27 @@
+.boton-seguidos {
+    background-color: white;
+    border: 1px solid #012a6f;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #012a6f; 
+    justify-content: center;
+  }
+
+  .boton-seguidos:hover  {
+    background-color: #35548b;
+    border: #35548b;
+    color: white;
+  }
+
+  .icono-seguidos {
+    margin-right: 10px;
+  }
+  
+ 
+  
+
+  

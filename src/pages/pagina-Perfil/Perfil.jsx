@@ -8,6 +8,8 @@ import Axios from 'axios';
 import MostrarPublicacion from '../../components/componente-mostrar-publicacion/MostrarPublicacion'; 
 import './perfil.css';
 
+import BotonSeguidos from '../../components/boton-seguidos/BotonSeguidos';  
+
 const VisualizacionPerfil = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
     //const usuarioLog = 5;
@@ -206,6 +208,7 @@ const VisualizacionPerfil = () => {
 
                 {/* Contenedor de publicaciones */}
                 <div className='conenedorPublicaciones-Usuario'>
+                    <BotonSeguidos numSeguidos={50} />
                     {datosPublicaciones.length > 0 ? (
                         componentesPublicaciones
                     ) : (
