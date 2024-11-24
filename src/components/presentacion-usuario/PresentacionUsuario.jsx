@@ -1,6 +1,6 @@
 import React from 'react';
-import './PresentacionUsuario.css';  // Recuerda ajustar la ruta si es necesario
-
+import './PresentacionUsuario.css'; 
+import BotonSeguidos from '../boton-seguidos/BotonSeguidos'; 
 const FotoNombre = ({datos}) => {
     return (
         <div className="nombre-usuario">
@@ -8,6 +8,7 @@ const FotoNombre = ({datos}) => {
             <div className="info-usuario">
                 <h2>{datos.nombre}</h2>
                 <p className="carrera">{datos.role}</p>
+                <BotonSeguidos numSeguidos={50} />
             </div>
         </div>
     );
