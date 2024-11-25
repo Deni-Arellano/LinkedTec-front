@@ -121,7 +121,8 @@ const NotificationSystem = () => {
             "me_gusta": "low",
             "postulacion": "medium",
             "empleo": "high",
-            "noticia": "medium"
+            "noticia": "medium",
+            "seguimiento": "low"
         };
         return priorities[tipo] || "low";
     };
@@ -137,7 +138,8 @@ const NotificationSystem = () => {
             "me_gusta": "👍",
             "postulacion": "✅",
             "empleo": "💼",
-            "noticia": "📰"
+            "noticia": "📰",
+            "seguimiento":"➕"
         };
         return icons[tipo] || "🔔";
     };
