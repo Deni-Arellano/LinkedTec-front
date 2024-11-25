@@ -1,0 +1,86 @@
+/* Estilos generales de la ventana emergente */
+.overlay-usuarios-seguidos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .contenido-usuarios-seguidos {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    height: 80%;
+    position: relative;
+    overflow-y: auto;
+  }
+  
+  .cerrar-usuarios-seguidos {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #333;
+    height: auto;
+    width: auto;
+    padding: 0;
+  }
+  
+  .cerrar-usuarios-seguidos:hover {
+    color: #333;
+    background-color: #f1f1f1;
+  }
+  
+
+
+  .titulo-usuarios-seguidos{
+    font-size: 25px;
+    margin: 0;
+    color: #012a6f;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #ddd;
+  }
+
+
+  .paginacion-usuarios-seguidos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagina-anterior-usuarios-seguidos,
+  .pagina-siguiente-usuarios-seguidos {
+    background-color: #012a6f;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 30%;
+  }
+  
+  .pagina-anterior-usuarios-seguidos:hover,
+  .pagina-siguiente-usuarios-seguidos:hover {
+    background-color: #033e73;
+  }
+  
+
+  .paginacion-info-usuarios-seguidos {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  

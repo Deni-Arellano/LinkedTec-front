@@ -2,11 +2,8 @@
     display: flex;
     width: 150%;
     max-width: 800px;
-    margin: 5vh ; /* Alinea el cuadro automáticamente */
+    margin: 5vh ; 
     margin-top: -10px;
-
-
-
 }
 
 .pede-container{
@@ -15,14 +12,13 @@
 }
 
 .foto-perfil {
-    margin-bottom: 2%;
-    width: 20%;
-    height: 20%;
-    border-radius:50%;
+    width: 10vw;       
+    height: 10vw;     
+    border-radius: 50%; 
+    object-fit: cover;  
     margin-right: 3%; 
-    min-width: 100px;
-    object-fit: cover;
-    
+    min-width: 120px;
+    min-height: 120px;
 }
 
 

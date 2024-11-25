@@ -8,8 +8,6 @@ import Axios from 'axios';
 import MostrarPublicacion from '../../components/componente-mostrar-publicacion/MostrarPublicacion'; 
 import './perfil.css';
 
-import BotonSeguidos from '../../components/boton-seguidos/BotonSeguidos';  
-
 const VisualizacionPerfil = () => {
     const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
     //const usuarioLog = 5;
@@ -19,6 +17,7 @@ const VisualizacionPerfil = () => {
     const [datosPublicaciones, setDatosPublicaciones] = useState([]);
     const [componentesPublicaciones, setComponentesPublicaciones] = useState([]);
     const urlApi = 'http://localhost:3000/imagenes/'; //Completa la url para las imagenes
+    const [usuariosSeguidos, setUsuariosSeguidos] = useState([]);
 
 
     //Obtener los datos del usuario logeado
@@ -190,6 +189,20 @@ const VisualizacionPerfil = () => {
         
     }, [datosPublicaciones, datosUsuario]);
 
+    //Obtiene los usuarios seguidos por el usuario logeado
+    const UsuariosSeguidos = async () => {
+        try {
+            const response = await Axios.get(`http://localhost:3000/seguimientos/usuarios/${usuarioLog}/seguidos?pagina=1&limite=10`);
+            setUsuariosSeguidos(response.data);
+        } catch (err) {
+            console.error('Error al obtener los usuarios seguidos:', err);
+            setUsuariosSeguidos([]);
+        } 
+    };
+
+    useEffect(() => {
+        UsuariosSeguidos();
+    }, [usuarioLog]);
 
 
     return (
@@ -197,7 +210,7 @@ const VisualizacionPerfil = () => {
             <MenuNavegacion />
             <div className="VisualizacionPerfil-perfil-contenido">
                 <div className="VisualizacionPerfil-pede-container">
-                    <FotoNombre datos={datosEncabezado} />
+                    <FotoNombre datos={datosEncabezado} usuariosSeguidos={usuariosSeguidos}/>
                 </div>
 
                 {datosUsuario?.role === 'Reclutadores' ? (
@@ -208,7 +221,6 @@ const VisualizacionPerfil = () => {
 
                 {/* Contenedor de publicaciones */}
                 <div className='conenedorPublicaciones-Usuario'>
-                    <BotonSeguidos numSeguidos={50} />
                     {datosPublicaciones.length > 0 ? (
                         componentesPublicaciones
                     ) : (
