@@ -4,6 +4,7 @@ import FotoNombre from '../../components/presentacion-usuario/PresentacionUsuari
 import DatosUsu_Rec from '../../components/cuadro-informacion-reclutador/DatosUsuarioReclutador';
 import DatosUsu_EsDoEg from '../../components/cuadro-informacion-usuario/DatosUsuario';
 import {usuarioContext} from '../../App';
+import { FaUserPlus } from "react-icons/fa6";
 import Axios from 'axios';
 import MostrarPublicacion from '../../components/componente-mostrar-publicacion/MostrarPublicacion'; 
 import './perfil.css';
@@ -196,9 +197,15 @@ const VisualizacionPerfil = () => {
             <div className="VisualizacionPerfil-perfil-contenido">
                 <div className="VisualizacionPerfil-pede-container">
                     <FotoNombre datos={datosEncabezado} />
+                    <div>
+                        <button className='boton-seguimiento-en-perfil'>
+                            Seguir<FaUserPlus size={30}/>
+                        </button>
+                    </div>
                 </div>
 
                 {datosUsuario?.role === 'Reclutadores' ? (
+                    
                     <DatosUsu_Rec datos={datosPerfil} />
                 ) : (
                     <DatosUsu_EsDoEg datos={datosPerfil} />
