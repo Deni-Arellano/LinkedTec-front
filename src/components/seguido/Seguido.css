@@ -6,6 +6,7 @@
 }
 .sugerencia-chat-usuario:hover {
     background-color: #f9f9f9;
+    cursor: pointer;
 }
 
 .sugerencia-chat-usuario-foto {
