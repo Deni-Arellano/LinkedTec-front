@@ -6,10 +6,12 @@ import DatosUsu_EsDoEg from '../../components/cuadro-informacion-usuario/DatosUs
 import {usuarioContext} from '../../App';
 import Axios from 'axios';
 import MostrarPublicacion from '../../components/componente-mostrar-publicacion/MostrarPublicacion'; 
+import {useLocation} from 'react-router-dom';
 import './perfil.css';
 
 const VisualizacionPerfil = () => {
-    const {usuarioLog, setUsuarioLog} = useContext(usuarioContext);
+    const {usuarioLog} = useContext(usuarioContext);
+
     //const usuarioLog = 5;
     const [datosUsuario, setDatosUsuario] = useState('');
     const [datosPerfil, setDatosPerfil] = useState('');
@@ -19,11 +21,16 @@ const VisualizacionPerfil = () => {
     const urlApi = 'http://localhost:3000/imagenes/'; //Completa la url para las imagenes
     const [usuariosSeguidos, setUsuariosSeguidos] = useState([]);
 
+    const location = useLocation();
+    const id_usuario_externo = location.state||{};
+    const id_externo=id_usuario_externo.id_usuario_externo;
+    
+    const id_usuario = id_externo || usuarioLog;
 
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
         try {
-            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            const response = await Axios.get(`http://localhost:3000/usuarios/${id_usuario}`);
             //console.log("Servidor dice")
             //console.log(response.data);
             setDatosUsuario(response.data);
@@ -36,7 +43,7 @@ const VisualizacionPerfil = () => {
     //Se ejacuta al cagar la pagina y obtiene los datos del usuario logeado
     useEffect(() => {
         getUsuario();
-    }, []);
+    }, [id_usuario]);
 
     //Actualiza los datos del perfil dependiendo su rol
     useEffect(() => {
@@ -135,7 +142,7 @@ const VisualizacionPerfil = () => {
     useEffect(() => {
         const getPublicacionesUsu = async () => {
             try {
-                const response = await Axios.get(`http://localhost:3000/publicaciones/usuario/${usuarioLog}`);
+                const response = await Axios.get(`http://localhost:3000/publicaciones/usuario/${id_usuario}`);
                 setDatosPublicaciones(response.data.publicaciones);
                 if (response.data.publicaciones && response.data.publicaciones.length > 0) {
                     setDatosPublicaciones(response.data.publicaciones);
@@ -153,7 +160,7 @@ const VisualizacionPerfil = () => {
         };
 
         getPublicacionesUsu();
-    }, [usuarioLog]);
+    }, [id_usuario]);
 
     // Genera los componentes para cada publicacióion
     useEffect(() => {
@@ -192,7 +199,7 @@ const VisualizacionPerfil = () => {
     //Obtiene los usuarios seguidos por el usuario logeado
     const UsuariosSeguidos = async () => {
         try {
-            const response = await Axios.get(`http://localhost:3000/seguimientos/usuarios/${usuarioLog}/seguidos?pagina=1&limite=10`);
+            const response = await Axios.get(`http://localhost:3000/seguimientos/usuarios/${id_usuario}/seguidos?pagina=1&limite=10`);
             setUsuariosSeguidos(response.data);
         } catch (err) {
             console.error('Error al obtener los usuarios seguidos:', err);
@@ -202,7 +209,7 @@ const VisualizacionPerfil = () => {
 
     useEffect(() => {
         UsuariosSeguidos();
-    }, [usuarioLog]);
+    }, [id_usuario]);
 
 
     return (
@@ -210,7 +217,7 @@ const VisualizacionPerfil = () => {
             <MenuNavegacion />
             <div className="VisualizacionPerfil-perfil-contenido">
                 <div className="VisualizacionPerfil-pede-container">
-                    <FotoNombre datos={datosEncabezado} usuariosSeguidos={usuariosSeguidos}/>
+                    <FotoNombre datos={datosEncabezado} usuariosSeguidos={usuariosSeguidos} id_usuario={id_usuario}/>
                 </div>
 
                 {datosUsuario?.role === 'Reclutadores' ? (

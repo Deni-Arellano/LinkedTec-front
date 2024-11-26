@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './BotonSeguidos.css'; 
 import { FaUserFriends } from 'react-icons/fa';  
 import UsuariosSeguidos from '../usuarios-seguidos/UsuariosSeguidos';
 import Swal from 'sweetalert2';
 
-const BotonSeguidos = ({ numSeguidos, datosSeguidos}) => {
+const BotonSeguidos = ({ numSeguidos, datosSeguidos, id_usuario}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   //Funcion para abrir la ventana de seguidos
@@ -24,6 +24,12 @@ const BotonSeguidos = ({ numSeguidos, datosSeguidos}) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    if (id_usuario) {
+      setIsModalOpen(false); 
+    }
+  }, [id_usuario]);
 
   return (
     <div>
