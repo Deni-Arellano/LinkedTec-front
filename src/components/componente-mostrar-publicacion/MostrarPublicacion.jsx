@@ -9,6 +9,7 @@ import Axios from 'axios';
 import CrearComentario from '../crear-comentario/CrearComentario.jsx';
 import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
+import BotonSeguimientoEnPublicacion from "../boton-seguimiento-en-publicacion/BotonSeguirPublicacion.jsx";
 import '../componente-mostrar-comentario/MostrarComentario.css';
 
 const MostrarPubli = ({ datos, onEliminar }) => {
@@ -178,6 +179,8 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     className="mostrar-publicacion-imagen-perfil" 
                 />
                 <Texto texto={datos.nombreUsuario} />
+                
+                <BotonSeguimientoEnPublicacion/>
                 
                 <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} />
                 {mostrarOpciones && (

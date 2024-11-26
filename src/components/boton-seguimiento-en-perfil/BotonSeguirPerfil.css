@@ -1,0 +1,35 @@
+.boton-seguimiento-en-perfil {
+    width: 150px; /* Ancho fijo para evitar cambios */
+    height: 40px; /* Alto fijo */
+    font-size: 14px;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    text-align: center; /* Centra el texto */
+    box-sizing: border-box; /* Asegura que padding no afecte el tamaño total */
+}
+
+.boton-seguimiento-en-perfil:hover {
+    transform: scale(1.05);
+}
+
+.boton-seguimiento-en-perfil.siguiendo {
+    background-color: #4caf50; /* Verde para "Siguiendo" */
+    color: white;
+}
+
+.boton-seguimiento-en-perfil.siguiendo:hover {
+    background-color: #e53935; /* Rojo para "Quitar seguir" */
+    color: white;
+}
+
+.boton-seguimiento-en-perfil:not(.siguiendo) {
+    background-color: #007bff; /* Azul para "Seguir" */
+    color: white;
+}

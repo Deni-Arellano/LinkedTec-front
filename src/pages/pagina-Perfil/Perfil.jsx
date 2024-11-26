@@ -5,7 +5,8 @@ import DatosUsu_Rec from '../../components/cuadro-informacion-reclutador/DatosUs
 import DatosUsu_EsDoEg from '../../components/cuadro-informacion-usuario/DatosUsuario';
 import {usuarioContext} from '../../App';
 import Axios from 'axios';
-import MostrarPublicacion from '../../components/componente-mostrar-publicacion/MostrarPublicacion'; 
+import MostrarPublicacion from '../../components/componente-mostrar-publicacion/MostrarPublicacion';
+import BotonSeguimientoEnPerfil from '../../components/boton-seguimiento-en-perfil/BotonSeguirPerfil';
 import {useLocation} from 'react-router-dom';
 import './perfil.css';
 
@@ -218,9 +219,15 @@ const VisualizacionPerfil = () => {
             <div className="VisualizacionPerfil-perfil-contenido">
                 <div className="VisualizacionPerfil-pede-container">
                     <FotoNombre datos={datosEncabezado} usuariosSeguidos={usuariosSeguidos} id_usuario={id_usuario}/>
+                    <div>
+
+                        <BotonSeguimientoEnPerfil/>
+
+                    </div>
                 </div>
 
                 {datosUsuario?.role === 'Reclutadores' ? (
+                    
                     <DatosUsu_Rec datos={datosPerfil} />
                 ) : (
                     <DatosUsu_EsDoEg datos={datosPerfil} />
