@@ -96,4 +96,4 @@ class SubirArchivo {
   }
 }
 
-module.exports = CloudinaryUploader;
+module.exports = SubirArchivo;

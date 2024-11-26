@@ -131,6 +131,11 @@ const Noticias = ({ openReportModal }) => {
         return usuario ? `${usuario.nombre} ${usuario.apellido_paterno} ${usuario.apellido_materno}` : 'Usuario desconocido';
     };
 
+    const obtenerImagenUsuario =  (id_usuario) => {
+        const usuario = usuarios.find(user => user.id === id_usuario);
+         return usuario ? usuario.imagen_usuario : 'https://res.cloudinary.com/dsysk6y0t/image/upload/v1730349588/images/eqgqstpaupuljmog2yi0.jpg';
+    }
+
     /**
      * useEffect para inicializar la carga de datos al cargar el componente:
      * Obtiene noticias, usuarios, y los datos del usuario logueado.
@@ -155,7 +160,7 @@ const Noticias = ({ openReportModal }) => {
                             <div className="tarjeta-noticia-header">
                                 <div className="usuario-perfil">
                                     <img
-                                        src={'https://via.placeholder.com/100x100.png?text=100+x+100'}
+                                        src={obtenerImagenUsuario(noticia.id_usuario)}
                                         alt="100x100"
                                         className="imagen-perfil"
                                     />

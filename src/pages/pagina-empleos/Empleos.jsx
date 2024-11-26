@@ -1,28 +1,24 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion'; 
-import BotonPublicar from '../../components/boton-publicar-empleo/BotonPublicarEmpleo'; 
-import PublicacionEmpleoNuevo from '../../components/publicacion-empleo/PublicacionEmpleo'; 
-import './empleos.css'; 
+import { useNavigate } from 'react-router-dom';
+import MenuNavegacion from '../../components/menunavegacion/MenuNavegacion';
+import BotonPublicar from '../../components/boton-publicar-empleo/BotonPublicarEmpleo';
+import BotonPostulaciones from '../../components/boton-postulaciones/BotonPostulaciones';
+import PublicacionEmpleoNuevo from '../../components/publicacion-empleo/PublicacionEmpleo';
+import './empleos.css';
 import { usuarioContext } from '../../App';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
 
 const PublicacionEmpleo = () => {
     const navigate = useNavigate();
     const { usuarioLog } = useContext(usuarioContext);
     const [datosEmpleos, setDatosEmpleos] = useState([]);
-    const [componentesEmpleos, setComponentesEmpleos] = useState([]); 
-    //const usuarioLog = 2;
+    const [componentesEmpleos, setComponentesEmpleos] = useState([]);
 
-    
-
-    //Obtiene todos los empleos
+    // Obtiene todos los empleos
     const getEmpleos = async () => {
         try {
             const response = await axios.get('http://localhost:3000/empleos/');
-            //console.log("Datos de empleos:", response.data);
             setDatosEmpleos(response.data);
         } catch (err) {
             console.error('Error al obtener los empleos:', err);
@@ -33,7 +29,6 @@ const PublicacionEmpleo = () => {
     const getUsuarios = async (id) => {
         try {
             const response = await axios.get(`http://localhost:3000/usuarios/${id}`);
-            //console.log("Datos del usuarioen el get:", response.data);
             return [response.data.nombre, response.data.apellido_paterno, response.data.apellido_materno, response.data.imagen_usuario, response.data.role];
         } catch (err) {
             console.error('Error al obtener el usuario:', err);
@@ -41,79 +36,79 @@ const PublicacionEmpleo = () => {
         }
     };
 
-    //Obtiene los datos de los empleos al cargar la página
+    // Ejecuta `getEmpleos` al cargar la página
     useEffect(() => {
         getEmpleos();
     }, []);
 
+    // Genera componentes para cada empleo
+    useEffect(() => {
+        const generarComponentesEmpleos = async () => {
+            const componentesEmpleosPromises = datosEmpleos.empleos.map(async (empleo) => {
+                const datosUsuario = await getUsuarios(empleo.id_usuario);
 
-// Genera los componentes para cada empleo
-useEffect(() => {
-    const generarComponentesEmpleos = async () => {
-        const componentesEmpleosPromises = datosEmpleos.empleos.map(async (empleo) => {
-            const datosUsuario = await getUsuarios(empleo.id_usuario); 
+                return (
+                    <PublicacionEmpleoNuevo
+                        key={empleo.id_empleo}
+                        datos={{
+                            id_empleo: empleo.id_empleo,
+                            tituloEmpleo: empleo.titulo,
+                            empresa: empleo.empresa,
+                            salario: empleo.salario,
+                            descripcion: empleo.descripcion,
+                            ubicacion: empleo.ubicacion,
+                            nivelIngles: empleo.nivel_de_ingles,
+                            fotoPerfil: datosUsuario[3] || 'https://via.placeholder.com/100',
+                            nombreUsuario: `${datosUsuario[0] || ''} ${datosUsuario[1] || ''} ${datosUsuario[2] || ''}`,
+                            id_usuario: empleo.id_usuario,
+                        }}
+                        onEliminar={(id) => {
+                            setDatosEmpleos((prevEmpleos) => ({
+                                ...prevEmpleos,
+                                empleos: prevEmpleos.empleos.filter((empleo) => empleo.id_empleo !== id),
+                            }));
+                        }}
+                    />
+                );
+            });
 
-            return (
-                <PublicacionEmpleoNuevo
-                    key={empleo.id_empleo}
-                    datos={{
-                        id_empleo: empleo.id_empleo,
-                        tituloEmpleo: empleo.titulo,
-                        empresa: empleo.empresa,
-                        salario: empleo.salario,
-                        descripcion: empleo.descripcion,
-                        ubicacion: empleo.ubicacion,
-                        nivelIngles: empleo.nivel_de_ingles,
-                        fotoPerfil: datosUsuario[3] || 'https://via.placeholder.com/100', 
-                        nombreUsuario: `${datosUsuario[0] || ''} ${datosUsuario[1] || ''} ${datosUsuario[2] || ''}`
-                    }}
+            const componentes = await Promise.all(componentesEmpleosPromises);
+            setComponentesEmpleos(componentes);
+        };
 
-                    onEliminar={id => {
-                        setDatosEmpleos(prevEmpleos => ({
-                            ...prevEmpleos,
-                            empleos: prevEmpleos.empleos.filter(empleo => empleo.id_empleo !== id)
-                        }));
-                    }}
-                />
-            );
-        });
+        if (datosEmpleos && datosEmpleos.empleos) {
+            generarComponentesEmpleos();
+        }
+    }, [datosEmpleos]);
 
-        const componentes = await Promise.all(componentesEmpleosPromises); 
-        setComponentesEmpleos(componentes); 
+    // Función para manejar la navegación a la página de postulaciones
+    const manejarVerPostulaciones = () => {
+        navigate('/pagina-postulaciones-usuario');
     };
 
-    if (datosEmpleos && datosEmpleos.empleos) {
-        generarComponentesEmpleos();
-    }
-    
-}, [datosEmpleos]);
-
-
-    const manejarPublicarEmpleo = async() => {//si es reclutador deja avanzar al formulario de publicar empleo
-        const datosUsuario = await getUsuarios(usuarioLog); 
-        if (datosUsuario[4] === 'Reclutadores') { //
-            //console.log(datosUsuario[4]);
+    // Función para publicar un empleo
+    const manejarPublicarEmpleo = async () => {
+        const datosUsuario = await getUsuarios(usuarioLog);
+        if (datosUsuario[4] === 'Reclutadores') {
             navigate('/registro-empleo');
         } else {
-            
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: "No puedes crear un empleo porque no eres reclutador.",
-              });
+            });
         }
     };
 
     return (
         <>
-            <MenuNavegacion /> 
+            <MenuNavegacion />
             <div className="PublicacionEmpleoNuevo-boton-flotante">
-                <BotonPublicar onClick={manejarPublicarEmpleo}
-                        />
+                <BotonPublicar onClick={manejarPublicarEmpleo} />
+                <BotonPostulaciones onClick={manejarVerPostulaciones} />
             </div>
-        
+
             <div className="PublicacionEmpleo-empleos-contenedor">
-                
                 {componentesEmpleos.length > 0 ? componentesEmpleos : <p>No hay empleos disponibles</p>}
             </div>
         </>

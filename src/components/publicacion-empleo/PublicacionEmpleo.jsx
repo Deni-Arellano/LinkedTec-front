@@ -1,18 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { BsThreeDots } from "react-icons/bs";
 import Etiquetas from '../componente-label/Etiquetas';
 import './PublicacionEmpleo.css';
 import { usuarioContext } from '../../App';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import Swal from 'sweetalert2';
 
 const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
-    const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
+    const { usuarioLog } = useContext(usuarioContext);
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const navigate = useNavigate(); // Hook para navegar
+    const [esEstudianteEgresado, setEsEstudianteEgresado] = useState(true);
 
+    
+    
     const handleOpciones = () => {
-        setMostrarOpciones(!mostrarOpciones);
+        if (datos.id_usuario != usuarioLog) {
+            //console.log("No puedes editar ni eliminar esta publicación");
+            setMostrarOpciones(false);
+
+        }else{
+            setMostrarOpciones(!mostrarOpciones);
+            //console.log("Mostrar opciones:", mostrarOpciones);
+        }
     };
 
     const eliminarPublicacionEmpleo = async () => {
@@ -32,6 +43,40 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
         navigate(`/editar-publicacion-empleo/`, { state: datos });
     };
 
+    const postularse = () => {
+        navigate('/postulacion', { state: { id_empleo: datos.id_empleo } });
+    };
+
+    // Obtener los datos del usuario logeado
+    const getUsuario = async () => {
+        try {
+            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            //console.log('Usuario:', response.data.role);
+            // Si el usuario no es un egresado o estudiante, redirige a la página de publicaciones empleo
+            if (response.data.role !== 'Egresados' &&  response.data.role !== 'Estudiantes') {
+                setEsEstudianteEgresado(false);                
+            }
+
+            if (datos.id_usuario === usuarioLog) {
+                setMostrarOpciones(true);
+            }
+            
+        } catch (err) {
+            console.error('Error al obtener el usuario:', err);
+        }
+    };
+
+    // Se ejecuta al cargar la página y obtiene los datos del usuario logeado
+    useEffect(() => {
+        getUsuario();
+    }, []);
+        
+
+
+    const mostrarPostulantesSiendoReclutador = () => {
+        navigate(`/postulantes-empleo/${datos.id_empleo}`, { state: datos });
+    };
+
     return (
         <div className="PublicacionEmpleoNuevo-publicacion-container">
             <div className="PublicacionEmpleoNuevo-publicacion">
@@ -46,12 +91,11 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
                         size={20} 
                         onClick={handleOpciones} 
                     />
-                    
                     {mostrarOpciones && (
                         <div className="mostrar-publicacion-opciones-dropdown">
                             <button 
                                 className="mostrar-publicacion-opcion-boton" 
-                                onClick={editarPublicacionEmpleo} // Llama a la función para navegar a la página de edición
+                                onClick={editarPublicacionEmpleo}
                             >
                                 Editar
                             </button>
@@ -60,6 +104,9 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
                                 onClick={eliminarPublicacionEmpleo}
                             >
                                 Eliminar
+                            </button>
+                            <button className='mostrar-publicacion-opcion-boton' onClick={mostrarPostulantesSiendoReclutador}>
+                                Mostrar Postulantes
                             </button>
                         </div>
                     )}
@@ -77,7 +124,9 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
                 </div>
 
                 <div className="PublicacionEmpleoNuevo-boton-postularse-container">
-                    <button className="PublicacionEmpleoNuevo-boton-postularse">Postularse</button>
+                    {esEstudianteEgresado && (<button className="PublicacionEmpleoNuevo-boton-postularse" onClick={postularse}>Postularse</button>)}
+                    
+                    
                 </div>
             </div>
         </div>

@@ -20,9 +20,19 @@ import EditEstu from './pages/pagina-editar-estudiantes/EditarEstudiantes';
 import EditarReclutador from './pages/pagina-editar-reclutador/EditarReclutador';
 import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
+import PaginasPostulacionesUsuario from './pages/pagina-postulaciones-usuario/PaginaPostulacionesUsuario.jsx'
+import EditarNoticia from './pages/pagina-editar-noticia/EditarNoticia';
+
+
+import Postulacion from './pages/pagina-postulacion/Postulacion';
+import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-como-reclutador/VisualizarPostuComoReclutador.jsx';
 import Noticias from './pages/pagina-noticias/Noticias.jsx';
 import CrearNoticias from './pages/pagina-crear-noticia/CrearNoticia.jsx';
 import ReportarContenido from './components/reportar-contenido/ReportarContenido.jsx';
+import Mensajes from './pages/pagina-mensajes/Mensajes.jsx';
+import NuevoMensaje from './pages/pagina-nuevo-mensaje/NuevoMensaje.jsx';
+import Chat from './pages/pagina-chat/Chat.jsx';
+import { SiNushell } from 'react-icons/si';
 import NotificationSystem from './pages/pagina-notificaciones/Notificaciones.jsx';
 import NotificacionesFlotante from './components/notificaciones-flotante/NotificacionesFlotante.jsx';
 
@@ -30,7 +40,7 @@ export const usuarioContext = createContext();
 export const notificacionContext = createContext();
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState('2'); 
+  const [usuarioLog, setUsuarioLog] = useState(4); 
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [idNoticia, setIdNoticia] = useState(null);
   const [isNotificacionesModalOpen, setIsNotificacionesModalOpen] = useState(false);
@@ -66,11 +76,23 @@ function App() {
           <Route path="/editar-publicacion" element={<EditarPublicacion />} />
           <Route path="/editar-reclutador" element={<EditarReclutador />} />
           <Route path="/editar-egresado" element={<EditarEgresado />} />
+          <Route path="/editar-estudiante" element={<EditEstu />} />
+          <Route path="/editar-docente" element={<EditDocente />} />
           <Route path="/editar-publicacion-empleo" element={<EditarPublicacionEmpleo />} />
           <Route path="/noticias" element={<Noticias openReportModal={openReportModal} />} />
           <Route path="/registro-noticia" element={<CrearNoticias />} />
+          <Route path='/pagina-postulaciones-usuario' element={<PaginasPostulacionesUsuario/>} />
+          <Route path='/postulacion' element={<Postulacion/>} />
+          <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
+          <Route path='/editar-docente' element={<EditDocente/>} />
+          <Route path='/editar-estudiante' element={<EditEstu/>} />
+          <Route path="/editar-noticia/:id_noticia" element={<EditarNoticia />} />
           <Route path="/notificaciones" element={<NotificationSystem />} />
           <Route path="/notificacionesflotante" element={<NotificacionesFlotante />} />
+          
+          <Route path="/mensajes" element={<Mensajes />} />
+          <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </Router>
       {isReportModalOpen && (

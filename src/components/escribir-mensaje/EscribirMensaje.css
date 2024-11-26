@@ -1,0 +1,53 @@
+
+.mostrar-nuevo-mensaje {
+    display: flex;
+    flex-direction: row;   
+    width: auto;
+    height:auto;
+    box-sizing: border-box;
+    background-color:white;
+    align-items: center;
+    padding: 0 1%;
+    border-top: 1px solid #e0e0e0;
+    
+}
+
+.texto-nuevo-mensaje {
+    flex-grow: 1;
+    border: none;
+    font-size: 16px;
+    background-color: white;
+    resize: none; 
+    overflow-y: auto;
+    margin-bottom: 0; 
+    margin-top: 0; 
+}
+
+
+.texto-nuevo-mensaje:focus, .texto-nuevo-mensaje:hover {
+    border: none; 
+    outline: none; 
+    background-color: white;
+    box-shadow: none; 
+}
+
+.nuevo-mensaje {
+    background-color: white;
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: auto; 
+    padding: 10px;
+    
+}
+
+
+.nuevo-mensaje:hover {
+    background-color: white;
+    color: gray; 
+    box-shadow: none; 
+}

@@ -57,7 +57,7 @@ const MenuNavegacion = () => {
                 </div>
 
                 <div className="MenuNavegacion-icons">
-                    <button className="MenuNavegacion-icon-button">
+                    <button className="MenuNavegacion-icon-button" onClick={() => navigate('/Mensajes')}>
                         <BiChat className="MenuNavegacion-icon" />
                     </button>
                     <button className="MenuNavegacion-icon-button" onClick={toggleNotificaciones}>
@@ -71,7 +71,7 @@ const MenuNavegacion = () => {
             
             <aside className={`MenuNavegacion-sidebar ${sidebarVisible ? 'MenuNavegacion-visible' : ''}`}>
                 <div className="MenuNavegacion-perfil">
-                    <img src="https://via.placeholder.com/100" alt="Perfil" className="MenuNavegacion-foto-perfil" />
+                    <img src={datosUsuario.imagen_usuario} alt="Perfil" className="MenuNavegacion-foto-perfil" />
                     <p className="MenuNavegacion-usuario-publicacion-empleo">{datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno}</p>
                 </div>
 

@@ -1,24 +1,63 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import Texto from '../componente-label/Etiquetas.jsx';
 import './MostrarPublicacion.css';
 import { BsThreeDots } from "react-icons/bs";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { MdAddComment } from "react-icons/md";
+import { FaUserPlus } from "react-icons/fa6";
 import Axios from 'axios';
 import CrearComentario from '../crear-comentario/CrearComentario.jsx';
 import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
 import '../componente-mostrar-comentario/MostrarComentario.css';
 
-
 const MostrarPubli = ({ datos, onEliminar }) => {
     const { usuarioLog } = useContext(usuarioContext);
-    //console.log("datos m,ostrar publio:", datos);
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const [mostrarCrearComentario, setMostrarCrearComentario] = useState(false);
     const [comentariosPublicacion, setComentariosPublicacion] = useState([]);
+    const [meGusta, setMeGusta] = useState(datos.meGusta || 0);
+    const [disgusta, setDisgusta] = useState(datos.disgusta || 0);
+    const [haReaccionado, setHaReaccionado] = useState(false);  // Bandera que recibimos del backend
+    const [tipoReaccionActual, setTipoReaccionActual] = useState(null);
+    const ws = useRef(null);
     const navigate = useNavigate();
+
+    const conectarWebSocket = () => {
+        ws.current = new WebSocket('ws://localhost:8082');
+    
+        ws.current.onopen = () => {
+            console.log("Conectado al servidor de WebSocket de reacciones");
+        };
+    
+        ws.current.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'actualizacion_reaccion' && data.id_publicacion === datos.id_publicacion) {
+                // Asegura que solo actualice los contadores de la publicación actual
+                setMeGusta(data.me_gusta);
+                setDisgusta(data.disgusta);
+                setHaReaccionado(data.haReaccionado); // Mantener la bandera de reacción
+                setTipoReaccionActual(data.tipo_reaccion); // Actualizar el tipo de reacción actual si es necesario
+            }
+        };
+        
+        ws.current.onerror = (error) => {
+            console.error("Error en WebSocket:", error);
+        };
+    
+        ws.current.onclose = () => {
+            console.log("WebSocket desconectado, reintentando en 3 segundos...");
+            setTimeout(conectarWebSocket, 3000);
+        };
+    };
+
+    useEffect(() => {
+        conectarWebSocket();
+        return () => {
+            if (ws.current) ws.current.close();
+        };
+    }, []);
 
     const handleOpciones = () => {
         setMostrarOpciones(!mostrarOpciones);
@@ -35,9 +74,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
 
     const eliminarPublicacion = async () => {
         try {
-            console.log("Eliminando publicación con id:", datos.id_publicacion);
             const response = await Axios.delete(`http://localhost:3000/publicaciones/${datos.id_publicacion}`);
-            console.log(response.data);
             onEliminar(datos.id_publicacion);
             handleOpciones();
             setMostrarCrearComentario(false);
@@ -47,22 +84,17 @@ const MostrarPubli = ({ datos, onEliminar }) => {
         }
     };
 
-    
-
     const getComentariosPublicacion = async (id_publicacion) => {
         try {
             const response = await Axios.get(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`);
-            console.log(response.data);
-            setComentariosPublicacion(response.data);
+            setComentariosPublicacion(response.data.comentarios || []);
         } catch (err) {
             console.error('Error al obtener los comentarios:', err);
         }
     };
 
-    // Función que se ejecuta cuando se agrega un nuevo comentario
     const agregarComentario = () => {
         getComentariosPublicacion(datos.id_publicacion);
-        
     };
 
     const editarPublicacion = () => {
@@ -71,20 +103,72 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 descripcion: datos.descripcion,
                 imagen: datos.imagen,
                 id_publicacion: datos.id_publicacion
-            }});
+            }
+        });
     };
 
+    const reaccionar = async (tipo_reaccion) => {
+        const esReaccionIgual = tipoReaccionActual === tipo_reaccion;
+        const esReaccionDiferente = tipoReaccionActual && tipoReaccionActual !== tipo_reaccion;
+    
+        // Ajusta las reacciones en el frontend
+        if (tipo_reaccion === 'me_gusta') {
+            if (esReaccionIgual) {
+                setMeGusta(prev => prev - 1); // Disminuir "me gusta"
+            } else {
+                if (esReaccionDiferente) setDisgusta(prev => prev - 1); // Deshacer "disgusta" si está activo
+                setMeGusta(prev => prev + 1); // Incrementar "me gusta"
+            }
+        } else if (tipo_reaccion === 'disgusta') {
+            if (esReaccionIgual) {
+                setDisgusta(prev => prev - 1); // Disminuir "disgusta"
+            } else {
+                if (esReaccionDiferente) setMeGusta(prev => prev - 1); // Deshacer "me gusta" si está activo
+                setDisgusta(prev => prev + 1); // Incrementar "disgusta"
+            }
+        }
+    
+        // Actualiza el tipo de reacción actual y bandera de haReaccionado
+        setTipoReaccionActual(esReaccionIgual ? null : tipo_reaccion);
+        setHaReaccionado(!esReaccionIgual);
+    
+        try {
+            const response = await Axios.post('http://localhost:3000/reaccionar', {
+                id_publicacion: datos.id_publicacion,
+                tipo_reaccion: tipo_reaccion,
+                cancelar: esReaccionIgual ? "true" : "", // Cancela si la reacción es igual
+                id_usuario: usuarioLog
+            });
+    
+            // Asegúrate de que la respuesta tiene el objeto 'publicacion'
+            if (response.data && response.data.publicacion) {
+                const { me_gusta, disgusta, haReaccionado } = response.data.publicacion;
+    
+                // Actualiza los contadores y el estado de reacción basados en los datos de la respuesta
+                setMeGusta(me_gusta);
+                setDisgusta(disgusta);
+                setHaReaccionado(haReaccionado);
+                setTipoReaccionActual(tipo_reaccion);
+            }
+        } catch (err) {
+            console.error('Error al enviar la reacción:', err);
+            // Revertir cambios en caso de error
+            setTipoReaccionActual(esReaccionIgual ? tipo_reaccion : null);
+            setHaReaccionado(!esReaccionIgual);
+        }
+    };    
 
-
-
+    const handleLike = () => {
+        reaccionar('me_gusta');
+    };
+    
+    const handleDislike = () => {
+        reaccionar('disgusta');
+    };
 
     useEffect(() => {
         getComentariosPublicacion(datos.id_publicacion);
     }, [datos.id_publicacion]);
-
-    
-
-
 
     return (
         <div className="Mostrar-publicacion">
@@ -95,6 +179,10 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     className="mostrar-publicacion-imagen-perfil" 
                 />
                 <Texto texto={datos.nombreUsuario} />
+
+                <button className='boton-seguimiento-en-publicacion'>
+                    Seguir<FaUserPlus size={30}/>
+                </button>
                 
                 <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} />
                 {mostrarOpciones && (
@@ -114,17 +202,17 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     </div>
                 </div>
                 <img 
-                    src={ "https://via.placeholder.com/300"} //datos.imagen ||
+                    src={ datos.imagen || "https://via.placeholder.com/300"} 
                     alt="Post" 
                     className="mostrar-publicacion-imagen" 
                 />
             </div>
             <div className="mostrar-publicacion-botones">
-                <button className="mostrar-publicacion-megusta">
-                    <AiFillLike size={30} /> {datos.meGusta || 0}
+                <button className="mostrar-publicacion-megusta" onClick={handleLike}>
+                    <AiFillLike size={30} /> {meGusta}
                 </button>
-                <button className="mostrar-publicacion-medisgusta">
-                    <AiFillDislike size={30} /> {datos.disgusta || 0}
+                <button className="mostrar-publicacion-medisgusta" onClick={handleDislike}>
+                    <AiFillDislike size={30} /> {disgusta}
                 </button>
                 <button className="mostrar-publicacion-comentar" onClick={toggleCrearComentario}>
                     <MdAddComment size={30} />
@@ -141,31 +229,23 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 )}
                 
                 {mostrarCrearComentario && comentariosPublicacion.length > 0 && comentariosPublicacion.map(comentario => (
-                    console.log("comentario:", comentario),
                     <div className="mostrar-comentario" key={comentario.id_comentario}>
                         <div className="mostrar-comentario-header">
                             <img
-                                src={comentario.fotoPerfil || "https://via.placeholder.com/50"}
+                                src={comentario.imagen || "https://via.placeholder.com/50"}
                                 alt="Profile"
                                 className="mostrar-imagen-perfil-comentario"
                             />
-                            <Texto className='textoComentario' texto={comentario.nombre+ ' ' + comentario.apellido_paterno + ' ' + comentario.apellido_materno} />
+                            <Texto tamano={11} texto={comentario.nombreUsuario} />
                         </div>
-                        <div className="fecha-comentario">
-                            <Texto tamano={11} texto={formatFecha(comentario.fecha)} />
-                        </div>
-                        <div className="comentario-contenido">
-                            <div className="comentario-texto">
-                                <div className="comentario-descripcion">
-                                    <Texto texto={comentario.texto } />
-                                </div>
-                            </div>
+                        <div className="mostrar-comentario-contenido">
+                            <Texto texto={comentario.texto} />
                         </div>
                     </div>
                 ))}
             </div>
         </div>
     );
-}
+};
 
 export default MostrarPubli;
