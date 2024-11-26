@@ -22,7 +22,7 @@ import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
 import PaginasPostulacionesUsuario from './pages/pagina-postulaciones-usuario/PaginaPostulacionesUsuario.jsx'
 import EditarNoticia from './pages/pagina-editar-noticia/EditarNoticia';
-
+import PaginaDashboard from "./pages/pagina-dashboard/PaginaDashboard";
 
 import Postulacion from './pages/pagina-postulacion/Postulacion';
 import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-como-reclutador/VisualizarPostuComoReclutador.jsx';
@@ -93,6 +93,8 @@ function App() {
           <Route path="/mensajes" element={<Mensajes />} />
           <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
           <Route path="/chat" element={<Chat />} />
+
+            <Route path="/dashboard" element={<PaginaDashboard />} />
         </Routes>
       </Router>
       {isReportModalOpen && (

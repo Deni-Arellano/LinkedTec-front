@@ -1,0 +1,19 @@
+.info-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    transition: opacity 0.3s ease-in-out; /* Transición para la opacidad */
+}
+
+.info-cards > .info-card {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.info-cards.fade-out {
+    opacity: 0.5;
+}
+
+.info-cards.fade-in {
+    opacity: 1;
+}

@@ -1,0 +1,89 @@
+.Reportes {
+    /* Estilos del borde y estructura */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+
+    /* Fondo y sombra */
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+
+    /* Disposición del contenido */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Estilo para el título dentro de Reportes */
+.Reportes h2 {
+    /* Tipografía */
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+
+    /* Línea decorativa debajo del título */
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+/* Contenedor para las gráficas */
+.graficas-container {
+    /* Layout para las gráficas en línea */
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para cada gráfica individual */
+.grafica-container {
+    /* Estructura */
+    flex: 1;
+    padding: 1rem;
+    border-radius: 6px;
+    background-color: #f9fafb;
+
+    /* Sombra suave */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo para la sección de tarjetas */
+.tarjetas-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Estilo para las tarjetas individuales */
+.tarjetas-container > * {
+    flex: 1;
+    min-width: 200px; /* Establece un ancho mínimo */
+    background-color: #f9fafb;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Media query para responsividad */
+@media (max-width: 768px) {
+    .Reportes {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+
+    .Reportes h2 {
+        font-size: 1.25rem;
+    }
+
+    .graficas-container {
+        flex-direction: column;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .tarjetas-container > * {
+        flex: 1 1 100%;
+    }
+}
