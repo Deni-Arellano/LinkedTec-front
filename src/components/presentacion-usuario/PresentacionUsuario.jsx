@@ -4,8 +4,8 @@ import BotonSeguidos from '../boton-seguidos/BotonSeguidos';
 import { useContext } from 'react';
 import {usuarioContext} from '../../App';
 const FotoNombre = ({datos, usuariosSeguidos, id_usuario}) => {
-    const {usuarioLog} = useContext(usuarioContext);
-
+    const {usuarioLog} = useContext(usuarioContext);//Este es el usuario Loggeado
+    //NOTA id_usuario es el id del usuario que vas a seguir
     return (
         <div className="nombre-usuario">
             <img src={datos.foto} alt="Foto de perfil" className="foto-perfil"/>
