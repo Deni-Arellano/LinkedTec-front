@@ -5,11 +5,11 @@ import { BsThreeDots } from "react-icons/bs";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { MdAddComment } from "react-icons/md";
-import { FaUserPlus } from "react-icons/fa6";
 import Axios from 'axios';
 import CrearComentario from '../crear-comentario/CrearComentario.jsx';
 import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
+import BotonSeguimientoEnPublicacion from "../boton-seguimiento-en-publicacion/BotonSeguirPublicacion.jsx";
 import '../componente-mostrar-comentario/MostrarComentario.css';
 
 const MostrarPubli = ({ datos, onEliminar }) => {
@@ -179,10 +179,8 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     className="mostrar-publicacion-imagen-perfil" 
                 />
                 <Texto texto={datos.nombreUsuario} />
-
-                <button className='boton-seguimiento-en-publicacion'>
-                    Seguir<FaUserPlus size={30}/>
-                </button>
+                
+                <BotonSeguimientoEnPublicacion/>
                 
                 <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} />
                 {mostrarOpciones && (
