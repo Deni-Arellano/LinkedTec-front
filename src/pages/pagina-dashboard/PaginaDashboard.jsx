@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import SeccionInformacion from "../../components/seccion-informacion/SeccionInformacion";
 import axios from 'axios';
 
-import Grafica from "../../components/grafica/Grafica";
-import GraficaReportes from "../../components/grafica/GraficaReportes";
-import GraficaPorMes from "../../components/grafica/GraficaPorMes";
+
 import CloudinaryDashboard from "../../components/cloudinary-dashboard/CloudinaryDashboard";
 import ReportesDashboard from "../../components/reportes-dashboard/ReportesDashboard";
 import './PaginaDashboard.css';
 
-const cloudName = 'dsysk6y0t';  // Reemplaza con tu nombre de cuenta en Cloudinary
-const apiKey = '558681395524128';  // Reemplaza con tu API key
-const apiSecret = 'SOTK8MjlL-1fU41ERjFoghAQ2rU';  // Reemplaza con tu API secret
+
 
 
 const PaginaDashboard = () => {
@@ -103,62 +98,12 @@ const PaginaDashboard = () => {
 
             <h1>Dashboard</h1>
 
-            {/*<div className="Reportes">*/}
-            {/*    <h2>Reportes</h2>*/}
-
-            {/*    /!* Contenedor para las gráficas *!/*/}
-            {/*    <div className="graficas-container">*/}
-            {/*        <div className="grafica-container">*/}
-            {/*            <GraficaReportes*/}
-            {/*                data={datosReportesPorTipo}*/}
-            {/*                tipoGrafica="barras"*/}
-            {/*            />*/}
-            {/*        </div>*/}
-            {/*        <div className="grafica-container">*/}
-            {/*            <GraficaPorMes*/}
-            {/*                data={datosReportesPOrMes}*/}
-            {/*                tipoGrafica="lineas"*/}
-            {/*                categoryKey="mes"*/}
-            {/*                valueKey="cantidad"*/}
-            {/*                titulo="Reportes por Mes"*/}
-            {/*            />*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-
-            {/*    /!* Contenedor para las tarjetas *!/*/}
-            {/*    <div className="tarjetas-container">*/}
-            {/*        <SeccionInformacion*/}
-            {/*            nombreSeccion="Reportes"*/}
-            {/*            datosSeccion={datosReportes}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*</div>*/}
 
             <ReportesDashboard data={datosReportesTotal} />
 
             <h1>Informacion acerca de cloudinary</h1>
             <CloudinaryDashboard data={datosCloudinary} />
 
-            {/*<SeccionInformacion nombreSeccion="Publicaciones" datosSeccion={datosPublicaciones}/>*/}
-            {/*<SeccionInformacion nombreSeccion="Noticias" datosSeccion={datosNoticias}/>*/}
-            {/*<SeccionInformacion nombreSeccion="Empleos" datosSeccion={datosEmpleos}/>*/}
-            {/*<SeccionInformacion nombreSeccion="Usuarios" datosSeccion={datosUsuarios}/>*/}
-
-
-            {/*<GraficaPorMes*/}
-            {/*    data={datosPublicacionesPorMes}*/}
-            {/*    tipoGrafica="lineas"*/}
-            {/*    categoryKey="mes"*/}
-            {/*    valueKey="cantidad"*/}
-            {/*    titulo="Publicaciones por Mes"*/}
-            {/*/>*/}
-            {/*<GraficaPorMes*/}
-            {/*    data={datosNoticiasPorMes}*/}
-            {/*    tipoGrafica="lineas"*/}
-            {/*    categoryKey="mes"*/}
-            {/*    valueKey="cantidad"*/}
-            {/*    titulo="Noticias por Mes"*/}
-            {/*/>*/}
 
 
         </div>

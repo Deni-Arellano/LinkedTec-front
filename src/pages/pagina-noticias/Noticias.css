@@ -139,4 +139,47 @@
   margin-top: 20px;
   gap: 20px;
 }
+/* Search Bar Styles */
+.busqueda-contenedor {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: #f4f4f4;
+}
 
+.busqueda-form {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px; /* Changed to match other border-radius in the design */
+  border: 1px; /* Added border in navy blue */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 15px;
+}
+
+.busqueda-icono {
+  color: #012a6f; /* Changed to navy blue to match the design */
+  margin-right: 10px;
+}
+
+.busqueda-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+}
+
+.busqueda-input::placeholder {
+  color: #012a6f; /* Changed to match the design's color scheme */
+  opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .busqueda-form {
+    max-width: 90%;
+  }
+}
