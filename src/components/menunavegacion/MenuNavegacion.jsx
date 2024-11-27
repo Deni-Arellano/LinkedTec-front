@@ -11,7 +11,7 @@ import Axios from 'axios';
 import NotificacionesFlotante from '../notificaciones-flotante/NotificacionesFlotante';
 
 const MenuNavegacion = () => {
-    const [sidebarVisible] = useState(false);
+    const [sidebarVisible, setSidebarVisible] = useState(true); // Cambiar visibilidad del menú lateral
     const [notificacionesVisible, setNotificacionesVisible] = useState(false); 
     const { usuarioLog, setUsuarioLog } = useContext(usuarioContext);
     const [datosUsuario, setDatosUsuario] = useState('');
@@ -19,22 +19,22 @@ const MenuNavegacion = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Obtener los datos del usuario logeado
         const getUsuario = async () => {
             try {
                 const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
-                
                 setDatosUsuario(response.data);
             } catch (err) {
                 console.error('Error al obtener el usuario:', err);
             }
         };
-
-       
         if (usuarioLog) {
             getUsuario();
         }
     }, [usuarioLog]); 
+
+    const toggleSidebar = () => {
+        setSidebarVisible(!sidebarVisible); // Alternar visibilidad
+    };
 
     const toggleNotificaciones = () => {
         setNotificacionesVisible(!notificacionesVisible);
@@ -42,7 +42,6 @@ const MenuNavegacion = () => {
 
     return (
         <div className="MenuNavegacion-app">
-            {/* Barra superior */}
             <header className="MenuNavegacion-barrasuperiordeMenuNavegacion">
                 <img 
                     src={logo} 
@@ -51,11 +50,9 @@ const MenuNavegacion = () => {
                     onClick={() => navigate('/')} 
                     style={{ cursor: 'pointer' }}
                 />
-
                 <div className="MenuNavegacion-search">
                     <Searchbar />
                 </div>
-
                 <div className="MenuNavegacion-icons">
                     <button className="MenuNavegacion-icon-button" onClick={() => navigate('/Mensajes')}>
                         <BiChat className="MenuNavegacion-icon" />
@@ -69,12 +66,14 @@ const MenuNavegacion = () => {
                 </div>
             </header>
             
-            <aside className={`MenuNavegacion-sidebar ${sidebarVisible ? 'MenuNavegacion-visible' : ''}`}>
+            <aside className={`MenuNavegacion-sidebar ${sidebarVisible ? 'MenuNavegacion-visible' : 'MenuNavegacion-hidden'}`}>
+                <button className="MenuNavegacion-toggle" onClick={toggleSidebar}>
+                    {sidebarVisible ? '←' : '→'}
+                </button>
                 <div className="MenuNavegacion-perfil">
                     <img src={datosUsuario.imagen_usuario} alt="Perfil" className="MenuNavegacion-foto-perfil" />
                     <p className="MenuNavegacion-usuario-publicacion-empleo">{datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno}</p>
                 </div>
-
                 <nav className="MenuNavegacion-menu">
                     <button className="MenuNavegacion-menu-button" onClick={() => navigate('/noticias')}>Noticias</button>
                     <button className="MenuNavegacion-menu-button" onClick={() => navigate('/empleos')}>Empleos</button>
@@ -84,7 +83,7 @@ const MenuNavegacion = () => {
                 </nav>
             </aside>
             
-            <div className="MenuNavegacion-content">
+            <div className={`MenuNavegacion-content ${sidebarVisible ? '' : 'MenuNavegacion-content-full'}`}>
                 {/* Aquí va el contenido */}
             </div>
 
