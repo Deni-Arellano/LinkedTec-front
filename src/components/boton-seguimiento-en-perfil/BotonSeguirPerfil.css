@@ -1,22 +1,21 @@
 .boton-seguimiento-en-perfil {
-    width: 150px; /* Ancho fijo para evitar cambios */
-    height: 40px; /* Alto fijo */
+    display: flex;
     font-size: 14px;
     border: none;
-    border-radius: 2rem;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     color: white;
-    text-align: center; /* Centra el texto */
-    box-sizing: border-box; /* Asegura que padding no afecte el tamaño total */
+    text-align: center; 
+    padding: 10px 20px;
+    
 }
 
 .boton-seguimiento-en-perfil:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .boton-seguimiento-en-perfil.siguiendo {

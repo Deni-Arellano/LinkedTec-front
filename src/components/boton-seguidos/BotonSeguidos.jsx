@@ -35,7 +35,7 @@ const BotonSeguidos = ({ numSeguidos, datosSeguidos, id_usuario}) => {
     <div>
 
       <button className="boton-seguidos" onClick={openModal}>
-        <FaUserFriends className="icono-seguidos" />
+        <FaUserFriends size={16} className="icono-seguidos" />
         Seguidos ({numSeguidos})
       </button>
 

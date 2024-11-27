@@ -1,25 +1,26 @@
 .boton-seguidos {
-    background-color: white;
-    border: 1px solid #012a6f;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #012a6f; 
-    justify-content: center;
-  }
+  display: flex;
+  
+  background-color: #35548b;
+  border: none;
+  padding: 10px 20px;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white; 
+  justify-content: center;
+  transition: all 0.3s ease;
+  gap: 10px;
+}
 
   .boton-seguidos:hover  {
     background-color: #35548b;
-    border: #35548b;
     color: white;
+    transform: scale(1.03);
   }
 
-  .icono-seguidos {
-    margin-right: 10px;
-  }
+
   
  
   

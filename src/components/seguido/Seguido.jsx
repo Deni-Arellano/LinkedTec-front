@@ -27,8 +27,6 @@ const Seguido = ({ datosUsuario }) => {
     const { id, nombre, foto, rol } = datosUsuario || defaultChat;
 
     const manejarClick = () => {
-        console.log('Se hizo clic en un usuario seguido');//FALTA LA FUNCIONALIDAD DE MANEJAR AL PERFIL DEL USUARIO
-        console.log(id);
         navigate(`/Perfil`, { state: { id_usuario_externo: id }, key: id });
     };
 

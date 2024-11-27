@@ -22,16 +22,16 @@ const BotonSeguimientoEnPerfil = () => {
                 {siguiendo ? (
                     hover ? (
                         <>
-                            <FaUserXmark size={20} /> Quitar seguir
+                            <FaUserXmark size={16} /> Quitar seguir
                         </>
                     ) : (
                         <>
-                            <FaUserCheck size={20} /> Siguiendo
+                            <FaUserCheck size={16} /> Siguiendo
                         </>
                     )
                 ) : (
                     <>
-                        <FaUserPlus size={20} /> Seguir
+                        <FaUserPlus size={16} /> Seguir
                     </>
                 )}
             </button>
