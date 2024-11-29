@@ -40,7 +40,7 @@ export const usuarioContext = createContext();
 export const notificacionContext = createContext();
 
 function App() {
-  const [usuarioLog, setUsuarioLog] = useState(8); 
+  const [usuarioLog, setUsuarioLog] = useState(3); 
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [idNoticia, setIdNoticia] = useState(null);
   const [isNotificacionesModalOpen, setIsNotificacionesModalOpen] = useState(false);
