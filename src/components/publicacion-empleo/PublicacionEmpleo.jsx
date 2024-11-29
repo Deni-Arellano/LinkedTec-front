@@ -33,8 +33,18 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
             console.log(response.data);
             onEliminar(datos.id_empleo); // Llama a la función onEliminar para actualizar la lista
             setMostrarOpciones(!mostrarOpciones);
+            Swal.fire({
+                icon: 'success',
+                title: 'Empleo eliminado',
+                text: 'La publicación de empleo ha sido eliminada exitosamente.'
+            });
         } catch (err) {
             console.error('Error al eliminar la publicación:', err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo eliminar la publicación. Intente de nuevo.'
+            });
         }
     };
 
@@ -50,15 +60,12 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
     // Obtener los datos del usuario logeado
     const getUsuario = async () => {
         try {
+
             const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
             //console.log('Usuario:', response.data.role);
             // Si el usuario no es un egresado o estudiante, redirige a la página de publicaciones empleo
             if (response.data.role !== 'Egresados' &&  response.data.role !== 'Estudiantes') {
                 setEsEstudianteEgresado(false);                
-            }
-
-            if (datos.id_usuario === usuarioLog) {
-                setMostrarOpciones(true);
             }
             
         } catch (err) {
