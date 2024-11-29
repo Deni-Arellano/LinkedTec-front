@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #f6faff;
 }
 
 .mostrar-comentario-header {
@@ -18,58 +17,33 @@
     position: relative;
 }
 
+.mostrar-comentario-header label {
+    font-size: 1rem;
+    margin: 0;
+}
+
 .mostrar-imagen-perfil-comentario {
-    width: 50px;
-    height: 50px;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
+    object-fit: cover;
     margin-right: 10px;
 }
 
-.mostrar-comentario-icono-tres-puntos {
-    margin-left: auto;
-    cursor: pointer;
-}
-
-.opciones-dropdown-comentario {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-}
-
-.opcion-boton-comentario {
-    background-color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
-    border-radius: 4px;
-}
-
-.opcion-boton-comentario:hover {
-    background-color: #f1f1f1;
+.comentario-contenido{
+    font-size: 1rem;
 }
 
 .fecha-comentario {
     margin-top: 5px;
+
 }
 
 .comentario-contenido {
     display: flex;
     flex-direction: column;
     width: 100%;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    margin-top: 10px;
+    
 }
 
 .comentario-texto {

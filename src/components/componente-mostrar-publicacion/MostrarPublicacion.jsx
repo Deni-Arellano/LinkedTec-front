@@ -10,7 +10,8 @@ import CrearComentario from '../crear-comentario/CrearComentario.jsx';
 import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
 import BotonSeguimientoEnPublicacion from "../boton-seguimiento-en-publicacion/BotonSeguirPublicacion.jsx";
-import '../componente-mostrar-comentario/MostrarComentario.css';
+
+import Comentario from '../comentario/Comentario.jsx';
 
 const MostrarPubli = ({ datos, onEliminar }) => {
     const { usuarioLog } = useContext(usuarioContext);
@@ -227,18 +228,9 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 )}
                 
                 {mostrarCrearComentario && comentariosPublicacion.length > 0 && comentariosPublicacion.map(comentario => (
-                    <div className="mostrar-comentario" key={comentario.id_comentario}>
-                        <div className="mostrar-comentario-header">
-                            <img
-                                src={comentario.imagen || "https://via.placeholder.com/50"}
-                                alt="Profile"
-                                className="mostrar-imagen-perfil-comentario"
-                            />
-                            <Texto tamano={11} texto={comentario.nombreUsuario} />
-                        </div>
-                        <div className="mostrar-comentario-contenido">
-                            <Texto texto={comentario.texto} />
-                        </div>
+                    <div key={comentario.id_comentario}>
+                        <Comentario comentario={comentario} />
+                        
                     </div>
                 ))}
             </div>
