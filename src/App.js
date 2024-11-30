@@ -22,6 +22,7 @@ import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
 import PaginasPostulacionesUsuario from './pages/pagina-postulaciones-usuario/PaginaPostulacionesUsuario.jsx'
 import EditarNoticia from './pages/pagina-editar-noticia/EditarNoticia';
+import ReportesAdmin from './pages/pagina-reportes-admin/ReportesAdmin';
 
 
 import Postulacion from './pages/pagina-postulacion/Postulacion';
@@ -90,6 +91,7 @@ function App() {
           <Route path="/editar-noticia/:id_noticia" element={<EditarNoticia />} />
           <Route path="/notificaciones" element={<NotificationSystem />} />
           <Route path="/notificacionesflotante" element={<NotificacionesFlotante />} />
+          <Route path="/pagina-reportes-admin" element={<ReportesAdmin />} />
           
           <Route path="/mensajes" element={<Mensajes />} />
           <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
