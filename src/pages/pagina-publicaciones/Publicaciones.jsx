@@ -43,6 +43,7 @@ const PubliUsuarios = () => {
           <MostarPublicacion
             key={publicacion.id_publicacion}
             datos={{
+              id: publicacion.id_usuario,
               descripcion: publicacion.descripcion,
               imagen: publicacion.imagen,
               fecha: publicacion.fecha,
@@ -83,13 +84,14 @@ const PubliUsuarios = () => {
   const getUsuarios = async (id) => {
     try {
       const response = await Axios.get(`http://localhost:3000/usuarios/${id}`);
-      console.log("Datos del usuarioen el get:", response.data);
+      //console.log("Datos del usuarioen el get:", response.data);
       return [
         response.data.nombre,
         response.data.apellido_paterno,
         response.data.apellido_materno,
         response.data.imagen_usuario,
         response.data.role,
+
       ];
     } catch (err) {
       console.error("Error al obtener el usuario:", err);

@@ -50,7 +50,7 @@ const CrearComentario = ({ id_publicacion, idUsuario, onComentarioAgregado }) =>
             ></textarea>
             <div className="botones-comentario">
                 <button className="crear-comentario" onClick={add}>
-                    <IoSend /> Enviar
+                    <IoSend />
                 </button>
             </div>
         </div>

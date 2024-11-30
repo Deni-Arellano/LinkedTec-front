@@ -1,44 +1,43 @@
 .mostrar-crear-comentario {
     display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    align-items: center; 
     border-radius: 8px;
-    margin-bottom: 10px;
-    margin-top: 3%;
     width: 100%;
-    box-sizing: border-box;
-    background-color: #f6faff;
+   
 }
-
 .texto-crear-comentario {
     flex-grow: 1;
-    border: none;
-    border-radius: 20px;
-    border-color: black;
-    padding: 10px;
+    border: 1px solid #e5e7eb; 
+    padding: 12px;
     font-size: 16px;
     outline: none;
-    background-color: #f6faff;
-    resize: none; 
+    background-color: #fff;
+    resize: none;
     overflow-y: auto;
+    border-radius: 8px;
+    color: #333; 
+    transition: border-color 0.3s ease; 
+}
+
+.texto-crear-comentario:focus {
+    border-color: #ccc;
+    background-color: #fff; 
+    box-shadow: none;
 }
 
 .crear-comentario {
-    background-color: #f6faff;
-    color: gray;
-    display: block;
+    background-color: white;
+    color: #4b5563;
     border: none;
-    border-radius: 20px;
     cursor: pointer;
-    width: 10%;
-    float: right;
-}
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease; 
+    border-radius: 50%;
 
+}
 .crear-comentario:hover {
-    background-color: #f6faff !important;
+    background-color: #eff6ff;
 }
 
-.boton-crear-formulario{
-    width: 100%;
-}
+

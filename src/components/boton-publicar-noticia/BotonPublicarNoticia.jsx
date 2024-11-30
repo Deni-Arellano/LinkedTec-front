@@ -6,7 +6,7 @@ const PublicarNoticiaBoton = ({ onClick, style }) => {
     <button className="PublicarNoticia-button" onClick={onClick} style={style}>
       <div className="PublicarNoticia-content">
         <div className="PublicarNoticia-icon">+</div>
-        <div className="PublicarNoticia-text">Publicar Noticia</div>
+        <div className="PublicarNoticia-text">Publicar noticia</div>
       </div>
     </button>
   );

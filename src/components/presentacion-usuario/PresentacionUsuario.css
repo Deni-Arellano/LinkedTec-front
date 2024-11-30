@@ -1,40 +1,49 @@
-.nombre-usuario {
+.nombre-usuario-presentacion-usuario {
     display: flex;
     width: 150%;
     max-width: 800px;
-    margin: 5vh ; /* Alinea el cuadro automáticamente */
+    margin: 5vh ; 
     margin-top: -10px;
-
-
-
+    align-items: center;
 }
 
-.pede-container{
-    width: 60%;
-    max-width: 800px;
-}
 
-.foto-perfil {
-    margin-bottom: 2%;
-    width: 20%;
-    height: 20%;
-    border-radius: 50%;
+.foto-perfil-presentacion-usuario {
+    display: flex;
+    width: 10vw;       
+    height: 10vw;     
+    border-radius: 50%; 
+    object-fit: cover;  
     margin-right: 3%; 
-    min-width: 100px;
+    min-width: 120px;
+    min-height: 120px;
 }
 
-.info-usuario {
+
+
+.info-usuario-presentacion-usuario {
     width: auto;
 }
 
-.info-usuario h2 {
+.info-usuario-presentacion-usuario h2 {
     font-size: 36px;
     margin: 0;
     color: #012a6f;
 }
 
-.carrera {
+.role-presentacion-usuario {
     font-size: 20px;
     color: #555;
     margin: 1%;
 }
+
+.botones-seguimiento-presentacion-usuario-presentacion-usuario{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    
+
+
+}
+
+

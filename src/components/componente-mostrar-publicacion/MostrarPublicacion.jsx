@@ -5,14 +5,17 @@ import { BsThreeDots } from "react-icons/bs";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { MdAddComment } from "react-icons/md";
-import { FaUserPlus } from "react-icons/fa6";
 import Axios from 'axios';
 import CrearComentario from '../crear-comentario/CrearComentario.jsx';
 import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
-import '../componente-mostrar-comentario/MostrarComentario.css';
+import BotonSeguimientoEnPublicacion from "../boton-seguimiento-en-publicacion/BotonSeguirPublicacion.jsx";
+
+import Comentario from '../comentario/Comentario.jsx';
+import Swal from "sweetalert2";
 
 const MostrarPubli = ({ datos, onEliminar }) => {
+    console.log(datos);
     const { usuarioLog } = useContext(usuarioContext);
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const [mostrarCrearComentario, setMostrarCrearComentario] = useState(false);
@@ -60,6 +63,8 @@ const MostrarPubli = ({ datos, onEliminar }) => {
     }, []);
 
     const handleOpciones = () => {
+        if (usuarioLog !== datos.id) return;
+        
         setMostrarOpciones(!mostrarOpciones);
     };
 
@@ -79,6 +84,12 @@ const MostrarPubli = ({ datos, onEliminar }) => {
             handleOpciones();
             setMostrarCrearComentario(false);
             setMostrarOpciones(false);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Publicación eliminada',
+                text: 'La publicación ha sido eliminada exitosamente.'
+            });
         } catch (err) {
             console.error('Error al eliminar la publicación:', err);
         }
@@ -167,7 +178,10 @@ const MostrarPubli = ({ datos, onEliminar }) => {
     };
 
     useEffect(() => {
-        getComentariosPublicacion(datos.id_publicacion);
+        if (mostrarCrearComentario===true){
+            getComentariosPublicacion(datos.id_publicacion);
+        }
+        
     }, [datos.id_publicacion]);
 
     return (
@@ -179,10 +193,8 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                     className="mostrar-publicacion-imagen-perfil" 
                 />
                 <Texto texto={datos.nombreUsuario} />
-
-                <button className='boton-seguimiento-en-publicacion'>
-                    Seguir<FaUserPlus size={30}/>
-                </button>
+                
+                <BotonSeguimientoEnPublicacion/>
                 
                 <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} />
                 {mostrarOpciones && (
@@ -201,11 +213,14 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                         <Texto texto={datos.descripcion} />
                     </div>
                 </div>
-                <img 
-                    src={ datos.imagen || "https://via.placeholder.com/300"} 
+
+                {datos.imagen && (
+                    <img 
+                    src={ datos.imagen || "https://via.placeholder.com/"} 
                     alt="Post" 
                     className="mostrar-publicacion-imagen" 
-                />
+                />)}
+                
             </div>
             <div className="mostrar-publicacion-botones">
                 <button className="mostrar-publicacion-megusta" onClick={handleLike}>
@@ -229,18 +244,9 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 )}
                 
                 {mostrarCrearComentario && comentariosPublicacion.length > 0 && comentariosPublicacion.map(comentario => (
-                    <div className="mostrar-comentario" key={comentario.id_comentario}>
-                        <div className="mostrar-comentario-header">
-                            <img
-                                src={comentario.imagen || "https://via.placeholder.com/50"}
-                                alt="Profile"
-                                className="mostrar-imagen-perfil-comentario"
-                            />
-                            <Texto tamano={11} texto={comentario.nombreUsuario} />
-                        </div>
-                        <div className="mostrar-comentario-contenido">
-                            <Texto texto={comentario.texto} />
-                        </div>
+                    <div key={comentario.id_comentario}>
+                        <Comentario comentario={comentario} />
+                        
                     </div>
                 ))}
             </div>
