@@ -129,3 +129,9 @@
   background-color: #e2e9fd; /* Color más gris al pasar el cursor */
 }
 
+.input-custom {
+  width: 90%; /* El ancho del input se adapta al 90% del contenedor */
+  max-width: 400px; /* Máximo ancho opcional */
+  margin: 0 auto; /* Centra el input dentro del popup */
+  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+}
