@@ -81,6 +81,7 @@ const MenuNavegacion = () => {
                     <button className="MenuNavegacion-menu-button" onClick={() => navigate('/publicaciones')}>Publicaciones</button>
                     <button className="MenuNavegacion-menu-button">Foro</button>
                     <button className="MenuNavegacion-menu-button" onClick={() => navigate('/notificaciones')}>Notificaciones</button>
+                    <button className="MenuNavegacion-menu-button" onClick={() => navigate('/menu-navegacion-administrador')}>Aministrador</button>
                 </nav>
             </aside>
             

@@ -35,6 +35,7 @@ import Chat from './pages/pagina-chat/Chat.jsx';
 import { SiNushell } from 'react-icons/si';
 import NotificationSystem from './pages/pagina-notificaciones/Notificaciones.jsx';
 import NotificacionesFlotante from './components/notificaciones-flotante/NotificacionesFlotante.jsx';
+import MenuNavegacionAdmin from './components/menu-navegacion-administrador/MenuNavegacionAdmin.jsx';
 
 export const usuarioContext = createContext(); 
 export const notificacionContext = createContext();
@@ -93,6 +94,8 @@ function App() {
           <Route path="/mensajes" element={<Mensajes />} />
           <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
           <Route path="/chat" element={<Chat />} />
+
+          <Route path="/menu-navegacion-administrador" element={<MenuNavegacionAdmin />} />
         </Routes>
       </Router>
       {isReportModalOpen && (
