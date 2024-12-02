@@ -52,6 +52,7 @@ const VisualizacionPerfil = () => {
         
         if (datosUsuario.role === 'Reclutadores') {
             setDatosPerfil({
+                id: datosUsuario.id,
                 biografia: datosUsuario.biografia,
                 correo: datosUsuario.correo,
                 telefono: datosUsuario.telefono,
@@ -66,6 +67,7 @@ const VisualizacionPerfil = () => {
 
         } else if (datosUsuario.role === 'Estudiantes') {
             setDatosPerfil({
+                id: datosUsuario.id,
                 carrera: datosUsuario.carrera,
                 biografia: datosUsuario.biografia,
                 correo: datosUsuario.correo,
@@ -78,6 +80,7 @@ const VisualizacionPerfil = () => {
             //console.log(datosPerfil);
         }else if (datosUsuario.role === 'Egresados') {
             setDatosPerfil({
+                id: datosUsuario.id,
                 carrera: datosUsuario.carrera,
                 biografia: datosUsuario.biografia,
                 correo: datosUsuario.correo,
@@ -90,6 +93,7 @@ const VisualizacionPerfil = () => {
             //console.log(datosPerfil);
         } else {
             setDatosPerfil({
+                id: datosUsuario.id,
                 carrera: datosUsuario.academia,
                 biografia: datosUsuario.biografia,
                 correo: datosUsuario.correo,
@@ -103,6 +107,7 @@ const VisualizacionPerfil = () => {
         }
         if (datosUsuario.role === 'Reclutadores') {
             setDatosEncabezado({
+                id: datosUsuario.id,
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Reclutador',
                 foto: datosUsuario.imagen_usuario
@@ -110,24 +115,28 @@ const VisualizacionPerfil = () => {
             });
         } else if (datosUsuario.role === 'Estudiantes') {
             setDatosEncabezado({
+                id: datosUsuario.id,
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Estudiante',
                 foto: datosUsuario.imagen_usuario
             });
         } else if (datosUsuario.role === 'Egresados') {
             setDatosEncabezado({
+                id: datosUsuario.id,
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Egresado',
                 foto: datosUsuario.imagen_usuario
             });
         }else if (datosUsuario.role === 'Docentes') {
             setDatosEncabezado({
+                id: datosUsuario.id,
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Docente',
                 foto: datosUsuario.imagen_usuario
             });
         } else {
             setDatosEncabezado({
+                id: datosUsuario.id,
                 nombre: datosUsuario.nombre + " " + datosUsuario.apellido_paterno + " " + datosUsuario.apellido_materno,
                 role: 'Indefinido',
                 foto: urlApi+datosUsuario.imagen_usuario
@@ -240,7 +249,7 @@ const VisualizacionPerfil = () => {
                     )}
                 </div>
 
-                
+
 
 
                 
