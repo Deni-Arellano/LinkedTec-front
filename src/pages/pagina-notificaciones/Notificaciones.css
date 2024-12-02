@@ -1,9 +1,4 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Sans-serif', Arial;
-}
+
 
 body {
     background-color: #f5f5f5;
@@ -104,6 +99,7 @@ body {
 
 .acciones-notificacion {
     display: flex;
+    
     gap: 10px;
     padding: 15px 20px;
     background: #f8f9fa;

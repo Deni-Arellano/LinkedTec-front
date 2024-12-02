@@ -98,7 +98,7 @@
   
   .mostrar-publicacion-imagen {
     width: 100%;
-    max-height: 300px;
+    
     object-fit: cover;
     border-radius: 0.5rem;
   }
@@ -193,3 +193,32 @@
   .container-principal {
     container-type: inline-size;
   }
+
+.boton-seguimiento-en-publicacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: none;
+  border: 1px solid #000000;
+  border-radius: 0.375rem;
+  color: #4b5563;
+  transition: all 0.2s;
+  flex: 0.6;
+}
+
+.boton-seguimiento-en-publicacion:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border-color: #2563eb;
+}
+
+@media (max-width: 480px) {
+  .boton-seguimiento-en-publicacion {
+    display: flex;
+    gap: 0.1rem;
+    padding: 0.375rem;
+    font-size: 0.75rem;
+  }
+}

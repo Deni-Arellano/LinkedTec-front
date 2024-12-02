@@ -43,6 +43,7 @@ const CrearPubli = () => {
         setImagenSeleccionada(!!file);
     };
 
+
     const agregarImagen = async () => {
         const formData = new FormData();
         formData.append('imagen', image);
@@ -63,8 +64,13 @@ const CrearPubli = () => {
 
     const add = async () => {
         if (textoPubli.trim() === '' && image === null) {
-            Swal.fire('Error', 'La descripción no puede estar vacía.', 'error');
+            Swal.fire('Error', 'Debes ingresar al menos una descripción', 'error');
             return;
+        }
+
+        if (textoPubli.trim() === '')  {
+            Swal.fire('Error', 'Debes ingresar una descripción', 'error');
+            return
         }
 
         if (textoPubli.length > 255) {

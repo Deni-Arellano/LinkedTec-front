@@ -1,0 +1,28 @@
+.boton-seguidos {
+  display: flex;
+  
+  background-color: #35548b;
+  border: none;
+  padding: 10px 20px;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white; 
+  justify-content: center;
+  transition: all 0.3s ease;
+  gap: 10px;
+}
+
+  .boton-seguidos:hover  {
+    background-color: #35548b;
+    color: white;
+    transform: scale(1.03);
+  }
+
+
+  
+ 
+  
+
+  

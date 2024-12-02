@@ -56,20 +56,16 @@ const Postulacion = () => {
     const getUsuario = useCallback(async () => {
         try {
             const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
-            //console.log('Usuario:', response.data.role);
             // Si el usuario no es un egresado o estudiante, redirige a la página de publicaciones empleo
             if (response.data.role !== 'Egresados' && response.data.role !== 'Estudiantes') {
                 navigate('/empleos');
             }
-            
-            
             
             const usuario = response.data;
             // Asignar los valores obtenidos a los estados
             setNombre(usuario.nombre + ' ' + usuario.apellido_paterno + ' ' + usuario.apellido_materno);
             setCorreo(usuario.correo);
         } catch (err) {
-            //console.error('Error al obtener el usuario:', err);
             if (usuarioLog === null) {
                 navigate('/empleos');
             
@@ -271,8 +267,8 @@ const Postulacion = () => {
 
 
                         <div className='botones-postulacion'>
-                            <button type="button" className="postulacion-boton-postularse" onClick={confirmarPostulacion}>Postularse</button>
                             <button type="button" className="postulacion-boton-cancelar" onClick={handleBack}>Cancelar</button>
+                            <button type="button" className="postulacion-boton-postularse" onClick={confirmarPostulacion}>Postularse</button>     
                         </div>
                     </div>
 
