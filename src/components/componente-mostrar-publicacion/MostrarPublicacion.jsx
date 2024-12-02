@@ -194,8 +194,6 @@ const MostrarPubli = ({ datos, onEliminar }) => {
                 />
                 <Texto texto={datos.nombreUsuario} />
                 
-                <BotonSeguimientoEnPublicacion/>
-                
                 <BsThreeDots className="mostrar-publicacion-icono-tres-puntos" size={20} onClick={handleOpciones} />
                 {mostrarOpciones && (
                     <div className="mostrar-publicacion-opciones-dropdown">
