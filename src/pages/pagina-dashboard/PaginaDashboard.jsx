@@ -5,6 +5,7 @@ import axios from 'axios';
 import CloudinaryDashboard from "../../components/cloudinary-dashboard/CloudinaryDashboard";
 import ReportesDashboard from "../../components/reportes-dashboard/ReportesDashboard";
 import './PaginaDashboard.css';
+import MenuNavegacionAdmin  from "../../components/menu-navegacion-administrador/MenuNavegacionAdmin";
 
 
 
@@ -95,17 +96,13 @@ const PaginaDashboard = () => {
 
     return (
         <div>
-
-            <h1>Dashboard</h1>
-
-
-            <ReportesDashboard data={datosReportesTotal} />
-
-            <h1>Informacion acerca de cloudinary</h1>
-            <CloudinaryDashboard data={datosCloudinary} />
-
-
-
+            <MenuNavegacionAdmin />
+            <div className="dashboard-container">
+                <h1>Dashboard</h1>
+                <ReportesDashboard data={datosReportesTotal} />
+                <h1>Informacion acerca de cloudinary</h1>
+                <CloudinaryDashboard data={datosCloudinary} />
+            </div>
         </div>
     );
 };

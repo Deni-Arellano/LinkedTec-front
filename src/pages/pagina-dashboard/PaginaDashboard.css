@@ -54,7 +54,11 @@
     flex-wrap: wrap;
     width: 100%;
 }
-
+.dashboard-container {
+    margin-left: 220px; /* Mismo ancho que el sidebar */
+    padding-top: 58px; /* Altura de la barra superior */
+    padding: 20px;
+}
 /* Estilo para las tarjetas individuales */
 .tarjetas-container > * {
     flex: 1;
