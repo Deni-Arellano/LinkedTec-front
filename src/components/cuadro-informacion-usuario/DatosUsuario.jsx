@@ -10,6 +10,7 @@ const DatosUsu_EsDoEg = ({ datos }) => {
     const navigate = useNavigate();
     const [mostrarOpciones, setMostrarOpciones] = useState(false);
     const usuarioId = datos.id; // Asegúrate de que `id` esté presente en `datos`
+    const [imagen, setImagen] = useState(datos.imagen); // Agregar estado para la imagen
 
     const handleOpciones = () => {
         setMostrarOpciones(!mostrarOpciones);
@@ -108,6 +109,53 @@ const DatosUsu_EsDoEg = ({ datos }) => {
         }
     };
 
+    // Función para cambiar la imagen
+    const cambiarImagen = async () => {
+        const { value: file } = await Swal.fire({
+            title: 'Selecciona una imagen',
+            input: 'file',
+            inputAttributes: {
+                accept: 'image/png, image/jpeg',
+                'aria-label': 'Sube tu imagen de perfil'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Subir',
+            cancelButtonText: 'Cancelar'
+        });
+
+        if (file) {
+            const formData = new FormData();
+            formData.append('imagen', file);
+
+            try {
+                // Subir la imagen al servidor
+                const uploadResponse = await axios.post('http://localhost:3000/subidas/subir-imagen', formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                });
+
+                const { secure_url } = uploadResponse.data.data;
+
+                // Actualizamos la imagen en el servidor
+                await axios.put('http://localhost:3000/usuarios/imagen', {
+                    id: usuarioId,
+                    imagen_nueva: secure_url,
+                    antigua_imagen: datos.imagen
+                });
+
+                // Actualizamos el estado de la imagen
+                setImagen(secure_url); // Esto actualizará la imagen en el componente
+
+                Swal.fire('Éxito', 'Imagen actualizada correctamente.', 'success');
+
+                // Recargamos la página para actualizar los datos
+                window.location.reload(); // Recarga la página para reflejar los cambios
+
+            } catch (error) {
+                Swal.fire('Error', error.response?.data?.error || 'No se pudo cambiar la imagen', 'error');
+            }
+        }
+    };
+
     return (
         <div className="perfil-cuadro-datos-usuario">
             <BsThreeDots className="mostrar-datos-usuario-icono-tres-puntos" size={20} onClick={handleOpciones} />
@@ -115,6 +163,7 @@ const DatosUsu_EsDoEg = ({ datos }) => {
                 <div className="mostrar-datos-usuario-opciones-dropdown">
                     <button className="mostrar-datos-usuario-opcion-boton" onClick={editarPerfil}>Editar</button>
                     <button className="mostrar-datos-usuario-opcion-boton" onClick={eliminarPerfil}>Eliminar perfil</button>
+                    <button className="mostrar-datos-usuario-opcion-boton" onClick={cambiarImagen}>Cambiar Imagen</button>
                 </div>
             )}
             <p><FaBriefcase className="icono" /> <strong>Carrera: </strong> {datos.carrera}</p>
@@ -124,8 +173,9 @@ const DatosUsu_EsDoEg = ({ datos }) => {
             <p><FaPhone className="icono" /> <strong>Teléfono: </strong> {datos.telefono}</p>
             <p><FaBirthdayCake className="icono" /> <strong>Fecha de nacimiento: </strong> {datos.fecha}</p>
             <p><FaVenusMars className="icono" /> <strong>Sexo: </strong> {datos.sexo}</p>
+            <img src={imagen} alt="Imagen de perfil" className="perfil-imagen" />
         </div>
     );
-}
+};
 
 export default DatosUsu_EsDoEg;

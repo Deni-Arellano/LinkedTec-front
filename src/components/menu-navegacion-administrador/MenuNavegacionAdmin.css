@@ -37,6 +37,12 @@
 .MenuNavegacionAdmin-opcion-boton:hover {
     background-color: #012a6f;
 }
+.MenuNavegacionAdmin-content {
+    margin-left: 220px;
+    padding: 20px;
+    padding-top: 60px;
+    overflow-y: auto;
+}
 
 /* Botones de los íconos */
 .MenuNavegacionAdmin-icon-button {

@@ -179,3 +179,46 @@ body {
 .PublicacionEmpleoNuevo-boton-postularse:hover {
     background-color: #011c4f; /* Un azul más oscuro para el hover */
 }
+
+/* Search Bar Styles */
+.busqueda-contenedor {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #f4f4f4;
+}
+
+.busqueda-form {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 15px;
+}
+
+.busqueda-icono {
+    color: #888;
+    margin-right: 10px;
+}
+
+.busqueda-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+}
+
+.busqueda-input::placeholder {
+    color: #aaa;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .busqueda-form {
+        max-width: 90%;
+    }
+}

@@ -21,7 +21,7 @@ import EditarEgresado from './pages/pagina-editar-egresado/EditarEgresado';
 import EditarPublicacionEmpleo from './components/editar-publicacion-empleo/EditarPublicacionEmpleo.jsx';
 import PaginasPostulacionesUsuario from './pages/pagina-postulaciones-usuario/PaginaPostulacionesUsuario.jsx'
 import EditarNoticia from './pages/pagina-editar-noticia/EditarNoticia';
-
+import PaginaDashboard from "./pages/pagina-dashboard/PaginaDashboard";
 
 import Postulacion from './pages/pagina-postulacion/Postulacion';
 import TablaPostuVerReclutador from './pages/pagina-visualizacion-postulaciones-como-reclutador/VisualizarPostuComoReclutador.jsx';
@@ -74,41 +74,43 @@ function App() {
   }, [usuarioLog]);
 
   return (
-      <usuarioContext.Provider value={{ usuarioLog, setUsuarioLog }}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/rol" element={<Roles />} />
-            <Route path="/registro-estudiante" element={<RegistroEstudiantes />} />
-            <Route path="/registro-docente" element={<RegistroDocentes />} />
-            <Route path="/registro-reclutador" element={<RegistroReclutadores />} />
-            <Route path="/registro-egresado" element={<RegistroEgresados />} />
-            <Route path="/codigo-verificacion" element={<CodigoVerificacion />} />
-            <Route path="/registro-exitoso" element={<RegistroExitoso />} />
-            <Route path="/publicaciones" element={<Publicaciones />} />
-            <Route path="/perfil" element={<Perfil />} />3.
-            <Route path="/empleos" element={<Empleos />} />
-            <Route path="/registro-empleo" element={<RegistroEmpleo />} />
-            <Route path="/editar-publicacion" element={<EditarPublicacion />} />
-            <Route path="/editar-reclutador" element={<EditarReclutador />} />
-            <Route path="/editar-egresado" element={<EditarEgresado />} />
-            <Route path="/editar-estudiante" element={<EditEstu />} />
-            <Route path="/editar-docente" element={<EditDocente />} />
-            <Route path="/editar-publicacion-empleo" element={<EditarPublicacionEmpleo />} />
-            <Route path="/noticias" element={<Noticias openReportModal={openReportModal} />} />
-            <Route path="/registro-noticia" element={<CrearNoticias />} />
-            <Route path="/pagina-postulaciones-usuario" element={<PaginasPostulacionesUsuario />} />
-            <Route path="/postulacion" element={<Postulacion />} />
-            <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
-            <Route path='/editar-docente' element={<EditDocente/>} />
-            <Route path='/editar-estudiante' element={<EditEstu/>} />
-            <Route path="/editar-noticia/:id_noticia" element={<EditarNoticia />} />
-            <Route path="/notificaciones" element={<NotificationSystem />} />
-            <Route path="/notificacionesflotante" element={<NotificacionesFlotante />} />
+    <usuarioContext.Provider value={{ usuarioLog, setUsuarioLog }}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} /> 
+          <Route path="/rol" element={<Roles />} /> 
+          <Route path="/registro-estudiante" element={<RegistroEstudiantes />} /> 
+          <Route path="/registro-docente" element={<RegistroDocentes />} /> 
+          <Route path="/registro-reclutador" element={<RegistroReclutadores />} /> 
+          <Route path="/registro-egresado" element={<RegistroEgresados />} /> 
+          <Route path="/codigo-verificacion" element={<CodigoVerificacion />} /> 
+          <Route path="/registro-exitoso" element={<RegistroExitoso />} /> 
+          <Route path="/publicaciones" element={<Publicaciones />} /> 
+          <Route path="/perfil" element={<Perfil />} /> 
+          <Route path="/empleos" element={<Empleos />} /> 
+          <Route path="/registro-empleo" element={<RegistroEmpleo />} />
+          <Route path="/editar-publicacion" element={<EditarPublicacion />} />
+          <Route path="/editar-reclutador" element={<EditarReclutador />} />
+          <Route path="/editar-egresado" element={<EditarEgresado />} />
+          <Route path="/editar-estudiante" element={<EditEstu />} />
+          <Route path="/editar-docente" element={<EditDocente />} />
+          <Route path="/editar-publicacion-empleo" element={<EditarPublicacionEmpleo />} />
+          <Route path="/noticias" element={<Noticias openReportModal={openReportModal} />} />
+          <Route path="/registro-noticia" element={<CrearNoticias />} />
+          <Route path='/pagina-postulaciones-usuario' element={<PaginasPostulacionesUsuario/>} />
+          <Route path='/postulacion' element={<Postulacion/>} />
+          <Route path="/postulantes-empleo/:idEmpleo" element={<TablaPostuVerReclutador />} />
+          <Route path='/editar-docente' element={<EditDocente/>} />
+          <Route path='/editar-estudiante' element={<EditEstu/>} />
+          <Route path="/editar-noticia/:id_noticia" element={<EditarNoticia />} />
+          <Route path="/notificaciones" element={<NotificationSystem />} />
+          <Route path="/notificacionesflotante" element={<NotificacionesFlotante />} />
+          
+          <Route path="/mensajes" element={<Mensajes />} />
+          <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
+          <Route path="/chat" element={<Chat />} />
 
-            <Route path="/mensajes" element={<Mensajes />} />
-            <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/dashboard" element={<PaginaDashboard />} />
 
             <Route path="/menu-navegacion-administrador" element={<MenuNavegacionAdmin />} />
           </Routes>

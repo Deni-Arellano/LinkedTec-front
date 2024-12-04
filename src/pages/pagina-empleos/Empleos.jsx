@@ -8,12 +8,15 @@ import './empleos.css';
 import { usuarioContext } from '../../App';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { BsSearch } from "react-icons/bs";
 
 const PublicacionEmpleo = () => {
     const navigate = useNavigate();
     const { usuarioLog } = useContext(usuarioContext);
     const [datosEmpleos, setDatosEmpleos] = useState([]);
+    const [empleosFiltrados, setEmpleosFiltrados] = useState([]);
     const [componentesEmpleos, setComponentesEmpleos] = useState([]);
+    const [terminoBusqueda, setTerminoBusqueda] = useState('');
 
     // Obtiene todos los empleos
     const getEmpleos = async () => {
@@ -36,6 +39,22 @@ const PublicacionEmpleo = () => {
         }
     };
 
+    // Maneja la búsqueda de empleos
+    const handleBusqueda = (e) => {
+        const termino = e.target.value.toLowerCase().trim();
+        setTerminoBusqueda(termino);
+
+        if (termino === '') {
+            setEmpleosFiltrados(datosEmpleos.empleos);
+        } else {
+            const filtrados = datosEmpleos.empleos.filter(empleo =>
+                empleo.titulo.toLowerCase().includes(termino) ||
+                empleo.empresa.toLowerCase().includes(termino)
+            );
+            setEmpleosFiltrados(filtrados);
+        }
+    };
+
     // Ejecuta `getEmpleos` al cargar la página
     useEffect(() => {
         getEmpleos();
@@ -44,7 +63,7 @@ const PublicacionEmpleo = () => {
     // Genera componentes para cada empleo
     useEffect(() => {
         const generarComponentesEmpleos = async () => {
-            const componentesEmpleosPromises = datosEmpleos.empleos.map(async (empleo) => {
+            const componentesEmpleosPromises = empleosFiltrados.map(async (empleo) => {
                 const datosUsuario = await getUsuarios(empleo.id_usuario);
 
                 return (
@@ -79,7 +98,7 @@ const PublicacionEmpleo = () => {
         if (datosEmpleos && datosEmpleos.empleos) {
             generarComponentesEmpleos();
         }
-    }, [datosEmpleos]);
+    }, [empleosFiltrados, datosEmpleos]);
 
     // Función para manejar la navegación a la página de postulaciones
     const manejarVerPostulaciones = () => {
@@ -100,9 +119,31 @@ const PublicacionEmpleo = () => {
         }
     };
 
+    // Actualiza los empleos filtrados cuando se cargan los datos
+    useEffect(() => {
+        if (datosEmpleos && datosEmpleos.empleos) {
+            setEmpleosFiltrados(datosEmpleos.empleos);
+        }
+    }, [datosEmpleos]);
+
     return (
         <>
             <MenuNavegacion />
+
+            {/* Barra de búsqueda */}
+            <div className="busqueda-contenedor">
+                <form className="busqueda-form" onSubmit={(e) => e.preventDefault()}>
+                    <BsSearch className="busqueda-icono" />
+                    <input
+                        type="text"
+                        className="busqueda-input"
+                        placeholder="Buscar empleos por título o empresa..."
+                        value={terminoBusqueda}
+                        onChange={handleBusqueda}
+                    />
+                </form>
+            </div>
+
             <div className="PublicacionEmpleoNuevo-boton-flotante">
                 <BotonPublicar onClick={manejarPublicarEmpleo} />
                 <BotonPostulaciones onClick={manejarVerPostulaciones} />
