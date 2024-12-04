@@ -9,7 +9,6 @@ import Axios from 'axios';
 import CrearComentario from '../crear-comentario/CrearComentario.jsx';
 import { usuarioContext } from '../../App.js';
 import { useNavigate } from 'react-router-dom';
-import BotonSeguimientoEnPublicacion from "../boton-seguimiento-en-publicacion/BotonSeguirPublicacion.jsx";
 
 import Comentario from '../comentario/Comentario.jsx';
 import Swal from "sweetalert2";

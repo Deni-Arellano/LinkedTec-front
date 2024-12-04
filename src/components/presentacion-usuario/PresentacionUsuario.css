@@ -2,11 +2,11 @@
     display: flex;
     width: 150%;
     max-width: 800px;
-    margin: 5vh ; 
+    margin: 5vh; 
     margin-top: -10px;
     align-items: center;
+    justify-content: center;
 }
-
 
 .foto-perfil-presentacion-usuario {
     display: flex;
@@ -18,8 +18,6 @@
     min-width: 120px;
     min-height: 120px;
 }
-
-
 
 .info-usuario-presentacion-usuario {
     width: auto;
@@ -41,9 +39,43 @@
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 10px;
-    
-
-
 }
 
+@media (max-width: 768px) {
+    .nombre-usuario-presentacion-usuario {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 5vh 0;
+    }
 
+    .foto-perfil-presentacion-usuario {
+        width: 30vw;
+        height: 30vw;
+        min-width: 80px;
+        min-height: 80px;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .info-usuario-presentacion-usuario {
+        width: 100%;
+        text-align: center;
+    }
+
+    .info-usuario-presentacion-usuario h2 {
+        font-size: 28px;
+    }
+
+    .role-presentacion-usuario {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+
+    .botones-seguimiento-presentacion-usuario-presentacion-usuario {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        width: 100%;
+        justify-items: center;
+    }
+}
