@@ -14,7 +14,7 @@ const FotoNombre = ({datos, usuariosSeguidos, id_usuario}) => {
                 <h2>{datos.nombre}</h2>
                 <p className="role-presentacion-usuario">{datos.role}</p>
                 <div className='botones-seguimiento-presentacion-usuario-presentacion-usuario'>{usuarioLog != id_usuario ? (
-                    <BotonSeguir />
+                    <BotonSeguir id_usuario_log={usuarioLog} id_perfil_a_seguir={id_usuario} />
                 ) : null}
                     <BotonSeguidos numSeguidos={usuariosSeguidos.total} datosSeguidos={usuariosSeguidos} id_usuario={id_usuario} />
                 </div>
