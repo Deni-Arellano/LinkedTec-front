@@ -81,7 +81,7 @@ const DatosUsu_Rec = ({ datos }) => {
                 const { secure_url } = uploadResponse.data.data;
 
                 // Actualizamos la imagen en el servidor
-                await axios.put('http://localhost:3000/usuarios/imagen', {
+                await axios.put('https://linked-back-spring-lake-433.fly.dev/usuarios/imagen', {
                     id: datos.id,
                     imagen_nueva: secure_url,
                     antigua_imagen: datos.imagen

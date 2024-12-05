@@ -22,7 +22,7 @@ const NuevoMensaje = () => {
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
         try {
-            const response = await Axios.get(`http://localhost:3000/usuarios/`); 
+            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/`); 
             //Guardamos el nombre, apellido_paterno, apellido_materno y foto de cada usuario en la plataforma
             const datosUsuarios = [];
                 

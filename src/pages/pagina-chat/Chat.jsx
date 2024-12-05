@@ -63,7 +63,7 @@ const Chat = () => {
 
     //Conecta al servidor WebSocket
     useEffect(() => {
-        const socket = new WebSocket(`ws://localhost:8080/?idUsuario=${usuarioLog}&idChat=${idDestinatario}`);
+        const socket = new WebSocket(`ws://linked-back-spring-lake-433.fly.dev:9080/?idUsuario=${usuarioLog}&idChat=${idDestinatario}`);
         setWs(socket);
     
         socket.onopen = () => {};

@@ -22,7 +22,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:3000/acceso/login', {
+            const response = await axios.post('https://linked-back-spring-lake-433.fly.dev/acceso/login', {
                 correo,
                 contraseña
             });
@@ -63,7 +63,7 @@ const Login = () => {
         if (email) {
             try {
                 // Enviar solicitud para recuperar contraseña
-                await axios.post('http://localhost:3000/acceso/login/recuperar', { correo: email });
+                await axios.post('https://linked-back-spring-lake-433.fly.dev/acceso/login/recuperar', { correo: email });
     
                 // Confirmación de envío
                 await Swal.fire({
@@ -131,7 +131,7 @@ const Login = () => {
                         if (confirmacion.isConfirmed) {
                             try {
                                 // Enviar solicitud para cambiar contraseña
-                                await axios.patch('http://localhost:3000/acceso/login/validar-cambiar', {
+                                await axios.patch('https://linked-back-spring-lake-433.fly.dev/acceso/login/validar-cambiar', {
                                     correo: email,
                                     codigo: codigo,
                                     nuevaContraseña: nuevaContraseña.value

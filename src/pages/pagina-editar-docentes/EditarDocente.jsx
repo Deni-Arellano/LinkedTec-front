@@ -35,7 +35,7 @@ const EditDocente = () => {
     useEffect(() => {
         const obtenerDatos = async () => {
             try {
-                const response = await Axios.get(`http://localhost:3000/usuarios/docentes/${usuarioLog}`);
+                const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/docentes/${usuarioLog}`);
                 const data = response.data;
                 
                 setNombre(data.nombre);
@@ -325,7 +325,7 @@ const EditDocente = () => {
 
             // Realizar la solicitud patch para actualizar los datos
             try {
-                await Axios.patch(`http://localhost:3000/usuarios/docentes/${usuarioLog}`, datosActualizados);
+                await Axios.patch(`https://linked-back-spring-lake-433.fly.dev/usuarios/docentes/${usuarioLog}`, datosActualizados);
 
                 // Mostrar mensaje de éxito
                 Swal.fire('Éxito', 'Los datos del docente han sido actualizados.', 'success');

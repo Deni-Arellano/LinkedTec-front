@@ -29,7 +29,7 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
     const eliminarPublicacionEmpleo = async () => {
         try {
             console.log("Eliminando publicación con id:", datos.id_empleo);
-            const response = await Axios.delete(`http://localhost:3000/empleos/${datos.id_empleo}`);
+            const response = await Axios.delete(`https://linked-back-spring-lake-433.fly.dev/empleos/${datos.id_empleo}`);
             console.log(response.data);
             onEliminar(datos.id_empleo); // Llama a la función onEliminar para actualizar la lista
             setMostrarOpciones(!mostrarOpciones);
@@ -61,7 +61,7 @@ const PublicacionEmpleoNuevo = ({ datos, onEliminar }) => {
     const getUsuario = async () => {
         try {
 
-            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
             //console.log('Usuario:', response.data.role);
             // Si el usuario no es un egresado o estudiante, redirige a la página de publicaciones empleo
             if (response.data.role !== 'Egresados' &&  response.data.role !== 'Estudiantes') {

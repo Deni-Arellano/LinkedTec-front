@@ -27,7 +27,7 @@ const Noticias = ({ openReportModal }) => {
 
     const getNoticias = async (pagina = 1) => {
         try {
-            const response = await axios.get(`http://localhost:3000/noticias?pagina=${pagina}`);
+            const response = await axios.get(`https://linked-back-spring-lake-433.fly.dev/noticias?pagina=${pagina}`);
             const { noticias, total_paginas, pagina_siguiente, pagina_anterior } = response.data;
             setDatosNoticias(noticias);
             setTotalPaginas(total_paginas);
@@ -40,7 +40,7 @@ const Noticias = ({ openReportModal }) => {
 
     const getUsuarios = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/usuarios');
+            const response = await axios.get('https://linked-back-spring-lake-433.fly.dev/usuarios');
             setUsuarios(response.data);
         } catch (err) {
             console.error('Error al obtener los usuarios:', err);
@@ -49,7 +49,7 @@ const Noticias = ({ openReportModal }) => {
 
     const getUsuarioLogueado = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            const response = await axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
             setUsuarioLogueado(response.data);
         } catch (err) {
             console.error('Error al obtener la información del usuario logueado:', err);

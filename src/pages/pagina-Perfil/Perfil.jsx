@@ -19,7 +19,7 @@ const VisualizacionPerfil = () => {
     const [datosEncabezado, setDatosEncabezado] = useState('')
     const [datosPublicaciones, setDatosPublicaciones] = useState([]);
     const [componentesPublicaciones, setComponentesPublicaciones] = useState([]);
-    const urlApi = 'http://localhost:3000/imagenes/'; //Completa la url para las imagenes
+    const urlApi = 'https://linked-back-spring-lake-433.fly.dev/imagenes/'; //Completa la url para las imagenes
     const [usuariosSeguidos, setUsuariosSeguidos] = useState([]);
 
     const location = useLocation();
@@ -35,7 +35,7 @@ const VisualizacionPerfil = () => {
         //Obtener los datos del usuario logeado
         const getUsuario = async () => {
             try {
-                const response = await Axios.get(`http://localhost:3000/usuarios/${id_usuario}`);
+                const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${id_usuario}`);
                 //console.log("Servidor dice")
                 //console.log(response.data);
                 setDatosUsuario(response.data);
@@ -153,7 +153,7 @@ const VisualizacionPerfil = () => {
     useEffect(() => {
         const getPublicacionesUsu = async () => {
             try {
-                const response = await Axios.get(`http://localhost:3000/publicaciones/usuario/${id_usuario}`);
+                const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/publicaciones/usuario/${id_usuario}`);
                 setDatosPublicaciones(response.data.publicaciones);
                 if (response.data.publicaciones && response.data.publicaciones.length > 0) {
                     setDatosPublicaciones(response.data.publicaciones);
@@ -213,7 +213,7 @@ const VisualizacionPerfil = () => {
         //Obtiene los usuarios seguidos por el usuario logeado
         const UsuariosSeguidos = async () => {
             try {
-                const response = await Axios.get(`http://localhost:3000/seguimientos/usuarios/${id_usuario}/seguidos?pagina=1&limite=10`);
+                const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/seguimientos/usuarios/${id_usuario}/seguidos?pagina=1&limite=10`);
                 setUsuariosSeguidos(response.data);
             } catch (err) {
                 console.error('Error al obtener los usuarios seguidos:', err);

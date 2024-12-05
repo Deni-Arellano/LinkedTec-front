@@ -17,7 +17,7 @@ const MenuNavegacionAdmin = () => {
         // Obtener los datos del usuario logeado
         const getUsuario = async () => {
             try {
-                const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+                const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
                 setDatosUsuario(response.data);
             } catch (err) {
                 console.error('Error al obtener el usuario:', err);

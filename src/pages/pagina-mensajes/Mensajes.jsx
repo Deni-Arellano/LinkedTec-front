@@ -16,7 +16,7 @@ const Mensajes = () => {
 
     //Conecta al servidor WebSocket
     useEffect(() => {
-        const socket = new WebSocket(`ws://localhost:8083/?idUsuario=${usuarioLog}`);
+        const socket = new WebSocket(`ws://linked-back-spring-lake-433.fly.dev:9083/?idUsuario=${usuarioLog}`);
         
         socket.addEventListener('open', () => {
             //console.log('Conectado al servidor WebSocket');

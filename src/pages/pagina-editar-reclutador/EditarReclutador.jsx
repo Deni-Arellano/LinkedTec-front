@@ -49,7 +49,7 @@ const EditarReclutador = () => {
     const getUsuario = async () => {
         //Petición para obtener los datos del usuario
         try {
-            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
             //console.log(response.data);
 
             //Si el usuario no es un reclutador, redirige a la página de perfil
@@ -258,7 +258,7 @@ const EditarReclutador = () => {
 
         //Petición para editar los datos del usuario
         try {
-            await Axios.patch(`http://localhost:3000/usuarios/reclutadores/${usuarioLog}`, datosEnviar);
+            await Axios.patch(`https://linked-back-spring-lake-433.fly.dev/usuarios/reclutadores/${usuarioLog}`, datosEnviar);
             Swal.fire('Guardado', 'El usuario ha sido actualizado con éxito', 'success');
             handleBack();
         } catch (error) {
