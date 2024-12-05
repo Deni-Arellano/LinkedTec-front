@@ -230,7 +230,8 @@ const Postulacion = () => {
     };
 
     return (
-        <>
+        <>  
+        <div className='postulacion-contenedor-global'>
             <MenuNavegacion />
             <div className="postulacion-contenedor-pagina">
                 <div className="postulacion-contenedor">
@@ -253,12 +254,16 @@ const Postulacion = () => {
 
                         <div className='postulacion-general'>
                             <Label texto='Nombre' />
-                            <Textbox value={nombre} placeholder='Nombre' disabled />
+                            
+                            <input value={nombre} placeholder='Nombre' disabled className='postulacion-inputs' />
+                            
 
                         </div>
                         <div className='postulacion-general'>
                             <Label texto='Correo' />
-                            <Textbox value={correo} placeholder='Correo' disabled />
+                            
+                            <input value={correo} placeholder='Correo' disabled  className='postulacion-inputs'/>
+                            
                         </div>
                         <div className='postulacion-general'>
                             <Label texto='Descripción' />
@@ -273,6 +278,7 @@ const Postulacion = () => {
                     </div>
 
                 </div>
+            </div>
             </div>
 
         </>

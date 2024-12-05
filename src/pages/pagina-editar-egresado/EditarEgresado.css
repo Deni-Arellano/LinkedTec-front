@@ -1,4 +1,3 @@
-/* Contenedor principal que envuelve tanto el menú como el formulario */
 .editar-egresado-contenedor-global {
     display: flex;
     width: 100%;
@@ -8,61 +7,47 @@
     top: 0;
 }
 
-/* Menú con transición suave al cambiar su ancho */
-.menu {
-    width: 250px;
-    transition: width 0.3s ease; /* Suaviza el cambio cuando se oculta */
-}
 
-/* Contenedor principal del formulario */
 .editar-egresado-contenedor-pagina {
     display: flex;
     flex-grow: 1;
     justify-content: center;
-    transition: margin-left 0.3s ease; /* Suaviza el cambio cuando el menú se oculta */
-    padding: 4%; /* Ajuste de relleno */
-    margin-top: 25px; /* Ajuste superior */
+    transition: margin-left 0.3s ease;
+    padding: 4%;
+    margin-top: 25px;
 }
 
-/* Cuando el menú está oculto */
-.menu.oculto {
-    width: 0; /* El menú no será visible */
-}
 
 .editar-egresado-contenedor-pagina.menu-oculto {
-    margin-left: 0; /* El formulario ocupa todo el espacio cuando el menú se oculta */
+    margin-left: 0;
 }
 
-/* Estilos para el contenedor del formulario */
 .editar-egresado-contenedor {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Sombra para mayor profundidad */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 800px; /* Limita el ancho máximo */
-    padding: 0 2% 2% 2%; /* Relleno del contenedor */
+    max-width: 800px;
+    padding: 0 2% 2% 2%;
     box-sizing: border-box;
     text-align: left;
-    margin-top: 30px; /* Margen superior */
+    margin-top: 30px;
 }
 
-/* Espaciado de los campos generales del formulario */
 .editar-egresado-general {
     margin-bottom: 20px;
 }
 
-/* Disposición de los campos de formulario en filas, lado a lado */
 .editar-egresado-apellidos,
 .editar-egresado-fecha-sexo,
 .editar-egresado-contraseñas,
 .editar-egresado-empresa-sede-giro {
     display: flex;
     flex-direction: row;
-    gap: 20px; /* Espacio entre los campos */
-    justify-content: space-between; /* Alineación en fila */
+    gap: 20px;
+    justify-content: space-between;
 }
 
-/* Los campos se dividen en dos partes de igual tamaño */
 .editar-egresado-apellido-paterno,
 .editar-egresado-apellido-materno,
 .editar-egresado-fecha,
@@ -73,12 +58,11 @@
 .editar-egresado-biografia,
 .editar-egresado-empresa-sede,
 .editar-egresado-giro {
-    flex-basis: 50%; /* Cada campo ocupará la mitad del espacio */
+    flex-basis: 50%;
     box-sizing: border-box;
     margin-bottom: 0;
 }
 
-/* Estilo de los botones al final del formulario */
 .botones-editar-egresado {
     display: flex;
     flex-direction: row;
@@ -88,53 +72,45 @@
     width: 100%;
 }
 
-/* Estilo para los botones individuales */
 .boton-editar-egresado {
     display: flex;
     flex-direction: row;
-    width: 50%; /* Cada botón ocupa la mitad del espacio */
+    width: 50%;
     gap: 10px;
     justify-content: center;
 }
 
-/* Estilo del campo de biografía */
 #Biografia {
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Diseño adaptado para pantallas pequeñas */
 @media (max-width: 768px) {
-    /* Cambiar disposición a columna cuando el tamaño de pantalla es pequeño */
     .editar-egresado-apellidos,
     .editar-egresado-fecha-sexo,
     .editar-egresado-contraseñas,
     .editar-egresado-empresa-sede-giro {
-        flex-direction: column; /* Los campos se apilan verticalmente */
-        gap: 10px; /* Espacio reducido entre campos */
+        flex-direction: column;
+        gap: 10px;
     }
 
-    /* Los botones también se apilan verticalmente */
     .botones-editar-egresado .boton-editar-egresado {
         flex-direction: column;
     }
 
-    /* Ajuste de relleno en el formulario */
     .editar-egresado-contenedor {
         padding: 0 5% 5% 5%;
     }
 }
 
-/* Título del formulario con tamaño adaptado */
 .editar-titulo-egresado {
-    font-size: clamp(2rem, 5vw, 3rem); /* Tamaño de fuente adaptable */
+    font-size: clamp(2rem, 5vw, 3rem);
     color: #093e61;
     max-width: 100%;
     text-align: center;
-    word-wrap: break-word; /* Rompe las palabras largas */
+    word-wrap: break-word;
 }
 
-/* Estilo del icono de ojo (mostrar/ocultar contraseñas) */
 .egresado-eye-icon {
     position: static;
     cursor: pointer;
