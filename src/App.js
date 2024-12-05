@@ -35,6 +35,7 @@ import { SiNushell } from 'react-icons/si';
 import NotificationSystem from './pages/pagina-notificaciones/Notificaciones.jsx';
 import NotificacionesFlotante from './components/notificaciones-flotante/NotificacionesFlotante.jsx';
 import MenuNavegacionAdmin from './components/menu-navegacion-administrador/MenuNavegacionAdmin.jsx';
+import ReportesAdmin from './pages/pagina-reportes-admin/ReportesAdmin.jsx';
 
 
 export const usuarioContext = createContext();
