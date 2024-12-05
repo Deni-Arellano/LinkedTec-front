@@ -72,8 +72,10 @@ const NuevoMensaje = () => {
 
     return (
         <>
+            <div className='contenedor-toda-pagina-nuevo-mensaje'>
             <MenuNavegacion />
             <div className='nuevo-mensaje-contenedor-pagina'>
+            
                 <div className='nuevo-mensaje-contenedor-busqueda'>
                     <div className='nuevo-mensaje-busqueda-usuario'>
                         <span>Para:</span>
@@ -98,6 +100,7 @@ const NuevoMensaje = () => {
                         datosChat={usuario}
                     />
                 ))}
+            </div>
             </div>
 
 
