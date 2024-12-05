@@ -1,30 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 
 import CloudinaryDashboard from "../../components/cloudinary-dashboard/CloudinaryDashboard";
 import ReportesDashboard from "../../components/reportes-dashboard/ReportesDashboard";
 import './PaginaDashboard.css';
-import MenuNavegacionAdmin  from "../../components/menu-navegacion-administrador/MenuNavegacionAdmin";
-
-
-
+import MenuNavegacionAdmin from "../../components/menu-navegacion-administrador/MenuNavegacionAdmin";
 
 const PaginaDashboard = () => {
-
-    const [datosValores, setDatosValores] = useState([]);
-    const [datosPublicaciones, setDatosPublicaciones] = useState([]);
-    const [datosNoticias, setDatosNoticias] = useState([]);
-    const [datosEmpleos, setDatosEmpleos] = useState([]);
-    const [datosUsuarios, setDatosUsuarios] = useState([]);
-    const [datosReportes, setDatosReportes] = useState([]);
-
-    const [datosReportesPorTipo, setDatosReportesPorTipo] = useState([]);
-    const [datosReportesPOrMes, setDatosReportesPorMes] = useState([]);
-    const [datosPublicacionesPorMes, setDatosPublicacionesPorMes] = useState([]);
-    const [datosNoticiasPorMes, setDatosNoticiasPorMes] = useState([]);
-
-
     const [datosReportesTotal, setDatosReportesTotal] = useState({
         reportes: {
             totalReportes: 0,
@@ -37,34 +19,39 @@ const PaginaDashboard = () => {
         reportesPorMes: [],
     });
 
-
-
     const [datosCloudinary, setDatosCloudinary] = useState({});
 
-
-
+    // Variables no utilizadas
+    // const [datosValores, setDatosValores] = useState([]);
+    // const [datosPublicaciones, setDatosPublicaciones] = useState([]);
+    // const [datosNoticias, setDatosNoticias] = useState([]);
+    // const [datosEmpleos, setDatosEmpleos] = useState([]);
+    // const [datosUsuarios, setDatosUsuarios] = useState([]);
+    // const [datosReportes, setDatosReportes] = useState([]);
+    // const [datosReportesPorTipo, setDatosReportesPorTipo] = useState([]);
+    // const [datosReportesPOrMes, setDatosReportesPorMes] = useState([]);
+    // const [datosPublicacionesPorMes, setDatosPublicacionesPorMes] = useState([]);
+    // const [datosNoticiasPorMes, setDatosNoticiasPorMes] = useState([]);
 
     useEffect(() => {
-        // Función que obtiene datos de la API
+        // Función para obtener datos de la API
         const fetchData = async () => {
             const respuesta = await consultarApi();
-            asignarDatos(respuesta); // Asignamos los datos a los estados correspondientes
-        }
+            asignarDatos(respuesta);
+        };
 
-        fetchData(); // Cargar los datos cuando el componente se monte
+        fetchData();
 
-        // Configuramos la actualización periódica
-        const intervalId = setInterval(fetchData, 10000000); // Actualiza cada 5 segundos
 
-        // Limpiamos el intervalo cuando el componente se desmonte
+        const intervalId = setInterval(fetchData, 60000);
+
         return () => clearInterval(intervalId);
-
-    }, []); // Solo se ejecuta una vez al montar el componente
+    }, []);
 
     const consultarApi = async () => {
         try {
-            const respuesta = await axios.get('http://localhost:3000/estadisticas/');
-            return respuesta.data; // Retorna los datos
+            const respuesta = await axios.get('https://linked-back-spring-lake-433.fly.dev/estadisticas/');
+            return respuesta.data;
         } catch (error) {
             console.error(error);
         }
@@ -72,27 +59,9 @@ const PaginaDashboard = () => {
 
     const asignarDatos = (datos) => {
 
-
-        //Asignacion de datos para mostrar en targetitas
-        setDatosPublicaciones(datos.valores.publicaciones);
-        setDatosNoticias(datos.valores.noticias);
-        setDatosEmpleos(datos.valores.empleos);
-        setDatosUsuarios(datos.valores.usuarios);
-        setDatosReportes(datos.valores.reportes);
-
-        //Asignacion de datos para grafica
-        setDatosReportesPorTipo(datos.datosGraficar.reportes.reportesPorTipo);
-        setDatosReportesPorMes(datos.datosGraficar.reportes.reportesPorMes);
-
-        setDatosPublicacionesPorMes(datos.datosGraficar.publicaciones.totalPublicacionesPorMes);
-        setDatosNoticiasPorMes(datos.datosGraficar.noticias.totalNoticiasPorMes);
-
         setDatosCloudinary(datos.cloudinary);
         setDatosReportesTotal(datos.reportes);
-
     };
-
-
 
     return (
         <div>
@@ -100,7 +69,7 @@ const PaginaDashboard = () => {
             <div className="dashboard-container">
                 <h1>Dashboard</h1>
                 <ReportesDashboard data={datosReportesTotal} />
-                <h1>Informacion acerca de cloudinary</h1>
+                <h1>Información acerca de Cloudinary</h1>
                 <CloudinaryDashboard data={datosCloudinary} />
             </div>
         </div>
