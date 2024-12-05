@@ -1,6 +1,15 @@
+.contenedor-toda-pagina-nuevo-mensaje{
+    display: flex;
+    align-content: flex-start;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
 .nuevo-mensaje-contenedor-pagina {
     
-    margin-left: 258px;
+    margin-top: 50px;
+    width: 100%;
     
 }
 
@@ -58,5 +67,27 @@
 .nuevo-mensaje-boton-atras button:hover {
     background-color: #798eb2;
     
+}
+
+@media (max-width: 375px){
+    
+    .nuevo-mensaje-contenedor-busqueda{
+        display: flex;
+
+        flex-direction: column;
+        align-items: center;
+    }
+    .nuevo-mensaje-busqueda-usuario{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nuevo-mensaje-boton-atras{
+        display: flex;
+        justify-content: center;
+        margin: 10px auto 0 auto;
+    }
+
 }
 

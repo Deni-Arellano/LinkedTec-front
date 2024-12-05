@@ -14,7 +14,7 @@ const BotonSeguimientoEnPerfil = ({ id_usuario_log, id_perfil_a_seguir }) => {
             if (id_usuario_log && id_perfil_a_seguir) {
                 try {
                     const response = await axios.get(
-                        `http://localhost:3000/seguimientos/usuarios/${id_usuario_log}/seguidos?pagina=1&limite=100`
+                        `https://linked-back-spring-lake-433.fly.dev/seguimientos/usuarios/${id_usuario_log}/seguidos?pagina=1&limite=100`
                     );
                     // Comprueba si el usuario está siguiendo al perfil
                     const siguiendoPerfil = response.data.usuariosSeguidos.some(
@@ -33,7 +33,7 @@ const BotonSeguimientoEnPerfil = ({ id_usuario_log, id_perfil_a_seguir }) => {
     // Manejar el clic del botón
     const manejarClick = () => {
         axios
-            .post('http://localhost:3000/seguimientos', {
+            .post('https://linked-back-spring-lake-433.fly.dev/seguimientos', {
                 id_usuario: id_usuario_log,
                 id_perfil_a_seguir: id_perfil_a_seguir,
             })

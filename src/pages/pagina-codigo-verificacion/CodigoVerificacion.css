@@ -1,41 +1,49 @@
-/* Contenedor general */
 .CodigoVerificacion-verificacion-container {
   display: flex;
   flex-direction: column;
   align-items: center;   
   justify-content: center; 
-  min-height: 100vh;
-  max-width: 400px;
+  min-height: 95vh;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Título de verificación */
 .CodigoVerificacion-titulo-verificacion {
-  font-size: 28px;
+  font-size: clamp(18px, 6vw, 28px);
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
 }
 
-/* Contenedor de los inputs del código */
 .CodigoVerificacion-codigo-inputs {
   display: flex;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  max-width: 70%;
 }
 
-/* Estilos para cada input individual */
 .CodigoVerificacion-codigo-input {
   width: 55px;
   height: 55px;
-  font-size: 22px;
+  font-size: calc(1.5vw + 1.5vh);
   text-align: center;
   border: 2px solid #798eb2;
   border-radius: 5px;
+  box-sizing: border-box;
+  display: inline-block;
+  transition: font-size 0.3s ease;
+  aspect-ratio: 1;
 }
 
-/* Estilos del botón */
 .CodigoVerificacion-btn {
   padding: 8px 16px;
   font-size: 16px;
@@ -44,27 +52,28 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 25px;
+  margin-top: 20px;
   width: auto;
   text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Efecto hover para el botón */
 .CodigoVerificacion-btn:hover {
   background-color: #627399;
 }
 
-/* Ajustes responsivos para pantallas más pequeñas */
 @media (max-width: 768px) {
   .CodigoVerificacion-titulo-verificacion {
-    font-size: 24px;
-    margin-bottom: 15px;
+    font-size: clamp(18px, 8vw, 24px);
+    margin-bottom: 12px;
   }
 
   .CodigoVerificacion-codigo-input {
     width: 45px;
     height: 45px;
-    font-size: 20px;
+    font-size: calc(2vw + 2vh);
   }
 
   .CodigoVerificacion-btn {
@@ -75,25 +84,27 @@
 
 @media (max-width: 480px) {
   .CodigoVerificacion-titulo-verificacion {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: clamp(16px, 10vw, 22px);
+    margin-bottom: 8px;
   }
 
   .CodigoVerificacion-codigo-input {
     width: 40px;
     height: 40px;
-    font-size: 18px;
+    font-size: calc(2vw + 2vh);
   }
 
   .CodigoVerificacion-btn {
     font-size: 12px;
     padding: 4px 8px;
   }
-}
-.CodigoVerificacion-titulo-verificacion {
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 20px;
-  text-align: center;
-  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+
+  .CodigoVerificacion-codigo-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 }

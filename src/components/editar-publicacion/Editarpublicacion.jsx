@@ -53,7 +53,7 @@ const EditarPublicacion = () => {
             });
 
             if (resultado.isConfirmed) {
-                await Axios.delete(`http://localhost:3000/publicaciones/${datos.id_publicacion}`);
+                await Axios.delete(`https://linked-back-spring-lake-433.fly.dev/publicaciones/${datos.id_publicacion}`);
                 Swal.fire(
                     'Eliminado',
                     'La publicación ha sido eliminada.',
@@ -121,7 +121,7 @@ const EditarPublicacion = () => {
         console.log("datos a actualizar" , datosEnviar);
     
         try {
-            await Axios.patch(`http://localhost:3000/publicaciones/${datos.id_publicacion}`, datosEnviar);
+            await Axios.patch(`https://linked-back-spring-lake-433.fly.dev/publicaciones/${datos.id_publicacion}`, datosEnviar);
             Swal.fire('Guardado', 'La publicación ha sido actualizada.', 'success');
             handleBack();
         } catch (error) {
@@ -144,7 +144,7 @@ const EditarPublicacion = () => {
         formData.append('imagen', file);
 
         try {
-            const response = await Axios.post('http://localhost:3000/subidas/subir-imagen', formData, {
+            const response = await Axios.post('https://linked-back-spring-lake-433.fly.dev/subidas/subir-imagen', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

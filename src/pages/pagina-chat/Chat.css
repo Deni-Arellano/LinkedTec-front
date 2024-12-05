@@ -1,62 +1,67 @@
-.chat-contenedor-toda-pagina  {
-    position: absolute;
+.chat-contenedor-toda-pagina {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: white; 
-
-  }
-
-.conversacion-contenedor-pagina{
-    margin-left: 262px;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    background-color: white; 
+    background-color: white;
     overflow: hidden;
- 
 }
 
-.conversacion-usuario-encabezado{
+.conversacion-contenedor-pagina {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    background-color: white;
+    overflow: hidden; /* Prevenir desbordamiento */
+    min-width: 0; /* Permitir que flex items se encojan */
+}
+
+.conversacion-usuario-encabezado {
+    position: sticky;
+    top: 58px;
     padding: 5px 0;
     background-color: white;
     border-bottom: 1px solid #e0e0e0;
-    position: fixed;
-    margin-top: 58px;
-    top: 0;
-    z-index: 1000;
-    margin-bottom: 15px;
-    width: calc(100% - 262px);
+    z-index: 500;
+    width: 100%;
+    min-width: 0; /* Permitir encogimiento */
+    margin-left: 2px;
+
 }
 
-.conversacion-vista-conversaciones{
-     max-width: 30%;
+.conversacion-vista-conversaciones {
+    max-width: 30%;
+    height: 100%;
+    overflow-y: auto;
+    min-width: 0; /* Permitir encogimiento */
 }
 
 .conversacion-usuario-info {
     display: flex;
     align-items: center;
-    padding:  0 1% ;
+    padding: 0 1%;
     background-color: white;
+    min-width: 0; /* Permitir encogimiento */
+    
 }
-
-
 
 .conversacion-usuario-foto {
     display: flex;
     margin-right: 10px;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0; /* Evitar que la foto se encoja */
 }
 
 .conversacion-usuario-foto img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-}
-
-.conversacion-usuario-info {
-    flex: 1;
+    object-fit: cover;
 }
 
 .conversacion-usuario-nombre {
@@ -65,28 +70,30 @@
     font-weight: bold;
     color: #093e61;
     font-family: sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.conversacion-usuario-input{
-    position:fixed;
+.conversacion-usuario-input {
+    position: sticky;
     bottom: 0;
-    width: calc(100% - 262px);
+    width: 100%;
     z-index: 1000;
-    
-    
+    background-color: white;
+    padding: 10px 0;
+    min-width: 0; /* Permitir encogimiento */
+    margin-left: 2px;
 }
 
-.conversacion-usuario-mensajes{
+.conversacion-usuario-mensajes {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    flex-grow: 1;
-    margin-bottom: 55px;
-    margin-top: 39px;
-    padding-top: 10px;
-    padding-bottom: 3px;
-    background-color: white;
+    padding: 10px 0;
+    margin-top: 60px;
     overflow-y: auto;
-    
-    
+    background-color: white;
+    min-width: 0; /* Permitir encogimiento */
+    width: 100%;
 }

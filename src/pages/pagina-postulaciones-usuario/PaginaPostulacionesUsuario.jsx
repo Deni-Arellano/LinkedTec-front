@@ -13,7 +13,7 @@ const PostulacionUsuario = ({ idPostulacion }) => {
   useEffect(() => {
     const fetchPostulacionData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/postulaciones/${idPostulacion}/info`);
+        const response = await axios.get(`https://linked-back-spring-lake-433.fly.dev/postulaciones/${idPostulacion}/info`);
         setDatos(response.data); // Asigna los datos recibidos a 'datos'
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -112,7 +112,7 @@ const PaginaPostulacionesUsuario = () => {
     const fetchPostulaciones = async () => {
       try {
         const userId = 5; // Reemplaza con el ID real del usuario
-        const response = await axios.get('http://localhost:3000/postulaciones/5?pagina=1&limite=10');
+        const response = await axios.get('https://linked-back-spring-lake-433.fly.dev/postulaciones/5?pagina=1&limite=10');
         setPostulaciones(response.data.postulaciones);
       } catch (error) {
         console.error("Error al cargar las postulaciones:", error);

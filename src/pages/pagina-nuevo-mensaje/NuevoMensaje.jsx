@@ -22,7 +22,7 @@ const NuevoMensaje = () => {
     //Obtener los datos del usuario logeado
     const getUsuario = async () => {
         try {
-            const response = await Axios.get(`http://localhost:3000/usuarios/`); 
+            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/`); 
             //Guardamos el nombre, apellido_paterno, apellido_materno y foto de cada usuario en la plataforma
             const datosUsuarios = [];
                 
@@ -72,8 +72,10 @@ const NuevoMensaje = () => {
 
     return (
         <>
+            <div className='contenedor-toda-pagina-nuevo-mensaje'>
             <MenuNavegacion />
             <div className='nuevo-mensaje-contenedor-pagina'>
+            
                 <div className='nuevo-mensaje-contenedor-busqueda'>
                     <div className='nuevo-mensaje-busqueda-usuario'>
                         <span>Para:</span>
@@ -98,6 +100,7 @@ const NuevoMensaje = () => {
                         datosChat={usuario}
                     />
                 ))}
+            </div>
             </div>
 
 

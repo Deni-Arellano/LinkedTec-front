@@ -1,3 +1,21 @@
+.postulacion-contenedor-global{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    position: absolute;
+    left: 0;
+    top: 0;
+    
+}
+.postulacion-contenedor-pagina{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    transition: margin-left 0.3s ease;
+    padding: 4%;
+    margin-top: 25px;
+
+}
 .postulacion-contenedor{
     display: flex;
     flex-direction: column;
@@ -5,12 +23,13 @@
     justify-content: center;
     padding: 3%;
     background-color: white;
-    max-width: 54%;
     width: 100%;
-    
+    max-width: 55%;
     margin: auto;
     border-radius: 10px;
+    min-width: 205px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
 }
 
 .postulacion-general {
@@ -20,17 +39,12 @@
     gap: 10px; 
     padding: 5px;
     margin-bottom: 20px;
+    
 }
 
-.formulario-postulacion{
-    width: 100%;
-}
-
-.postulacion-contenedor-pagina{
-    margin-left: 250px;
-
-}
-
+.formulario-postulacion {
+        width: 100%;
+    }
 .subir-cv{
     display: none;
 }
@@ -92,7 +106,19 @@
     margin-right: auto;
     
 }
-
+.postulacion-inputs{
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Sans-serif', Arial;
+    border-radius: 15px;
+    border: 2px solid #000000;
+    margin-right: 10px;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
 .postulacion-boton-postularse{
     padding: 10px 20px;
     font-size: 16px;
@@ -116,11 +142,13 @@
 
 
 
-@media (max-width: 940px) {
+@media (max-width: 768px) {
     .postulacion-general, .botones-postulacion{
         display: flex;
         flex-direction: column;
         align-items: flex-start;
 
     }
+
+    
 }

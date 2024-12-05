@@ -55,7 +55,7 @@ const Postulacion = () => {
     // Obtener los datos del usuario logeado
     const getUsuario = useCallback(async () => {
         try {
-            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
             // Si el usuario no es un egresado o estudiante, redirige a la página de publicaciones empleo
             if (response.data.role !== 'Egresados' && response.data.role !== 'Estudiantes') {
                 navigate('/empleos');
@@ -106,7 +106,7 @@ const Postulacion = () => {
         formData.append('archivo', archivo);
 
         try {
-            const respuesta = await Axios.post('http://localhost:3000/subidas/subir-archivo', formData, {
+            const respuesta = await Axios.post('https://linked-back-spring-lake-433.fly.dev/subidas/subir-archivo', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
@@ -214,7 +214,7 @@ const Postulacion = () => {
 
         //Petición para agregar postulación   
         try {
-            await Axios.post(`http://localhost:3000/postulaciones/`, datosEnviar);
+            await Axios.post(`https://linked-back-spring-lake-433.fly.dev/postulaciones/`, datosEnviar);
             Swal.fire('Postulación realizada', 'La postulación ha sido realizada con éxito', 'success');
             handleBack();
         } catch (error) {
@@ -230,7 +230,8 @@ const Postulacion = () => {
     };
 
     return (
-        <>
+        <>  
+        <div className='postulacion-contenedor-global'>
             <MenuNavegacion />
             <div className="postulacion-contenedor-pagina">
                 <div className="postulacion-contenedor">
@@ -253,12 +254,16 @@ const Postulacion = () => {
 
                         <div className='postulacion-general'>
                             <Label texto='Nombre' />
-                            <Textbox value={nombre} placeholder='Nombre' disabled />
+                            
+                            <input value={nombre} placeholder='Nombre' disabled className='postulacion-inputs' />
+                            
 
                         </div>
                         <div className='postulacion-general'>
                             <Label texto='Correo' />
-                            <Textbox value={correo} placeholder='Correo' disabled />
+                            
+                            <input value={correo} placeholder='Correo' disabled  className='postulacion-inputs'/>
+                            
                         </div>
                         <div className='postulacion-general'>
                             <Label texto='Descripción' />
@@ -273,6 +278,7 @@ const Postulacion = () => {
                     </div>
 
                 </div>
+            </div>
             </div>
 
         </>

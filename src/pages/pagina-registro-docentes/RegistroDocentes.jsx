@@ -54,7 +54,7 @@ const RegistroDocentes = () => {
 
   const verificarUsuarioExistente = async () => {
     try {
-      const response = await Axios.get('http://localhost:3000/usuarios');
+      const response = await Axios.get('https://linked-back-spring-lake-433.fly.dev/usuarios');
       const usuarios = response.data;
       if (usuarios.length === 0) {
         console.log('No hay usuarios registrados. Se permite el registro.');
@@ -103,7 +103,7 @@ const verificarDocenteExistente = async () => {
   try {
     while (true) {
       // Hacer la solicitud a la API, especificando el número de página y el límite
-      const response = await Axios.get(`http://localhost:3000/usuarios/docentes?pagina=${paginaActual}&limite=${limite}`);
+      const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/docentes?pagina=${paginaActual}&limite=${limite}`);
       const { docentes, exists_pagina_siguiente } = response.data;
 
       // Verificar si el número de empleado ya existe en la página actual
@@ -408,7 +408,7 @@ const verificarDocenteExistente = async () => {
 
     console.log(datosEnviar);
 
-    Axios.post('http://localhost:3000/usuarios/docentes', datosEnviar)
+    Axios.post('https://linked-back-spring-lake-433.fly.dev/usuarios/docentes', datosEnviar)
     .then((response) => {
       console.log("Respuesta del servidor:", response.data);
       setUsuarioLog(response.data.id);

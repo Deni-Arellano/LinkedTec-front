@@ -22,7 +22,7 @@ function NotificacionesFlotante({ onClose }) {
          * Reconecta en caso de cierre o error.
          */
         const connectWebSocket = () => {
-            ws = new WebSocket(`ws://localhost:8081?id_usuario=${usuarioLog}`);
+            ws = new WebSocket(`wss://linked-back-spring-lake-433.fly.dev:9081?id_usuario=${usuarioLog}`);
 
             ws.onopen = () => {
                 console.log(`Conexión WebSocket establecida para el ID de usuario: ${usuarioLog}`);

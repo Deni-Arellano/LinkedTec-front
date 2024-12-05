@@ -1,39 +1,51 @@
-.editar-egresado-contenedor{
+.editar-egresado-contenedor-global {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 3% 3% 3%;
-    background-color: white;
-    max-width: 54%;
     width: 100%;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    justify-content: flex-start;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
-.editar-egresado-general{
+
+.editar-egresado-contenedor-pagina {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    transition: margin-left 0.3s ease;
+    padding: 4%;
+    margin-top: 25px;
+}
+
+
+.editar-egresado-contenedor-pagina.menu-oculto {
+    margin-left: 0;
+}
+
+.editar-egresado-contenedor {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 800px;
+    padding: 0 2% 2% 2%;
+    box-sizing: border-box;
+    text-align: left;
+    margin-top: 30px;
+}
+
+.editar-egresado-general {
     margin-bottom: 20px;
 }
-
-.formulario-editar-egresado{
-    width: 100%;
-}
-
-.editar-egresado-contenedor-pagina{
-    margin-left: 250px;
-
-}
-
 
 .editar-egresado-apellidos,
 .editar-egresado-fecha-sexo,
 .editar-egresado-contraseñas,
-.editar-egresado-carrera-anio-puesto {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: space-between;
+.editar-egresado-empresa-sede-giro {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
 }
 
 .editar-egresado-apellido-paterno,
@@ -42,23 +54,24 @@
 .editar-egresado-sexo,
 .editar-egresado-contraseña,
 .editar-egresado-confirmar-contraseña,
-.editar-egresado-carrera,
-.editar-egresado-anio-puesto{
+.editar-egresado-telefono,
+.editar-egresado-biografia,
+.editar-egresado-empresa-sede,
+.editar-egresado-giro {
     flex-basis: 50%;
     box-sizing: border-box;
     margin-bottom: 0;
 }
 
-.botones-editar-egresado{
-    
+.botones-editar-egresado {
     display: flex;
     flex-direction: row;
     gap: 15px;
     justify-content: center;
     margin-top: 20px;
     width: 100%;
-    
 }
+
 .boton-editar-egresado {
     display: flex;
     flex-direction: row;
@@ -70,26 +83,23 @@
 #Biografia {
     width: 100%;
     box-sizing: border-box;
-    
-  }
+}
 
-
-/*Diseño al reducirse el tamaño de la ventana*/
-
-@media (max-width: 940px) {
+@media (max-width: 768px) {
     .editar-egresado-apellidos,
     .editar-egresado-fecha-sexo,
     .editar-egresado-contraseñas,
-    .editar-egresado-carrera-anio-puesto {
+    .editar-egresado-empresa-sede-giro {
         flex-direction: column;
-        gap: 10px; 
+        gap: 10px;
     }
-}
 
-
-@media (max-width: 940px) {
     .botones-editar-egresado .boton-editar-egresado {
         flex-direction: column;
+    }
+
+    .editar-egresado-contenedor {
+        padding: 0 5% 5% 5%;
     }
 }
 
@@ -101,13 +111,12 @@
     word-wrap: break-word;
 }
 
-
-/*Estilos para el icono de ojo aplicado al ver contraseñas*/
 .egresado-eye-icon {
     position: static;
     cursor: pointer;
     color: #888;
-  }
-  .egresado-eye-icon:hover {
+}
+
+.egresado-eye-icon:hover {
     color: #333;
-  }
+}

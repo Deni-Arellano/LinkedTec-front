@@ -51,7 +51,7 @@ const EditarEgresado = () => {
     const getUsuario = async () => {
         //Petición para obtener los datos del usuario
         try {
-            const response = await Axios.get(`http://localhost:3000/usuarios/${usuarioLog}`);
+            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
 
             //Si el usuario no es un egresado, redirige a la página de perfil
             if (response.data.role !== 'Egresados') {
@@ -278,7 +278,7 @@ const EditarEgresado = () => {
 
         //Petición para editar el usuario
         try {
-            await Axios.patch(`http://localhost:3000/usuarios/egresados/${usuarioLog}`, datosEnviar);
+            await Axios.patch(`https://linked-back-spring-lake-433.fly.dev/usuarios/egresados/${usuarioLog}`, datosEnviar);
             Swal.fire('Guardado', 'El usuario ha sido actualizado con éxito', 'success');
             handleBack();
         } catch (error) {
@@ -292,7 +292,8 @@ const EditarEgresado = () => {
 
 
         return (
-            <>
+            <>  
+            <div className='editar-egresado-contenedor-global'>
                 <MenuNavegacion />
                 <div className='editar-egresado-contenedor-pagina'>
                     <div className="editar-egresado-contenedor">
@@ -461,6 +462,7 @@ const EditarEgresado = () => {
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </>
 
