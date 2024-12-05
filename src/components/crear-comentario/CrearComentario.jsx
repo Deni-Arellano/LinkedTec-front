@@ -26,7 +26,7 @@ const CrearComentario = ({ id_publicacion, idUsuario, onComentarioAgregado }) =>
             'fecha': new Date().toISOString()
         };
         try {
-            const response = await Axios.post(`http://localhost:3000/publicaciones/comentarios/${id_publicacion}`, datosEnviar);
+            const response = await Axios.post(`https://linked-back-spring-lake-433.fly.dev/publicaciones/comentarios/${id_publicacion}`, datosEnviar);
             onComentarioAgregado(response.data);  
             setComentario('');  
             console.log('Comentario agregado con éxito.'); 

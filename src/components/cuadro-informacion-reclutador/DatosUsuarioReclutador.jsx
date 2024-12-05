@@ -74,7 +74,7 @@ const DatosUsu_Rec = ({ datos }) => {
             formData.append('imagen', file);
 
             try {
-                const uploadResponse = await axios.post('http://localhost:3000/subidas/subir-imagen', formData, {
+                const uploadResponse = await axios.post('https://linked-back-spring-lake-433.fly.dev/subidas/subir-imagen', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
 
