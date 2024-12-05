@@ -17,21 +17,28 @@ const Chat = () => {
     
     const [ws, setWs] = useState(null);
     const [mensajes, setMensajes] = useState([]);
-    const mensajesRef = useRef(null);
+    const mensajesContainerRef = useRef(null);
+    const shouldScrollRef = useRef(true);
     
+    const scrollToBottom = () => {
+        if (shouldScrollRef.current && mensajesContainerRef.current) {
+            mensajesContainerRef.current.scrollTop = mensajesContainerRef.current.scrollHeight;
+        }
+    };
+
     //Muestra los mensajes en el chat
     const mostrarMensaje = useCallback((mensaje) => {
-
         if (mensaje.id_destinatario === idDestinatario || mensaje.id_remitente === idDestinatario) {
             const mensajeComponent = mensaje.id_remitente === usuarioLog
                 ? <MensajeUsuario key={mensaje.id} texto={mensaje.mensaje} hora={new Date(mensaje.fecha_envio).toLocaleString('es-ES')} />
                 : <MensajeContacto key={mensaje.id} texto={mensaje.mensaje} hora={new Date(mensaje.fecha_envio).toLocaleString('es-ES')} />;
             
-            setMensajes((prevMensajes) => [...prevMensajes, mensajeComponent]);
+            setMensajes(prevMensajes => [...prevMensajes, mensajeComponent]);
+            shouldScrollRef.current = true;
         }
     }, [usuarioLog, idDestinatario]);
     
-    //Renderiza los mensajes historicos
+    //Renderiza los mensajes históricos
     const mostrarMensajesHistoricos = useCallback((mensajesHistoricos) => {
         const mensajesFormateados = mensajesHistoricos.map((mensaje) => (
             mensaje.id_remitente === usuarioLog
@@ -39,26 +46,34 @@ const Chat = () => {
                 : <MensajeContacto key={mensaje.id} texto={mensaje.mensaje} hora={new Date(mensaje.fecha_envio).toLocaleString('es-ES')} />
         ));
         setMensajes(mensajesFormateados);
+        shouldScrollRef.current = true;
     }, [usuarioLog]);
+
+    // Efecto para manejar el scroll
+    useEffect(() => {
+        scrollToBottom();
+    }, [mensajes]);
+
+    // Maneja el scroll manual del usuario
+    const handleScroll = (e) => {
+        const element = e.target;
+        const isAtBottom = Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) < 1;
+        shouldScrollRef.current = isAtBottom;
+    };
 
     //Conecta al servidor WebSocket
     useEffect(() => {
         const socket = new WebSocket(`ws://localhost:8080/?idUsuario=${usuarioLog}&idChat=${idDestinatario}`);
         setWs(socket);
     
-        socket.onopen = () => {
-            //console.log('Conectado al servidor WebSocket chat');
-            
-        };
+        socket.onopen = () => {};
 
         socket.onerror = (error) => {
             console.error('Error en WebSocket:', error);
-            //excepciones("Hubo un error al conectar al servidor. Intenta nuevamente.");
         };
     
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            //console.log('Mensaje recibido:', data);
 
             if (data.error) {
                 excepciones(`Error al recibir el mensaje: ${data.error}`);
@@ -69,29 +84,13 @@ const Chat = () => {
             }
         };
 
-        socket.onclose = () => {
-            //console.log('Desconectado del servidor WebSocket chat');
-        };
+        socket.onclose = () => {};
     
         return () => {
             socket.close();
         };
     }, [usuarioLog, idDestinatario, mostrarMensaje, mostrarMensajesHistoricos]);
 
-    //Mantiene el scroll en la parte inferior del chat
-    useEffect(() => {
-        setTimeout(() => {
-          if (mensajesRef.current) {
-            mensajesRef.current.scrollIntoView({
-              
-              block: 'end',
-              inline: 'nearest',
-            });
-            window.scrollBy(0, 100);
-          }
-        }, 50);  
-      }, [mensajes]);
-      
     //Envia un mensaje al servidor WebSocket
     const enviarMensaje = (contenido) => {
         if (ws && ws.readyState === WebSocket.OPEN) {
@@ -100,10 +99,8 @@ const Chat = () => {
                 idChat: idDestinatario,
                 mensaje: contenido
             };
-            //console.log('Enviando mensaje:', mensaje);
             ws.send(JSON.stringify(mensaje));
         } else {
-            //console.error("WebSocket no está conectado.");
             excepciones("No se pudo enviar el mensaje.");
         }
     };
@@ -115,34 +112,36 @@ const Chat = () => {
             title: "Oops...",
             text: mensaje
         });
-
     }
 
     return (
         <>
             <div className="chat-contenedor-toda-pagina">
-            <MenuNavegacion />
-            <div className="conversacion-contenedor-pagina">
-                <div className="conversacion-usuario-encabezado">
-                    <div className="conversacion-usuario-info">
-                        <div className="conversacion-usuario-foto">
-                            <img src={foto} alt="foto-usuario" />
-                        </div>
-                        <div>
-                            <h3 className="conversacion-usuario-nombre">{nombre}</h3>
+                <MenuNavegacion />
+                <div className="conversacion-contenedor-pagina">
+                    <div className="conversacion-usuario-encabezado">
+                        <div className="conversacion-usuario-info">
+                            <div className="conversacion-usuario-foto">
+                                <img src={foto} alt="foto-usuario" />
+                            </div>
+                            <div>
+                                <h3 className="conversacion-usuario-nombre">{nombre}</h3>
+                            </div>
                         </div>
                     </div>
+        
+                    <div 
+                        className="conversacion-usuario-mensajes" 
+                        ref={mensajesContainerRef}
+                        onScroll={handleScroll}
+                    >
+                        {mensajes}
+                    </div>
+        
+                    <div className="conversacion-usuario-input">
+                        <NuevoMensaje enviarMensaje={enviarMensaje} />
+                    </div>
                 </div>
-    
-                <div className="conversacion-usuario-mensajes"  ref={mensajesRef}>
-                    {mensajes}
-                </div>
-    
-                <div className="conversacion-usuario-input">
-                    <NuevoMensaje enviarMensaje={enviarMensaje} />
-                </div>
-                
-            </div>
             </div>
         </>
     );
