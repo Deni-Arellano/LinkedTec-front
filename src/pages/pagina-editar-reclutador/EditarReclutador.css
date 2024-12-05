@@ -7,10 +7,6 @@
     top: 0;
 }
 
-.menu {
-    width: 250px;
-    transition: width 0.3s ease;
-}
 
 .editar-reclutador-contenedor-pagina {
     display: flex;
@@ -21,13 +17,6 @@
     margin-top: 25px;
 }
 
-.menu.oculto {
-    width: 0;
-}
-
-.editar-reclutador-contenedor-pagina.menu-oculto {
-    margin-left: 0;
-}
 
 .editar-reclutador-contenedor {
     background-color: #fff;
