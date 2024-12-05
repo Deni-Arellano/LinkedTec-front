@@ -105,6 +105,7 @@ function App() {
           <Route path="/editar-noticia/:id_noticia" element={<EditarNoticia />} />
           <Route path="/notificaciones" element={<NotificationSystem />} />
           <Route path="/notificacionesflotante" element={<NotificacionesFlotante />} />
+          <Route path="/pagina-reportes-admin" element={<ReportesAdmin />} />
           
           <Route path="/mensajes" element={<Mensajes />} />
           <Route path="/nuevo-mensaje" element={<NuevoMensaje />} />
