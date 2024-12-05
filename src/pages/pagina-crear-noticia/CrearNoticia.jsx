@@ -34,7 +34,7 @@ const CrearNoticias = () => {
 
     /* Conectar al WebSocket al cargar el componente*/
     useEffect(() => {
-        const ws = new WebSocket('ws://linked-back-spring-lake-433.fly.dev:9081');
+        const ws = new WebSocket('wss://linked-back-spring-lake-433.fly.dev:9081');
 
         ws.onopen = () => {
             console.log('Conectado al servidor WebSocket');

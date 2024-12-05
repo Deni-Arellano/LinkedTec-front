@@ -28,7 +28,7 @@ const PaginaFormulario = () => {
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        const ws = new WebSocket('ws://linked-back-spring-lake-433.fly.dev:9081'); 
+        const ws = new WebSocket('wss://linked-back-spring-lake-433.fly.dev:9081'); 
         setSocket(ws);
 
         ws.onopen = () => {
