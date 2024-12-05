@@ -292,7 +292,8 @@ const EditarEgresado = () => {
 
 
         return (
-            <>
+            <>  
+            <div className='editar-egresado-contenedor-global'>
                 <MenuNavegacion />
                 <div className='editar-egresado-contenedor-pagina'>
                     <div className="editar-egresado-contenedor">
@@ -461,6 +462,7 @@ const EditarEgresado = () => {
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </>
 

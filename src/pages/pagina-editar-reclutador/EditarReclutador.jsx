@@ -269,8 +269,9 @@ const EditarReclutador = () => {
     }}
 
     return (
-        <>
-            <MenuNavegacion />
+        <>  
+            <div className='editar-reclutador-contenedor-global'>
+                <MenuNavegacion/>
             <div className='editar-reclutador-contenedor-pagina'>
                 <div className="editar-reclutador-contenedor">
 
@@ -438,6 +439,8 @@ const EditarReclutador = () => {
                     </div>
                 </div>
             </div>
+            </div>
+            
         </>
 
     );
