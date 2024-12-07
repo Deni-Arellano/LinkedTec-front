@@ -26,7 +26,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
     const navigate = useNavigate();
 
     const conectarWebSocket = () => {
-        ws.current = new WebSocket('wss://linked-back-spring-lake-433.fly.dev:9082');
+        ws.current = new WebSocket('wss://linked-back-spring-lake-433.fly.dev/reacciones');
     
         ws.current.onopen = () => {
             console.log("Conectado al servidor de WebSocket de reacciones");
