@@ -53,7 +53,7 @@ const Registro = () => {
 
   const verificarusuarioexistente = async () => {
     try {
-      const response = await Axios.get('https://linked-back-spring-lake-433.fly.dev/usuarios');
+      const response = await Axios.get('https://linked-back-production.up.railway.app/usuarios');
       const usuarios = response.data;
       const correoExistente = usuarios.some((usuario) => usuario.correo === correo);
       if (correoExistente) {
@@ -96,7 +96,7 @@ const Registro = () => {
     try {
       while (true) {
         // Hacer la solicitud a la API, especificando el número de página y el límite
-        const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/estudiantes?pagina=${paginaActual}&limite=${limite}`);
+        const response = await Axios.get(`https://linked-back-production.up.railway.app/usuarios/estudiantes?pagina=${paginaActual}&limite=${limite}`);
         const { estudiantes, exists_pagina_siguiente } = response.data;
   
         // Verificar si el número de control ya existe en la página actual
@@ -394,7 +394,7 @@ const Registro = () => {
       }
     };
 
-    Axios.post('https://linked-back-spring-lake-433.fly.dev/usuarios/estudiantes', datosEnviar)
+    Axios.post('https://linked-back-production.up.railway.app/usuarios/estudiantes', datosEnviar)
     .then((response) => {
       console.log("Respuesta del servidor:", response.data);
       setUsuarioLog(response.data.id); 

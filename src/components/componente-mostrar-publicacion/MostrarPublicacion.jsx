@@ -26,7 +26,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
     const navigate = useNavigate();
 
     const conectarWebSocket = () => {
-        ws.current = new WebSocket('wss://linked-back-spring-lake-433.fly.dev/reacciones');
+        ws.current = new WebSocket('wss://linked-back-production.up.railway.app/reacciones');
     
         ws.current.onopen = () => {
             console.log("Conectado al servidor de WebSocket de reacciones");
@@ -77,7 +77,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
 
     const eliminarPublicacion = async () => {
         try {
-            const response = await Axios.delete(`https://linked-back-spring-lake-433.fly.dev/publicaciones/${datos.id_publicacion}`);
+            const response = await Axios.delete(`https://linked-back-production.up.railway.app/publicaciones/${datos.id_publicacion}`);
             onEliminar(datos.id_publicacion);
             handleOpciones();
             setMostrarCrearComentario(false);
@@ -95,7 +95,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
 
     const getComentariosPublicacion = async (id_publicacion) => {
         try {
-            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/publicaciones/comentarios/${id_publicacion}`);
+            const response = await Axios.get(`https://linked-back-production.up.railway.app/publicaciones/comentarios/${id_publicacion}`);
             setComentariosPublicacion(response.data.comentarios || []);
         } catch (err) {
             console.error('Error al obtener los comentarios:', err);
@@ -142,7 +142,7 @@ const MostrarPubli = ({ datos, onEliminar }) => {
         setHaReaccionado(!esReaccionIgual);
     
         try {
-            const response = await Axios.post('https://linked-back-spring-lake-433.fly.dev/reaccionar', {
+            const response = await Axios.post('https://linked-back-production.up.railway.app/reaccionar', {
                 id_publicacion: datos.id_publicacion,
                 tipo_reaccion: tipo_reaccion,
                 cancelar: esReaccionIgual ? "true" : "", // Cancela si la reacción es igual

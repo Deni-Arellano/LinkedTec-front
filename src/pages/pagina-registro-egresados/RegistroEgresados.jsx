@@ -347,7 +347,7 @@ const RegistroEgresado = () => {
 
     console.log(datosEnviar);
 
-    axios.post('https://linked-back-spring-lake-433.fly.dev/usuarios/egresados', datosEnviar)
+    axios.post('https://linked-back-production.up.railway.app/usuarios/egresados', datosEnviar)
     .then((response) => {
       console.log("Respuesta del servidor:", response.data);
       setUsuarioLog(response.data.usuario.id);

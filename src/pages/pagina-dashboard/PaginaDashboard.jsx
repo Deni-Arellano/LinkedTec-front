@@ -50,7 +50,7 @@ const PaginaDashboard = () => {
 
     const consultarApi = async () => {
         try {
-            const respuesta = await axios.get('https://linked-back-spring-lake-433.fly.dev/estadisticas/');
+            const respuesta = await axios.get('https://linked-back-production.up.railway.app/estadisticas/');
             return respuesta.data;
         } catch (error) {
             console.error(error);

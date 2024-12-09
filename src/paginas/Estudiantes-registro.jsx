@@ -45,7 +45,7 @@ const Registro = () => {
 
   const verificarusuarioexistente = async () => {
     try {
-      const response = await Axios.get('https://linked-back-spring-lake-433.fly.dev/usuarios');
+      const response = await Axios.get('https://linked-back-production.up.railway.app/usuarios');
       const usuarios = response.data;
       const correoExistente = usuarios.some((usuario) => usuario.correo === correo);
       if (correoExistente) {
@@ -81,7 +81,7 @@ const Registro = () => {
   };
   const verificarNumeroControlExistente = async () => {
     try {
-      const response = await Axios.get('https://linked-back-spring-lake-433.fly.dev/usuarios/estudiantes');
+      const response = await Axios.get('https://linked-back-production.up.railway.app/usuarios/estudiantes');
       const usuarios = response.data;
       const controlExistente = usuarios.some((estudiantes) => estudiantes.no_control === noControl);
       if (controlExistente) {
@@ -351,7 +351,7 @@ const Registro = () => {
       }
     };
 
-    Axios.post('https://linked-back-spring-lake-433.fly.dev/usuarios/estudiantes', datosEnviar)
+    Axios.post('https://linked-back-production.up.railway.app/usuarios/estudiantes', datosEnviar)
     .then((response) => {
       console.log("Respuesta del servidor:", response.data);
       setUsuarioLog(response.data.id); 

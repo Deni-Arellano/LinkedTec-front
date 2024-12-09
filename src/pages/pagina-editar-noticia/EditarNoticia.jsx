@@ -38,7 +38,7 @@ const EditarNoticia = () => {
         try {
 
             setIdNoticia(id_noticia);
-            const noticiaResponse = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/noticias/${idNoticia}`);
+            const noticiaResponse = await Axios.get(`https://linked-back-production.up.railway.app/noticias/${idNoticia}`);
             const noticia = noticiaResponse.data;
             
             if (noticia) {
@@ -90,7 +90,7 @@ const EditarNoticia = () => {
             try {
                 const formData = new FormData();
                 formData.append('imagen', imagenFile);
-                const response = await Axios.post('https://linked-back-spring-lake-433.fly.dev/subidas/subir-imagen', formData, {
+                const response = await Axios.post('https://linked-back-production.up.railway.app/subidas/subir-imagen', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
                 imagenUrl = response.data.data.secure_url;
@@ -111,7 +111,7 @@ const EditarNoticia = () => {
                 id_usuario: idUsuario
             };
 
-            await Axios.patch(`https://linked-back-spring-lake-433.fly.dev/noticias/${idNoticia}`, noticiaData);
+            await Axios.patch(`https://linked-back-production.up.railway.app/noticias/${idNoticia}`, noticiaData);
             mostrarExito('La noticia se ha actualizado correctamente');
             navegarPaginaPrincipalNoticias();
 

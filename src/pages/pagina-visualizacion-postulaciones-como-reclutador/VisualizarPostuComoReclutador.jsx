@@ -22,7 +22,7 @@ const TablaPostuVerReclutador = () => {
 
 
     useEffect(() => {
-        Axios.get(`https://linked-back-spring-lake-433.fly.dev/postulaciones/empleo/${idEmpleo}?pagina=${currentPage}&limite=10`)
+        Axios.get(`https://linked-back-production.up.railway.app/postulaciones/empleo/${idEmpleo}?pagina=${currentPage}&limite=10`)
             .then(response => {
                 setData(response.data.postulaciones);
                 setFilteredData(response.data.postulaciones);
@@ -129,7 +129,7 @@ const TablaPostuVerReclutador = () => {
     const infoPostulante = async (id_usuario) => {
         try {
             // Realiza la solicitud para obtener la información del postulante
-            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/postulaciones/postulante/${idEmpleo}/${id_usuario}`);
+            const response = await Axios.get(`https://linked-back-production.up.railway.app/postulaciones/postulante/${idEmpleo}/${id_usuario}`);
             
             // Obtiene la información del postulante
             const { nombre_usuario, correo_usuario, fecha_postulacion, estado, descripcion, cv } = response.data;

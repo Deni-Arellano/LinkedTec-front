@@ -49,7 +49,7 @@ const CrearPubli = () => {
         formData.append('imagen', image);
 
         try {
-            const response = await Axios.post('https://linked-back-spring-lake-433.fly.dev/subidas/subir-imagen', formData, {
+            const response = await Axios.post('https://linked-back-production.up.railway.app/subidas/subir-imagen', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -97,7 +97,7 @@ const CrearPubli = () => {
             "disgusta": 0
         };
 
-        Axios.post('https://linked-back-spring-lake-433.fly.dev/publicaciones', datosEnviar)
+        Axios.post('https://linked-back-production.up.railway.app/publicaciones', datosEnviar)
             .then((response) => {
                 Swal.fire('Éxito', 'Publicación creada con éxito.', 'success');
                 setTextoPubli('');

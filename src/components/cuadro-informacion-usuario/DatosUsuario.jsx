@@ -54,7 +54,7 @@ const DatosUsu_EsDoEg = ({ datos }) => {
                 }
 
                 // URL combinada para verificar la contraseña y eliminar el perfil
-                const eliminarUrl = `https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioId}?contraseña=${encodeURIComponent(password)}`;
+                const eliminarUrl = `https://linked-back-production.up.railway.app/usuarios/${usuarioId}?contraseña=${encodeURIComponent(password)}`;
 
                 // Realiza la solicitud DELETE para eliminar el perfil
                 const eliminarResponse = await axios.delete(eliminarUrl);
@@ -129,14 +129,14 @@ const DatosUsu_EsDoEg = ({ datos }) => {
 
             try {
                 // Subir la imagen al servidor
-                const uploadResponse = await axios.post('https://linked-back-spring-lake-433.fly.dev/subidas/subir-imagen', formData, {
+                const uploadResponse = await axios.post('https://linked-back-production.up.railway.app/subidas/subir-imagen', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
 
                 const { secure_url } = uploadResponse.data.data;
 
                 // Actualizamos la imagen en el servidor
-                await axios.put('https://linked-back-spring-lake-433.fly.dev/usuarios/imagen', {
+                await axios.put('https://linked-back-production.up.railway.app/usuarios/imagen', {
                     id: usuarioId,
                     imagen_nueva: secure_url,
                     antigua_imagen: datos.imagen

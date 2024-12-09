@@ -55,7 +55,7 @@ const Postulacion = () => {
     // Obtener los datos del usuario logeado
     const getUsuario = useCallback(async () => {
         try {
-            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
+            const response = await Axios.get(`https://linked-back-production.up.railway.app/usuarios/${usuarioLog}`);
             // Si el usuario no es un egresado o estudiante, redirige a la página de publicaciones empleo
             if (response.data.role !== 'Egresados' && response.data.role !== 'Estudiantes') {
                 navigate('/empleos');
@@ -106,7 +106,7 @@ const Postulacion = () => {
         formData.append('archivo', archivo);
 
         try {
-            const respuesta = await Axios.post('https://linked-back-spring-lake-433.fly.dev/subidas/subir-archivo', formData, {
+            const respuesta = await Axios.post('https://linked-back-production.up.railway.app/subidas/subir-archivo', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
@@ -214,7 +214,7 @@ const Postulacion = () => {
 
         //Petición para agregar postulación   
         try {
-            await Axios.post(`https://linked-back-spring-lake-433.fly.dev/postulaciones/`, datosEnviar);
+            await Axios.post(`https://linked-back-production.up.railway.app/postulaciones/`, datosEnviar);
             Swal.fire('Postulación realizada', 'La postulación ha sido realizada con éxito', 'success');
             handleBack();
         } catch (error) {

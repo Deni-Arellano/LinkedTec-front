@@ -51,7 +51,7 @@ const EditarEgresado = () => {
     const getUsuario = async () => {
         //Petición para obtener los datos del usuario
         try {
-            const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
+            const response = await Axios.get(`https://linked-back-production.up.railway.app/usuarios/${usuarioLog}`);
 
             //Si el usuario no es un egresado, redirige a la página de perfil
             if (response.data.role !== 'Egresados') {
@@ -278,7 +278,7 @@ const EditarEgresado = () => {
 
         //Petición para editar el usuario
         try {
-            await Axios.patch(`https://linked-back-spring-lake-433.fly.dev/usuarios/egresados/${usuarioLog}`, datosEnviar);
+            await Axios.patch(`https://linked-back-production.up.railway.app/usuarios/egresados/${usuarioLog}`, datosEnviar);
             Swal.fire('Guardado', 'El usuario ha sido actualizado con éxito', 'success');
             handleBack();
         } catch (error) {

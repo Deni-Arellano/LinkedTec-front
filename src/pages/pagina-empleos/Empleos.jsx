@@ -21,7 +21,7 @@ const PublicacionEmpleo = () => {
     // Obtiene todos los empleos
     const getEmpleos = async () => {
         try {
-            const response = await axios.get('https://linked-back-spring-lake-433.fly.dev/empleos/');
+            const response = await axios.get('https://linked-back-production.up.railway.app/empleos/');
             setDatosEmpleos(response.data);
         } catch (err) {
             console.error('Error al obtener los empleos:', err);
@@ -31,7 +31,7 @@ const PublicacionEmpleo = () => {
     // Obtiene los datos de un usuario por su id
     const getUsuarios = async (id) => {
         try {
-            const response = await axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${id}`);
+            const response = await axios.get(`https://linked-back-production.up.railway.app/usuarios/${id}`);
             return [response.data.nombre, response.data.apellido_paterno, response.data.apellido_materno, response.data.imagen_usuario, response.data.role];
         } catch (err) {
             console.error('Error al obtener el usuario:', err);

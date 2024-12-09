@@ -34,7 +34,7 @@ const CrearNoticias = () => {
 
     /* Conectar al WebSocket al cargar el componente*/
     useEffect(() => {
-        const ws = new WebSocket('wss://linked-back-spring-lake-433.fly.dev:9081');
+        const ws = new WebSocket('wss://linked-back-production.up.railway.app:9081');
 
         ws.onopen = () => {
             console.log('Conectado al servidor WebSocket');
@@ -100,7 +100,7 @@ const CrearNoticias = () => {
             "id_usuario": usuarioLog
         };
 
-        axios.post('https://linked-back-spring-lake-433.fly.dev/noticias/', datosNoticia)
+        axios.post('https://linked-back-production.up.railway.app/noticias/', datosNoticia)
         .then((response) => {
             console.log(response);
             Swal.fire('Éxito', 'La noticia ha sido publicada con éxito.', 'success');

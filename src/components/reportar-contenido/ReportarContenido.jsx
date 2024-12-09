@@ -27,7 +27,7 @@ const ReportarContenido = ({ categoriaActual, id_noticia, onClose }) => {
     useEffect(() => {
       const obtenerUsuarioNoticia = async () => {
         try {
-          const response = await axios.get(`https://linked-back-spring-lake-433.fly.dev/noticias/${id_noticia}`);
+          const response = await axios.get(`https://linked-back-production.up.railway.app/noticias/${id_noticia}`);
           const noticia = response.data;
           setIdUsuario(noticia.id_usuario); 
         } catch (error) {
@@ -81,7 +81,7 @@ const ReportarContenido = ({ categoriaActual, id_noticia, onClose }) => {
             "titulo_reporte": titulo
         };
 
-        axios.post('https://linked-back-spring-lake-433.fly.dev/reportes', reporte)
+        axios.post('https://linked-back-production.up.railway.app/reportes', reporte)
             .then((response) => {
                 console.log(response);
                 Swal.fire('Éxito', 'Tu reporte ha sido enviado con éxito.', 'success');

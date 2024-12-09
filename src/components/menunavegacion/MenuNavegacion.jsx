@@ -21,7 +21,7 @@ const MenuNavegacion = () => {
     useEffect(() => {
         const getUsuario = async () => {
             try {
-                const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${usuarioLog}`);
+                const response = await Axios.get(`https://linked-back-production.up.railway.app/usuarios/${usuarioLog}`);
                 setDatosUsuario(response.data);
             } catch (err) {
                 console.error('Error al obtener el usuario:', err);

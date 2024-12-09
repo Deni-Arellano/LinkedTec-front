@@ -61,7 +61,7 @@ const EditarPublicacionEmpleo = () => {
         
 
         // Realiza una petición PATCH para actualizar los datos en el servidor
-        axios.patch(`https://linked-back-spring-lake-433.fly.dev/empleos/${datos.id_empleo}`, datosActualizados)
+        axios.patch(`https://linked-back-production.up.railway.app/empleos/${datos.id_empleo}`, datosActualizados)
             .then(response => {
                 Swal.fire('Éxito', 'La publicación de empleo ha sido actualizada.', 'success');
                 navigate('/empleos'); // Redirige a la página de empleos después de la actualización exitosa

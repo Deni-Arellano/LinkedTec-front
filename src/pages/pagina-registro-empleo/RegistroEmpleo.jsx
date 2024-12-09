@@ -28,7 +28,7 @@ const PaginaFormulario = () => {
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        const ws = new WebSocket('wss://linked-back-spring-lake-433.fly.dev:9081'); 
+        const ws = new WebSocket('wss://linked-back-production.up.railway.app:9081'); 
         setSocket(ws);
 
         ws.onopen = () => {
@@ -111,7 +111,7 @@ const PaginaFormulario = () => {
             "id_usuario": usuarioCreador
         };
 
-        axios.post('https://linked-back-spring-lake-433.fly.dev/empleos/', datosEnviar)
+        axios.post('https://linked-back-production.up.railway.app/empleos/', datosEnviar)
         .then((response) => {
             Swal.fire('Éxito', 'El empleo ha sido publicado con éxito.', 'success');
             handleBack();
@@ -125,7 +125,7 @@ const PaginaFormulario = () => {
             };
 
             // Obtener usuarios específicos y enviar notificación y usuarios a través del WebSocket
-            axios.get('https://linked-back-spring-lake-433.fly.dev/usuarios/')
+            axios.get('https://linked-back-production.up.railway.app/usuarios/')
                 .then((resUsuarios) => {
                     const usuariosFiltrados = resUsuarios.data.filter(usuario =>
                         usuario.rol === 'egresado' || usuario.rol === 'estudiante'

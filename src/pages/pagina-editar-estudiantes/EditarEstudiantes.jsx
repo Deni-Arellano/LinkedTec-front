@@ -35,7 +35,7 @@ const EditEstudiante = () => {
     useEffect(() => {
         const obtenerDatos = async () => {
             try {
-                const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/estudiantes/${usuarioLog}`);
+                const response = await Axios.get(`https://linked-back-production.up.railway.app/usuarios/estudiantes/${usuarioLog}`);
                 const data = response.data;
                 
                 setNombre(data.nombre);
@@ -344,7 +344,7 @@ const EditEstudiante = () => {
     
             // Realizar la solicitud patch para actualizar los datos
             try {
-                await Axios.patch(`https://linked-back-spring-lake-433.fly.dev/usuarios/estudiantes/${usuarioLog}`, datosActualizados);
+                await Axios.patch(`https://linked-back-production.up.railway.app/usuarios/estudiantes/${usuarioLog}`, datosActualizados);
     
                 // Mostrar mensaje de éxito
                 Swal.fire('Éxito', 'Los datos del estudiante han sido actualizados.', 'success');

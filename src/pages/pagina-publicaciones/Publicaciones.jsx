@@ -83,7 +83,7 @@ const PubliUsuarios = () => {
 
   const getUsuarios = async (id) => {
     try {
-      const response = await Axios.get(`https://linked-back-spring-lake-433.fly.dev/usuarios/${id}`);
+      const response = await Axios.get(`https://linked-back-production.up.railway.app/usuarios/${id}`);
       //console.log("Datos del usuarioen el get:", response.data);
       return [
         response.data.nombre,
@@ -102,7 +102,7 @@ const PubliUsuarios = () => {
   const getPublicaciones = async (page = 1, limit = 10) => {
     try {
       const response = await Axios.get(
-        `https://linked-back-spring-lake-433.fly.dev/publicaciones?pagina=${page}&limite=${limit}&informacionCompleta=true`
+        `https://linked-back-production.up.railway.app/publicaciones?pagina=${page}&limite=${limit}&informacionCompleta=true`
       );
       console.log("Datos de las publicaciones:", response.data);
       return response.data;

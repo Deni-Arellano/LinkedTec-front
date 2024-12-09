@@ -16,7 +16,7 @@ const ReportesAdmin = () => {
   const fetchReportes = async (pagina, limite) => {
     try {
       const response = await axios.get(
-        `https://linked-back-spring-lake-433.fly.dev/reportes/?pagina=${pagina}&limite=${limite}`
+        `https://linked-back-production.up.railway.app/reportes/?pagina=${pagina}&limite=${limite}`
       );
       setReportes(response.data); // Asume que el backend retorna un arreglo de reportes
     } catch (error) {
@@ -27,7 +27,7 @@ const ReportesAdmin = () => {
 
   const fetchDetallesReporte = async (id) => {
     try {
-      const response = await axios.get(`https://linked-back-spring-lake-433.fly.dev/reportes/${id}/detalles`);
+      const response = await axios.get(`https://linked-back-production.up.railway.app/reportes/${id}/detalles`);
       setDetalles(response.data);
     } catch (error) {
       console.error("Error al cargar los detalles del reporte:", error);
@@ -42,7 +42,7 @@ const ReportesAdmin = () => {
   const handleEliminarContenido = async () => {
     if (window.confirm("¿Estás seguro de que deseas eliminar este contenido?")) {
       try {
-        await axios.post(`https://linked-back-spring-lake-433.fly.dev/reportes/${detalles.id}/aprobar`);
+        await axios.post(`https://linked-back-production.up.railway.app/reportes/${detalles.id}/aprobar`);
         alert("Contenido eliminado con éxito");
         setDetalles(null);
         fetchReportes(1, 10); // Recargar reportes
@@ -56,7 +56,7 @@ const ReportesAdmin = () => {
   const handleEstadoEnEspera = async () => {
     if (detalles) {
       try {
-        await axios.post(`https://linked-back-spring-lake-433.fly.dev/reportes/${detalles.id}/espera`);
+        await axios.post(`https://linked-back-production.up.railway.app/reportes/${detalles.id}/espera`);
         alert("El estado del reporte se cambió a 'En Espera'.");
         setDetalles(null);
         fetchReportes(1, 10); // Recargar reportes
